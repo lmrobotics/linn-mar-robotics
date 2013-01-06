@@ -11,7 +11,7 @@ http://code.google.com/p/linn-mar-robotics/source/browse/wiki/driverDocumentatio
 
 A relative link:
 
-[../driverDocumentation/]
+[[./driverDocumentation/]]
 
 = Details =
 
