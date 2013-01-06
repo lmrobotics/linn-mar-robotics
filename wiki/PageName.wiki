@@ -4,6 +4,8 @@
 
 Step by step instructions for installing and using TortoiseSVN and using for source control on Linn-Mar robotics projects.
 
+http://linn-mar-robotics.googlecode.com/svn/wiki/images/checkout.png
+
 = Details =
 
 
