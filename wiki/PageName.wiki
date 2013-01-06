@@ -2,17 +2,6 @@
 
 = Introduction =
 
-Add your content here.
-
-
-[http://linn-mar-robotics.googlecode.com/svn/wiki//driverDocumentation/index.html Example Driver Documentation]
-
-
-<a href="./driverDocumentation/index.html">click here if documentation does not load within 5 seconds</a>
-
-A relative link:
-
-[[./driverDocumentation/index.html]]
 
 = Details =
 
@@ -20,3 +9,5 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+[http://linn-mar-robotics.googlecode.com/svn/wiki//driverDocumentation/index.html Example  RobotC Driver Documentation]
