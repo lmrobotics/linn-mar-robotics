@@ -6,7 +6,7 @@ Add your content here.
 
 http://www.google.com/
 
-http://code.google.com/p/linn-mar-robotics/source/browse/wiki/driverDocumentation?show=content
+http://code.google.com/p/linn-mar-robotics/source/browse/wiki/driverDocumentation?show=content,nav
 
 
 A relative link:
