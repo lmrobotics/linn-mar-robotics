@@ -1,13 +1,16 @@
-#summary One-sentence summary of this page.
+#summary Guide for installing and Using TortoiseSVN
 
 = Introduction =
 
+Step by step instructions for installing and using TortoiseSVN and using for source control on Linn-Mar robotics projects.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+[http://tortoisesvn.net/downloads.html Click Here to get installer for TortiseSVN]
+
+
+
+
 
 [http://linn-mar-robotics.googlecode.com/svn/wiki//driverDocumentation/index.html Example  RobotC Driver Documentation]
