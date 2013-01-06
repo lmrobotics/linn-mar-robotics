@@ -13,7 +13,7 @@ http://www.google.com/
 
 A relative link:
 
-[[./driverDocumentation/]]
+[[./driverDocumentation/index.html]]
 
 = Details =
 
