@@ -24,7 +24,7 @@ You can add files to the repository by creating new files within your checkout, 
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/add.png
 
-Once you have added or modified a file, you can commit your changes by right clicking on a file or a directory and then clicking on *SVN Commit*.  It is recommended that you check in your changes frequently so that you can get back to a known "working version" of you code or a known good version of you document.
+Once you have added or modified a file, you can commit your changes by right clicking on a file or a directory and then clicking on *SVN Commit*.  It is recommended that you check in your changes frequently so that you can get back to a known "working version" of you code or a known good version of your document.
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/commit2.png
 
