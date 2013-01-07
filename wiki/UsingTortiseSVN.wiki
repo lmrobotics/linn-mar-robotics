@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Subversion provides a convenient way to perform source control for any type of file.  Source control is useful for saving versions of your work and recalling a specific version at a later date.  This guild provides step by step instructions for installing and using TortoiseSVN and using for source control on Linn-Mar robotics projects.
+Subversion combined with TortoiseSVN provides a convenient way to perform source control for any type of file. Source control is useful for saving versions of your work and recalling a specific version at a later date.  This quick start guild provides step by step instructions for getting started using TortoiseSVN and using for source control on Linn-Mar robotics projects.  [http://tortoisesvn.net/docs/release/TortoiseSVN_en/index.html Click here for more comprehensive manual for TortoiseSVN]
 
 = Details =
 
