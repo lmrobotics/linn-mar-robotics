@@ -20,11 +20,11 @@ http://linn-mar-robotics.googlecode.com/svn/wiki/images/checkout2.png
 
 You'll notice that the files in you new checkout have a green check-mark by them.  The green check-mark indicates that the file has not been modified.  As files are modified, the green check-mark changes to a red exclamation.  
 
-You can add files to the repository by creating new files withing the checkout, right clicking on the file and navigating to TortoiseSVN->Add.   
+You can add files to the repository by creating new files within your checkout, right clicking on the file and navigating to TortoiseSVN->Add.   
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/add.png
 
-Once you have added or modified a file, you can commit your changes by right clicking on a file or a directory and then clicking on *SVN Commit*
+Once you have added or modified a file, you can commit your changes by right clicking on a file or a directory and then clicking on *SVN Commit*.  It is recommended that you check in your changes frequently so that you can get back to a known "working version" of you code or a known good version of you document.
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/commit2.png
 
