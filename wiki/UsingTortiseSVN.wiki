@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Step by step instructions for installing and using TortoiseSVN and using for source control on Linn-Mar robotics projects.
+Subversion provides a convenient way to perform source control for any type of file.  Source control is useful for saving versions of your work and recalling a specific version at a later date.  This guild provides step by step instructions for installing and using TortoiseSVN and using for source control on Linn-Mar robotics projects.
 
 = Details =
 
@@ -25,5 +25,9 @@ You can add files to the repository by creating new files withing the checkout, 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/add.png
 
 Once you have added or modified a file, you can commit your changes by right clicking on a file or a directory and then clicking on *SVN Commit*
+
+http://linn-mar-robotics.googlecode.com/svn/wiki/images/commit2.png
+
+Be sure to type a descriptive comment in the message box.  These comments show up in the revision history and will be useful when you want to get back to a specific version of your file.
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/commit.png
