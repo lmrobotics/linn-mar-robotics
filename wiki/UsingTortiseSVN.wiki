@@ -12,7 +12,7 @@ Next you will need to get a check out of the Linn-Mar subversion repository. Rig
 
 http://linn-mar-robotics.googlecode.com/svn/wiki/images/checkout.png
 
-You will need to type the URL path to the Linn-Mar subversion repository.  Note you do probably will not want the entire trunk or branch directory. It is strongly encouraged that individuals work in the branches directory for items are being edited by one individual.  Group efforts should be placed under trunk, but individuals can make copies in the branches directory for editing if they like.  Finished products should be placed under the tags directory, such as code used for a competition. You can cut and past the following URL into the URL repository dialog box and then click *...* to navigate to the folder you really want to check out.
+You will need to type the URL path to the Linn-Mar subversion repository.  Note you do probably will not want the entire trunk or branch directory. It is strongly encouraged that individuals work in the branches directory for items that are being edited by one individual.  Group efforts should be placed under trunk.  Finished products should be placed under the tags directory, such as code used for a competition. You can cut and past the following URL into the URL repository dialog box and then click *...* to navigate to the folder you really want to check out.
 
 {{{https://linn-mar-robotics.googlecode.com/svn/branches}}}
 
