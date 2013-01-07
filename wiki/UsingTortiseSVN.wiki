@@ -6,7 +6,7 @@ Subversion combined with TortoiseSVN provides a convenient way to perform source
 
 = Details =
 
-First you will need to install a Subversion client on your PC.  TortiseSVN is a popular and easy to SVN client that is integrated into the windows explorer.  [http://tortoisesvn.net/downloads.html Click Here to get TortiseSVN installer ]
+First you will need to install a Subversion client on your PC.  TortiseSVN is a popular and easy to use SVN client that is integrated into the windows explorer.  [http://tortoisesvn.net/downloads.html Click Here to get TortiseSVN installer ]
 
 Next you will need to get a check out of the Linn-Mar subversion repository. Right click inside a Windows explorer where you will want to place your checkout and click on *SVN Checkout...*
 
