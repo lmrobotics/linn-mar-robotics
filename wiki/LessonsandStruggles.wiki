@@ -1,0 +1,21 @@
+#summary One-sentence summary of this page.
+#labels LessonLearned
+What we have struggled, what we have learned this year 2012/2013 FTC
+= Introduction =
+
+Add your content here.
+Multiplexer
+ - Compatibility issue with RobotC version 3.54:
+   We spent quite a few hours trying to figure out why none the sensors read correct values when connected through a multiplexer. For example, EOPD reads 1000 instead of 200 when connected directly to NXT port.
+   Solution: it turned out to be a bug in RobotC version 3.54. After downloading 3.55 beta 2, sensors worked properly.
+
+ - Sensor values non-reliable through Multiplexer.
+   We found that some of the sensor readings are not reliable when Multiplexer battery level drops, which unfortunately is hard to tell. We decided to connect the complex sensor like EOPD and IRSeeker directly to NXT and connect the simple ones like light and touch sensors to mux and deal with the uncertainties through the code.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
