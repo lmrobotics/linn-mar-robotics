@@ -15,6 +15,7 @@ _Solution_: it turned out to be a bug in RobotC version 3.54. After downloading 
   _Solution_: We decided to connect the complex sensor like EOPD and IRSeeker directly to NXT and connect the simple ones like light and touch sensors to mux and deal with the uncertainties through the code.
 
 *Motor Testing*
-_Having some debug code to test individual motors is very helpful_
+
+ _Having some debug code to test individual motors is very helpful_
 One motor wire or fuse has issues, causing wheel lags in braking. We swapped motor controllers, ports, motors, and finally found out the wire issues.
-_Solution_: George wrote a function that will allow drivers to use the joystick buttons to test individual motors. This debug function should be on each tele-op program.
+ _Solution_: George wrote a function that will allow drivers to use the joystick buttons to test individual motors. This debug function should be on each tele-op program.
