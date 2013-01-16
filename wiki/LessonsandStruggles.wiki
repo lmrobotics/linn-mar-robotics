@@ -17,5 +17,5 @@ _Solution_: it turned out to be a bug in RobotC version 3.54. After downloading 
 *Motor Testing*
 
  _Having some debug code to test individual motors is very helpful_
-One motor wire or fuse has issues, causing wheel lags in braking. We swapped motor controllers, ports, motors, and finally found out the wire issues.
+ One motor wire or fuse has issues, causing wheel lags in braking. We  swapped motor controllers, ports, motors, and finally found out the wire issues.
  _Solution_: George wrote a function that will allow drivers to use the joystick buttons to test individual motors. This debug function should be on each tele-op program.
