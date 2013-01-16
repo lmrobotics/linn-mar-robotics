@@ -21,6 +21,10 @@ const int baseMotorPower = 33;
 const float turnRateMulitplier = 1.5;
 
 
+/** ***************************************************************************
+ * \brief This constant compensates for the differences in the sensitivity 
+ * of the two light sensors.
+ */
 const int sensorCal = 11;
 
 /** ***************************************************************************
