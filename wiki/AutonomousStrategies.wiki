@@ -9,8 +9,7 @@ Please follow the link to view diagrams and photos that I shared with you throug
 
 *Option 1 Starting Position from Left of Dispenser (LofD) and Right of Dispenser (RofD)*
 
-_Strategy_: 
- Drivers do not need to differentiate these two starting positions; the program does it automatically.
+_Strategy_: Note that drivers do not need to differentiate these two starting positions; the program does it automatically.
  
  _Move forward till close to the line at maximum speed;_
 
