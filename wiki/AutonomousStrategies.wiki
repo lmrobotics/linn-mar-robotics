@@ -9,9 +9,9 @@ Please follow the link to view diagrams and photos that I shared with you throug
 
 *Option 1 Starting Position from Left of Dispenser (LofD) and Right of Dispenser (RofD)*
 _Strategy_: Drivers do not need to differentiate these two starting positions; the program does it automatically.
- Move forward till close to the line at maximum speed;
- Stop, move with slow speed till one of the light sensors reaches the line;
- Stop, reset encoder values, then move slowly till both light sensors read the line;
+ _Move forward till close to the line at maximum speed;_
+ _Stop, move with slow speed till one of the light sensors reaches the line;_
+ _Stop, reset encoder values, then move slowly till both light sensors read the line;_
  Calcuate the angle between robot and line, then use turn robot to close to staight along the line, using the angle as reference;
  Follow the line and move to read IR position; 
  Scan IR, decide which column is the IR beacon on;
