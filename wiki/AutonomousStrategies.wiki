@@ -16,11 +16,17 @@ _Move forward till close to the line at maximum speed;_
 
  _Stop, reset encoder values, then move slowly till both light sensors read the line;_
 
- Calcuate the angle between robot and line, then use turn robot to close to staight along the line, using the angle as reference;
- Follow the line and move to read IR position; 
- Scan IR, decide which column is the IR beacon on;
- If IR beacon is on the middle, continue moving, then place ring;
- If IR beacon is on the sides, back and turn till reaches the line, then follows the line and place the ring;
+ _Calcuate the angle between robot and line, then use turn robot to close to staight along the line, using the angle as reference;_
 
-Link:
+ _Follow the line and move to read IR position;_
+
+ _Scan IR, decide which column is the IR beacon on;_
+
+ _If IR beacon is on the middle, continue moving, then place ring;_
+
+ _If IR beacon is on the sides, back and turn till reaches the line, then follows the line and place the ring;_
+
+
+_Link:_
+
 https://docs.google.com/file/d/0B7YFwc6_lsxTZjVhMkg1c3FSb0E/edit
