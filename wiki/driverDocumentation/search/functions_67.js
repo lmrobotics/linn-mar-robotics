@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getjoystickvalues',['getJoystickValues',['../_joy_stick_record_driver_8c.html#aa9e77b3bc4f67a9372a06a8a62293a1f',1,'JoyStickRecordDriver.c']]]
+  ['getjoystickvalues',['getJoystickValues',['../_joy_stick_record_driver_8c.html#a2897b087bef6c8e0ba16966e27d924f2',1,'JoyStickRecordDriver.c']]]
 ];

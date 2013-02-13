@@ -1,3 +1,6 @@
+#ifndef data_record_c
+#define data_record_c
+
 const int   maxDataLog = 1024*8;
 static byte tempData[maxDataLog];
 int         logSize = 0;
@@ -32,3 +35,5 @@ void logByte(byte logDat)
     tempData[logSize++] = logDat;
   }
 } // logByte
+
+#endif

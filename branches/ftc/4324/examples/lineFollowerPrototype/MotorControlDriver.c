@@ -1,3 +1,6 @@
+#ifndef motor_control_driver_c
+#define motor_control_driver_c
+
 // \cond - tell Doxigen to not include prototypes, typedefs and globals in the generated documentation.
 /*
  * Internal data Structure used to save motor information
@@ -180,3 +183,5 @@ task serviceMotorPowerChange()
 
   } // while true
 } // serviceMotorPowerChange
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef follow_line_c
+#define follow_line_c
 
 /** ***************************************************************************
  * \brief Reflective Light sensor threshold for detecting white line on black
@@ -22,7 +24,7 @@ const float turnRateMulitplier = 1.5;
 
 
 /** ***************************************************************************
- * \brief This constant compensates for the differences in the sensitivity 
+ * \brief This constant compensates for the differences in the sensitivity
  * of the two light sensors.
  */
 const int sensorCal = 11;
@@ -114,4 +116,6 @@ void follow()
   stopMotorControl();
   wait1Msec(500);
 
-} // task main
+} // task follow
+
+#endif

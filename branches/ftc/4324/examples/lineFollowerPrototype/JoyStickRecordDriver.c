@@ -1,4 +1,5 @@
-// \cond - tell Doxigen to not include internal functions prototypes, typedefs and globals in the generated documentation.
+#ifndef joy_stick_record_driver_c
+#define joy_stick_record_driver_c
 
 typedef struct
 {
@@ -97,8 +98,21 @@ void readJoystickEventData(string fileName)
 
 // \endcond - Doxigen starts processing comments from here on.
 
+//! Enum type definition used to set the record/playback mode of the driver
+typedef enum 
+{
+  /// Sets the driver to record mode
+  record, 
+  /// sets the driver to playback mode
+  playBack} 
+recordOrPlayBackModeType;
+
 /** ***************************************************************************
  * \brief Returns joystick value in both record and playback modes
+ *
+ * If the driver is in record mode, the joystick values are read from
+ * the joystick driver.  If the driver is in playback mode, the joystick values
+ * are read from a previously recoreded file.
  *
  * \param currentJoystick - current joystick event data.
  */
@@ -132,15 +146,19 @@ void getJoystickValues(TJoystick currentJoystick)
  * \param fileName - If record mode, the file name to write the joystick events to. If play
  * back mode, the file name to read the joystick events from.
  *
- * \param record - boolean to control what mode the driver operates in.  If set to true, the
- * driver will operate in record mode.  If false, the driver will operate in playback mode.
+ * \param record - Enumeration used to control what mode the driver operates in.  If set to record, the
+ * driver reads the values from the joystick and returns them to the user and saves them to a file to be played
+ * back later.  If set to playBack, the driver will read joystick values from a previously saved to a file
+ * and return them to the user.
  */
-void initalizeJoystickRecording(string fileName, bool record)
+void initalizeJoystickRecording(string fileName, recordOrPlayBackModeType recordMode)
 {
 	EventDataFileName = fileName;
-  recording = record;
+  recording = recordMode == record;
   if(!recording)
   {
     readJoystickEventData(fileName);
   }
 } // initalizeJoystickRecording
+
+#endif
