@@ -28,10 +28,10 @@ const int baseMotorPower = 33;
  * the faster the robot is going, the faster you will want to turn the bot to
  * make corrections.
  */
-const float turnRateMulitplier = 1.5;
+const float turnRateMulitplier = 2.0;
 
 
-const int sensorCal = 11;
+const int sensorCal = 5;
 
 /** ***************************************************************************
  * \brief Determines if sensor value is above white line and not on black
@@ -113,7 +113,7 @@ task main()
         setMotorPower(rightMotor,(baseMotorPower + turnFactor));
         setMotorPower(leftMotor, (baseMotorPower - turnFactor));
         logByte((byte)turnFactor);
-        wait1Msec(10);
+        wait1Msec(5);
       } // else both sensors not on line
    } // while
 

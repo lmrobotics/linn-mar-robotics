@@ -56,11 +56,12 @@ void motorControl(TJoystick currentJoystick)
   nxtDisplayTextLine(2, "pf = %f", pf);
   nxtDisplayTextLine(3, "r = %f", r);
 
-  //float rightPower = (y/r + x/r)*pf;
-  //float leftPower  = (y/r - x/r)*pf;
+  //float leftPower = (y/r + x/r)*pf;
+  //float rightPower  = (y/r - x/r)*pf;
 
-  float leftPower = (y/r + x/r)*pf;
-  float rightPower  = (y/r - x/r)*pf;
+  // tank drive
+  float leftPower  = (currentJoystick.joy1_y1*100)/128;
+  float rightPower = (currentJoystick.joy1_y2*100)/128;
 
   nxtDisplayTextLine(4, "rgt = %d", slowStopLimit((int)rightPower));
   nxtDisplayTextLine(5, "lft = %d", slowStopLimit((int)leftPower) );
@@ -107,11 +108,6 @@ task main()
   initializeIndividualMotor(leftMotor, 50);
   initialializeMotorControl(1);
 
-
-//  nMotorPIDSpeedCtrl[rightMotor] = mtrSpeedReg;
-//  nMotorPIDSpeedCtrl[leftMotor] = mtrSpeedReg;
-//  PlaySound(soundUpwardTones);
-
   exit = false;
   // determine mode
   while (!exit)
@@ -122,7 +118,7 @@ task main()
     if (joystick.joy1_Buttons & 1)
     {
       mode = normalOperation;
-      initalizeJoystickRecording(eventFileName, true);
+      initalizeJoystickRecording(eventFileName, record);
       exit = true;
     }
 
@@ -130,14 +126,14 @@ task main()
     if (joystick.joy1_Buttons & 2)
     {
       mode = recordMode;
-      initalizeJoystickRecording(eventFileName, true);
+      initalizeJoystickRecording(eventFileName, record);
       exit = true;
     }
     // button B starts playback mode
     if (joystick.joy1_Buttons & 4)
     {
       mode = playbackMode;
-      initalizeJoystickRecording(eventFileName, false);
+      initalizeJoystickRecording(eventFileName, playBack);
       exit = true;
     }
   } // while waiting for startup mode button press
