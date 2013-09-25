@@ -44,12 +44,15 @@ class RobotDemo : public SimpleRobot
 	
 	Joystick xbox;
 	Motors motors;
+	Encoder shooter_encoder;
 
 public:
 	RobotDemo(void):
 		xbox(1),
-		motors()
+		motors(),
+		shooter_encoder(1,2)
 	{
+		shooter_encoder.Start();
 	}
 
 	void Autonomous(void)
@@ -73,6 +76,15 @@ public:
 		{
 			float y = xbox.GetY(GenericHID::kLeftHand);
 			float x = xbox.GetRawAxis(4);
+			bool a_button = xbox.GetRawButton(1);
+			int encoder_count = shooter_encoder.GetRaw();
+			
+			if(a_button==true) {
+				motors.spinshooter(.2);
+			}
+			else {
+				motors.spinshooter(0);
+			}
 			
 			if(y >= deadband) {
 				if(x > deadband) {
@@ -130,11 +142,12 @@ public:
 			else if(x<-1){
 				x=-1;
 			}
-			printf("RightSpeed %f \n",RightSpeed);
+			printf("EncoderCount %i \n",encoder_count);
 			motors.drive(-LeftSpeed,RightSpeed);
 			
 			Wait(0.005);
 		}
+		shooter_encoder.Stop();
 	}
 	
 	/**
