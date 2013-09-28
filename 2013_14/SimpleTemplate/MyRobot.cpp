@@ -25,6 +25,24 @@ public:
 		drive4.Set(RightSpeed);
 	}
 	
+	void test_motors(){
+		drive1.Set(.3);
+		Wait(3);
+		drive1.Set(0);
+		Wait(3);
+		drive2.Set(.3);
+		Wait(3);
+		drive2.Set(0);
+		Wait(3);
+		drive3.Set(.3);
+		Wait(3);
+		drive3.Set(0);
+		Wait(3);
+		drive4.Set(.3);
+		Wait(3);
+		drive4.Set(0);
+	}
+	
 	void stopdrive(){
 		drive1.Set(0);
 		drive2.Set(0);
@@ -42,28 +60,30 @@ public:
 class RobotDemo : public SimpleRobot
 {
 	
-	Joystick xbox;
+	Joystick xbox,xbox2;
 	Motors motors;
 	Encoder shooter_encoder;
+	Compressor compressor;
+	Solenoid shooter2, shooter1;
 
 public:
 	RobotDemo(void):
 		xbox(1),
+		xbox2(2),
 		motors(),
-		shooter_encoder(1,2)
+		shooter_encoder(1,2),
+		compressor(3,1),
+		shooter2(1),
+		shooter1(2)
 	{
+		shooter_encoder.SetMaxPeriod(.1);
+		shooter_encoder.SetDistancePerPulse(.06);
 		shooter_encoder.Start();
 	}
 
 	void Autonomous(void)
 	{
-		motors.drive(.5,.5);
-		Wait(2.0);
-		motors.stopdrive();
-		Wait(2.0);
-		motors.spinshooter(.2);
-		Wait(2.0);
-		motors.spinshooter(0);
+		motors.test_motors();
 	}
 
 	
@@ -76,14 +96,32 @@ public:
 		{
 			float y = xbox.GetY(GenericHID::kLeftHand);
 			float x = xbox.GetRawAxis(4);
+			bool second_a_button = xbox2.GetRawButton(1);
 			bool a_button = xbox.GetRawButton(1);
-			int encoder_count = shooter_encoder.GetRaw();
+			double encoder_count = shooter_encoder.GetRate();
 			
-			if(a_button==true) {
-				motors.spinshooter(.2);
+			if(!compressor.GetPressureSwitchValue()){
+				compressor.Start();
+			}
+			else {
+				compressor.Stop();
+			}
+			
+			
+			if(second_a_button==true) {
+				motors.spinshooter(.35);
 			}
 			else {
 				motors.spinshooter(0);
+			}
+			
+			if(a_button==true){
+				shooter1.Set(true);
+				shooter2.Set(false);
+			}
+			else {
+				shooter1.Set(false);
+				shooter2.Set(true);
 			}
 			
 			if(y >= deadband) {
@@ -142,7 +180,9 @@ public:
 			else if(x<-1){
 				x=-1;
 			}
-			printf("EncoderCount %i \n",encoder_count);
+			printf("EncoderCount %f \n",encoder_count);
+			
+			
 			motors.drive(-LeftSpeed,RightSpeed);
 			
 			Wait(0.005);
