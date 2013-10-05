@@ -1,6 +1,6 @@
 #include "WPILib.h"
 #include "GenericHID.h"
-#include "Dashboard.h"
+//#include "C:\WindRiver\vxworks-6.3\target\h\WPILib\SmartDashboard\SmartDashboard.h"
 #include "dualMotor.h"
 #include "dataLogger.h"
 
@@ -230,7 +230,7 @@ public:
 			
 			//Print Statements to Console
 			printf("EncoderCount %f \n",encoder_count);
-			
+			//SmartDashboard::PutNumber("battery_voltage",12.45);
 			
 			
 			motors.drive(-LeftSpeed,RightSpeed);
