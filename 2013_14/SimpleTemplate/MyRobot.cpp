@@ -58,7 +58,7 @@ class RobotDemo : public SimpleRobot
 	Encoder shooter_encoder;
 	Compressor compressor;
 	Solenoid shooter2, shooter1, lifter1, lifter2;
-	dualMotor <Talon> shooter_motors;
+	dualMotor shooter_motors;
 	PIDController shootControl;
 	dataLogger motorRecord;
 	dataLogger encoderRecord;

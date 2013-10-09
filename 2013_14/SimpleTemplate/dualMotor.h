@@ -5,12 +5,12 @@
 #include "SafePWM.h"
 #include "SpeedController.h"
 #include "PIDOutput.h"
-#include "Victor.h"
+#include "Talon.h"
 
 /**
  * IFI Victor Speed Controller
  */
-template <class motorType> class dualMotor : public SpeedController
+class dualMotor : public SpeedController
 {
 public:
 	explicit dualMotor(UINT32 channel1, UINT32 channel2);
@@ -23,8 +23,8 @@ public:
 	virtual void PIDWrite(float output);
 
 private:
-	motorType motor1;
-	motorType motor2;
+	Talon motor1;
+	Talon motor2;
 };
 
 #endif

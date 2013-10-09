@@ -10,7 +10,7 @@
  * 
  * @param channel The PWM channel on the digital module that the motors are attached to.
  */
-template <class motorType> dualMotor<motorType>::dualMotor(UINT32 channel1, UINT32 channel2) : 
+ dualMotor::dualMotor(UINT32 channel1, UINT32 channel2) : 
    motor1(channel1),
    motor2(channel2)
 {
@@ -22,13 +22,13 @@ template <class motorType> dualMotor<motorType>::dualMotor(UINT32 channel1, UINT
  * @param moduleNumber The digital module (1 or 2).
  * @param channel The PWM channel on the digital module that the motors are attached to (1..10).
  */
-template <class motorType> dualMotor<motorType>::dualMotor(UINT8 moduleNumber, UINT32 channel1, UINT32 channel2) : 
+ dualMotor::dualMotor(UINT8 moduleNumber, UINT32 channel1, UINT32 channel2) : 
    motor1(channel1),
    motor2(channel2)
 {
 }
 
-template <class motorType> dualMotor<motorType>::~dualMotor()
+ dualMotor::~dualMotor()
 {
 }
 
@@ -41,7 +41,7 @@ template <class motorType> dualMotor<motorType>::~dualMotor()
  * @param speed The speed value between -1.0 and 1.0 to set.
  * @param syncGroup Unused interface.
  */
-template <class motorType> void dualMotor<motorType>::Set(float speed, UINT8 syncGroup)
+ void dualMotor::Set(float speed, UINT8 syncGroup)
 {
 	motor1.Set(speed, syncGroup);
 	motor2.Set(speed, syncGroup);
@@ -52,7 +52,7 @@ template <class motorType> void dualMotor<motorType>::Set(float speed, UINT8 syn
  * 
  * @return The most recently set value for the PWM between -1.0 and 1.0.
  */
-template <class motorType> float dualMotor<motorType>::Get()
+ float dualMotor::Get()
 {
 	return motor1.Get();
 }
@@ -60,7 +60,7 @@ template <class motorType> float dualMotor<motorType>::Get()
 /**
  * Common interface for disabling a motor.
  */
-template <class motorType> void dualMotor<motorType>::Disable()
+ void dualMotor::Disable()
 {
 	motor1.Disable();
 	motor2.Disable();
@@ -71,7 +71,7 @@ template <class motorType> void dualMotor<motorType>::Disable()
  * 
  * @param output Write out the PWM value as was found in the PIDController
  */
-template <class motorType> void dualMotor<motorType>::PIDWrite(float output) 
+ void dualMotor::PIDWrite(float output) 
 {
 	motor1.PIDWrite(output);
 	motor2.PIDWrite(output);
