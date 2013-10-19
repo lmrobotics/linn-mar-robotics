@@ -9,12 +9,12 @@ int main(int argc, char* argv[])
    if (argc > 1)
    {
    dataParserClass *dp = new dataParserClass(argv[1]);
-   dp->parseDoublesReversed();
+   dp->parseFloatsReversed();
    return 0;
    }
    else {
       dataParserClass *dp = new dataParserClass("U:\\dataParser\\byteSwappedFloats.bin");
-      dp->parseDoublesReversed();
+      dp->parseFloatsReversed();
       return 0;
    }
 }
