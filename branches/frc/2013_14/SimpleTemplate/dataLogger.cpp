@@ -5,26 +5,20 @@
 
 dataLogger::dataLogger (const char* fileName)
 {
-	fd = open(fileName, O_WRONLY, 777);
+	fd = fopen(fileName, "w");
 }
 
 dataLogger::~dataLogger ()
 {
-	close(fd);
+	fclose(fd);
 }
 
-
-void dataLogger::write_(int value)
+void dataLogger::close_()
 {
-	write(fd, reinterpret_cast<char *>(&value), (size_t)sizeof(value));
+	fclose(fd);
 }
 
-void dataLogger::write_(float value)
+void dataLogger::write_(const char* value)
 {
-	write(fd, reinterpret_cast<char *>(&value), (size_t)sizeof(value));
-}
-
-void dataLogger::write_(double value)
-{
-	write(fd, reinterpret_cast<char *>(&value), (size_t)sizeof(value));
+	fprintf(fd, value);
 }

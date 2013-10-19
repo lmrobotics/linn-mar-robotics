@@ -13,12 +13,13 @@ class dataLogger
 public:
 	dataLogger (const char* fileName);
 	~dataLogger ();
-	void write_(int value);
+	void close_();
+	void write_(const char* value);
 	void write_(float value);
 	void write_(double value);
 private:
 	// file descriptor
-	int fd;
+	FILE * fd;
 }; // class dataLogger
 
 #endif
