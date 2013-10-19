@@ -3,6 +3,7 @@
 //#include "C:\WindRiver\vxworks-6.3\target\h\WPILib\SmartDashboard\SmartDashboard.h"
 #include "dualMotor.h"
 #include "dataLogger.h"
+#include <DriverStation.h>
 
 class Motors
 {
@@ -54,6 +55,7 @@ class RobotDemo : public SimpleRobot
 {
 	
 	Joystick xbox,xbox2;
+	DriverStation *DS;
 	Motors motors;
 	Encoder shooter_encoder;
 	Compressor compressor;
@@ -62,6 +64,8 @@ class RobotDemo : public SimpleRobot
 	PIDController shootControl;
 	dataLogger motorRecord;
 	dataLogger encoderRecord;
+	dataLogger batteryRecord;
+	bool dataLogEnded;
 
 public:
 	RobotDemo(void):
@@ -76,14 +80,17 @@ public:
 		lifter2(4),
 		shooter_motors(1,5,6),
 		shootControl(0.2, 0.02, 0.0, &shooter_encoder, &shooter_motors),
-		motorRecord("MotorData.txt"),
-		encoderRecord("EncoderData.txt")
+		motorRecord("/MotorData.txt"),
+		encoderRecord("/EncoderData.txt"),
+		batteryRecord("/BatteryData.txt")
 	{
+		DS = DriverStation::GetInstance();
 		shooter_encoder.SetMaxPeriod(.1);
 		shooter_encoder.SetDistancePerPulse(.06);
 		shooter_encoder.SetPIDSourceParameter(Encoder::kRate);
 		shootControl.SetOutputRange(-0.50, 0.50);
 		shooter_encoder.Start();
+		dataLogEnded = false;
 	}
 
 	void Autonomous(void)
@@ -111,12 +118,14 @@ public:
 			//Buttons on controller 2
 			bool second_a_button = xbox2.GetRawButton(1);
 			bool second_left_button = xbox2.GetRawButton(5);
+			bool second_start_button = xbox2.GetRawButton(8);
+			bool second_select_button = xbox2.GetRawButton(7);
 			
 			//Variables from sensors
 			double encoder_count = shooter_encoder.GetRate();
+			//****************************************
 			
-			
-			//Starts compressor, charges to switch value
+			//Starts compressor, charges to switch value (120psi)
 			if(!compressor.GetPressureSwitchValue()){
 				compressor.Start();
 			}
@@ -230,14 +239,25 @@ public:
 			
 			//Print Statements to Console
 			printf("EncoderCount %f \n",encoder_count);
-			//SmartDashboard::PutNumber("battery_voltage",12.45);
 			
 			
 			motors.drive(-LeftSpeed,RightSpeed);
 			
-			if (shootControl.IsEnabled()){
-				motorRecord.write_(shooter_motors.Get());
-				encoderRecord.write_(shooter_encoder.GetRate());
+			if ((second_select_button==true) && (dataLogEnded==false)){
+				float motor_temp = shooter_motors.Get();
+				float encoder_temp = (float)(shooter_encoder.GetRate());
+				float battery_temp = DS->GetBatteryVoltage();
+				motorRecord.write_(reinterpret_cast<const char*>(&motor_temp));
+				encoderRecord.write_(reinterpret_cast<const char*>(&encoder_temp));
+				batteryRecord.write_(reinterpret_cast<const char*>(&battery_temp));
+			}
+			
+			//Close files
+			if ((second_start_button==true) && (dataLogEnded==false)){
+				motorRecord.close_();
+				encoderRecord.close_();
+				batteryRecord.close_();
+				dataLogEnded=true;
 			}
 			
 			Wait(0.005);
@@ -252,5 +272,4 @@ public:
 
 	}
 };
-
 START_ROBOT_CLASS(RobotDemo);
