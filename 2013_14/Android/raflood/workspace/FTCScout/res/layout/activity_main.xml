@@ -22,22 +22,50 @@
         android:layout_alignParentLeft="true"
         android:hint="@string/team_number_prompt"
         android:inputType="numberDecimal" />
-    
-    <Button 
+
+    <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:layout_below="@id/editText1"
-        android:layout_alignParentLeft="true"
-        android:text="@string/button_send"
-        android:onClick="sendMessage" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/edit_message"
+        android:layout_marginRight="21dp"
+        android:onClick="sendMessage"
+        android:text="@string/button_send" />
 
     <NumberPicker
-        android:id="@+id/np"
+        android:id="@+id/NumberPicker01"
         android:layout_width="wrap_content"
-        android:layout_below="@id/button"
-        android:layout_alignParentLeft="true"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="44dp"
         android:width="100dip" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/NumberPicker01"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="22dp"
+        android:text="Points Scored" />
+
+    <NumberPicker
+        android:id="@+id/NumberPicker02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/NumberPicker01"
+        android:layout_toRightOf="@+id/editText1"
+        android:width="100dip" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/NumberPicker01"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="36dp"
+        android:text="Autonomous score" />
 
 </RelativeLayout>
