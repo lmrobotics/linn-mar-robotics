@@ -25,12 +25,15 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_search=0x7f080005;
-        public static final int action_settings=0x7f080004;
+        public static final int NumberPicker01=0x7f080003;
+        public static final int NumberPicker02=0x7f080005;
+        public static final int action_search=0x7f080008;
+        public static final int action_settings=0x7f080007;
         public static final int button=0x7f080002;
+        public static final int checkBox1=0x7f080006;
         public static final int editText1=0x7f080001;
         public static final int edit_message=0x7f080000;
-        public static final int np=0x7f080003;
+        public static final int textView1=0x7f080004;
     }
     public static final class layout {
         public static final int activity_display_message=0x7f030000;

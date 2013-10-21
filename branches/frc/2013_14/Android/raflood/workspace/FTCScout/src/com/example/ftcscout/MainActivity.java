@@ -18,9 +18,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		NumberPicker np = (NumberPicker) findViewById(R.id.np);
+		NumberPicker np = (NumberPicker) findViewById(R.id.NumberPicker01);
 		np.setMaxValue(100);
 		np.setMinValue(0);
+		NumberPicker np2 = (NumberPicker) findViewById(R.id.NumberPicker02);
+		np2.setMaxValue(1001);
+		np2.setMinValue(0);
 	}
 
 	@Override
@@ -54,7 +57,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		EditText editText = (EditText) findViewById(R.id.edit_message);
 		String message = editText.getText().toString();
-		NumberPicker np = (NumberPicker) findViewById(R.id.np);
+		NumberPicker np = (NumberPicker) findViewById(R.id.NumberPicker01);
 		int x = np.getValue();
 		intent.putExtra(EXTRA_MESSAGE, message);
 		intent.putExtra("NumberPickerValue", x);
