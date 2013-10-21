@@ -15,16 +15,17 @@ public class DisplayMessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_display_message);
 		// Show the Up button in the action bar.
-		//setupActionBar();
+		setupActionBar();
 		
 		// Get the message from the intent
 	    Intent intent = getIntent();
 	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+	    int x = intent.getIntExtra ("NumberPickerValue", -1);
 
 	    // Create the text view
 	    TextView textView = new TextView(this);
 	    textView.setTextSize(40);
-	    textView.setText(message);
+	    textView.setText(message + " " + Integer.toString(x) + " points");
 
 	    // Set the text view as the activity layout
 	    setContentView(textView);
