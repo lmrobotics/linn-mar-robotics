@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;myFirstAndroidApp&apos;" deleteContents="false" description="Delete resource &apos;myFirstAndroidApp&apos;" element1="/myFirstAndroidApp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1381973052497"/>&#x0A;<refactoring comment="Delete resource &apos;FTC_scout&apos;" deleteContents="false" description="Delete resource &apos;FTC_scout&apos;" element1="/FTC_scout" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1381974320571"/>
-</session>
