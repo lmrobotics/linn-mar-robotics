@@ -64,7 +64,7 @@ class RobotDemo : public SimpleRobot
 	dualMotor shooter_motors;
 	PIDController shootControl;
 	//dataLogger motorRecord;
-	dataLogger encoderRecord;
+	//dataLogger encoderRecord;
 	dataLogger batteryRecord;
 	bool dataLogEnded;
 
@@ -82,7 +82,7 @@ public:
 		shooter_motors(1,5,6),
 		shootControl(0.2, 0.02, 0.0, &shooter_encoder, &shooter_motors),
 		//motorRecord("/MotorData.txt"),
-		encoderRecord("/EncoderData.txt"),
+		//encoderRecord("/EncoderData.txt"),
 		batteryRecord("/BatteryData.txt")
 	{
 		DS = DriverStation::GetInstance();
@@ -249,8 +249,6 @@ public:
 			
 			//Close files
 			if ((second_start_button==true) && (dataLogEnded==false)){
-				encoderRecord.close_();
-				Wait(.5);
 				batteryRecord.close_();
 				dataLogEnded=true;
 			}
@@ -258,10 +256,9 @@ public:
 			if (record==1){
 				if ((second_select_button==true) && (dataLogEnded==false)){
 					//float motor_temp = shooter_motors.Get();
-					float encoder_temp = (float)(shooter_encoder.GetRate());
+					//float encoder_temp = (float)(shooter_encoder.GetRate());
 					float battery_temp = DS->GetBatteryVoltage();
 					batteryRecord.write_float(battery_temp);
-					encoderRecord.write_float(encoder_temp);
 				}
 			}
 			record+=1;
