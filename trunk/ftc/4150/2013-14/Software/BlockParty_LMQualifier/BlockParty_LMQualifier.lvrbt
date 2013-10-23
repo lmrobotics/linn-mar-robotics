@@ -6,6 +6,9 @@
 	<Property Name="NI.Lib.LocalName" Type="Str">Blank Robot</Property>
 	<Property Name="NI.Lib.SourceVersion" Type="Int">302022660</Property>
 	<Property Name="NI.Lib.Version" Type="Str">1.0.0.0</Property>
+	<Item Name="Robo_Joystick" Type="Folder">
+		<Item Name="drive.rcc" Type="Document" URL="../Robo_Joystick/drive.rcc"/>
+	</Item>
 	<Item Name="Robo_Programs" Type="Folder">
 		<Item Name="mk1_tele.vi" Type="VI" URL="../Robo_Programs/mk1_tele.vi"/>
 	</Item>
