@@ -3,6 +3,7 @@
 //#include "C:\WindRiver\vxworks-6.3\target\h\WPILib\SmartDashboard\SmartDashboard.h"
 #include "dualMotor.h"
 #include "dataLogger.h"
+#include "FileStream.h"
 #include <DriverStation.h>
 
 class Motors
@@ -62,7 +63,7 @@ class RobotDemo : public SimpleRobot
 	Solenoid shooter2, shooter1, lifter1, lifter2;
 	dualMotor shooter_motors;
 	PIDController shootControl;
-	dataLogger motorRecord;
+	//dataLogger motorRecord;
 	dataLogger encoderRecord;
 	dataLogger batteryRecord;
 	bool dataLogEnded;
@@ -80,7 +81,7 @@ public:
 		lifter2(4),
 		shooter_motors(1,5,6),
 		shootControl(0.2, 0.02, 0.0, &shooter_encoder, &shooter_motors),
-		motorRecord("/MotorData.txt"),
+		//motorRecord("/MotorData.txt"),
 		encoderRecord("/EncoderData.txt"),
 		batteryRecord("/BatteryData.txt")
 	{
@@ -104,6 +105,7 @@ public:
 		float deadband = .2;
 		float maxout = 1;
 		float LeftSpeed,RightSpeed;
+		int record = 0;
 		while (IsOperatorControl())
 		{
 			//*********VARIABLE DEFINITIONS************
@@ -243,21 +245,28 @@ public:
 			
 			motors.drive(-LeftSpeed,RightSpeed);
 			
-			if ((second_select_button==true) && (dataLogEnded==false)){
-				float motor_temp = shooter_motors.Get();
-				float encoder_temp = (float)(shooter_encoder.GetRate());
-				float battery_temp = DS->GetBatteryVoltage();
-				motorRecord.write_(reinterpret_cast<const char*>(&motor_temp));
-				encoderRecord.write_(reinterpret_cast<const char*>(&encoder_temp));
-				batteryRecord.write_(reinterpret_cast<const char*>(&battery_temp));
-			}
+			
 			
 			//Close files
 			if ((second_start_button==true) && (dataLogEnded==false)){
-				motorRecord.close_();
 				encoderRecord.close_();
+				Wait(.5);
 				batteryRecord.close_();
 				dataLogEnded=true;
+			}
+			
+			if (record==1){
+				if ((second_select_button==true) && (dataLogEnded==false)){
+					//float motor_temp = shooter_motors.Get();
+					float encoder_temp = (float)(shooter_encoder.GetRate());
+					float battery_temp = DS->GetBatteryVoltage();
+					batteryRecord.write_float(battery_temp);
+					encoderRecord.write_float(encoder_temp);
+				}
+			}
+			record+=1;
+			if (record>=5){
+				record=0;
 			}
 			
 			Wait(0.005);

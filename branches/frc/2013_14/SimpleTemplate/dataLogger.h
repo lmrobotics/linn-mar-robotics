@@ -1,7 +1,6 @@
 // dataLogger.h
-
-#ifndef DATA_LOGGER_H
-#define DATA_LOGGER_H
+#ifndef DATALOGGER_H_
+#define DATALOGGER_H_
 
 #include <fstream>
 #include <string>
@@ -13,13 +12,14 @@ class dataLogger
 public:
 	dataLogger (const char* fileName);
 	~dataLogger ();
+	void write_float(float value);
 	void close_();
-	void write_(const char* value);
-	void write_(float value);
-	void write_(double value);
 private:
 	// file descriptor
 	FILE * fd;
+	char* buffer;
+	int buffer_index;
+	static const int buffer_size = 16*1024;
 }; // class dataLogger
 
 #endif
