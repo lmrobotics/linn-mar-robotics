@@ -9,10 +9,13 @@ import android.content.Intent;
 import android.widget.EditText; 
 import android.widget.NumberPicker;
 import android.view.MenuInflater;
+import android.content.Context;
 
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	
+	private static Context context;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class MainActivity extends Activity {
 		NumberPicker np2 = (NumberPicker) findViewById(R.id.NumberPicker02);
 		np2.setMaxValue(1001);
 		np2.setMinValue(0);
+		MainActivity.context = getApplicationContext();
 	}
 
 	@Override

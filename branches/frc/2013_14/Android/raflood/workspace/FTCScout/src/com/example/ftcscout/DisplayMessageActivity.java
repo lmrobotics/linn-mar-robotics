@@ -7,12 +7,25 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.content.Intent;
 import android.widget.TextView;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.Context;
+import android.util.Log;
+import java.io.File;
+import java.io.OutputStreamWriter;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class DisplayMessageActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Context ctx = getApplicationContext();
+		
 		//setContentView(R.layout.activity_display_message);
 		// Show the Up button in the action bar.
 		setupActionBar();
@@ -29,15 +42,44 @@ public class DisplayMessageActivity extends Activity {
 
 	    // Set the text view as the activity layout
 	    setContentView(textView);
+	    
+	    // Write our file
+	    writeFile(ctx);
 	}
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
 
+	/*
+	 * Create and write data to a file
+	 */
+	private void writeFile(Context ctx) {
+		PackageManager m = getPackageManager();
+		String s = getPackageName();
+		try {
+		    PackageInfo p = m.getPackageInfo(s, 0);
+		    s = p.applicationInfo.dataDir;
+		} catch (NameNotFoundException e) {
+		    Log.w("yourtag", "Error Package name not found ", e);
+		}
+		
+		// Create File and write data
+		String filePath = s + File.separator + "test.txt";
+		String data = "Hello!";
+		 try {
+			    FileOutputStream os = ctx.openFileOutput(filePath, Context.MODE_PRIVATE);
+		        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(os);
+		        outputStreamWriter.write(data);
+		        outputStreamWriter.close();
+		    }
+		    catch (IOException e) {
+		    	 Log.e("MYAPP", "exception", e);
+
+		    } 
 	}
 
 	@Override
