@@ -10,7 +10,7 @@ public:
 	dataParserClass (string fileName);
 	~dataParserClass ();
 	void parseFloats();
-	void parseFloatsReversed();
+	void parseFloatsReversed(int columns);
 	void parseDoublesReversed();
 private:
 	ifstream file;

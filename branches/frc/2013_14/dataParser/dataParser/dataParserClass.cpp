@@ -39,9 +39,10 @@ void dataParserClass::parseDoublesReversed ()
 	   }
 	}
 }
-void dataParserClass::parseFloatsReversed ()
+void dataParserClass::parseFloatsReversed (int numColumns)
 {
 	float myfloat;
+	int currentColumn = 0;
 	while (!file.eof())
 	{
 	   
@@ -51,16 +52,23 @@ void dataParserClass::parseFloatsReversed ()
        file.read(readBytes, sizeof(float));
 	   if (file.gcount()==sizeof(myfloat)) {
 
-	   for (int i=0; i<sizeof(float); i++)
-	   {
-	     swappedBytes[sizeof(float) - 1 - i] = readBytes[i];
-       }
-	   memcpy(&myfloat, swappedBytes, sizeof(myfloat));
-	   cout << myfloat << endl;
-	   }
+		   for (int i=0; i<sizeof(float); i++)
+		   {
+			 swappedBytes[sizeof(float) - 1 - i] = readBytes[i];
+		   }
+		   memcpy(&myfloat, swappedBytes, sizeof(myfloat));
+		   cout << myfloat << ", ";
+		   currentColumn++;
+		   if (currentColumn>=numColumns)
+		   {
+			   currentColumn = 0;
+			   cout << endl;
+		   }
+	   } // if read succesful
 	   else { 
 		   return ;
 	   }
+
 	}
 }
 
