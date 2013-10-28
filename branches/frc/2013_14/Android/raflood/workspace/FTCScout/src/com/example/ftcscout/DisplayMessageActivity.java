@@ -31,10 +31,7 @@ public class DisplayMessageActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		Context ctx = getApplicationContext();
 		
-		//setContentView(R.layout.activity_display_message);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -51,66 +48,8 @@ public class DisplayMessageActivity extends Activity {
 
 	    // Set the text view as the activity layout
 	    setContentView(textView);
-	    String fileName = "ftc_scores____.csv";
-	    // Write our file
-	    writeFile(ctx, fileName);
 	    
-		// inside method
-	    // Check if bluetooth is supported
-	    BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-	    if (btAdapter == null) {
-           // Device does not support Bluetooth
-           message = message + "\n Blue tooth not found on this device";
-   	       textView.setText(message);
-        }
-        else
-        {
-            try {
-           	 InputStream inputStream = openFileInput(fileName);
-           	 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-           	 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-           	 message = message + "\n" + bufferedReader.readLine();
-     	     textView.setText(message);
-           }
-           catch  (Exception e) {  
-           }        
-
-            // send file via blue tooth
-            message = message + "\n Sending data via Blue tooth";
-    	    textView.setText(message);
-    	    File file = new File(ctx.getFilesDir().getPath(), fileName);
-    	    if (file.exists())
-    	    {
-                message = message + "\n Transmitting!";
-        	    textView.setText(message);
-        	    Intent bti = new Intent();
-        	    bti.setAction(Intent.ACTION_SEND);
-        	    //bti.setComponent(new ComponentName(
-        	    //        "com.android.bluetooth",
-        	    //        "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
-        	    bti.setType("*/*");
-        	    //bti.setComponent(new ComponentName("com.android.bluetooth", "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
-      	        bti.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file) );
-      	        try
-      	        {
-        	       startActivity(bti);
-      	        }
-    		    catch (Exception e) {
-                    message = message + "\n" + e;
-            	    textView.setText(message);
-   		    	     Log.e("MYAPP", "file write failed", e);
-
-   		        } 
-    	    }
-    	    else
-    	    {
-                message = message + "\n File does not exist";
-        	    textView.setText(message);
-    	    	
-    	    }
-
-        }
-    }
+    } // onCreate
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -119,35 +58,6 @@ public class DisplayMessageActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
-	/*
-	 * Create and write data to a file
-	 */
-	private void writeFile(Context ctx, String fileName) {
-		PackageManager m = getPackageManager();
-		String s = getPackageName();
-		try {
-		    PackageInfo p = m.getPackageInfo(s, 0);
-		    s = p.applicationInfo.dataDir;
-		} catch (NameNotFoundException e) {
-		    Log.w("MYAPP", "Error Package name not found ", e);
-		}
-		
-        // Create File and write data
-		String data = "Hello There!!!!";
-        try {
-        	    //File file = new File(ctx.getFilesDir(), fileName);
-        	    //file.mkdirs();
-        	    //file.createNewFile();
-                FileOutputStream os = ctx.openFileOutput(fileName, Context.MODE_PRIVATE);
-		        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(os);
-		        outputStreamWriter.write(data);
-		        outputStreamWriter.close();
-		    }
-		    catch (Exception e) {
-		    	 Log.e("MYAPP", "file write failed", e);
-
-		    } 
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
