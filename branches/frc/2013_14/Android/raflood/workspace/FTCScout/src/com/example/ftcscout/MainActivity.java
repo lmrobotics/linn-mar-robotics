@@ -1,13 +1,7 @@
 package com.example.ftcscout;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import android.net.Uri;
@@ -18,15 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.widget.EditText; 
 import android.widget.NumberPicker;
 import android.view.MenuInflater;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 
 
 public class MainActivity extends Activity {
@@ -79,7 +69,7 @@ public class MainActivity extends Activity {
 
         sendFileViaBluetooth(fileName);
         
-        EditText editText = (EditText) findViewById(R.id.edit_message);
+        EditText editText = (EditText) findViewById(R.id.teamName);
         String message = editText.getText().toString();
         NumberPicker np = (NumberPicker) findViewById(R.id.NumberPicker01);
         int x = np.getValue();
@@ -93,7 +83,7 @@ public class MainActivity extends Activity {
      */
     private void sendFileViaBluetooth(String fileName)
     {
-        File file = new File(Environment.getExternalStorageDirectory().toString() + "/Pictures/Family", fileName);
+        File file = new File(Environment.getExternalStorageDirectory().toString() + "/ScoutApp/scores", fileName);
         
         if (file.exists())
         {
@@ -117,14 +107,32 @@ public class MainActivity extends Activity {
      */
     private void writeFile(Context ctx, String fileName) {
         // Example data that will get populated from screen info.
-        String data = "Super Ninjas, 104, -9, 55, 17, \n";
+        EditText teamName = (EditText) findViewById(R.id.teamName);
+        String teamNameS = teamName.getText().toString();
+        EditText teamNumber = (EditText) findViewById(R.id.teamNumber);
+        String teamNumberS = teamNumber.getText().toString();
+        
+        NumberPicker np = (NumberPicker) findViewById(R.id.NumberPicker01);
+        int x = np.getValue();
+
+        NumberPicker np2 = (NumberPicker) findViewById(R.id.NumberPicker02);
+        int y = np2.getValue();
+        String header = "Team Name, Team Number, Score1, Score2 \n";
+    	String data = teamNameS + ", " + teamNumberS + ", " + Integer.toString(x) + ", " + Integer.toString(y) + ", \n";
         try 
         {
-            String path = Environment.getExternalStorageDirectory().toString() + "/Pictures/Family";
-            File file1 = new File(path, fileName);
+            String path = Environment.getExternalStorageDirectory().toString() + "/ScoutApp";
+            File file = new File(path, "scores");
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
+            String path1 = Environment.getExternalStorageDirectory().toString() + "/ScoutApp/scores";
+            File file1 = new File(path1, fileName);
             file1.createNewFile();
             FileOutputStream os = new FileOutputStream(file1);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(os);
+            outputStreamWriter.write(header);
             outputStreamWriter.write(data);
             outputStreamWriter.write(data);
             outputStreamWriter.write(data);

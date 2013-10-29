@@ -1,30 +1,12 @@
 package com.example.ftcscout;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.widget.TextView;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.Context;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import android.bluetooth.BluetoothAdapter;
 
 public class DisplayMessageActivity extends Activity {
 
