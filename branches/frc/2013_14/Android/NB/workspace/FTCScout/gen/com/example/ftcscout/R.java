@@ -25,15 +25,30 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int NumberPicker01=0x7f080003;
-        public static final int NumberPicker02=0x7f080005;
-        public static final int action_search=0x7f080008;
-        public static final int action_settings=0x7f080007;
-        public static final int button=0x7f080002;
-        public static final int checkBox1=0x7f080006;
-        public static final int editText1=0x7f080001;
-        public static final int edit_message=0x7f080000;
-        public static final int textView1=0x7f080004;
+        public static final int AutoBlock=0x7f080005;
+        public static final int AutoBlockScore=0x7f08000b;
+        public static final int AutoBridge=0x7f08000d;
+        public static final int AutoBridgeScore=0x7f08000c;
+        public static final int Autonomous=0x7f080004;
+        public static final int Driver=0x7f080011;
+        public static final int Driver1pt=0x7f080013;
+        public static final int Driver2pt=0x7f080014;
+        public static final int FullBridge=0x7f08000e;
+        public static final int NoBridge=0x7f080010;
+        public static final int PartialBridge=0x7f08000f;
+        public static final int action_search=0x7f080017;
+        public static final int action_settings=0x7f080016;
+        public static final int button=0x7f080001;
+        public static final int fivept=0x7f080007;
+        public static final int fourtypt=0x7f080009;
+        public static final int matchNumber=0x7f080003;
+        public static final int noScore=0x7f08000a;
+        public static final int oneptCounter=0x7f080012;
+        public static final int teamName=0x7f080000;
+        public static final int teamNumber=0x7f080002;
+        public static final int textView1=0x7f080006;
+        public static final int twentypt=0x7f080008;
+        public static final int twoptcounter=0x7f080015;
     }
     public static final class layout {
         public static final int activity_display_message=0x7f030000;
@@ -48,8 +63,11 @@ public final class R {
         public static final int action_search=0x7f050007;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int bt_share_picker_label=0x7f05000a;
         public static final int button_send=0x7f050004;
         public static final int hello_world=0x7f050006;
+        public static final int match_number_prompt=0x7f050008;
+        public static final int process=0x7f050009;
         public static final int team_name_prompt=0x7f050002;
         public static final int team_number_prompt=0x7f050003;
         public static final int title_activity_display_message=0x7f050005;

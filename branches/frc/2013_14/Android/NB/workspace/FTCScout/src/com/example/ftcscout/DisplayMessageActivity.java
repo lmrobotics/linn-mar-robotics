@@ -13,7 +13,7 @@ public class DisplayMessageActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_display_message);
+		
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -21,6 +21,7 @@ public class DisplayMessageActivity extends Activity {
 	    Intent intent = getIntent();
 	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 	    int x = intent.getIntExtra ("NumberPickerValue", -1);
+	    message = message + " " + Integer.toString(x) + " points";
 
 	    // Create the text view
 	    TextView textView = new TextView(this);
@@ -29,16 +30,16 @@ public class DisplayMessageActivity extends Activity {
 
 	    // Set the text view as the activity layout
 	    setContentView(textView);
-	}
+	    
+    } // onCreate
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

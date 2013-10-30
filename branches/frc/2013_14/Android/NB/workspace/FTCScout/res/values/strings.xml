@@ -9,5 +9,8 @@
     <string name="title_activity_display_message">Send Page</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_search">Search</string>
+    <string name="match_number_prompt">match #</string>
+     <string name="process">blueTooth</string>
+    <string name="bt_share_picker_label">BlueToothSharePicker</string>
     
 </resources>
