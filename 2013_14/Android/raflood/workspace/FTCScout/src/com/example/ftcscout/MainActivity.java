@@ -4,20 +4,19 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
-import android.widget.EditText; 
+import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.view.MenuInflater;
-import android.content.Context;
-
 
 public class MainActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -129,18 +128,20 @@ public class MainActivity extends Activity {
             }
             String path1 = Environment.getExternalStorageDirectory().toString() + "/ScoutApp/scores";
             File file1 = new File(path1, fileName);
-            file1.createNewFile();
-            FileOutputStream os = new FileOutputStream(file1);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(os);
-            outputStreamWriter.write(header);
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data); 
-            outputStreamWriter.write(data);
-            outputStreamWriter.write(data);
+            FileOutputStream os;
+            OutputStreamWriter outputStreamWriter;
+            if (!file1.exists())
+            {
+                 file1.createNewFile();
+                 os = new FileOutputStream(file1, false);
+                 outputStreamWriter = new OutputStreamWriter(os);
+                 outputStreamWriter.write(header);
+            }
+            else
+            {
+                os = new FileOutputStream(file1, true);
+                outputStreamWriter = new OutputStreamWriter(os);
+            }
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         }
