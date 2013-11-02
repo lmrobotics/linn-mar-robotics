@@ -350,4 +350,14 @@
         android1:layout_toLeftOf="@+id/button"
         android1:text="Endgame Flag Score" />
 
+    <EditText
+        android1:id="@+id/editText1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/matchNumber"
+        android1:layout_alignBottom="@+id/matchNumber"
+        android1:layout_toRightOf="@+id/threeptcounter"
+        android1:ems="10"
+        android1:hint="@string/competition_name" />
+
 </RelativeLayout>
