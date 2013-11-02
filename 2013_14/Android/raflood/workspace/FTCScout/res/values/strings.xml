@@ -3,6 +3,8 @@
 
     <string name="app_name">FTC Scout</string>
     <string name="action_settings">Other Settings</string>
+    <string name="action_save">save record</string>
+    <string name="action_send">send file</string>
     <string name="team_name_prompt">enter team name</string>
     <string name="team_number_prompt">enter team number</string>
     <string name="button_send">click to send</string>
