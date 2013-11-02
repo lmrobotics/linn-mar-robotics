@@ -38,8 +38,8 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
         // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -47,12 +47,18 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                //openSearch();
+        switch (item.getItemId()) 
+        {
+            case R.id.action_send:
+                sendFileViaBluetooth("ftc_score.csv");
+                return true;
+            case R.id.action_save:
+                String fileName = "ftc_score.csv";
+                Context ctx = getApplicationContext();
+                writeFile(ctx, fileName);
                 return true;
             case R.id.action_settings:
-                //openSettings();
+            	//sendFileViaBluetooth("ftc_score.csv");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -75,6 +81,11 @@ public class MainActivity extends Activity {
         intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra("NumberPickerValue", x);
         startActivity(intent);
+    }
+
+    /** Called when the user clicks the Send button */
+    public void sendFile(View view) {
+        sendFileViaBluetooth("ftc_score.csv");
     }
 
     /*
