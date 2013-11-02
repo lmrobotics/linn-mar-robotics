@@ -34,6 +34,9 @@ public class MainActivity extends Activity {
         NumberPicker np2 = (NumberPicker) findViewById(R.id.Driver2pt);
         np2.setMaxValue(100);
         np2.setMinValue(0);
+        NumberPicker np3 = (NumberPicker) findViewById(R.id.Driver3pt);
+        np3.setMaxValue(100);
+        np3.setMinValue(0);
         MainActivity.context = getApplicationContext();
     }
 
