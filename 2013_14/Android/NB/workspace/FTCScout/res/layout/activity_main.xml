@@ -214,22 +214,6 @@
         android1:layout_toLeftOf="@+id/button"
         android1:text="Endgame" />
 
-    <RadioButton
-        android1:id="@+id/hangingBridge"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_below="@+id/threeptcounter"
-        android1:layout_toLeftOf="@+id/button"
-        android1:text="Hanging On Bridge" />
-
-    <TextView
-        android1:id="@+id/bridgeScore"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_above="@+id/hangingBridge"
-        android1:layout_alignRight="@+id/hangingBridge"
-        android1:text="Endgame Bridge Score" />
-
     <RadioGroup
         android1:id="@+id/flagHeight"
         android1:layout_width="wrap_content"
@@ -262,8 +246,8 @@
         android1:layout_width="wrap_content"
         android1:layout_height="wrap_content"
         android1:layout_alignBottom="@+id/AutoBridge"
-        android1:layout_alignLeft="@+id/hangingBridge"
         android1:layout_marginBottom="24dp"
+        android1:layout_toLeftOf="@+id/button"
         android1:text="Penalties" />
 
     <RadioGroup
@@ -359,5 +343,21 @@
         android1:layout_toRightOf="@+id/threeptcounter"
         android1:ems="10"
         android1:hint="@string/competition_name" />
+
+    <TextView
+        android1:id="@+id/bridgeScore"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_above="@+id/threeptcounter"
+        android1:layout_toLeftOf="@+id/button"
+        android1:text="Endgame Bridge Score" />
+
+    <CheckBox
+        android1:id="@+id/hangingBridge"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignRight="@+id/flagHeight"
+        android1:layout_below="@+id/threeptcounter"
+        android1:text="Hanging On Bridge" />
 
 </RelativeLayout>
