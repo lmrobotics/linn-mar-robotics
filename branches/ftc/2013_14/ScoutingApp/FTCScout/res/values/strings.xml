@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FTC Scout</string>
+    <string name="action_settings">Other Settings</string>
+    <string name="team_name_prompt">enter team name</string>
+    <string name="team_number_prompt">enter team number</string>
+    <string name="button_send">click to send</string>
+    <string name="title_activity_display_message">Send Page</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_search">Search</string>
+    <string name="match_number_prompt">match #</string>
+     <string name="process">blueTooth</string>
+    <string name="notes">enter extra notes here</string>
+    <string name="action_send">send file</string>
+    <string name="action_save">save record</string>
+    <string name="bt_share_picker_label">BlueToothSharePicker</string>
+    <string name="competition_name">enter competition name</string>
+    
+    
+    
+</resources>

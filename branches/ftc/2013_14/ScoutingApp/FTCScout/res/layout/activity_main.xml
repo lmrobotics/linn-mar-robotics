@@ -1,0 +1,363 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/teamName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/team_name_prompt" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/teamName"
+        android:layout_marginRight="21dp"
+        android:onClick="sendMessage"
+        android:text="@string/button_send" />
+
+    <EditText
+        android:id="@+id/teamNumber"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/teamName"
+        android:layout_alignBottom="@+id/teamName"
+        android:layout_toRightOf="@+id/teamName"
+        android:ems="10"
+        android:hint="@string/team_number_prompt"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android1:id="@+id/matchNumber"
+        android1:layout_width="100dp"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/teamNumber"
+        android1:layout_alignBottom="@+id/teamNumber"
+        android1:layout_toRightOf="@+id/teamNumber"
+        android1:ems="10"
+        android1:hint="@string/match_number_prompt"
+        android1:inputType="numberDecimal" />
+
+    <TextView
+        android1:id="@+id/Autonomous"
+        android1:layout_width="125dp"
+        android1:layout_height="25dp"
+        android1:layout_alignLeft="@+id/teamName"
+        android1:layout_below="@+id/button"
+        android1:layout_marginLeft="35dp"
+        android1:text="Autonomous" />
+
+    <RadioGroup
+        android1:id="@+id/AutoBlock"
+        android1:layout_width="150dp"
+        android1:layout_height="125dp"
+        android1:layout_alignRight="@+id/Autonomous"
+        android1:layout_below="@+id/textView1" >
+
+        <RadioButton
+            android1:id="@+id/fivept"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:checked="true"
+            android1:text="5pt.block score" />
+
+        <RadioButton
+            android1:id="@+id/twentypt"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="20pt.block score" />
+
+        <RadioButton
+            android1:id="@+id/fourtypt"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="40pt.block score" />
+
+        <RadioButton
+            android1:id="@+id/noScore"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="No Score" />
+    </RadioGroup>
+
+    <TextView
+        android1:id="@+id/AutoBlockScore"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/Autonomous"
+        android1:layout_below="@+id/Autonomous"
+        android1:text="Block Score" />
+
+    <TextView
+        android1:id="@+id/AutoBridgeScore"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/AutoBlockScore"
+        android1:layout_below="@+id/AutoBlock"
+        android1:layout_marginTop="22dp"
+        android1:text="Bridge Score" />
+
+    <RadioGroup
+        android1:id="@+id/AutoBridge"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/AutoBlock"
+        android1:layout_below="@+id/AutoBridgeScore" >
+
+        <RadioButton
+            android1:id="@+id/FullBridge"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:checked="true"
+            android1:text="Fully on bridge" />
+
+        <RadioButton
+            android1:id="@+id/PartialBridge"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Partially on bridge" />
+
+        <RadioButton
+            android1:id="@+id/NoBridge"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Not on bridge" />
+    </RadioGroup>
+
+    <TextView
+        android1:id="@+id/textView1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/AutoBlockScore"
+        android1:layout_alignBottom="@+id/AutoBlockScore"
+        android1:layout_alignRight="@+id/matchNumber"
+        android1:layout_marginRight="75dp"
+        android1:text="Points Scored" />
+
+    <TextView
+        android1:id="@+id/Driver"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/Autonomous"
+        android1:layout_alignBottom="@+id/Autonomous"
+        android1:layout_alignRight="@+id/textView1"
+        android1:text="Driver Controlled" />
+
+    <TextView
+        android1:id="@+id/oneptCounter"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/Driver1pt"
+        android1:layout_alignTop="@+id/AutoBlock"
+        android1:text="1pt.Score" />
+
+    <NumberPicker
+        android1:id="@+id/Driver2pt"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/Driver1pt"
+        android1:layout_alignRight="@+id/textView1"
+        android1:layout_alignTop="@+id/Driver1pt" />
+
+    <TextView
+        android1:id="@+id/twoptcounter"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/oneptCounter"
+        android1:layout_alignBottom="@+id/oneptCounter"
+        android1:layout_alignLeft="@+id/Driver2pt"
+        android1:text="2pt.Score" />
+
+    <NumberPicker
+        android1:id="@+id/Driver1pt"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_centerVertical="true"
+        android1:layout_toLeftOf="@+id/Driver" />
+
+    <NumberPicker
+        android1:id="@+id/Driver3pt"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_centerHorizontal="true"
+        android1:layout_centerVertical="true" />
+
+    <TextView
+        android1:id="@+id/threeptcounter"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/twoptcounter"
+        android1:layout_alignBottom="@+id/twoptcounter"
+        android1:layout_alignLeft="@+id/Driver3pt"
+        android1:text="3pt.Score" />
+
+    <TextView
+        android1:id="@+id/endGame"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/Driver"
+        android1:layout_alignBottom="@+id/Driver"
+        android1:layout_marginRight="29dp"
+        android1:layout_toLeftOf="@+id/button"
+        android1:text="Endgame" />
+
+    <RadioGroup
+        android1:id="@+id/flagHeight"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/Driver3pt"
+        android1:layout_alignLeft="@+id/Flag" >
+
+        <RadioButton
+            android1:id="@+id/flagHigh"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:checked="true"
+            android1:text="Flag at Top" />
+
+        <RadioButton
+            android1:id="@+id/flagLow"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Flag in middle" />
+
+        <RadioButton
+            android1:id="@+id/noFLag"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Flag not raised" />
+    </RadioGroup>
+
+    <TextView
+        android1:id="@+id/Penalties"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/AutoBridge"
+        android1:layout_marginBottom="24dp"
+        android1:layout_toLeftOf="@+id/button"
+        android1:text="Penalties" />
+
+    <RadioGroup
+        android1:id="@+id/minorPenaltiesbutton"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/endGame"
+        android1:layout_below="@+id/Penalties"
+        android1:layout_marginLeft="27dp" >
+
+        <RadioButton
+            android1:id="@+id/minorYes"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:checked="true"
+            android1:text="Yes" />
+
+        <RadioButton
+            android1:id="@+id/minorNo"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="No" />
+    </RadioGroup>
+
+    <TextView
+        android1:id="@+id/minorPenalties"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/AutoBridge"
+        android1:layout_alignRight="@+id/flagHeight"
+        android1:text="Minor Penalties" />
+
+    <RadioGroup
+        android1:id="@+id/majorPenaltiesbutton"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignTop="@+id/minorPenaltiesbutton"
+        android1:layout_toLeftOf="@+id/bridgeScore" >
+
+        <RadioButton
+            android1:id="@+id/majorYes"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:checked="true"
+            android1:text="Yes" />
+
+        <RadioButton
+            android1:id="@+id/majorNo"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="No" />
+    </RadioGroup>
+
+    <TextView
+        android1:id="@+id/majorPenalties"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/minorPenalties"
+        android1:layout_toLeftOf="@+id/bridgeScore"
+        android1:text="Major Penalties" />
+
+    <TextView
+        android1:id="@+id/Notes"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/Penalties"
+        android1:layout_alignRight="@+id/teamNumber"
+        android1:text="Notes" />
+
+    <EditText
+        android1:id="@+id/notesField"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignRight="@+id/matchNumber"
+        android1:layout_below="@+id/AutoBridge"
+        android1:ems="10"
+        android1:hint="@string/notes" />
+
+    <TextView
+        android1:id="@+id/Flag"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_above="@+id/flagHeight"
+        android1:layout_toLeftOf="@+id/button"
+        android1:text="Endgame Flag Score" />
+
+    <EditText
+        android1:id="@+id/competitionName"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBaseline="@+id/matchNumber"
+        android1:layout_alignBottom="@+id/matchNumber"
+        android1:layout_toRightOf="@+id/threeptcounter"
+        android1:ems="10"
+        android1:hint="@string/competition_name" />
+
+    <TextView
+        android1:id="@+id/bridgeScore"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_above="@+id/threeptcounter"
+        android1:layout_toLeftOf="@+id/button"
+        android1:text="Endgame Bridge Score" />
+
+    <CheckBox
+        android1:id="@+id/hangingBridge"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignRight="@+id/flagHeight"
+        android1:layout_below="@+id/threeptcounter"
+        android1:text="Hanging On Bridge" />
+
+</RelativeLayout>
