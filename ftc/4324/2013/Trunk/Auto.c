@@ -59,10 +59,20 @@ void park()
 	motor[BackRight]=0;
 }
 
-void jerk()
+void toBasket()
 {
-	forward100(500);
+	motor[FrontLeft]=100;
+	motor[FrontRight]=25;
+	motor[BackLeft]=100;
+	motor[BackRight]=25;
+	wait1Msec(400);
+	fullStop();
+}
+
+void fullStop()
+{
 	park();
+	wait1Msec(250);
 }
 
 void reverse100()
@@ -89,15 +99,15 @@ const int armMotorUp=100;
 task main()
 {
 	waitForStart();
-	jerk(); //move to basket
-	servo[basketServo]=basketServoUp; //raise bucket
+	toBasket(); //move to basket
+	/*servo[basketServo]=basketServoUp; //raise bucket
 	wait1Msec(bucketTime); //wait for bucket to raise
 
 	motor[armMotor]=armMotorUp; //raise arm
 	wait1Msec(armTime); //wait for arm and bucket
 	motor[armMotor]=0; //stop the arm
 
-	wait1Msec(400); //wait for no momentum
+	fullStop(); //wait for no momentum
 	servo[basketServo]=basketServoDown; //drop bucket and cube
 	wait1Msec(bucketTime); //process time
 
@@ -111,15 +121,11 @@ task main()
 	}
 	motor[armMotor]=0; //stop arm at bottom
 	turnRight(500); //turn towards ramp
-	park();
-	wait1Msec(250);
+	fullStop();
 	forward100(950); //move onto ramp
-	park();
-	wait1Msec(250);
+	fullStop();
 	turnLeft(500);
-	park();
-	wait1Msec(250);
+	fullStop();
 	forward100(2000);
-	park();
-	wait1Msec(250);
+	fullStop();*/
 }
