@@ -7,5 +7,8 @@ Revision 185 made Nov 21
 * toBasket() now uses fullStop() instead of park()
 - commented out all code except waitForStart() and toBasket() for testing
 
-9:03 November 21
-* Demo revision to test shell
+minor changes:
+9:03 PM
++ Demo comment to test shell
+10:13 PM
+- deleted demo comment

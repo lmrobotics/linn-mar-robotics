@@ -128,5 +128,4 @@ task main()
 	fullStop();
 	forward100(2000);
 	fullStop();*/
-//testing the shell, please delete this comment
 }
