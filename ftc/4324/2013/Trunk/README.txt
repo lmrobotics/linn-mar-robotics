@@ -6,3 +6,6 @@ Revision 185 made Nov 21
 * toBasket() now waits 400 milliseconds for movement instead of 500
 * toBasket() now uses fullStop() instead of park()
 - commented out all code except waitForStart() and toBasket() for testing
+
+9:03 November 21
+* Demo revision to test shell
