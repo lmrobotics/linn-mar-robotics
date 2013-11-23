@@ -24,13 +24,22 @@
 
 #include "joystickDriver.c"
 
-void forward100(int driveTime)
+void scaleMove(int driveTime, string motorName)
 {
-	motor[FrontLeft]=100;
-	motor[FrontRight]=100;
-	motor[BackLeft]=100;
-	motor[BackRight]=100;
-	wait1Msec(driveTime);
+	setMotors(25)
+	while(motor[motorName]!=drivePower)
+	{
+		//step size of 3 per 10Msec
+		
+	}
+}
+
+void setMotors(int motorPower)
+{
+	motor[FrontLeft]=motorPower
+	motor[FrontRight]=motorPower
+	motor[BackLeft]=motorPower
+	motor[BackRight]=motorPower
 }
 
 void turnRight(int turnTime)
@@ -62,9 +71,9 @@ void park()
 void toBasket()
 {
 	motor[FrontLeft]=100;
-	motor[FrontRight]=25;
+	motor[FrontRight]=100;
 	motor[BackLeft]=100;
-	motor[BackRight]=25;
+	motor[BackRight]=100;
 	wait1Msec(400);
 	fullStop();
 }
