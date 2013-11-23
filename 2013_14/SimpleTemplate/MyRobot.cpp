@@ -5,6 +5,7 @@
 #include "dataLogger.h"
 #include "FileStream.h"
 #include <DriverStation.h>
+#include "time.h"
 
 class Motors
 {
@@ -63,10 +64,9 @@ class RobotDemo : public SimpleRobot
 	Solenoid shooter2, shooter1, lifter1, lifter2;
 	dualMotor shooter_motors;
 	PIDController shootControl;
-	//dataLogger motorRecord;
-	//dataLogger encoderRecord;
-	dataLogger batteryRecord;
+	dataLogger Recorder;
 	bool dataLogEnded;
+	timespec timeRecord;
 
 public:
 	RobotDemo(void):
@@ -80,18 +80,20 @@ public:
 		lifter1(3),
 		lifter2(4),
 		shooter_motors(1,5,6),
-		shootControl(0.2, 0.02, 0.0, &shooter_encoder, &shooter_motors),
+		shootControl(0.3, 0.03, 0.0, &shooter_encoder, &shooter_motors),
 		//motorRecord("/MotorData.txt"),
 		//encoderRecord("/EncoderData.txt"),
-		batteryRecord("/BatteryData.txt")
+		Recorder("/Recordings.bin")
 	{
 		DS = DriverStation::GetInstance();
 		shooter_encoder.SetMaxPeriod(.1);
 		shooter_encoder.SetDistancePerPulse(.06);
 		shooter_encoder.SetPIDSourceParameter(Encoder::kRate);
-		shootControl.SetOutputRange(-0.50, 0.50);
+		shootControl.SetOutputRange(-1.0, 1.0);
 		shooter_encoder.Start();
 		dataLogEnded = false;
+		timeRecord.tv_sec = 0;
+		clock_settime(CLOCK_REALTIME, &timeRecord);
 	}
 
 	void Autonomous(void)
@@ -224,7 +226,7 @@ public:
 					RightSpeed = 0;
 				}
 			}
-			//make sure power is not over one
+			//make sure power is not* over one
 			if(y>1){
 				y=1;
 			}
@@ -249,16 +251,20 @@ public:
 			
 			//Close files
 			if ((second_start_button==true) && (dataLogEnded==false)){
-				batteryRecord.close_();
+				Recorder.close_();
 				dataLogEnded=true;
 			}
 			
 			if (record==1){
 				if ((second_select_button==true) && (dataLogEnded==false)){
-					//float motor_temp = shooter_motors.Get();
-					//float encoder_temp = (float)(shooter_encoder.GetRate());
+					float motor_temp = shooter_motors.Get();
+					float encoder_temp = (float)(shooter_encoder.GetRate());
+					clock_gettime(CLOCK_REALTIME, &timeRecord);
 					float battery_temp = DS->GetBatteryVoltage();
-					batteryRecord.write_float(battery_temp);
+					Recorder.write_float(motor_temp);
+					Recorder.write_float(encoder_temp);
+					Recorder.write_float((float)(timeRecord.tv_sec)+float(timeRecord.tv_nsec)/1000000000.0);
+					Recorder.write_float(battery_temp);
 				}
 			}
 			record+=1;
