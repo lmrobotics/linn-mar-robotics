@@ -13,8 +13,14 @@ minor changes:
 10:13 PM
 - deleted demo comment
 
-Checked out revision 194 on Nov 23
+Checked out revision 192 on Nov 23
 + started working on a trapezoid motor function
 + added a function to set all the drive motors to the same power
 * toBasket now drives strait
 - removed forward100()
+
+Committed revision 193
++ added separate functions for the left and right motors similar to setMotors()
++ worked on the setMotors() function more
++ readded forward100() in comments on Nemo's request
++ completed the setMotors(), please review this Zach.
