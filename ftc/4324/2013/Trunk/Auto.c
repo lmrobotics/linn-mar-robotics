@@ -24,13 +24,56 @@
 
 #include "joystickDriver.c"
 
-void scaleMove(int driveTime, string motorName)
+void scaleMove(int driveTime, int leftPower, int rightPower)
 {
-	setMotors(25)
-	while(motor[motorName]!=drivePower)
+	setLeft(25);
+	setRight(25);
+	int stepSize=3 //step size of 3 per 1Msec;
+	while(motor[FrontLeft]!=leftPower && motor[FrontRight]!=rightPower && motor[BackLeft]!=leftPower && motor[BackRight]!=rightPower)
 	{
-		//step size of 3 per 10Msec
 		
+		if(motor[FrontLeft]!=leftPower)
+		{
+			if(leftPower-motor[FrontLeft]<3)
+			{
+				stepSize=leftPower-motor[FrontLeft]
+			}
+			motor[FrontLeft]=motor[FrontLeft]+stepSize;
+			motor[BackLeft]=motor[BackLeft]+stepSize;
+		}
+		if(motor[FrontRight]!=rightPower)
+		{
+			if(rightPower-motor[FrontRight]<3)
+			{
+				stepSize=rightPower-motor[FrontRight]
+			}
+			motor[FrontRight]=motor[FrontLeft]+3;
+			motor[BackRight]=motor[BackRight]+3;
+		}
+		wait1Msec(1);
+	}
+	wait1Msec(driveTime-125);
+	while(motor[FrontLeft]!=0 && motor[FrontRight]!=0 && motor[BackLeft]!=0 && motor[BackRight]!=0)
+	{
+		if(motor[FrontLeft]!=0)
+		{
+			if(motor[FrontLeft]<3)
+			{
+				stepSize=motor[FrontLeft]
+			}
+			motor[FrontLeft]=motor[FrontLeft]-stepSize;
+			motor[BackLeft]=motor[BackLeft]-stepSize;
+		}
+		if(motor[FrontRight]!=0)
+		{
+			if(motor[FrontRight]<3)
+			{
+				stepSize=motor[FrontRight]
+			}
+			motor[FrontRight]=motor[FrontLeft]-stepSize;
+			motor[BackRight]=motor[BackRight]-stepSize;
+		}
+		wait1Msec(1);
 	}
 }
 
@@ -41,6 +84,27 @@ void setMotors(int motorPower)
 	motor[BackLeft]=motorPower
 	motor[BackRight]=motorPower
 }
+
+void setLeft(int motorPower)
+{
+	motor[FrontLeft]=motorPower
+	motor[BackLeft]=motorPower
+}
+
+void setRight(int motorPower)
+{
+	motor[FrontRight]=motorPower
+	motor[BackRight]=motorPower
+}
+
+/*void forward100(int driveTime)
+{
+	motor[FrontLeft]=100
+	motor[FrontRight]=100
+	motor[BackLeft]=100
+	motor[BackRight]=100
+	wait1Msec(driveTime)
+}*/
 
 void turnRight(int turnTime)
 {
