@@ -20,7 +20,14 @@ Checked out revision 192 on Nov 23
 - removed forward100()
 
 Committed revision 193
+Checked out revision 193
 + added separate functions for the left and right motors similar to setMotors()
 + worked on the setMotors() function more
 + readded forward100() in comments on Nemo's request
 + completed the setMotors(), please review this Zach.
+Committed revision 196
+Checked out revision 196
++ added comments for going forward and turning in relation to the scaleMove() function
+* moved driveTime to the third argument in scaleMove()
+* changed toBasket() to use scaleMove()
+- put everything in one line comments except for waitForStart() and toBasket()
