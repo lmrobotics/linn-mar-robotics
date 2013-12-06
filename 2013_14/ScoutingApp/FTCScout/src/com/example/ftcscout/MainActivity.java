@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.gridlayoutftc);
         NumberPicker np = (NumberPicker) findViewById(R.id.Driver1pt);
         np.setMaxValue(100);
         np.setMinValue(0);
