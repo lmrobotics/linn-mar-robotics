@@ -1,6 +1,10 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTMotor)
 #pragma config(Hubs,  S2, HTServo,  none,     none,     none)
+#pragma config(Hubs,  S4, HTMotor,  none,     none,     none)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     touchSensor,    sensorTouch)
+#pragma config(Sensor, S4,     ,               sensorI2CMuxController)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -10,8 +14,10 @@
 #pragma config(Motor,  mtr_S1_C2_2,     BackLeft,      tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C3_1,     FrontRight,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     BackRight,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C4_1,     flagMotor,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C4_2,     armMotor,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C4_1,     motorJ,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C4_2,     motorK,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S4_C1_1,     flagMotor,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S4_C1_2,     armMotor,      tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S2_C1_1,    basketServo,          tServoStandard)
 #pragma config(Servo,  srvo_S2_C1_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_3,    servo3,               tServoNone)
@@ -53,8 +59,8 @@ const int deadZone=5;
 const int armMotorUp=60;
 const int touchUnpressed=0;
 
-const int basketServoDown=255;
-const int basketServoUp=85;
+const int basketServoDown=206;
+const int basketServoUp=42;
 
 const int flagMotorOn=100;
 const int flagMotorSlow=20;

@@ -26,19 +26,31 @@
 //def forward=100, 100
 //def turnLeft=-100, 100
 //def turnRight=100, -100
+void setLeft(int motorPower)
+{
+	motor[FrontLeft]=motorPower;
+	motor[BackLeft]=motorPower;
+}
+
+void setRight(int motorPower)
+{
+	motor[FrontRight]=motorPower;
+	motor[BackRight]=motorPower;
+}
+
 void scaleMove(int leftPower, int rightPower, int driveTime)
 {
 	setLeft(25);
 	setRight(25);
-	int stepSize=3 //step size of 3 per 1Msec;
+	int stepSize=3; //step size of 3 per 1Msec;
 	while(motor[FrontLeft]!=leftPower && motor[FrontRight]!=rightPower && motor[BackLeft]!=leftPower && motor[BackRight]!=rightPower)
 	{
-		
+
 		if(motor[FrontLeft]!=leftPower)
 		{
 			if(leftPower-motor[FrontLeft]<3)
 			{
-				stepSize=leftPower-motor[FrontLeft]
+				stepSize=leftPower-motor[FrontLeft];
 			}
 			motor[FrontLeft]=motor[FrontLeft]+stepSize;
 			motor[BackLeft]=motor[BackLeft]+stepSize;
@@ -47,7 +59,7 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 		{
 			if(rightPower-motor[FrontRight]<3)
 			{
-				stepSize=rightPower-motor[FrontRight]
+				stepSize=rightPower-motor[FrontRight];
 			}
 			motor[FrontRight]=motor[FrontLeft]+3;
 			motor[BackRight]=motor[BackRight]+3;
@@ -61,7 +73,7 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 		{
 			if(motor[FrontLeft]<3)
 			{
-				stepSize=motor[FrontLeft]
+				stepSize=motor[FrontLeft];
 			}
 			motor[FrontLeft]=motor[FrontLeft]-stepSize;
 			motor[BackLeft]=motor[BackLeft]-stepSize;
@@ -70,7 +82,7 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 		{
 			if(motor[FrontRight]<3)
 			{
-				stepSize=motor[FrontRight]
+				stepSize=motor[FrontRight];
 			}
 			motor[FrontRight]=motor[FrontLeft]-stepSize;
 			motor[BackRight]=motor[BackRight]-stepSize;
@@ -81,22 +93,10 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 
 void setMotors(int motorPower)
 {
-	motor[FrontLeft]=motorPower
-	motor[FrontRight]=motorPower
-	motor[BackLeft]=motorPower
-	motor[BackRight]=motorPower
-}
-
-void setLeft(int motorPower)
-{
-	motor[FrontLeft]=motorPower
-	motor[BackLeft]=motorPower
-}
-
-void setRight(int motorPower)
-{
-	motor[FrontRight]=motorPower
-	motor[BackRight]=motorPower
+	motor[FrontLeft]=motorPower;
+	motor[FrontRight]=motorPower;
+	motor[BackLeft]=motorPower;
+	motor[BackRight]=motorPower;
 }
 
 /*void forward100(int driveTime)
@@ -134,16 +134,16 @@ void park()
 	motor[BackRight]=0;
 }
 
-void toBasket()
-{
-	scaleMove(100, 100, 400) //full power forward for 400ms
-	fullStop();
-}
-
 void fullStop()
 {
 	park();
 	wait1Msec(250);
+}
+
+void toBasket()
+{
+	scaleMove(100, 100, 400); //full power forward for 400ms
+	fullStop();
 }
 
 void reverse100()
@@ -162,15 +162,15 @@ void SetupRamp()
 	motor[BackRight]=100;
 	wait1Msec(875);
 }
-#define bucketTime 1250
-#define armTime 1850
-const int basketServoDown=200;
-const int basketServoUp=40;
+#define bucketTime 1000;
+#define armTime 1850;
+const int basketServoDown=206;
+const int basketServoUp=42;
 const int armMotorUp=100;
 task main()
 {
 	waitForStart();
-	toBasket(); //move to basket
+	toBasket(); //move to basket (forward at 100 power for 400ms
 	//servo[basketServo]=basketServoUp; //raise bucket
 	//wait1Msec(bucketTime); //wait for bucket to raise
 
