@@ -1,8 +1,10 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTMotor)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
 #pragma config(Hubs,  S2, HTServo,  none,     none,     none)
+#pragma config(Hubs,  S4, HTMotor,  none,     none,     none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     touchSensor,    sensorTouch)
+#pragma config(Sensor, S4,     ,               sensorI2CMuxController)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -12,8 +14,8 @@
 #pragma config(Motor,  mtr_S1_C2_2,     BackLeft,      tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C3_1,     FrontRight,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     BackRight,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C4_1,     flagMotor,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C4_2,     armMotor,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S4_C1_1,     flagMotor,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S4_C1_2,     armMotor,      tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S2_C1_1,    basketServo,          tServoStandard)
 #pragma config(Servo,  srvo_S2_C1_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_3,    servo3,               tServoNone)
@@ -38,6 +40,16 @@ void setRight(int motorPower)
 	motor[BackRight]=motorPower;
 }
 
+int getLeft()
+{
+	return motor[FrontLeft];
+}
+
+int getRight()
+{
+	return motor[FrontRight];
+}
+
 void scaleMove(int leftPower, int rightPower, int driveTime)
 {
 	setLeft(25);
@@ -52,8 +64,9 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 			{
 				stepSize=leftPower-motor[FrontLeft];
 			}
-			motor[FrontLeft]=motor[FrontLeft]+stepSize;
-			motor[BackLeft]=motor[BackLeft]+stepSize;
+			setLeft(getLeft()+stepSize);
+			//motor[FrontLeft]=motor[FrontLeft]+stepSize;
+			//motor[BackLeft]=motor[BackLeft]+stepSize;
 		}
 		if(motor[FrontRight]!=rightPower)
 		{
@@ -61,8 +74,9 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 			{
 				stepSize=rightPower-motor[FrontRight];
 			}
-			motor[FrontRight]=motor[FrontLeft]+3;
-			motor[BackRight]=motor[BackRight]+3;
+			setRight(getRight()+stepSize);
+			//motor[FrontRight]=motor[FrontLeft]+3;
+			//motor[BackRight]=motor[BackRight]+3;
 		}
 		wait1Msec(1);
 	}
@@ -137,12 +151,12 @@ void park()
 void fullStop()
 {
 	park();
-	wait1Msec(250);
+	wait1Msec(150); //150
 }
 
 void toBasket()
 {
-	scaleMove(100, 100, 400); //full power forward for 400ms
+	scaleMove(100, 100, 600); //full power forward for 600ms
 	fullStop();
 }
 
@@ -162,35 +176,32 @@ void SetupRamp()
 	motor[BackRight]=100;
 	wait1Msec(875);
 }
-#define bucketTime 1000;
-#define armTime 1850;
+#define bucketTime 1000
+#define armTime 1600 //1600
 const int basketServoDown=206;
 const int basketServoUp=42;
 const int armMotorUp=100;
 task main()
 {
-	waitForStart();
-	toBasket(); //move to basket (forward at 100 power for 400ms
-	//servo[basketServo]=basketServoUp; //raise bucket
-	//wait1Msec(bucketTime); //wait for bucket to raise
+	//waitForStart();
+	toBasket(); //move to basket (forward at 100 power for 400ms)
 
-	//motor[armMotor]=armMotorUp; //raise arm
-	//wait1Msec(armTime); //wait for arm and bucket
-	//motor[armMotor]=0; //stop the arm
+	servo[basketServo]=basketServoUp; //raise bucket
+	wait1Msec(bucketTime); //wait for bucket to raise
+	motor[armMotor]=armMotorUp; //raise arm
+	wait1Msec(armTime); //wait for arm and bucket
+	motor[armMotor]=0; //stop the arm
 
-	//fullStop(); //wait for no momentum
-	//servo[basketServo]=basketServoDown; //drop bucket and cube
-	//wait1Msec(bucketTime); //process time
+	fullStop(); //wait for no momentum
+	servo[basketServo]=basketServoDown; //drop bucket and cube
+	wait1Msec(bucketTime); //process time
 
-	//servo[basketServo]=basketServoUp;
-	//wait1Msec(bucketTime);
+	servo[basketServo]=basketServoUp;
+	wait1Msec(bucketTime);
 
-	//motor[armMotor]=-armMotorUp; //lower the arm
-	//while(SensorValue[touchSensor]!=1) //wait for the arm to lower
-	{
-
-	}
-	//motor[armMotor]=0; //stop arm at bottom
+	motor[armMotor]=-armMotorUp; //lower the arm
+	while(SensorValue[touchSensor]!=1) //wait for the arm to lower
+	motor[armMotor]=0; //stop arm at bottom
 	//turnRight(500); //turn towards ramp
 	//fullStop();
 	//forward100(950); //move onto ramp
