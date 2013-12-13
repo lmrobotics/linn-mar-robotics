@@ -55,12 +55,12 @@ const int off=0;
 
 const int sweeperOn=-80;
 
-const int deadZone=5;
+const int deadZone=7;
 const int armMotorUp=60;
 const int touchUnpressed=0;
 
-const int basketServoDown=206;
-const int basketServoUp=42;
+const int basketServoDown=180;
+const int basketServoUp=15;
 
 const int flagMotorOn=100;
 const int flagMotorSlow=20;
