@@ -52,65 +52,62 @@ int getRight()
 
 void scaleMove(int leftPower, int rightPower, int driveTime)
 {
-	setLeft(25);
-	setRight(25);
-	int stepSize=3; //step size of 3 per 1Msec;
-	while(motor[FrontLeft]!=leftPower && motor[FrontRight]!=rightPower && motor[BackLeft]!=leftPower && motor[BackRight]!=rightPower)
+	int frequency=440;
+	int counter=0; //cycle counter
+	int numSteps=50; //number of steps to use
+	int leftStep=leftPower/numSteps; //the step size of the left motors (independant of the right motors) vvv
+	int rightStep=rightPower/numSteps; // is determined by the desired power divided by the number of steps
+	while(motor[FrontLeft]!=leftPower || motor[FrontRight]!=rightPower) //while either the front left or right motors are not yet at the desired
 	{
-
-		if(motor[FrontLeft]!=leftPower)
+		if (motor[FrontLeft]!=leftPower) //if the left motors are off,
 		{
-			if(leftPower-motor[FrontLeft]<3)
-			{
-				stepSize=leftPower-motor[FrontLeft];
-			}
-			setLeft(getLeft()+stepSize);
-			//motor[FrontLeft]=motor[FrontLeft]+stepSize;
-			//motor[BackLeft]=motor[BackLeft]+stepSize;
+			setLeft(motor[FrontLeft]+leftStep); //add the step size, note that it can be negative for reverse.
 		}
-		if(motor[FrontRight]!=rightPower)
+		if (motor[FrontRight]!=rightPower)
 		{
-			if(rightPower-motor[FrontRight]<3)
-			{
-				stepSize=rightPower-motor[FrontRight];
-			}
-			setRight(getRight()+stepSize);
-			//motor[FrontRight]=motor[FrontLeft]+3;
-			//motor[BackRight]=motor[BackRight]+3;
+			setRight(motor[FrontRight]+rightStep);
 		}
 		wait1Msec(1);
+		counter++; //bump the counter up one,
 	}
-	wait1Msec(driveTime-125);
-	while(motor[FrontLeft]!=0 && motor[FrontRight]!=0 && motor[BackLeft]!=0 && motor[BackRight]!=0)
-	{
-		if(motor[FrontLeft]!=0)
-		{
-			if(motor[FrontLeft]<3)
-			{
-				stepSize=motor[FrontLeft];
-			}
-			motor[FrontLeft]=motor[FrontLeft]-stepSize;
-			motor[BackLeft]=motor[BackLeft]-stepSize;
-		}
-		if(motor[FrontRight]!=0)
-		{
-			if(motor[FrontRight]<3)
-			{
-				stepSize=motor[FrontRight];
-			}
-			motor[FrontRight]=motor[FrontLeft]-stepSize;
-			motor[BackRight]=motor[BackRight]-stepSize;
-		}
-		wait1Msec(1);
-	}
-}
 
-void setMotors(int motorPower)
-{
-	motor[FrontLeft]=motorPower;
-	motor[FrontRight]=motorPower;
-	motor[BackLeft]=motorPower;
-	motor[BackRight]=motorPower;
+	if(counter>numSteps)
+	{
+		motor[FrontLeft]=0;
+		motor[FrontRight]=0;
+		motor[BackLeft]=0;
+		motor[BackRight]=0;
+		string errcode="err in uploop";
+		nxtDisplayString(1,"%s",errcode);
+		PlayImmediateTone(frequency,10);
+		StopAllTasks();
+	}
+		if (counter*2>driveTime||counter>=driveTime)
+	{
+		motor[FrontLeft]=0;
+		motor[FrontRight]=0;
+		motor[BackLeft]=0;
+		motor[BackRight]=0;
+		string errcode="err2 waitloop";
+		nxtDisplayString(1, "%s", errcode);
+		PlayImmediateTone(frequency,10);
+		PlayImmediateTone(frequency,10);
+		StopAllTasks();
+	}
+	//
+	wait1Msec(driveTime-(numSteps*2)); //subtract the number of ms spent during stepping up, times two for same amount of time stepping down
+	while(motor[FrontLeft]!=0 || motor[FrontRight]!=0) //while either front left or right motors are still running
+	{
+		if (motor[FrontLeft]!=0) //if the left motors are still running,
+		{
+			setLeft(motor[FrontLeft]-leftStep); //subtract the step size, note that it can be negative for reverse.
+		}
+		if (motor[FrontRight]!=0)
+		{
+			setRight(motor[FrontRight]-rightStep);
+		}
+		wait1Msec(1); //wait, and repeat until all motors are stopped
+	}
 }
 
 /*void forward100(int driveTime)
@@ -151,7 +148,7 @@ void park()
 void fullStop()
 {
 	park();
-	wait1Msec(150); //150
+	wait1Msec(200); //150
 }
 
 void toBasket()
@@ -176,22 +173,19 @@ void SetupRamp()
 	motor[BackRight]=100;
 	wait1Msec(875);
 }
+const int touchUnpressed=0;
+const int basketServoDown=180;
+const int basketServoUp=15;
+const int armMotorUp=100;
 #define bucketTime 1000
 #define armTime 1600 //1600
-const int basketServoDown=206;
-const int basketServoUp=42;
-const int armMotorUp=100;
-task main()
+void cycleArm()
 {
-	//waitForStart();
-	toBasket(); //move to basket (forward at 100 power for 400ms)
-
 	servo[basketServo]=basketServoUp; //raise bucket
 	wait1Msec(bucketTime); //wait for bucket to raise
 	motor[armMotor]=armMotorUp; //raise arm
 	wait1Msec(armTime); //wait for arm and bucket
 	motor[armMotor]=0; //stop the arm
-
 	fullStop(); //wait for no momentum
 	servo[basketServo]=basketServoDown; //drop bucket and cube
 	wait1Msec(bucketTime); //process time
@@ -200,14 +194,23 @@ task main()
 	wait1Msec(bucketTime);
 
 	motor[armMotor]=-armMotorUp; //lower the arm
-	while(SensorValue[touchSensor]!=1) //wait for the arm to lower
+	while(SensorValue[touchSensor]==touchUnpressed){ //wait for the arm to lower
+
+	}
 	motor[armMotor]=0; //stop arm at bottom
-	//turnRight(500); //turn towards ramp
-	//fullStop();
-	//forward100(950); //move onto ramp
-	//fullStop();
-	//turnLeft(500);
-	//fullStop();
-	//forward100(2000);
-	//fullStop();
+}
+task main()
+{
+	//waitForStart();
+	toBasket(); //move to basket (forward at 100 power for 600ms)
+	cycleArm();
+	scaleMove(-100, -100, 150); //reverse for 150
+	scaleMove(100, -100, 600); //turn left for 600
+	fullStop();
+	scaleMove(-100, -100, 830); //away from the baskets in reverse at 100 for 830ms
+	fullStop();
+	scaleMove(-100, 100, 570); //580
+	fullStop();
+	scaleMove(100, 100, 1400); //1400
+	fullStop();
 }
