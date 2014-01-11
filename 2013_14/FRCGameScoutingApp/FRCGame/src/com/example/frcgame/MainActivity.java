@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 //ColorChangeButtons as per http://stackoverflow.com/questions/1521640/standard-android-button-with-a-different-color?
 import android.graphics.PorterDuff;
 
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
 				final EditText autocomm = (EditText) findViewById(R.id.Comments_Auto);
 		        //These are objects that can be used to get and set text ie. autocomm.setText("Hello")
 		        //RatingsBar
-		      	final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);	        
+		      	final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);
 		        //Button Init
 		        final Button reca1 = (Button) findViewById(R.id.RecA1);
 		        reca1.setOnClickListener(new View.OnClickListener(){
@@ -79,7 +80,7 @@ public class MainActivity extends Activity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						//Enter Send Data Code Here
-						telecomm.setText("Hello");
+						telecomm.setText(String.valueOf(teamrating.getNumStars()));
 					}
 				});
 	}
