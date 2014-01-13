@@ -118,7 +118,12 @@ void scaleMove(int leftPower, int rightPower, int driveTime)
 	motor[BackRight]=100
 	wait1Msec(driveTime)
 }*/
-
+string runauto = "runauto.rso";
+void run()
+{
+	PlaySoundFile(runauto);
+	PlaySound(soundUpwardTones);
+}
 void turnRight(int turnTime)
 {
 	motor[FrontLeft]=100;
@@ -201,7 +206,10 @@ void cycleArm()
 }
 task main()
 {
-	//waitForStart();
+	bPlaySounds=true;
+	nVolume=4;
+	run();
+	waitForStart();
 	toBasket(); //move to basket (forward at 100 power for 600ms)
 	cycleArm();
 	scaleMove(-100, -100, 150); //reverse for 150
