@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.*;
 import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.RatingBar.*;
 //ColorChangeButtons as per http://stackoverflow.com/questions/1521640/standard-android-button-with-a-different-color?
 import android.graphics.PorterDuff;
 
@@ -17,7 +18,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		 //  Number Picker Initialization
+				// {{ 
+		 		// {{ Number Picker
+				//  Number Picker Initialization
 		      	NumberPicker nplg = (NumberPicker) findViewById(R.id.Low_Goal);
 		        nplg.setMaxValue(100);
 		        nplg.setMinValue(0);
@@ -27,15 +30,20 @@ public class MainActivity extends Activity {
 		        NumberPicker npc = (NumberPicker) findViewById(R.id.Catches);
 		        npc.setMaxValue(100);
 		        npc.setMinValue(0);
+		        // }} Number Picker
 		        //MainActivity.context = getApplicationContext();
+		        // {{ Comments
 		        //Comments on Tele
 		        final EditText telecomm = (EditText) findViewById(R.id.Comments_Tele);
 		        //Comments on Auto
 				final EditText autocomm = (EditText) findViewById(R.id.Comments_Auto);
 		        //These are objects that can be used to get and set text ie. autocomm.setText("Hello")
-		        //RatingsBar
+		        // }} Comments
+				// {{ RatingsBar
 		      	final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);
-		        //Button Init
+		      	//teamrating.setOnRatingBarChangeListener((OnRatingBarChangeListener)this);
+		      	// }} RatingsBar
+		        // {{ Button Init
 		        final Button reca1 = (Button) findViewById(R.id.RecA1);
 		        reca1.setOnClickListener(new View.OnClickListener(){
 		        	public void onClick(View v)	{
@@ -72,7 +80,7 @@ public class MainActivity extends Activity {
 		        		//TODO Action 
 		        	}
 		        });
-		        
+		        // }} Button Init
 		        //Send Data Button initialization
 		        final Button datasend = (Button) findViewById(R.id.senddata);
 		        datasend.setOnClickListener(new View.OnClickListener() {
