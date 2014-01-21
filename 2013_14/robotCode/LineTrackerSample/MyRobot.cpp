@@ -83,16 +83,23 @@ public:
 		int RightInt=2;
 		int timer=0;
 		int counter=0;
+		const float autoMotorSpeed=0.0;
+		const float gyroAngleRatio=1.0/50.0;
+		const float gyroDeadband=6.5;
 		float angle = 0;
 		printf("Autonomous");
-		while (timer<800) {
+		while (true/*timer<800*/) {
 			angle= gyro.GetAngle();
-			if (angle>-50 & angle<50){
-				motors.drive(.3-(angle/50.0),-.3-(angle/50.0));
+			if (angle<=-15){
+				angle=-15;
 			}
-			else{
-				motors.drive(0,0);
+			if (angle>=15){
+				angle=15;
 			}
+			if (angle>-gyroDeadband & angle < gyroDeadband){
+				angle=0.0;
+			}
+			motors.drive(autoMotorSpeed-(angle*gyroAngleRatio),-autoMotorSpeed-(angle*gyroAngleRatio));
 			/*
 			if (Camtable->ContainsKey("LeftBool")){
 				Camtable->GetNumber("LeftBool",LeftInt);
@@ -121,6 +128,7 @@ public:
 		float maxout = 1;
 		int counter=0;
 		float angle = 0;
+		int gyroResetDelay=0;
 		while (IsOperatorControl())
 		{
 			//*********VARIABLE DEFINITIONS************
@@ -130,7 +138,8 @@ public:
 			//******
 					
 			//Buttons on controller 1
-			bool l1_button = xbox.GetRawButton(5);			
+			bool l1_button = xbox.GetRawButton(5);
+			bool A_button = xbox.GetRawButton(1);
 			
 			if(!compressor.GetPressureSwitchValue()){
 				compressor.Start();
@@ -222,10 +231,17 @@ public:
 			}
 			motors.drive(-LeftSpeed,RightSpeed);
 			
+			//Reset of gyro value in case of goof up
+			if (A_button & gyroResetDelay>=100){
+				gyro.Reset();
+				gyroResetDelay=0;
+			}
+			
 			counter++;
+			gyroResetDelay++;
 			if (counter>=5){
 				angle = gyro.GetAngle();
-				printf("Potentiometer Count: %f   ",(float)(Pot->GetValue()));
+				//printf("Potentiometer Count: %f   ",(float)(Pot->GetValue()));
 				printf("Gyro Angle: %f \n",angle);
 				//printf("Encoder Count: %f \n",(float)(Test_Encoder.Get()));
 				counter=0;
