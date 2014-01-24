@@ -7,10 +7,8 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
-import android.widget.RatingBar.OnRatingBarChangeListener;
-import android.widget.RatingBar.*;
 //ColorChangeButtons as per http://stackoverflow.com/questions/1521640/standard-android-button-with-a-different-color?
-import android.graphics.PorterDuff;
+// TODO import android.graphics.PorterDuff;
 
 public class MainActivity extends Activity {
 
@@ -18,7 +16,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-				// {{ 
+				// {{ CheckBoxes
+				//final CheckBox = (CheckBox) findViewById(R.id.) ;
+				// }} CheckBoxes
 		 		// {{ Number Picker
 				//  Number Picker Initialization
 		      	NumberPicker nplg = (NumberPicker) findViewById(R.id.Low_Goal);
@@ -40,8 +40,11 @@ public class MainActivity extends Activity {
 		        //These are objects that can be used to get and set text ie. autocomm.setText("Hello")
 		        // }} Comments
 				// {{ RatingsBar
-		      	final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);
-		      	//teamrating.setOnRatingBarChangeListener((OnRatingBarChangeListener)this);
+		      	/* Remove Rating Bar from final Code.
+		      	 * final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);
+		      	 * teamrating.setOnRatingBarChangeListener((OnRatingBarChangeListener)this);
+		      	 */
+				// TODO Remove
 		      	// }} RatingsBar
 		        // {{ Button Init
 		        final Button reca1 = (Button) findViewById(R.id.RecA1);
@@ -88,7 +91,7 @@ public class MainActivity extends Activity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						//Enter Send Data Code Here
-						telecomm.setText(String.valueOf(teamrating.getNumStars()));
+						
 					}
 				});
 	}
