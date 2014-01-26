@@ -333,7 +333,7 @@
         android1:text="Blocked Shots" />
 
     <CheckBox
-        android1:id="@+id/two_assist"
+        android1:id="@+id/dAuto"
         android1:layout_column="0"
         android1:layout_gravity="top"
         android1:layout_marginTop="10dp"

@@ -58,10 +58,10 @@ public final class R {
         public static final int Tele_op=0x7f08000a;
         public static final int Truss_T=0x7f08000b;
         public static final int action_settings=0x7f080026;
+        public static final int dAuto=0x7f080024;
         public static final int editText1=0x7f080025;
         public static final int senddata=0x7f080018;
         public static final int three_assist_T=0x7f08000d;
-        public static final int two_assist=0x7f080024;
         public static final int two_assist_T=0x7f08000c;
     }
     public static final class layout {
