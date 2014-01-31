@@ -22,7 +22,9 @@ public class MainActivity extends Activity {
 				final CheckBox teleMBonus = (CheckBox) findViewById(R.id.Mobility_Bonus_T);
 				final CheckBox hotGoal = (CheckBox) findViewById(R.id.Hot_Goals);
 				final CheckBox autoBonus = (CheckBox) findViewById(R.id.Auto_Bonus);
-				
+				final CheckBox autofoul = (CheckBox) findViewById(R.id.Foul);
+				final CheckBox telefoul = (CheckBox) findViewById(R.id.Foul_T);
+				final CheckBox teletechfoul = (CheckBox) findViewById(R.id.Tech_Foul_T);
 					
 				
 				// }} CheckBoxes
