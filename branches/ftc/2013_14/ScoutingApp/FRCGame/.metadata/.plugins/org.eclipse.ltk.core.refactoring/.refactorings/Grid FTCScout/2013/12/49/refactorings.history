@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Grid FTCScout/res/layout/GridLayout.xml&apos; to &apos;gridlayoutftc.xml&apos;" description="Rename resource &apos;GridLayout.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/layout/GridLayout.xml" name="gridlayoutftc.xml" stamp="1386295071982" updateReferences="true"/>
+</session>
