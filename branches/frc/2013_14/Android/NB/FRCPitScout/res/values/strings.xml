@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FRCPitScout</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string><string name="team_number">Team Number</string>
+    
+    <string name="drive_type">Drive Type</string>
+    <string name="defensive_capabilities">Defensive Capabilities</string><string name="scoring_potential">Scoring Potential (High, Low, Both?)</string>
+    
+    <string name="camera">Camera?</string>
+    <string name="catching">Catching Mechanic?</string><string name="truss_throwing">Truss Throwing Capabilities</string><string name="picture">Take Picture</string><string name="autonomous">Autonomous Procedures</string>
+    
+    
+    
+
+</resources>
