@@ -18,6 +18,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 				// {{ CheckBoxes
 				final CheckBox dAuto = (CheckBox) findViewById(R.id.dAuto);
+				final CheckBox autoMBonus = (CheckBox) findViewById(R.id.Mobility_Bonus);
+				final CheckBox teleMBonus = (CheckBox) findViewById(R.id.Mobility_Bonus_T);
+				final CheckBox hotGoal = (CheckBox) findViewById(R.id.Hot_Goals);
+				final CheckBox autoBonus = (CheckBox) findViewById(R.id.Auto_Bonus);
+				
+					
 				
 				// }} CheckBoxes
 		 		// {{ Number Picker
@@ -40,10 +46,7 @@ public class MainActivity extends Activity {
 				final EditText autocomm = (EditText) findViewById(R.id.Comments_Auto);
 		        //These are objects that can be used to get and set text ie. autocomm.setText("Hello")
 		        // }} Comments
-				/* TODO Remove Rating Bar from final Code.
-		      	 * final RatingBar teamrating = (RatingBar) findViewById(R.id.ratingBar1);
-		      	 * teamrating.setOnRatingBarChangeListener((OnRatingBarChangeListener)this);
-		      	 */
+
 		      	// {{ Button Init
 		        final Button reca1 = (Button) findViewById(R.id.RecA1);
 		        reca1.setOnClickListener(new View.OnClickListener(){
