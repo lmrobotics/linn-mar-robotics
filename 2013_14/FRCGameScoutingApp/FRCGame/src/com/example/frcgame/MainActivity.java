@@ -17,16 +17,22 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 				// {{ CheckBoxes
-				final CheckBox dAuto = (CheckBox) findViewById(R.id.dAuto);
-				final CheckBox autoMBonus = (CheckBox) findViewById(R.id.Mobility_Bonus);
-				final CheckBox teleMBonus = (CheckBox) findViewById(R.id.Mobility_Bonus_T);
+				final CheckBox doubleauto = (CheckBox) findViewById(R.id.dAuto);
+				final CheckBox automobonus = (CheckBox) findViewById(R.id.Mobility_Bonus);
+				final CheckBox telemobonus = (CheckBox) findViewById(R.id.Mobility_Bonus_T);
 				final CheckBox hotGoal = (CheckBox) findViewById(R.id.Hot_Goals);
 				final CheckBox autoBonus = (CheckBox) findViewById(R.id.Auto_Bonus);
 				final CheckBox autofoul = (CheckBox) findViewById(R.id.Foul);
 				final CheckBox telefoul = (CheckBox) findViewById(R.id.Foul_T);
 				final CheckBox teletechfoul = (CheckBox) findViewById(R.id.Tech_Foul_T);
-					
-				
+				final CheckBox truss = (CheckBox) findViewById(R.id.Truss);
+				final CheckBox twoassist = (CheckBox) findViewById(R.id.two_assist);
+				final CheckBox threeassist = (CheckBox) findViewById(R.id.three_assist);
+				final CheckBox autotechfoul = (CheckBox) findViewById(R.id.Tech_Foul);
+				final CheckBox autoshotblock = (CheckBox) findViewById(R.id.Blocked_Shots);
+				final CheckBox teleshotblock = (CheckBox) findViewById(R.id.Blocked_Shots_T);
+				final CheckBox automechprob = (CheckBox) findViewById(R.id.Mechanical_Problems);
+				final CheckBox telemechprob = (CheckBox) findViewById(R.id.Mechanical_Problems);
 				// }} CheckBoxes
 		 		// {{ Number Picker
 				//  Number Picker Initialization
