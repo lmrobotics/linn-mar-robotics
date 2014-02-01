@@ -25,8 +25,9 @@ public final class R {
     }
     public static final class drawable {
         public static final int bc=0x7f020000;
-        public static final int frcicon=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int bcb=0x7f020001;
+        public static final int frcicon=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
         public static final int Auto_Bonus=0x7f090003;
@@ -40,7 +41,7 @@ public final class R {
         public static final int Comments_T=0x7f090010;
         public static final int Comments_Tele=0x7f09000f;
         public static final int Foul=0x7f090004;
-        public static final int Foul_T=0x7f090027;
+        public static final int Foul_T=0x7f090026;
         public static final int GridLayout1=0x7f090000;
         public static final int High_Goal=0x7f090011;
         public static final int High_Goal_Lable=0x7f090013;
@@ -65,7 +66,7 @@ public final class R {
         public static final int action_settings=0x7f090028;
         public static final int dAuto=0x7f090022;
         public static final int editText1=0x7f090023;
-        public static final int senddata=0x7f090026;
+        public static final int senddata=0x7f090027;
         public static final int spinner1=0x7f090025;
         public static final int textView1=0x7f090024;
         public static final int three_assist=0x7f09000d;
