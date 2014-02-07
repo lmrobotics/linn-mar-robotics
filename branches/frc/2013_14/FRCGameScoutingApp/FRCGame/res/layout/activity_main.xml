@@ -236,55 +236,6 @@
         android1:textAppearance="?android:attr/textAppearanceLarge"
         tools:ignore="HardcodedText" />
 
-    <Button
-        android1:id="@+id/SentA3"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="8"
-        android1:layout_gravity="left|bottom"
-        android1:layout_row="2"
-        android1:text="Sent A3" />
-
-    <Button
-        android1:id="@+id/SentA1"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="8"
-        android1:layout_gravity="left|top"
-        android1:layout_row="2"
-        android1:text="Sent A1" />
-
-    <Button
-        android1:id="@+id/SentA2"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="8"
-        android1:layout_gravity="left|center_vertical"
-        android1:layout_row="2"
-        android1:text="Sent A2" />
-
-    <Button
-        android1:id="@+id/RecA1"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="6"
-        android1:layout_gravity="left|top"
-        android1:layout_row="2"
-        android1:focusableInTouchMode="true"
-        android1:text="Rec A1" />
-
-    <Button
-        android1:id="@+id/RecA3"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="6"
-        android1:layout_gravity="left|bottom"
-        android1:layout_row="2"
-        android1:text="Rec A3" />
-
-    <Button
-        android1:id="@+id/RecA2"
-        style="?android:attr/buttonStyleSmall"
-        android1:layout_column="6"
-        android1:layout_gravity="left|center_vertical"
-        android1:layout_row="2"
-        android1:text="Rec A2" />
-
     <EditText
         android1:id="@+id/TeamNo"
         android1:layout_width="137dp"
