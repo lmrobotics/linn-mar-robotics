@@ -56,42 +56,7 @@ public class MainActivity extends Activity {
 		        // }} Comments
 
 		      	// {{ Button Init
-		        final Button reca1 = (Button) findViewById(R.id.RecA1);
-		        reca1.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
-		        final Button reca2 = (Button) findViewById(R.id.RecA2);
-		        reca2.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
-		        final Button reca3 = (Button) findViewById(R.id.RecA3);
-		        reca3.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
-		        final Button senta1 = (Button) findViewById(R.id.SentA1);
-		        senta1.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
-		        final Button senta2 = (Button) findViewById(R.id.SentA2);
-		        senta2.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
-		        final Button senta3 = (Button) findViewById(R.id.SentA3);
-		        senta3.setOnClickListener(new View.OnClickListener(){
-		        	public void onClick(View v)	{
-		        		//TODO Action 
-		        	}
-		        });
+		        
 		        // }} Button Init
 		        //Send Data Button initialization
 		        final Button datasend = (Button) findViewById(R.id.senddata);
