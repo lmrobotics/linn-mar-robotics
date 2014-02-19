@@ -73,12 +73,12 @@ void Drive::TeleDrive(float Xbox_x, float Xbox_y){
 	//up on y-axis is negative
 	if(y >= deadband) {
 		if(x > deadband) {
-			LeftSpeed=(y-x)*maxout;
-			RightSpeed=max(x,y)*maxout;
+			LeftSpeed=max(x,y)*maxout;
+			RightSpeed=(y-x)*maxout;
 		}
 		else if(x < -deadband){
-			LeftSpeed=max(-x,y)*maxout;
-			RightSpeed=(y+x)*maxout;
+			LeftSpeed=(y+x)*maxout;
+			RightSpeed=max(-x,y)*maxout;
 		}
 		else {
 			LeftSpeed = y*maxout;
@@ -87,12 +87,12 @@ void Drive::TeleDrive(float Xbox_x, float Xbox_y){
 	}
 	else if(y <= -deadband){
 		if(x > deadband) {
-			LeftSpeed=-max(x,-y)*maxout;
-			RightSpeed=(x+y)*maxout;
+			LeftSpeed=(x+y)*maxout;
+			RightSpeed=-max(x,-y)*maxout;
 		}
 		else if(x < -deadband) {
-			LeftSpeed=(y-x)*maxout;
-			RightSpeed=-max(-x,-y)*maxout;
+			LeftSpeed=-max(-x,-y)*maxout;
+			RightSpeed=(y-x)*maxout;
 		}
 		else {
 			LeftSpeed = y*maxout;
@@ -101,12 +101,12 @@ void Drive::TeleDrive(float Xbox_x, float Xbox_y){
 	}
 	else {
 		if(x > deadband) {
-			LeftSpeed=-x*maxout;
-			RightSpeed=x*maxout;
+			LeftSpeed=x*maxout;
+			RightSpeed=-x*maxout;
 		}
 		else if(x < -deadband){
-			LeftSpeed=-x*maxout;
-			RightSpeed=x*maxout;
+			LeftSpeed=x*maxout;
+			RightSpeed=-x*maxout;
 		}
 		else {
 			LeftSpeed = 0;

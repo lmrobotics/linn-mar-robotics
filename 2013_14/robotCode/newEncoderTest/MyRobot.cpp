@@ -60,6 +60,7 @@ class RobotDemo : public SimpleRobot
 	DriverStation *DS;
 	Motors motors;
 	Encoder shooter_encoder;
+   Encoder test_encoder;
 	Compressor compressor;
 	Solenoid shooter2, shooter1, lifter1, lifter2;
 	dualMotor shooter_motors;
@@ -74,6 +75,7 @@ public:
 		xbox2(2),
 		motors(),
 		shooter_encoder(1,2),
+      test_encoder(10,11),
 		compressor(3,1),
 		shooter2(1),
 		shooter1(2),
@@ -259,10 +261,12 @@ public:
 				if ((second_select_button==true) && (dataLogEnded==false)){
 					float motor_temp = shooter_motors.Get();
 					float encoder_temp = (float)(shooter_encoder.GetRate());
+               float encoder_two = (float) (test_encoder.GetRate());
 					clock_gettime(CLOCK_REALTIME, &timeRecord);
 					float battery_temp = DS->GetBatteryVoltage();
 					Recorder.write_float(motor_temp);
 					Recorder.write_float(encoder_temp);
+               Recorder.write_float(encoder_two);
 					Recorder.write_float((float)(timeRecord.tv_sec)+float(timeRecord.tv_nsec)/1000000000.0);
 					Recorder.write_float(battery_temp);
 				}
