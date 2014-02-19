@@ -32,7 +32,7 @@ MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
 WS_ROOT_DIR := C:/WindRiver/workspace
-PRJ_ROOT_DIR := $(WS_ROOT_DIR)/SimpleTemplate
+PRJ_ROOT_DIR := C:/linn-mar-robotics/branches/frc/2013_14/robotCode/newEncoderTest
 
 
 

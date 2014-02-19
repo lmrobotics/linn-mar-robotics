@@ -22,15 +22,14 @@ class IronLions : public IterativeRobot
 	Joystick xbox1,xbox2;
 	Compressor compressor;
 	Gyro gyro;
-	Talon intakeAngleMotor1, intakeAngleMotor2;
+	Talon intakeAngleMotorL, intakeAngleMotorR;
 	Victor winchMotor1, winchMotor2, intakeWheelsMotor;
 	Solenoid shifter1, shifter2, winchRelease1, winchRelease2;
 	Encoder driveEncoder, winchEncoder;
 	NetworkTable *Camtable;
 	AnalogChannel *Pot1;
-	AnalogChannel *Pot2;
+//	AnalogChannel *Pot2;
 	DigitalInput WinchLimit;
-	PIDController intakePID1, intakePID2;
 	
 	// Local variables to count the number of periodic loops performed
 	int auto_periodic_loops;
@@ -43,6 +42,7 @@ class IronLions : public IterativeRobot
 	int counter;
 	int RightInt;			// To record network table values
 	int LeftInt;			// To record network table values
+	int TeleTimer;          // To use so winch is released for time
 	
 	//Controller definitions
 	/* Controller.GetRawButton(#)
@@ -65,54 +65,43 @@ class IronLions : public IterativeRobot
 	bool A_button;
 	
 	//Joy2
-	float Z_axis;
-	float D_pad;
+	float Y_axis;
+	bool Y_button2;
 	bool A_button2;
 	bool B_button2;
 	bool r1_button2;
 	bool l1_button2;
 	
-	//The setpoints of the PID Controllers for the intake motors
-	float intakePIDSetPoint1;
-	float intakePIDSetPoint2;
-	
 public:
 	IronLions(void):
-		drive(1,3,1,4,1,1,1,2),
+		drive(1,1,1,2,1,3,1,4),
 		xbox1(1),
 		xbox2(2),
 		compressor(1,1),
 		gyro(2),
+		intakeAngleMotorL(7),
+		intakeAngleMotorR(8),
 		winchMotor1(5),
 		winchMotor2(6),
+		intakeWheelsMotor(1,9),
 		shifter1(3),
 		shifter2(4),
 		winchRelease1(1),
 		winchRelease2(2),
 		driveEncoder(2,3),
 		winchEncoder(4,5),
-		WinchLimit(6),
-		intakeAngleMotor1(7),
-		intakeAngleMotor2(8),
-		intakeWheelsMotor(1,9),
-		intakePID1(0.015, 0.0015, 0.0, Pot1, &intakeAngleMotor1),
-		intakePID2(0.015, 0.0015, 0.0, Pot2, &intakeAngleMotor2)
+		WinchLimit(6)
 	{
 		ds = DriverStation::GetInstance();
 		Camtable = NetworkTable::GetTable("SmartDashboard");
 		Pot1= new AnalogChannel(1);
-		Pot2= new AnalogChannel(3);
+//		Pot2= new AnalogChannel(3);
 		Pot1->SetAverageBits(7);
-		Pot2->SetAverageBits(7);
+//		Pot2->SetAverageBits(7);
 		
 		driveEncoder.SetMaxPeriod(.1);
 		driveEncoder.SetDistancePerPulse(.0222);
 		driveEncoder.Start();
-		
-		intakePID1.SetOutputRange(-.7,.7);
-		intakePID2.SetOutputRange(-.7,.7);
-		intakePIDSetPoint1=potTopVal1;
-		intakePIDSetPoint2=potTopVal2;
 		
 		auto_periodic_loops = 0;
 		disabled_periodic_loops = 0;
@@ -120,6 +109,8 @@ public:
 		
 		auto_count = 0;
 		auto_dist = 0;
+		
+		TeleTimer = 0;
 		
 		counter = 0;
 		RightInt=0;
@@ -206,7 +197,19 @@ public:
 	void IronLions::AutonomousPeriodic() {
 		// feed the user watchdog at every period when in autonomous
 		GetWatchdog().Feed();
-
+		
+		winchRelease1.Set(true);
+		winchRelease2.Set(false);
+		
+		if (auto_periodic_loops>50 & auto_periodic_loops <150){
+			drive.Move(.8,.8);
+		}
+		else {
+			drive.Move(0,0);
+		}
+		
+		//Will be the Autonomous code eventually, but not for now
+		/*
 		if((driveEncoder.GetDistance()>-36) && (auto_count==0)) {
 			DriveAngle(0,-.35);
 		}
@@ -224,6 +227,7 @@ public:
 			auto_dist = driveEncoder.GetDistance();
 			auto_count++;
 		}
+		*/
 		
 		/*
 		if (Camtable->ContainsKey("LeftBool")){
@@ -272,16 +276,16 @@ public:
 		A_button = xbox1.GetRawButton(1);  //Encoder Reset
 		
 		//Joystick 2
-		D_pad = xbox2.GetRawButton(4);       //Directional button X-Axis -1 = left | 1 = right
+		Y_button2 = xbox2.GetRawButton(4); //Directional button X-Axis -1 = left | 1 = right Run Winch
 		A_button2 = xbox2.GetRawButton(1); //Intake Angle Setpoint Down
 		B_button2 = xbox2.GetRawButton(2); //Intake Angle Setpoint Up
-		Z_axis = xbox2.GetRawAxis(3);      //Intake Angle Up-Down Control | Left Trigger 0-.5 Right Trigger .5-0
+		Y_axis = xbox2.GetY(GenericHID::kLeftHand);      //Intake Angle Up-Down Control
 		l1_button2 = xbox2.GetRawButton(5);//Intake Wheels Out
 		r1_button2 = xbox2.GetRawButton(6);//Intake Wheels In
 		//-------------------------------------------------------------------------
 		
 		//Run Winch
-		if ((D_pad == true) && (WinchLimit.Get() == 1)) {
+		if ((Y_button2 == true) && (WinchLimit.Get() == 1)) {
 			winchMotor1.Set(1);
 			winchMotor2.Set(1);
 		}
@@ -294,44 +298,54 @@ public:
 		if (r1_button) { //Shoot ball
 			winchRelease1.Set(true);
 			winchRelease2.Set(false);
+			TeleTimer = 0;
 		}
-		else {
+		else if (TeleTimer > 80) {
 			winchRelease1.Set(false);
 			winchRelease2.Set(true);
 		}
 		
+		/*
 		//Intake Angle
-		if (Z_axis < .4) { //Raise Pickup
-			intakePIDSetPoint1=Pot1 -> GetAverageValue() +10;
-			intakePIDSetPoint2=Pot2 -> GetAverageValue() -10;
-			intakePID1.SetSetpoint(intakePIDSetPoint1);
-			intakePID2.SetSetpoint(intakePIDSetPoint2);
-		}
-		else if (Z_axis > .6) { //Lower Pickup
-			intakePIDSetPoint1=Pot1 -> GetAverageValue() -10;
-			intakePIDSetPoint2=Pot2 -> GetAverageValue() +10;
-			intakePID1.SetSetpoint(intakePIDSetPoint1);
-			intakePID2.SetSetpoint(intakePIDSetPoint2);
-		}
 		if (A_button2) { //Move pickup to down position
-			intakePIDSetPoint1=potBotVal1;
-			intakePIDSetPoint2=potBotVal2;
-			intakePID1.SetSetpoint(intakePIDSetPoint1);
-			intakePID2.SetSetpoint(intakePIDSetPoint2);
+			if (!(Pot1 -> IsEnabled())){
+				Pot1 -> Enable();
+			}
+			if (!(Pot2 -> IsEnabled())){
+				Pot2 -> Enable();
+			}
 		}
 		else if (B_button2) { //Move pickup to up position
-			intakePIDSetPoint1=potTopVal1;
-			intakePIDSetPoint2=potTopVal2;
-			intakePID1.SetSetpoint(intakePIDSetPoint1);
-			intakePID2.SetSetpoint(intakePIDSetPoint2);
+			if (!(Pot1 -> IsEnabled())){
+				Pot1 -> Enable();
+			}
+			if (!(Pot2 -> IsEnabled())){
+				Pot2 -> Enable();
+			}
 		}
+		*/
+		if (Y_axis < -.2 || Y_axis > .2){
+			if (Y_axis <-.2){
+				intakeAngleMotorL.Set(.55);
+				intakeAngleMotorR.Set(-.55);
+			}
+			else{
+				intakeAngleMotorL.Set(-.55);
+				intakeAngleMotorR.Set(.55);
+			}
+		}
+		else {
+			intakeAngleMotorL.Set(0.0);
+			intakeAngleMotorR.Set(0.0);
+		}
+		
 		
 		//Intake Wheels
 		if (r1_button2) { //Run wheels to pickup ball
-			intakeWheelsMotor.Set(.7);
+			intakeWheelsMotor.Set(-1);
 		}
 		else if (l1_button2) { //Run wheels to push ball out
-			intakeWheelsMotor.Set(-.7);
+			intakeWheelsMotor.Set(1);
 		}
 		else {
 			intakeWheelsMotor.Set(0);
@@ -340,29 +354,32 @@ public:
 		
 		//Shifting
 		if(l1_button==true){
-			shifter1.Set(true);
-			shifter2.Set(false);
-		}
-		else {
 			shifter1.Set(false);
 			shifter2.Set(true);
+		}
+		else {
+			shifter1.Set(true);
+			shifter2.Set(false);
 		}
 		
 		//Turn On Compressor
 		if(!compressor.GetPressureSwitchValue()){
 			compressor.Start();
+			//printf("Running Compressor \n");
 		}
 		else {
 			compressor.Stop();
+			//printf("Not Running Compressor \n");
 		}
 		
+		//Timer
+		TeleTimer += 1;
+		
 		//Print Statements
-		/*
-		printf("driveEncoderCount: %f \n", (float)(driveEncoder.Get()));
-		printf("Pot1 reading: %f    ", (float)(Pot1 -> GetAverageValue()));
-		printf("Pot2 reading: %f", (float)(Pot2 -> GetAverageValue()));
-		printf("Sum: %f \n", (float)(Pot1 -> GetValue())+(float)(Pot2 -> GetAverageValue()));
-		*/
+		//printf("Timer Value: %d",TeleTimer);
+		
+		//printf("driveEncoderCount: %f \n", (float)(driveEncoder.Get()));
+		printf("Pot1 reading: %f  \n", (float)(Pot1 -> GetAverageValue()));
 		
 		//Drive Arcade
 		drive.TeleDrive(xbox1.GetRawAxis(4),xbox1.GetY(GenericHID::kLeftHand));
