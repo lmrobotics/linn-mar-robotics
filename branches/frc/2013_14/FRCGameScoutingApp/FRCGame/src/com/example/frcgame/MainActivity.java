@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						//Enter Send Data Code Here
-						Toast.makeText(MainActivity.this, "Data Sent"+objectStorage.txtpass.toString(), 100).show();
+						Toast.makeText(MainActivity.this, "Data Saved. \n"+"Please send it.", 100).show();
 							//File file = new File(Environment.getExternalStorageDirectory().toString()+"/FRCGameScout","passdata"+matchId.getText()+teamnumber.getText()+".csv");
 						//Write file
 						try{
@@ -172,6 +172,7 @@ public class MainActivity extends Activity {
 						catch(Exception e){
 							//If there is an exception, I give up.
 						}
+						//Write Other Data
 					}
 				});
 	}
