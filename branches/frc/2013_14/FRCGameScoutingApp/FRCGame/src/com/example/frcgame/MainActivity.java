@@ -22,7 +22,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-				objectStorage.txtpass.append("ID,Alliance,Time,TeamNumber,MatchID");
 				//final StringBuilder txtpass = new StringBuilder();                                              
 				// {{ CheckBoxes
 				final CheckBox doubleauto = (CheckBox) findViewById(R.id.dAuto);
@@ -173,8 +172,15 @@ public class MainActivity extends Activity {
 							//If there is an exception, I give up.
 						}
 						//Write Other Data
+						try{
+							String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
+							String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/Score";
+						}
+						catch(Exception e){
+							//No comment
+						}
 					}
-				});
+				}); //Endofline
 	}
 
 	
