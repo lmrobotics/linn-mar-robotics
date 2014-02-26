@@ -5,10 +5,13 @@ package com.example.frcgame;
 import java.io.*;
 
 import android.R.color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
@@ -195,6 +198,46 @@ public class MainActivity extends Activity {
 					}
 					}
 				}); //Endofline
+		        final Button datasend = (Button) findViewById(R.id.savedata);
+		        datasend.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Scores", "FRC_scores_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+				        
+				        if (file.exists())
+				        {
+				            Intent bti = new Intent();
+				            bti.setAction(Intent.ACTION_SEND);
+				            bti.setType("text/plain");
+				            bti.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file) );
+				            try
+				            {
+				               startActivity(bti);
+				            }
+				            catch (Exception e) {
+				             Log.e("MYAPP", "file write failed", e);
+				            } 
+				        }
+				        File file1 = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/PassData", "FRC_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+				        
+				        if (file1.exists())
+				        {
+				            Intent bti = new Intent();
+				            bti.setAction(Intent.ACTION_SEND);
+				            bti.setType("text/plain");
+				            bti.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file1) );
+				            try
+				            {
+				               startActivity(bti);
+				            }
+				            catch (Exception e) {
+				             Log.e("MYAPP", "file write failed", e);
+				            } 
+				        }
+					}
+				});
 	}
 
 	
