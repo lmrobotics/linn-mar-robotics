@@ -60,7 +60,7 @@ public final class R {
         public static final int Tech_Foul_T=0x7f09001a;
         public static final int Tele_op=0x7f09000a;
         public static final int Truss=0x7f09000b;
-        public static final int action_settings=0x7f09002b;
+        public static final int action_settings=0x7f09002c;
         public static final int dAuto=0x7f09001c;
         public static final int matchId=0x7f09001d;
         public static final int missedPass=0x7f090029;
@@ -68,6 +68,7 @@ public final class R {
         public static final int radioBlue=0x7f090025;
         public static final int radioGroup1=0x7f090023;
         public static final int radioRed=0x7f090024;
+        public static final int savedata=0x7f09002b;
         public static final int senddata=0x7f09002a;
         public static final int spinner1=0x7f09001f;
         public static final int submitAlliance=0x7f090026;

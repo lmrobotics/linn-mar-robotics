@@ -390,4 +390,11 @@
         android1:onClick="sendMessage"
         android1:text="Send Data" />
 
+    <Button
+        android1:id="@+id/savedata"
+        android1:layout_column="11"
+        android1:layout_gravity="right|center"
+        android1:layout_row="3"
+        android1:text="Save Data" />
+
 </GridLayout>
