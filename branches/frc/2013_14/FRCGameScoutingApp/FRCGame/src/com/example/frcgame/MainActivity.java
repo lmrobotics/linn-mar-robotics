@@ -43,13 +43,13 @@ public class MainActivity extends Activity {
 				// }} CheckBoxes
 		 		// {{ Number Picker
 				//  Number Picker Initialization
-		      	NumberPicker nplg = (NumberPicker) findViewById(R.id.Low_Goal);
+		      	final NumberPicker nplg = (NumberPicker) findViewById(R.id.Low_Goal);
 		        nplg.setMaxValue(100);
 		        nplg.setMinValue(0);
-		        NumberPicker nphg = (NumberPicker) findViewById(R.id.High_Goal);
+		        final NumberPicker nphg = (NumberPicker) findViewById(R.id.High_Goal);
 		        nphg.setMaxValue(100);
 		        nphg.setMinValue(0);
-		        NumberPicker npc = (NumberPicker) findViewById(R.id.Catches);
+		        final NumberPicker npc = (NumberPicker) findViewById(R.id.Catches);
 		        npc.setMaxValue(100);
 		        npc.setMinValue(0);
 		        // }} Number Picker
@@ -144,41 +144,55 @@ public class MainActivity extends Activity {
 		        datasend.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						//Enter Send Data Code Here
 						Toast.makeText(MainActivity.this, "Data Saved. \n"+"Please send it.", 100).show();
-							//File file = new File(Environment.getExternalStorageDirectory().toString()+"/FRCGameScout","passdata"+matchId.getText()+teamnumber.getText()+".csv");
-						//Write file
-						try{
-							String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
-							String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/PassData";
-							File intdirfile = new File(extdirpath,"PassData");
-							if(!intdirfile.exists()){
-								intdirfile.mkdirs();
-							}
-							File realfilepass = new File(intdirpath,"passdata"+" "+matchId.getText()+" "+teamnumber.getText()+".csv");
-							if(!realfilepass.exists()){
-								objectStorage.outputStream = new FileOutputStream(realfilepass,false);
-								objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
-							}
-							else{
-								objectStorage.outputStream = new FileOutputStream(realfilepass,true);
-								objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
-							}
-							objectStorage.outputStreamWriter.write(objectStorage.txtpass.toString());
-							objectStorage.outputStream.write(String.valueOf(objectStorage.txtpass).getBytes());
+						//File file = new File(Environment.getExternalStorageDirectory().toString()+"/FRCGameScout","passdata"+matchId.getText()+teamnumber.getText()+".csv");
+					//Write file
+					try{
+						String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
+						String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/PassData";
+						File intdirfile = new File(extdirpath,"PassData");
+						if(!intdirfile.exists()){
+							intdirfile.mkdirs();
 						}
-						catch(Exception e){
-							//If there is an exception, I give up.
+						File realfilepass = new File(intdirpath,"FRC_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+						if(!realfilepass.exists()){
+							objectStorage.outputStream = new FileOutputStream(realfilepass,false);
+							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
 						}
-						//Write Other Data
-						try{
-							String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
-							String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/Score";
+						else{
+							objectStorage.outputStream = new FileOutputStream(realfilepass,true);
+							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
 						}
-						catch(Exception e){
-							//No comment
+						objectStorage.outputStreamWriter.write(objectStorage.txtpass.toString());
+						objectStorage.outputStream.write(String.valueOf(objectStorage.txtpass).getBytes());
+					}
+					catch(Exception e){
+						//If there is an exception, I give up.
+					}
+					//Write Other Data
+					try{
+						String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
+						String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/Score";
+						File intdirfile = new File(extdirpath,"Scores");
+						if(!intdirfile.exists()){
+							intdirfile.mkdirs();
 						}
+						File realfile = new File(intdirpath,"FRC_times_"+teamnumber.getText()+"_"+matchId.getText());
+						if(!realfile.exists()){
+							objectStorage.outputStream = new FileOutputStream(realfile,true);
+							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
+						}
+						else{
+							objectStorage.outputStream = new FileOutputStream(realfile,true);
+							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
+						}
+						objectStorage.scores.append(teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue());
+						objectStorage.outputStreamWriter.write(objectStorage.scores.toString());
+						objectStorage.outputStream.write(String.valueOf(objectStorage.scores).getBytes());
+					}
+					catch(Exception e){
+						//No comment
+					}
 					}
 				}); //Endofline
 	}
