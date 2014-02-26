@@ -140,8 +140,8 @@ public class MainActivity extends Activity {
 				});
 		        // }} Button Init
 		        //Send Data Button initialization
-		        final Button datasend = (Button) findViewById(R.id.senddata);
-		        datasend.setOnClickListener(new View.OnClickListener() {
+		        final Button datasave = (Button) findViewById(R.id.senddata);
+		        datasave.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						Toast.makeText(MainActivity.this, "Data Saved. \n"+"Please send it.", 100).show();
