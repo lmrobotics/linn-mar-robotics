@@ -143,7 +143,7 @@ public class MainActivity extends Activity {
 				});
 		        // }} Button Init
 		        //Send Data Button initialization
-		        final Button datasave = (Button) findViewById(R.id.senddata);
+		        final Button datasave = (Button) findViewById(R.id.savedata);
 		        datasave.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -157,7 +157,7 @@ public class MainActivity extends Activity {
 						if(!intdirfile.exists()){
 							intdirfile.mkdirs();
 						}
-						File realfilepass = new File(intdirpath,"FRC_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+						File realfilepass = new File(intdirpath,"frc_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 						if(!realfilepass.exists()){
 							objectStorage.outputStream = new FileOutputStream(realfilepass,false);
 							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
@@ -174,37 +174,38 @@ public class MainActivity extends Activity {
 					}
 					//Write Other Data
 					try{
-						String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
-						String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/Score";
-						File intdirfile = new File(extdirpath,"Scores");
-						if(!intdirfile.exists()){
-							intdirfile.mkdirs();
+						String extsdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
+						String intsdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/Score";
+						File intsdirfile = new File(extsdirpath,"Score");
+						if(!intsdirfile.exists()){
+							intsdirfile.mkdirs();
 						}
-						File realfile = new File(intdirpath,"FRC_times_"+teamnumber.getText()+"_"+matchId.getText());
+						File realfile = new File(intsdirpath,"frc_score_"+teamnumber.getText()+"_"+matchId.getText());
 						if(!realfile.exists()){
-							objectStorage.outputStream = new FileOutputStream(realfile,true);
-							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
+							objectStorage.outputStream = new FileOutputStream(realfile,false);
+							objectStorage.outputStreamWriters = new OutputStreamWriter(objectStorage.outputStream);
 						}
 						else{
 							objectStorage.outputStream = new FileOutputStream(realfile,true);
-							objectStorage.outputStreamWriter = new OutputStreamWriter(objectStorage.outputStream);
+							objectStorage.outputStreamWriters = new OutputStreamWriter(objectStorage.outputStream);
 						}
-						objectStorage.scores.append(teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue());
-						objectStorage.outputStreamWriter.write(objectStorage.scores.toString());
-						objectStorage.outputStream.write(String.valueOf(objectStorage.scores).getBytes());
+						//objectStorage.scores.append(teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue());
+						//objectStorage.outputStreamWriters.write(objectStorage.scores.toString());
+						String Data = teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue();
+						objectStorage.outputStream.write(Data.getBytes());
 					}
 					catch(Exception e){
 						//No comment
 					}
 					}
 				}); //Endofline
-		        final Button datasend = (Button) findViewById(R.id.savedata);
+		        final Button datasend = (Button) findViewById(R.id.senddata);
 		        datasend.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-						File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Scores", "FRC_scores_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+						File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Scores", "frc_score_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 				        
 				        if (file.exists())
 				        {
@@ -220,17 +221,17 @@ public class MainActivity extends Activity {
 				             Log.e("MYAPP", "file write failed", e);
 				            } 
 				        }
-				        File file1 = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/PassData", "FRC_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+				        File file1 = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/PassData", "frc_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 				        
 				        if (file1.exists())
 				        {
-				            Intent bti = new Intent();
-				            bti.setAction(Intent.ACTION_SEND);
-				            bti.setType("text/plain");
-				            bti.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file1) );
+				            Intent btl = new Intent();
+				            btl.setAction(Intent.ACTION_SEND);
+				            btl.setType("text/plain");
+				            btl.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file1) );
 				            try
 				            {
-				               startActivity(bti);
+				               startActivity(btl);
 				            }
 				            catch (Exception e) {
 				             Log.e("MYAPP", "file write failed", e);

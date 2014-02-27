@@ -9,5 +9,7 @@ public final class objectStorage {
 	static StringBuilder scores = new StringBuilder();
 	static String alliance;
 	static FileOutputStream outputStream;
+	static FileOutputStream outputStreams;
 	static OutputStreamWriter outputStreamWriter;
+	static OutputStreamWriter outputStreamWriters;
 }
