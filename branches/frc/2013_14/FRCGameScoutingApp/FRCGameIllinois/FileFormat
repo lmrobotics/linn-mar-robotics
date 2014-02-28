@@ -1,0 +1,3 @@
+This is the file format for the send receive and pass commands.
+ [P,R,S,BL],[Alliance R/B],[Time],[Team #],[Match ID]
+ No [] just ,
