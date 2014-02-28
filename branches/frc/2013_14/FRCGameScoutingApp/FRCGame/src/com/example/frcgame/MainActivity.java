@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
 						if(!intsdirfile.exists()){
 							intsdirfile.mkdirs();
 						}
-						File realfile = new File(intsdirpath,"frc_score_"+teamnumber.getText()+"_"+matchId.getText());
+						File realfile = new File(intsdirpath,"frc_score_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 						if(!realfile.exists()){
 							objectStorage.outputStream = new FileOutputStream(realfile,false);
 							objectStorage.outputStreamWriters = new OutputStreamWriter(objectStorage.outputStream);
@@ -191,7 +191,7 @@ public class MainActivity extends Activity {
 						}
 						//objectStorage.scores.append(teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue());
 						//objectStorage.outputStreamWriters.write(objectStorage.scores.toString());
-						String Data = teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue();
+						String Data = teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue()+"\n";
 						objectStorage.outputStream.write(Data.getBytes());
 					}
 					catch(Exception e){
