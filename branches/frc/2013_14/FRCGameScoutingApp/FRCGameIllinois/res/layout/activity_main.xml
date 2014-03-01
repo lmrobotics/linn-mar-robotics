@@ -312,24 +312,6 @@
         android1:layout_row="2"
         android1:text="Foul" />
 
-    <Button
-        android1:id="@+id/Passed"
-        android1:layout_width="85dp"
-        android1:layout_height="126dp"
-        android1:layout_column="12"
-        android1:layout_gravity="left|top"
-        android1:layout_row="2"
-        android1:text="Passed" />
-
-    <Button
-        android1:id="@+id/Shot"
-        android1:layout_width="85dp"
-        android1:layout_height="126dp"
-        android1:layout_column="12"
-        android1:layout_gravity="left|bottom"
-        android1:layout_row="2"
-        android1:text="Shot" />
-
     <RadioGroup
         android1:id="@+id/radioGroup1"
         android1:layout_column="4"
@@ -359,29 +341,6 @@
         android1:text="Submit Alliance" />
 
     <Button
-        android1:id="@+id/Recieved"
-        android1:layout_height="126dp"
-        android1:layout_column="11"
-        android1:layout_gravity="left|top"
-        android1:layout_row="2"
-        android1:text="Received" />
-
-    <Button
-        android1:id="@+id/missedShot"
-        android1:layout_column="11"
-        android1:layout_gravity="center_horizontal|bottom"
-        android1:layout_row="2"
-        android1:text="Missed Shot" />
-
-    <Button
-        android1:id="@+id/missedPass"
-        android1:layout_column="11"
-        android1:layout_gravity="left|bottom"
-        android1:layout_marginBottom="45dp"
-        android1:layout_row="2"
-        android1:text="Missed Pass" />
-
-    <Button
         android1:id="@+id/senddata"
         android1:layout_column="11"
         android1:layout_gravity="right|bottom"
@@ -396,5 +355,18 @@
         android1:layout_gravity="right|center"
         android1:layout_row="3"
         android1:text="Save Data" />
+
+    <TextView
+        android1:id="@+id/textView2"
+        android1:layout_column="11"
+        android1:layout_gravity="left|top"
+        android1:layout_row="2"
+        android1:text="Fouls Score" />
+
+    <NumberPicker
+        android1:id="@+id/numberPicker1"
+        android1:layout_column="11"
+        android1:layout_gravity="left|center_vertical"
+        android1:layout_row="2" />
 
 </GridLayout>
