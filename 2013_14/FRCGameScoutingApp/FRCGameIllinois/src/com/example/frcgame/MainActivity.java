@@ -55,6 +55,9 @@ public class MainActivity extends Activity {
 		        final NumberPicker npc = (NumberPicker) findViewById(R.id.Catches);
 		        npc.setMaxValue(100);
 		        npc.setMinValue(0);
+		        final NumberPicker nfoul = (NumberPicker) findViewById(R.id.numberPicker1);
+		        nfoul.setMaxValue(500);
+		        nfoul.setMinValue(0);
 		        // }} Number Picker
 		        //MainActivity.context = getApplicationContext();
 		        // {{ Radio Button
@@ -87,7 +90,8 @@ public class MainActivity extends Activity {
 		        	final EditText matchId = (EditText) findViewById(R.id.matchId);
 		        // }} Comments
 		      	// {{ Button Init
-		        		//Shot
+		        /*
+		        	//Shot
 		        	final Button shot = (Button) findViewById(R.id.Shot);
 		        	
 		        shot.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +145,7 @@ public class MainActivity extends Activity {
 						objectStorage.txtpass.append("\n"+"BL"+","+objectStorage.alliance+","+System.currentTimeMillis()+","+teamnumber.getText()+","+matchId.getText());
 					}
 				});
+		        */
 		        // }} Button Init
 		        //Send Data Button initialization
 		        final Button datasave = (Button) findViewById(R.id.savedata);
@@ -150,7 +155,8 @@ public class MainActivity extends Activity {
 						Toast.makeText(MainActivity.this, "Data Saved. \n"+"Please send it.", 100).show();
 						//File file = new File(Environment.getExternalStorageDirectory().toString()+"/FRCGameScout","passdata"+matchId.getText()+teamnumber.getText()+".csv");
 					//Write file
-					try{
+					/*
+						try{
 						String extdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
 						String intdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData/PassData";
 						File intdirfile = new File(extdirpath,"PassData");
@@ -172,6 +178,7 @@ public class MainActivity extends Activity {
 					catch(Exception e){
 						//If there is an exception, I give up.
 					}
+					*/
 					//Write Other Data
 					try{
 						String extsdirpath = Environment.getExternalStorageDirectory().toString()+"/FRCGameData";
@@ -180,7 +187,7 @@ public class MainActivity extends Activity {
 						if(!intsdirfile.exists()){
 							intsdirfile.mkdirs();
 						}
-						File realfile = new File(intsdirpath,"frc_score_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+						File realfile = new File(intsdirpath,"frc_scores_"+".csv");
 						if(!realfile.exists()){
 							objectStorage.outputStream = new FileOutputStream(realfile,false);
 							objectStorage.outputStreamWriters = new OutputStreamWriter(objectStorage.outputStream);
@@ -191,7 +198,7 @@ public class MainActivity extends Activity {
 						}
 						//objectStorage.scores.append(teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue());
 						//objectStorage.outputStreamWriters.write(objectStorage.scores.toString());
-						String Data = teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue()+"\n";
+						String Data = teamnumber.getText()+","+matchId.getText()+","+doubleauto.isChecked()+","+automobonus.isChecked()+","+telemobonus.isChecked()+","+hotGoal.isChecked()+","+autoBonus.isChecked()+","+autofoul.isChecked()+","+telefoul.isChecked()+","+teletechfoul.isChecked()+","+truss.isChecked()+","+twoassist.isChecked()+","+threeassist.isChecked()+","+autotechfoul.isChecked()+","+autoshotblock.isChecked()+","+teleshotblock.isChecked()+","+automechprob.isChecked()+","+telemechprob.isChecked()+","+nplg.getValue()+","+nphg.getValue()+","+npc.getValue()+","+nfoul.getValue()+","+telecomm.getText()+autocomm.getText()+"\n";
 						objectStorage.outputStream.write(Data.getBytes());
 					}
 					catch(Exception e){
@@ -205,7 +212,7 @@ public class MainActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-						File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Scores", "frc_score_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+						File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Score", "frc_score_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 				        
 				        if (file.exists())
 				        {
@@ -221,7 +228,7 @@ public class MainActivity extends Activity {
 				             Log.e("MYAPP", "file write failed", e);
 				            } 
 				        }
-				        File file1 = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/PassData", "frc_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
+				        /*File file1 = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/PassData", "frc_times_"+teamnumber.getText()+"_"+matchId.getText()+".csv");
 				        
 				        if (file1.exists())
 				        {
@@ -237,6 +244,7 @@ public class MainActivity extends Activity {
 				             Log.e("MYAPP", "file write failed", e);
 				            } 
 				        }
+				        */
 					}
 				});
 	}
