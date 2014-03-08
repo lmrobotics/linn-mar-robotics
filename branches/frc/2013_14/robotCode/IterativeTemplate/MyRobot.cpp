@@ -2,6 +2,8 @@
 #include "NetworkTables/NetworkTable.h"
 #include "Drive.h"
 #include "floorPickUp.h"
+#include <pthread.h>
+   #include <unistd.h>
 
 /**
  * This is a demo program showing the use of the RobotBase class.
@@ -28,10 +30,11 @@ class IronLions : public IterativeRobot
 	Victor winchMotor1, winchMotor2;
 	Solenoid shifter1, shifter2, winchRelease1, winchRelease2;
 	Encoder driveEncoder, winchEncoder;
-	NetworkTable *Camtable;
+	//NetworkTable *Camtable;
 	AnalogChannel *Pot;
-	DigitalInput WinchLimit;
+	DigitalInput WinchLimit,AutoSwitch;
 	Relay *LED;
+	pthread_t autoThread;
 	
 	// Local variables to count the number of periodic loops performed
 	int auto_periodic_loops;
@@ -102,11 +105,12 @@ public:
 		winchRelease2(2),
 		driveEncoder(2,3),
 		winchEncoder(4,5),
-		WinchLimit(6)
+		WinchLimit(6),
+		AutoSwitch(10)
 	{
 		ds = DriverStation::GetInstance();
 		SmartDashboard::init();
-		Camtable = NetworkTable::GetTable("SmartDashboard");
+		//Camtable = NetworkTable::GetTable("SmartDashboard");
 		Pot= new AnalogChannel(1);
 		
 		LED = new Relay(8);
@@ -153,6 +157,14 @@ public:
 		}
 		
 		drive.Move(motorSpeed-((angle-targetAngle)*gyroAngleRatio),-motorSpeed-((angle-targetAngle)*gyroAngleRatio));
+	}
+	
+	static void *AutoSequence(void *arg){
+		while (true){
+			printf("Running AutoSequence");
+			Wait(.01);
+		}
+		return 0;
 	}
 	
 	/**
@@ -205,10 +217,18 @@ public:
 		gyro.Reset();
 		auto_dist = driveEncoder.GetDistance();
 		auto_count = 0;
-		autoState = 2;
 		auto_periodic_loops = 0;
 		LED ->Set(Relay::kForward);
 		currentPos = Pot -> GetAverageValue();
+		
+		pthread_create(&autoThread, NULL, &IronLions::AutoSequence, NULL);
+		
+		if (AutoSwitch.Get()==1) {
+			autoState = 499;
+		}
+		else {
+			autoState = 2;
+		}
 	}
 	
 	/**
@@ -218,6 +238,7 @@ public:
 	 * rate while the robot is in autonomous mode.
 	 */
 	void IronLions::AutonomousPeriodic() {
+		/*
 		// feed the user watchdog at every period when in autonomous
 		GetWatchdog().Feed();
 		LED ->Set(Relay::kForward);
@@ -225,6 +246,7 @@ public:
 		
 		dash ->PutNumber("Drive Encoder", driveEncoder.Get());
 		dash ->PutNumber("Drive Encoder Distance", driveEncoder.GetDistance());
+		dash ->PutNumber("AutoSwitch", AutoSwitch.Get());
 		
 		switch (autoState)
 		{
@@ -232,45 +254,10 @@ public:
 			//Cases 1-500: Single autonomous code.
 			
 			//Phase 1: Prepare to Shoot the first ball and the shoot it. Also, process vision stuff if that code needs to be here		
-			case 1:		//First chunk of movement. Any vision related code that doesn't fit in Autonomous Init will go here too
-				if (driveEncoder.GetDistance() < 35){
-					drive.Move(.5,-.5);
-					/*if (Camtable->ContainsKey("LeftBool")){
-						Camtable->GetNumber("LeftBool",LeftInt);
-					}
-					if (Camtable->ContainsKey("RightBool")){
-						Camtable->GetNumber("RightBool",RightInt);
-					}*/
-				}
-				else {
-					drive.stopdrive();
-				}
-				if (currentPos < 410) {
-					Intake.goToPos(420.0,currentPos);
-					Intake.moveWheels(-1);
-				}
-				else {
-					Intake.holdPos(420,currentPos);
-					Intake.moveWheels(0);
-				}
-				if ((driveEncoder.GetDistance()>35) && (currentPos >= 410)){					
-					if ((LeftInt == 1) || (RightInt==1)){
-						waitTime=50;
-					}
-					else {
-						waitTime=300;
-					}
-					if (auto_periodic_loops > waitTime) {
-						drive.Move(0.0,0.0);
-						winchRelease1.Set(true);
-						winchRelease2.Set(false);
-					}
-				}
-				break;
 				
 			case 2:
-				if (currentPos < 410) {
-					Intake.goToPos(420.0,currentPos);
+				if (currentPos < 500) {
+					Intake.goToPos(520.0,currentPos);
 					Intake.moveWheels(-1);
 				}
 				else {					
@@ -280,7 +267,7 @@ public:
 					else {
 						waitTime=300;
 					}
-					Intake.holdPos(420,currentPos);
+					Intake.holdPos(520,currentPos);
 					Intake.moveWheels(0);
 					auto_periodic_loops = 0;
 					autoState = 3;
@@ -302,18 +289,15 @@ public:
 				break;
 //-----------------------------------------------------------------------------------------------------------------------------
 			
-			//Cases 500-1500: Double Autonomous code
-			
-			//Phase 1: Pick up other ball and process vision
+			//Cases 499-1500: Double Autonomous code
 			case 499:
-				if ((currentPos < 460) || (currentPos > 600)) {
-					Intake.goToPos(480.0,currentPos);
-					Intake.moveWheels(-1);
+				if ((currentPos < 610)) {
+					Intake.goToPos(620.0,currentPos);
+					Intake.moveWheels(0);
 					auto_periodic_loops = 0;
 				}
 				else {
-					Intake.holdPos(480,currentPos);
-					Intake.moveWheels(0);
+					Intake.holdPos(620,currentPos);
 					if (auto_periodic_loops > 60) {
 						autoState=500;
 					}
@@ -335,8 +319,9 @@ public:
 				break;
 			case 501:
 				if (WinchLimit.Get() == 1) {
-					winchMotor1.Set(1);
-					winchMotor2.Set(1);
+					Intake.moveWheels(-1);
+					winchMotor1.Set(.8);
+					winchMotor2.Set(.8);
 				}
 				else {
 					winchMotor1.Set(0);
@@ -346,7 +331,7 @@ public:
 				}
 				break;
 			case 502:
-				if (auto_periodic_loops < 50){
+				if (auto_periodic_loops < 70){
 					//drive.Move(-.4,.4);
 					Intake.moveWheels(-1);
 				}
@@ -355,6 +340,7 @@ public:
 					autoState = 504;
 				}
 				break;
+				
 				/*case 503:
 				if (driveEncoder.GetDistance() < 5){
 					auto_periodic_loops = 0;
@@ -368,13 +354,14 @@ public:
 					}
 				}
 				break;*/
+			/*
 			case 504:
 				if (currentPos > 600) {
 					Intake.goToPos(580,currentPos);
 				}
 				else {
 					Intake.holdPos(580,currentPos);
-					if (auto_periodic_loops > 80) {
+					if (auto_periodic_loops > 100) {
 						Intake.moveWheels(0);
 						auto_periodic_loops = 0;
 						winchRelease1.Set(true);
@@ -406,6 +393,7 @@ public:
 		printf("driveEncoder Dist: %f\n", (driveEncoder.GetDistance()));
 		printf("auto_periodic: %d",auto_periodic_loops);
 		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
+		*/
 		auto_periodic_loops++;
 		autoStateLoops++;
 	}
@@ -422,6 +410,7 @@ public:
 		driveEncoder.Reset();
 		winchEncoder.Start();
 		winchEncoder.Reset();
+		pthread_cancel(autoThread);		//Considered bad practice, but it may be the best option for us until we have another solution
 	}
 	
 	/**
@@ -468,12 +457,12 @@ public:
 		//Slow down when close to switch
 		if ((winchRunning == true) && (WinchLimit.Get() == 1)) {
 			if (((winchEncoder.Get()-winchStart) < 2000)) {
-				winchMotor1.Set(1);
-				winchMotor2.Set(1);
+				winchMotor1.Set(.8);
+				winchMotor2.Set(.8);
 			}
 			else {
-				winchMotor1.Set(.95);
-				winchMotor2.Set(.95);
+				winchMotor1.Set(.7);
+				winchMotor2.Set(.7);
 			}
 		}
 		else {
@@ -503,18 +492,18 @@ public:
 		//Intake Angle
 		if (((Y_axis < -.2) && (Y_axis > -.8)) || ((Y_axis > .2) && (Y_axis < .8))){
 			if (Y_axis < -.2) { //Run Intake Down
-				Intake.moveAngle(.4,0);
+				Intake.moveAngle(.5,0);
 			}
 			else {              //Run Intake Up
-				Intake.moveAngle(.4,1);
+				Intake.moveAngle(.5,1);
 			}
 		}
 		else if ((Y_axis >= .8) || (Y_axis <= -.8)) {
 			if (Y_axis >= .8) {
-				Intake.moveAngle(.6,1);				
+				Intake.moveAngle(.7,1);				
 			}
 			else {
-				Intake.moveAngle(.6,0);				
+				Intake.moveAngle(.7,0);				
 			}
 		}
 		else if (A_button2) { //Move pickup to pickup position
@@ -570,6 +559,7 @@ public:
 		dash ->PutNumber("Winch Limit", WinchLimit.Get());
 		dash ->PutNumber("Tele Timer", TeleTimer);
 		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
+		dash ->PutNumber("AutoSwitch", AutoSwitch.Get());
 		
 		//Drive Arcade
 		drive.TeleDrive(xbox1.GetRawAxis(4),xbox1.GetY(GenericHID::kLeftHand));

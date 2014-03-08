@@ -383,7 +383,8 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/Drive.o:  \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/Threshold.h \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/HSLImage.h \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/ColorImage.h \
-  C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h \
+  C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h
 
 C:/WindRiver/workspace/IterativeTemplate/Drive.h:
 
@@ -1152,3 +1153,5 @@ C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/HSLImage.h:
 C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/ColorImage.h:
 
 C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h:
+
+C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h:
