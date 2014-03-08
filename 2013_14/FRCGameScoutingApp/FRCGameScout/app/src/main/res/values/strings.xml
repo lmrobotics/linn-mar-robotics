@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FRCGameScout</string>
+    <string name="title_section1">Autonomous</string>
+    <string name="title_section2">Tele-Op</string>
+    <string name="title_section3">Comment,Save,and Send</string>
+    <string name="action_settings">You have no options</string>
+
+</resources>
