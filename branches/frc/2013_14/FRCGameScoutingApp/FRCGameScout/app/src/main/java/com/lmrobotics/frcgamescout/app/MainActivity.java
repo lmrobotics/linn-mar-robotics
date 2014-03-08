@@ -37,11 +37,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //All the pager stuff
         MyPagerAdapter adapter = new MyPagerAdapter();
         ViewPager myPager = (ViewPager) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
-
+        //Start of real code.
     }
 
 
