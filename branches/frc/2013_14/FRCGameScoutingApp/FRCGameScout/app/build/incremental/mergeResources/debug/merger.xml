@@ -51,9 +51,9 @@
                 qualifiers="" >
                 <string name="title_section1" >Autonomous
                 </string>
-                <string name="action_settings" >You have no options
-                </string>
                 <string name="title_section3" >Comment,Save,and Send
+                </string>
+                <string name="action_settings" >You have no options
                 </string>
                 <string name="title_section2" >Tele-Op
                 </string>
@@ -102,6 +102,11 @@
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\teleop.xml"
                 qualifiers=""
                 type="layout" />
+            <file
+                name="bc"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\drawable-mdpi\bc.jpg"
+                qualifiers="mdpi"
+                type="drawable" />
         </source>
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\rs\debug" />
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\generated\debug" />

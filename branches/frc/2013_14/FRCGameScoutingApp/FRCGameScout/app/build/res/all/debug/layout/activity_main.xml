@@ -3,5 +3,7 @@
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/bc"
     tools:context="com.lmrobotics.frcgamescout.app.MainActivity" />
 <!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScout/app/src/main/res/layout/activity_main.xml -->
