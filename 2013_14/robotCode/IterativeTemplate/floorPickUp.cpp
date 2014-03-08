@@ -15,7 +15,7 @@ FloorPickUp::~FloorPickUp() {
 }
 
 void FloorPickUp::holdPos(float pos, float currentPos) {
-	if ((abs((int)(currentPos-pos)) < 20) || (currentPos < 1)) {
+	if ((abs((int)(currentPos-pos)) < 15) || (currentPos < 1)) {
 		armRight.Set(0);
 		armLeft.Set(0);		
 	}
@@ -40,12 +40,12 @@ void FloorPickUp::goToPos(float pos, float currentPos) {
 	}
 	else if (currentPos < pos) {
 		//Move Down
-		armRight.Set(-.5);
-		armLeft.Set(.5);
+		armRight.Set(-.6);
+		armLeft.Set(.6);
 	}
 	else if (currentPos > pos) {
-		armRight.Set(.5);
-		armLeft.Set(-.5);
+		armRight.Set(.6);
+		armLeft.Set(-.6);
 	}
 }
 

@@ -384,7 +384,9 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/MyRobot.o:  \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/Vision/ColorImage.h \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/NetworkTables/NetworkTable.h \
-  C:/WindRiver/workspace/IterativeTemplate/Drive.h
+  C:/WindRiver/workspace/IterativeTemplate/Drive.h \
+  C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h \
+  C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h
 
 C:/WindRiver/vxworks-6.3/target/h/WPILib/WPILib.h:
 
@@ -1155,3 +1157,7 @@ C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h:
 C:/WindRiver/vxworks-6.3/target/h/WPILib/NetworkTables/NetworkTable.h:
 
 C:/WindRiver/workspace/IterativeTemplate/Drive.h:
+
+C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h:
+
+C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h:
