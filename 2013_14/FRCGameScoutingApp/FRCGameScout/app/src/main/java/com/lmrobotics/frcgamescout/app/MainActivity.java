@@ -17,10 +17,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
 
+public class MainActivity extends Activity {
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -42,7 +45,24 @@ public class MainActivity extends Activity {
         ViewPager myPager = (ViewPager) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
+        myPager.setCurrentItem(1);
+        myPager.setCurrentItem(2);
+        myPager.setCurrentItem(3);
+        myPager.setCurrentItem(4);
+        myPager.setCurrentItem(0);
         //Start of real code.
+        //Setup Page
+        final EditText MatchID = (EditText) findViewById(R.id.matchID);
+        final EditText TeamNumber = (EditText) findViewById(R.id.teamNo);
+        final CheckBox MatchIsReplay = (CheckBox) findViewById(R.id.matchReplay);
+        //Autonomous Page
+        NumberPicker lowgoal = (NumberPicker) findViewById(R.id.lowgoalmade);
+        if(lowgoal!=null){
+        lowgoal.setMaxValue(3);
+        lowgoal.setMinValue(0);
+        }
+        //final NumberPicker LGmissed = (NumberPicker) findViewById(R.id.LGmissed);
+
     }
 
 

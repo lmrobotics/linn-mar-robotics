@@ -49,9 +49,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Before scouting the match: \n Make sure all data here is correct \n Ensure that the data from last match is gone"
+        android:text="Before scouting the match:\n   Make sure all data here is correct \n   Ensure that the data from last match is gone"
         android:id="@+id/textView"
         android:layout_below="@+id/matchID"
         android:layout_toRightOf="@+id/setuptext" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is this match being replayed?"
+        android:id="@+id/matchReplay"
+        android:checked="false"
+        android:layout_marginLeft="65dp"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignLeft="@+id/matchID"
+        android:layout_alignStart="@+id/matchID" />
 
 </RelativeLayout>

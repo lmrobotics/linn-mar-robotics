@@ -9,6 +9,11 @@
                 qualifiers="hdpi"
                 type="drawable" />
             <file
+                name="bc"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\drawable-mdpi\bc.jpg"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\drawable-mdpi\ic_launcher.png"
                 qualifiers="mdpi"
@@ -29,8 +34,33 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="auto"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\auto.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="comments"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\comments.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="fragment_main"
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\fragment_main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="save"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\save.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="setup"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\setup.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="teleop"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\teleop.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -51,9 +81,9 @@
                 qualifiers="" >
                 <string name="title_section1" >Autonomous
                 </string>
-                <string name="title_section3" >Comment,Save,and Send
-                </string>
                 <string name="action_settings" >You have no options
+                </string>
+                <string name="title_section3" >Comment,Save,and Send
                 </string>
                 <string name="title_section2" >Tele-Op
                 </string>
@@ -77,36 +107,6 @@
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
-            <file
-                name="auto"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\auto.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="setup"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\setup.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="comments"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\comments.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="save"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\save.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="teleop"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\teleop.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="bc"
-                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\drawable-mdpi\bc.jpg"
-                qualifiers="mdpi"
-                type="drawable" />
         </source>
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\rs\debug" />
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\generated\debug" />
