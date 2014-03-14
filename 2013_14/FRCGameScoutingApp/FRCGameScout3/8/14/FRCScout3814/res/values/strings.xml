@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FRCScout3/8/14</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section0">Settings</string>
+    <string name="title_section1">test</string>
+    <string name="title_section2">Auto</string>
+    <string name="title_section3">Teli-op</string>
+    <string name="title_section4">Comments</string>
+    <string name="title_section5">Save</string>
+   <!-- <string name="title_section4">Section 3</string> -->
+
+</resources>
