@@ -1,6 +1,7 @@
 package com.lmrobotics.frcgamescout.app;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -48,6 +49,7 @@ public class MyPagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(View arg0, Object arg1) {
         return arg0 == ((View) arg1);
     }
+
 
     //public boolean isViewFromObject(ViewGroup arg0, Object arg1) {
     // return arg0 == ((View) arg1);
