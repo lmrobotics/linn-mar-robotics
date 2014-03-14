@@ -21,6 +21,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.view.ViewGroup;
+import android.support.v4.app.FragmentActivity;
 
 
 public class MainActivity extends Activity {
@@ -42,6 +44,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         //All the pager stuff
         MyPagerAdapter adapter = new MyPagerAdapter();
+        //adapter.instantiateItem(,0);
         ViewPager myPager = (ViewPager) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
@@ -51,20 +54,15 @@ public class MainActivity extends Activity {
         myPager.setCurrentItem(4);
         myPager.setCurrentItem(0);
         //Start of real code.
+
         //Setup Page
         final EditText MatchID = (EditText) findViewById(R.id.matchID);
         final EditText TeamNumber = (EditText) findViewById(R.id.teamNo);
         final CheckBox MatchIsReplay = (CheckBox) findViewById(R.id.matchReplay);
         //Autonomous Page
         NumberPicker lowgoal = (NumberPicker) findViewById(R.id.lowgoalmade);
-        if(lowgoal!=null){
-        lowgoal.setMaxValue(3);
-        lowgoal.setMinValue(0);
-        }
         //final NumberPicker LGmissed = (NumberPicker) findViewById(R.id.LGmissed);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,6 +87,7 @@ public class MainActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
+    //
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -119,6 +118,7 @@ public class MainActivity extends Activity {
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+
     }
 
 }

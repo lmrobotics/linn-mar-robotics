@@ -6,5 +6,7 @@
     <string name="title_section2">Tele-Op</string>
     <string name="title_section3">Comment,Save,and Send</string>
     <string name="action_settings">You have no options</string>
+    <string name="title_activity_setup">Setup</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
