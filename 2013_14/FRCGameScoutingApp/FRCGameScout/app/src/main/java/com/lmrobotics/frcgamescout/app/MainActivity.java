@@ -56,11 +56,11 @@ public class MainActivity extends Activity {
         //Start of real code.
 
         //Setup Page
-        final EditText MatchID = (EditText) findViewById(R.id.matchID);
-        final EditText TeamNumber = (EditText) findViewById(R.id.teamNo);
-        final CheckBox MatchIsReplay = (CheckBox) findViewById(R.id.matchReplay);
+        //final EditText MatchID = (EditText) findViewById(R.id.matchID);
+        //final EditText TeamNumber = (EditText) findViewById(R.id.teamNo);
+        //final CheckBox MatchIsReplay = (CheckBox) findViewById(R.id.matchReplay);
         //Autonomous Page
-        NumberPicker lowgoal = (NumberPicker) findViewById(R.id.lowgoalmade);
+        //NumberPicker lowgoal = (NumberPicker) findViewById(R.id.lowgoalmade);
         //final NumberPicker LGmissed = (NumberPicker) findViewById(R.id.LGmissed);
     }
 

@@ -1,6 +1,7 @@
 package com.lmrobotics.frcgamescout.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,6 +23,7 @@ public class MyPagerAdapter extends PagerAdapter {
         switch (position) {
             case 0:
                 resId = R.layout.setup;
+                Intent intent = new Intent(collection.getContext(), Setup.class);
                 break;
             case 1:
                 resId = R.layout.auto;
