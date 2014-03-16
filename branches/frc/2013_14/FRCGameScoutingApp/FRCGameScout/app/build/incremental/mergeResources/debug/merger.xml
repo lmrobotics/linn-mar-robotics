@@ -89,6 +89,10 @@
                 </string>
                 <string name="app_name" >FRCGameScout
                 </string>
+                <string name="hello_world" >Hello world!
+                </string>
+                <string name="title_activity_setup" >Setup
+                </string>
             </file>
             <file
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\values\styles.xml"
@@ -107,6 +111,16 @@
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
+            <file
+                name="setup"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\menu\setup.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="activity_setup"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\src\main\res\layout\activity_setup.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\rs\debug" />
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScout\app\build\res\generated\debug" />
