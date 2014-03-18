@@ -114,4 +114,4 @@
         android:layout_y="320dp"
         android:checked="false" />
 
-</AbsoluteLayout>
+</AbsoluteLayout><!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/res/layout/fragment_auto.xml -->

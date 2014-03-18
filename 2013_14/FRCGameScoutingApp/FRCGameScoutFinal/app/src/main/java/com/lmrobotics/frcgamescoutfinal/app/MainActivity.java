@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -96,6 +96,8 @@ public class MainActivity extends Activity {
             switch (position){
                 case 0:
                     return SetupFragment.newInstance();
+                case 1:
+                    return AutoFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position+1);
             }

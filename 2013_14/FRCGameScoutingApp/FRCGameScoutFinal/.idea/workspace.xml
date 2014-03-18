@@ -50,6 +50,9 @@
       </layout>
     </layouts>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.lmrobotics.frcgamescoutfinal.app" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="51572431-8fcc-43e0-b65e-8c38875ac500" name="Default" comment="" />
     <ignored path="FRC Game Scout Final.iws" />
@@ -114,17 +117,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1800" selection-end="1800" vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="1547">
+            <state line="15" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-1.4817518" vertical-offset="864" max-vertical-offset="2193">
               <folding>
                 <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#SectionsPagerAdapter#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getCount#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#3724#3758#0" expanded="true" />
+                <element signature="e#3826#3860#0" expanded="true" />
+                <element signature="e#3928#3962#0" expanded="true" />
+                <element signature="e#4030#4064#0" expanded="true" />
+                <element signature="e#4132#4166#0" expanded="true" />
                 <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/AutoFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="34" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1343">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,16 +149,16 @@
       <file leaf-file-name="SetupFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/SetupFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="27" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+            <state line="30" column="13" selection-start="0" selection-end="1763" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="867">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_auto.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="fragment_auto.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml">
           <provider editor-type-id="text-editor">
-            <state line="5" column="36" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
+            <state line="5" column="36" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
               <folding />
             </state>
           </provider>
@@ -879,9 +895,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/ObjStor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MyApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/SetupFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/AutoFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/SetionsPagerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1355,7 +1373,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1372,14 +1390,14 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07906296" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25841874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1411,9 +1429,11 @@
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#SectionsPagerAdapter#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getCount#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3724#3758#0" expanded="true" />
+            <element signature="e#3826#3860#0" expanded="true" />
+            <element signature="e#3928#3962#0" expanded="true" />
+            <element signature="e#4030#4064#0" expanded="true" />
+            <element signature="e#4132#4166#0" expanded="true" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -1527,20 +1547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1800" selection-end="1800" vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="1547">
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#SectionsPagerAdapter#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getCount#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/sdk/sources/android-18/android/widget/Toast.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="13" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.54744524" vertical-offset="268" max-vertical-offset="6613">
@@ -1565,13 +1571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/SetupFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="27" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
       <provider editor-type-id="text-editor">
         <state line="7" column="27" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
@@ -1590,6 +1589,38 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/AutoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="34" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1343">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/SetupFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="13" selection-start="0" selection-end="1763" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="867">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-1.4817518" vertical-offset="864" max-vertical-offset="2193">
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3724#3758#0" expanded="true" />
+            <element signature="e#3826#3860#0" expanded="true" />
+            <element signature="e#3928#3962#0" expanded="true" />
+            <element signature="e#4030#4064#0" expanded="true" />
+            <element signature="e#4132#4166#0" expanded="true" />
+            <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
