@@ -1,0 +1,9 @@
+<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activitybckgrnd"
+    android:paddingTop="?android:attr/actionBarSize"
+    tools:context="com.lmrobotics.frcgamescoutfinal.app.MainActivity" />
+<!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/res/layout/activity_main.xml -->
