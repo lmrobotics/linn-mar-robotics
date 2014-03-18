@@ -39,6 +39,11 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="fragment_auto"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_auto.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="fragment_main"
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_main.xml"
                 qualifiers=""
