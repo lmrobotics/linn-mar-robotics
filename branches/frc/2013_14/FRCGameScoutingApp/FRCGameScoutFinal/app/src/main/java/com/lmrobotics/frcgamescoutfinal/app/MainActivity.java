@@ -50,6 +50,10 @@ public class MainActivity extends Activity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setPageTransformer(true, new ZoomOutPagerTransformer());
+        for(int i=0;i<5;i++){
+            mViewPager.setCurrentItem(i);
+        }
+        mViewPager.setCurrentItem(0);
         //SetupCode
 
 
@@ -125,6 +129,11 @@ public class MainActivity extends Activity {
                     return getString(R.string.title_section5).toUpperCase(l);
             }
             return null;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup arg0, int arg1, Object arg2) {
+            //((ViewPager) arg0).removeView((View) arg2);
         }
 
     }

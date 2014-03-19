@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bc"
-    tools:context="com.lmrobotics.frcgamescoutfinal.app.AutoFragment">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Autonomous"
+        android:text="telenomous"
         android:id="@+id/textView"
         android:layout_x="20dp"
         android:layout_y="20dp" />
@@ -28,28 +24,28 @@
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autoLGMade"
+        android:id="@+id/teleLGMade"
         android:layout_y="125dp"
         android:layout_x="85dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autoLGMissed"
+        android:id="@+id/teleLGMissed"
         android:layout_x="200dp"
         android:layout_y="125dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autoHGMade"
+        android:id="@+id/teleHGMade"
         android:layout_y="125dp"
         android:layout_x="495dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autoHGMissed"
+        android:id="@+id/teleHGMissed"
         android:layout_x="610dp"
         android:layout_y="125dp" />
 
@@ -115,5 +111,4 @@
         android:layout_x="495dp"
         android:layout_y="320dp"
         android:checked="false" />
-
 </AbsoluteLayout>

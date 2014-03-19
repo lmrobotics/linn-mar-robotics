@@ -36,11 +36,14 @@ public class SetupFragment extends Fragment{
         //AddActivityTextHere
         final EditText MatchID=(EditText) rootView.findViewById(R.id.matchID);
         this.MatchID=MatchID;
+        ObjStor.MatchID=MatchID;
         final EditText TeamNo = (EditText) rootView.findViewById(R.id.teamNo);
         this.TeamNo=TeamNo;
+        ObjStor.TeamNo=TeamNo;
         final CheckBox isMatchReplay = (CheckBox) rootView.findViewById(R.id.matchReplay);
         isMatchReplay.setChecked(false);
         this.isMatchReplay=isMatchReplay;
+        ObjStor.isMatchReplay=isMatchReplay;
         return rootView;
     }
 

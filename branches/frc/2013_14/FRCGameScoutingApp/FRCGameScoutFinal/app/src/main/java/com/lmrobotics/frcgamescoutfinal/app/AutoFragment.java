@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 
 /**
@@ -41,33 +42,37 @@ public class AutoFragment extends Fragment{
         autoLGMade.setMinValue(0);
         autoLGMade.setValue(0);
         this.autoLGMade=autoLGMade;
+        ObjStor.autoLGMade=autoLGMade;
         final NumberPicker autoLGMissed = (NumberPicker) rootView.findViewById(R.id.autoLGMissed);
         autoLGMissed.setMaxValue(3);
         autoLGMissed.setMinValue(0);
         autoLGMissed.setValue(0);
         this.autoLGMissed=autoLGMissed;
+        ObjStor.autoLGMissed=autoLGMissed;
         final NumberPicker autoHGMade = (NumberPicker) rootView.findViewById(R.id.autoHGMade);
         autoHGMade.setMaxValue(3);
         autoHGMade.setMinValue(0);
         autoHGMade.setValue(0);
         this.autoHGMade=autoHGMade;
+        ObjStor.autoHGMade=autoHGMade;
         final NumberPicker autoHGMissed = (NumberPicker) rootView.findViewById(R.id.autoHGMissed);
         autoHGMissed.setMaxValue(3);
         autoHGMissed.setMinValue(0);
         autoHGMissed.setValue(0);
         this.autoHGMissed=autoHGMissed;
+        ObjStor.autoHGMissed=autoHGMissed;
         final CheckBox autoHotGoal = (CheckBox) rootView.findViewById(R.id.hotGoal);
         this.autoHotGoal=autoHotGoal;
         final CheckBox autoMobBonus = (CheckBox) rootView.findViewById(R.id.mobBonus);
         this.autoMobBonus=autoMobBonus;
+        this.autoMobBonus=autoMobBonus;
+        //Toast.makeText(rootView.getContext(),"OnViewCreated called",Toast.LENGTH_SHORT).show();
         return rootView;
     }
 
-    /*@Override
+    @Override
     public void onDetach(){
-        ObjStor.MatchID=Integer.parseInt(this.MatchID.getText().toString());
-        ObjStor.TeamNo=Integer.parseInt(this.TeamNo.getText().toString());
-        ObjStor.matchReplay=this.isMatchReplay.isChecked();
-        //Toast.makeText(MyApplication.getAppContext(), "Data Saved to ObjStor", 100).show();
-    }*/
+        View v = mView;
+        Toast.makeText(v.getContext(), "Pane 2 Detatched", 100).show();
+    }
 }
