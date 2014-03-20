@@ -1,17 +1,19 @@
 #include "floorPickUp.h"
 
 FloorPickUp::FloorPickUp (uint8_t moduleNumber1, uint32_t channel1, uint8_t moduleNumber2, uint32_t channel2, 
-		uint8_t moduleNumber3, uint32_t channel3):
+		uint8_t moduleNumber3, uint32_t channel3, uint8_t moduleNumber4, uint32_t channel4):
 	armLeft(moduleNumber1,channel1),
 	armRight(moduleNumber2,channel2),
-	armWheel(moduleNumber3,channel3)
+	armWheel1(moduleNumber3,channel3),
+	armWheel2(moduleNumber4,channel4)
 {	
 }
 
 FloorPickUp::~FloorPickUp() {
 	armLeft.Set(0);
 	armRight.Set(0);
-	armWheel.Set(0);
+	armWheel1.Set(0);
+	armWheel2.Set(0);
 }
 
 void FloorPickUp::holdPos(float pos, float currentPos) {
@@ -70,5 +72,6 @@ void FloorPickUp::moveAngle(float power, int direction) {
 }
 
 void FloorPickUp::moveWheels(float power) {
-	armWheel.Set(power);
+	armWheel1.Set(power);
+	armWheel2.Set(-power);
 }
