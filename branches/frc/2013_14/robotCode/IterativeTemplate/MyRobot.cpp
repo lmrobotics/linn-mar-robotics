@@ -3,7 +3,7 @@
 #include "Drive.h"
 #include "floorPickUp.h"
 #include <pthread.h>
-   #include <unistd.h>
+#include <unistd.h>
 
 /**
  * This is a demo program showing the use of the RobotBase class.
@@ -19,6 +19,7 @@ const float potBotVal2=700;		//Value of Potentiometer 2 when arm is at bot
 
 class IronLions : public IterativeRobot
 {
+private:
 	Drive drive;
 	FloorPickUp Intake;
 	
@@ -34,7 +35,8 @@ class IronLions : public IterativeRobot
 	AnalogChannel *Pot;
 	DigitalInput WinchLimit,AutoSwitch;
 	Relay *LED;
-	pthread_t autoThread;
+	int autoThreadID;
+	bool autoThreadRunning;
 	
 	// Local variables to count the number of periodic loops performed
 	int auto_periodic_loops;
@@ -50,7 +52,7 @@ class IronLions : public IterativeRobot
 	int TeleTimer;          // To use so winch is released for time
 	int autoState;			// The current phase of autonomous
 	int autoStateLoops;		// Records the number of loops spent in each state
-	bool autoLeft;			// True if doing double autonomous on left side, false if doing double autonomous on right
+	bool DoubleAuto;		// True if we're running double autonomous, false if we're running single
 	
 	bool winchRunning;
 	int winchStart;
@@ -92,7 +94,7 @@ class IronLions : public IterativeRobot
 public:
 	IronLions(void):
 		drive(1,1,1,2,1,3,1,4),
-		Intake(1,7,1,8,1,9),
+		Intake(1,7,1,8,1,9,1,10),
 		xbox1(1),
 		xbox2(2),
 		compressor(1,1),
@@ -106,7 +108,9 @@ public:
 		driveEncoder(2,3),
 		winchEncoder(4,5),
 		WinchLimit(6),
-		AutoSwitch(10)
+		AutoSwitch(10),
+		autoThreadID(0),
+        autoThreadRunning(false)
 	{
 		ds = DriverStation::GetInstance();
 		SmartDashboard::init();
@@ -129,7 +133,7 @@ public:
 		TeleTimer = 0;
 		autoState=1;
 		autoStateLoops=0;
-		autoLeft=true;
+		DoubleAuto=false;
 		
 		winchRunning=false;
 		
@@ -140,33 +144,109 @@ public:
 		LeftInt=0;
 	}
 	
-	void DriveAngle(float targetAngle, float motorSpeed) {
-		const float gyroAngleRatio=1.0/50.0;
-		const float gyroDeadband=0;
-		float angle;
-		angle = gyro.GetAngle();
-		
-		if (angle<=(targetAngle-15)){
-			angle=targetAngle-15;
+	/* Double autonomous */
+	static void *DoubleAutoSequence(IronLions *IL)
+	{
+		IL->autoThreadRunning = true;
+		// insert autonomous code here
+		while (((IL -> Pot -> GetAverageValue()) < 610)) {
+			IL -> Intake.goToPos(620.0,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(0);
+			Wait(.02);
 		}
-		else if (angle>=(targetAngle+15)){
-			angle=targetAngle+15;
+		for (int i=0; i<6; i++){
+			IL -> Intake.holdPos(620,(IL -> Pot -> GetAverageValue()));
+			Wait(.02);
 		}
-		else if (angle>(targetAngle-gyroDeadband) & angle < (targetAngle+gyroDeadband)){
-			angle=targetAngle;
-		}
-		
-		drive.Move(motorSpeed-((angle-targetAngle)*gyroAngleRatio),-motorSpeed-((angle-targetAngle)*gyroAngleRatio));
-	}
-	
-	static void *AutoSequence(void *arg){
-		while (true){
-			printf("Running AutoSequence");
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+		while ((IL -> Pot -> GetAverageValue()) < 760){
+			IL -> Intake.goToPos(770,(IL -> Pot -> GetAverageValue()));
 			Wait(.01);
 		}
+		for (int i=0; i<50; i++){
+			IL -> Intake.holdPos(770,(IL -> Pot -> GetAverageValue()));
+			Wait(.02);
+		}
+		IL -> winchRelease1.Set(false);
+		IL -> winchRelease2.Set(true);
+		while (IL -> WinchLimit.Get() == 1) {
+			IL -> Intake.moveWheels(-1);
+			IL -> winchMotor1.Set(.8);
+			IL -> winchMotor2.Set(.8);
+			Wait(.02);
+		}
+		IL -> winchMotor1.Set(0);
+		IL -> winchMotor2.Set(0);
+		for (int i=0; i<280; i++){
+			IL -> Intake.moveWheels(-1);
+			Wait(.05);
+		}
+		while (IL -> Pot -> GetAverageValue() > 600){
+			IL -> Intake.goToPos(580, IL -> Pot -> GetAverageValue());
+			Wait(.02);
+		}
+		for (int i=0; i<100; i++){
+			IL -> Intake.holdPos(580, IL -> Pot -> GetAverageValue());
+			Wait(.05);
+		}
+		IL -> Intake.moveWheels(0);
+		while (IL -> driveEncoder.GetDistance() < 35){
+			IL -> drive.Move(.5,-.5);
+			while (.02);
+		}
+		IL -> drive.stopdrive();
+		IL -> autoThreadRunning = false;
 		return 0;
 	}
-	
+
+	/* Single autonomous */
+	static void *SingleAutoSequence(IronLions *IL)
+	{
+		IL->autoThreadRunning = true;
+		// insert autonomous code here 
+		while ((IL -> Pot -> GetAverageValue()) <500){
+			IL -> Intake.goToPos(520.0,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
+		}
+		IL -> Intake.holdPos(520,(IL -> Pot -> GetAverageValue()));
+		IL -> Intake.moveWheels(0);
+		if ((IL -> LeftInt == 1) || (IL -> RightInt==1)){
+			Wait(1.00);
+		}
+		else {
+			Wait(6.00);
+		}
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+		Wait(.02);
+		IL -> drive.Move(.5,-.5);
+		while (IL -> driveEncoder.GetDistance() < 35){
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		IL->autoThreadRunning = false;
+		return 0;
+	}
+
+	/* Test function for autonomous */
+	static void *TestAuto(IronLions *IL)
+	{
+		int PotVal=0;
+		IL->autoThreadRunning = true;
+		for (int i=0; i<100; i++)
+		{
+			PotVal=IL-> Pot -> GetAverageValue();
+			printf("%d \n",PotVal);
+			Wait(.25);
+		}
+
+		IL->autoThreadRunning = false;
+		return 0;
+	}
+
+
 	/**
 	 * Robot-wide initialization code should go here.
 	 * 
@@ -177,6 +257,25 @@ public:
 		printf("Entering RobotInit");
 	}
 	
+	// Suspend the autonomous thread and delete it
+	void IronLions::StopAutoThread()
+	{
+		//Not changing autoThreadRunning to false
+		if (autoThreadRunning)
+		{
+			printf("Suspending and deleting auto thread\n");
+			int status = taskSuspend(autoThreadID);
+			status = taskDelete(autoThreadID);
+			if (status == ERROR )
+			{
+				printf("Forcibly deleting auto thread\n");
+				status = taskDeleteForce(autoThreadID);
+			}
+			printf("Stopped thread");
+			autoThreadRunning = false;
+		}
+	}
+	
 	/**
 	 * Initialization code for disabled mode should go here.
 	 * 
@@ -185,8 +284,8 @@ public:
 	 */
 	void IronLions::DisabledInit() {
 		printf("Entering DisabledInit\n");
-				
 		disabled_periodic_loops = 0;	// Reset the loop counter for disabled mode
+		StopAutoThread();
 	}
 	
 	/**
@@ -220,14 +319,32 @@ public:
 		auto_periodic_loops = 0;
 		LED ->Set(Relay::kForward);
 		currentPos = Pot -> GetAverageValue();
-		
-		pthread_create(&autoThread, NULL, &IronLions::AutoSequence, NULL);
-		
+				
 		if (AutoSwitch.Get()==1) {
-			autoState = 499;
+			DoubleAuto=true;
 		}
 		else {
-			autoState = 2;
+			DoubleAuto=false;
+		}
+		
+		if (!autoThreadRunning)
+		{
+			// comment out or remove this line when satisfied with auto thread test
+			if (DoubleAuto)
+			{
+				autoThreadID = taskSpawn("DoubleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)DoubleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);
+			}
+			else
+			{
+				autoThreadID = taskSpawn("SingleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)SingleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);		    	
+			}
+			if (autoThreadID==ERROR)
+			{
+				printf("Autonomous Thread failed to start!!!\n");
+			}
+		}
+		else {
+			printf("Thread Already Running");
 		}
 	}
 	
@@ -238,164 +355,12 @@ public:
 	 * rate while the robot is in autonomous mode.
 	 */
 	void IronLions::AutonomousPeriodic() {
-		/*
 		// feed the user watchdog at every period when in autonomous
 		GetWatchdog().Feed();
-		LED ->Set(Relay::kForward);
-		currentPos = Pot -> GetAverageValue();
-		
-		dash ->PutNumber("Drive Encoder", driveEncoder.Get());
-		dash ->PutNumber("Drive Encoder Distance", driveEncoder.GetDistance());
-		dash ->PutNumber("AutoSwitch", AutoSwitch.Get());
-		
-		switch (autoState)
-		{
-			
-			//Cases 1-500: Single autonomous code.
-			
-			//Phase 1: Prepare to Shoot the first ball and the shoot it. Also, process vision stuff if that code needs to be here		
-				
-			case 2:
-				if (currentPos < 500) {
-					Intake.goToPos(520.0,currentPos);
-					Intake.moveWheels(-1);
-				}
-				else {					
-					if ((LeftInt == 1) || (RightInt==1)){
-						waitTime=50;
-					}
-					else {
-						waitTime=300;
-					}
-					Intake.holdPos(520,currentPos);
-					Intake.moveWheels(0);
-					auto_periodic_loops = 0;
-					autoState = 3;
-				}
-				break;
-			case 3:
-				if (auto_periodic_loops > waitTime) {
-					winchRelease1.Set(true);
-					winchRelease2.Set(false);
-				}
-				if (winchRelease1.Get()==true) {
-					if (driveEncoder.GetDistance() < 35){
-						drive.Move(.5,-.5);
-					}
-					else {
-						drive.stopdrive();
-					}
-				}
-				break;
-//-----------------------------------------------------------------------------------------------------------------------------
-			
-			//Cases 499-1500: Double Autonomous code
-			case 499:
-				if ((currentPos < 610)) {
-					Intake.goToPos(620.0,currentPos);
-					Intake.moveWheels(0);
-					auto_periodic_loops = 0;
-				}
-				else {
-					Intake.holdPos(620,currentPos);
-					if (auto_periodic_loops > 60) {
-						autoState=500;
-					}
-				}
-				break;
-			case 500:
-				if (currentPos < 760) {
-					winchRelease1.Set(true);
-					winchRelease2.Set(false);
-					Intake.goToPos(770,currentPos);
-				}
-				else {
-					Intake.holdPos(770,currentPos);
-					Wait(1);
-					winchRelease1.Set(false);
-					winchRelease2.Set(true);
-					autoState=501;
-				}
-				break;
-			case 501:
-				if (WinchLimit.Get() == 1) {
-					Intake.moveWheels(-1);
-					winchMotor1.Set(.8);
-					winchMotor2.Set(.8);
-				}
-				else {
-					winchMotor1.Set(0);
-					winchMotor2.Set(0);
-					auto_periodic_loops = 0;
-					autoState=502;
-				}
-				break;
-			case 502:
-				if (auto_periodic_loops < 70){
-					//drive.Move(-.4,.4);
-					Intake.moveWheels(-1);
-				}
-				else {
-					auto_periodic_loops = 0;
-					autoState = 504;
-				}
-				break;
-				
-				/*case 503:
-				if (driveEncoder.GetDistance() < 5){
-					auto_periodic_loops = 0;
-					drive.Move(.4,-.4);
-				}
-				else if (driveEncoder.GetDistance()>=5){
-					drive.stopdrive();
-					if (auto_periodic_loops > 30) {
-						autoState = 504;
-						auto_periodic_loops = 0;
-					}
-				}
-				break;*/
-			/*
-			case 504:
-				if (currentPos > 600) {
-					Intake.goToPos(580,currentPos);
-				}
-				else {
-					Intake.holdPos(580,currentPos);
-					if (auto_periodic_loops > 100) {
-						Intake.moveWheels(0);
-						auto_periodic_loops = 0;
-						winchRelease1.Set(true);
-						winchRelease2.Set(false);
-						autoState = 505;
-					}
-				}
-				break;
-			case 505:
-				if (auto_periodic_loops > 50) {
-					if (driveEncoder.GetDistance() < 35){
-						drive.Move(.5,-.5);
-					}
-					else {
-						drive.stopdrive();
-					}
-				}
-				else {
-					drive.stopdrive();
-				}
-				break;
-				
-			//Default case. Simply stops the robot
-			default:
-				drive.Move(0.0,0.0);
-				break;
-		}
-		
-		printf("driveEncoder Dist: %f\n", (driveEncoder.GetDistance()));
-		printf("auto_periodic: %d",auto_periodic_loops);
-		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
-		*/
+//		int TaskPrioVal=0;
+//		taskPriorityGet(taskIdSelf(),&TaskPrioVal);
+//		printf("Thread Priority: %d \n", TaskPrioVal);
 		auto_periodic_loops++;
-		autoStateLoops++;
 	}
 	
 	/**
@@ -404,13 +369,14 @@ public:
 	 * Use this method for initialization code which will be called each time
 	 * the robot enters teleop mode.
 	 */
-	void IronLions::TeleopInit() {
+	void IronLions::TeleopInit() 
+	{
 		printf("Entering TeleopInit\n");
+		StopAutoThread();
 		driveEncoder.Start();
 		driveEncoder.Reset();
 		winchEncoder.Start();
 		winchEncoder.Reset();
-		pthread_cancel(autoThread);		//Considered bad practice, but it may be the best option for us until we have another solution
 	}
 	
 	/**
@@ -457,12 +423,12 @@ public:
 		//Slow down when close to switch
 		if ((winchRunning == true) && (WinchLimit.Get() == 1)) {
 			if (((winchEncoder.Get()-winchStart) < 2000)) {
-				winchMotor1.Set(.8);
-				winchMotor2.Set(.8);
+				winchMotor1.Set(.65);
+				winchMotor2.Set(.65);
 			}
 			else {
-				winchMotor1.Set(.7);
-				winchMotor2.Set(.7);
+				winchMotor1.Set(.6);
+				winchMotor2.Set(.6);
 			}
 		}
 		else {
@@ -567,4 +533,3 @@ public:
 };
 
 START_ROBOT_CLASS(IronLions);
-
