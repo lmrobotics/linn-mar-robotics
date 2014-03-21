@@ -1,7 +1,8 @@
 <!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.lmrobotics.frcgamescoutfinal.app">
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
 
-    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">s
+        <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
         <activity android:label="@string/app_name" android:name="com.lmrobotics.frcgamescoutfinal.app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

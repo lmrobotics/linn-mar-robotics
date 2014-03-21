@@ -63,9 +63,10 @@ public class AutoFragment extends Fragment{
         ObjStor.autoHGMissed=autoHGMissed;
         final CheckBox autoHotGoal = (CheckBox) rootView.findViewById(R.id.hotGoal);
         this.autoHotGoal=autoHotGoal;
+        ObjStor.autoHotGoal=autoHotGoal;
         final CheckBox autoMobBonus = (CheckBox) rootView.findViewById(R.id.mobBonus);
         this.autoMobBonus=autoMobBonus;
-        this.autoMobBonus=autoMobBonus;
+        ObjStor.autoMobBonus=autoMobBonus;
         //Toast.makeText(rootView.getContext(),"OnViewCreated called",Toast.LENGTH_SHORT).show();
         return rootView;
     }
