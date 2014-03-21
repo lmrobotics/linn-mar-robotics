@@ -49,8 +49,18 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="fragment_save"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_save.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="fragment_setup"
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_setup.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_tele"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_tele.xml"
                 qualifiers=""
                 type="layout" />
             <file
