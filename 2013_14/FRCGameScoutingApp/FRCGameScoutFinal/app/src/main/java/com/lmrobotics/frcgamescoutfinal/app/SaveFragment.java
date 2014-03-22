@@ -51,7 +51,7 @@ public class SaveFragment extends Fragment {
                     if (!internaldirectoryfile.exists()) {
                         internaldirectoryfile.mkdirs();
                     }
-                    File realfilepass = new File(internaldirectorypath, "frc_data_" + ObjStor.getTeamNo() + "_" + ObjStor.getMatchId() + ".csv");
+                    File realfilepass = new File(internaldirectorypath, "frc_score_" + ObjStor.getTeamNo() + "_" + ObjStor.getMatchId() + ".csv");
                     if (!realfilepass.exists()) {
                         outputStream = new FileOutputStream(realfilepass, false);
                         outputStreamWriter = new OutputStreamWriter(outputStream);
@@ -72,7 +72,7 @@ public class SaveFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(rootView.getContext(),"DataSending",Toast.LENGTH_SHORT).show();
-                File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Score", "frc_data_"+ObjStor.getTeamNo()+"_"+ObjStor.getMatchId()+".csv");
+                File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Version2", "frc_score_"+ObjStor.getTeamNo()+"_"+ObjStor.getMatchId()+".csv");
 
                 if (file.exists())
                 {
@@ -96,7 +96,7 @@ public class SaveFragment extends Fragment {
             public void onClick(View v) {
                 //TODO ProofOfConcept NEEDED
                 System.gc();
-
+                Toast.makeText(rootView.getContext(),"This button doesn't do anything but show this message as of now.",Toast.LENGTH_LONG).show();
             }
         });
         return rootView;

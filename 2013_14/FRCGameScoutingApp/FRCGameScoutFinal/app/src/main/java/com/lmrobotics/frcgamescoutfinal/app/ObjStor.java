@@ -27,10 +27,11 @@ public class ObjStor {
     public static NumberPicker teleTrussMade;
     public static NumberPicker teleTrussMissed;
     public static NumberPicker telePossesions;
-    public static NumberPicker teleDrops;
-    public static NumberPicker teleIntendedDrops;
     public static StringBuffer txtpass;
     public static CheckBox teleMobBonus;
+    public static NumberPicker telePossessions;
+    public static NumberPicker teleADrops;
+    public static NumberPicker teleIDrops;
 
     public static String getTxtpass(){
         //txtpass.ensureCapacity(1000);
@@ -38,7 +39,7 @@ public class ObjStor {
         txtpass=new StringBuffer();
         txtpass.append(getTeamNo()+","+getMatchId()+","+
                 getVal(autoMobBonus)+","+autoHGMade.getValue()+","+autoHGHot.getValue()+","+autoHGMissed.getValue()+","+autoLGMade.getValue()+","+autoLGMissed.getValue()+","+
-                teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+"10"+","+"5"+","+"5"+","+
+                teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+telePossesions.getValue()+","+teleADrops.getValue()+","+teleIDrops.getValue()+","+
                 "3"+","+"An Average Team"+","+"0"+"\n");
         return txtpass.toString();
     }
