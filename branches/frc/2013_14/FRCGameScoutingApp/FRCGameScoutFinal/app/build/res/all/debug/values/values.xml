@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/res/values/colors.xml -->
+    <eat-comment />
+
+    <color name="Black">#333333</color>
     <!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 

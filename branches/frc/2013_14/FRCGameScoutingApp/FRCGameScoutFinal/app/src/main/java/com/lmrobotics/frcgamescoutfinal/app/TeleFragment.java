@@ -16,6 +16,7 @@ import android.widget.Toast;
  */
 public class TeleFragment extends Fragment{
 
+
     public TeleFragment() {
     }
 
@@ -25,7 +26,8 @@ public class TeleFragment extends Fragment{
     public NumberPicker teleHGMade;
     public NumberPicker teleHGMissed;
     public CheckBox teleMobBonus;
-    public CheckBox teleHotGoal;
+    public NumberPicker teleTrussMade;
+    public NumberPicker teleTrussMissed;
 
     public static TeleFragment newInstance() {
         return new TeleFragment();
@@ -61,12 +63,21 @@ public class TeleFragment extends Fragment{
         teleHGMissed.setValue(0);
         this.teleHGMissed=teleHGMissed;
         ObjStor.teleHGMissed=teleHGMissed;
-        final CheckBox teleHotGoal = (CheckBox) rootView.findViewById(R.id.hotGoal);
-        this.teleHotGoal=teleHotGoal;
+        final NumberPicker teleTrussMade = (NumberPicker) rootView.findViewById(R.id.teleTrussMade);
+        teleTrussMade.setMaxValue(3);
+        teleTrussMade.setMinValue(0);
+        teleTrussMade.setValue(0);
+        this.teleTrussMade=teleTrussMade;
+        ObjStor.teleTrussMade=teleTrussMade;
+        final NumberPicker teleTrussMissed = (NumberPicker) rootView.findViewById(R.id.teleTrussMissed);
+        teleTrussMissed.setMaxValue(3);
+        teleTrussMissed.setMinValue(0);
+        teleTrussMissed.setValue(0);
+        this.teleTrussMissed=teleTrussMissed;
+        ObjStor.teleTrussMissed=teleTrussMissed;
         final CheckBox teleMobBonus = (CheckBox) rootView.findViewById(R.id.mobBonus);
         this.teleMobBonus=teleMobBonus;
-        this.teleMobBonus=teleMobBonus;
-        //Toast.makeText(rootView.getContext(),"OnViewCreated called",Toast.LENGTH_SHORT).show();
+        ObjStor.teleMobBonus=teleMobBonus;
         return rootView;
     }
 

@@ -68,9 +68,6 @@ public class AutoFragment extends Fragment{
         autoHGHot.setValue(0);
         this.autoHGHot=autoHGHot;
         ObjStor.autoHGHot=autoHGHot;
-        final CheckBox autoHotGoal = (CheckBox) rootView.findViewById(R.id.hotGoal);
-        this.autoHotGoal=autoHotGoal;
-        ObjStor.autoHotGoal=autoHotGoal;
         final CheckBox autoMobBonus = (CheckBox) rootView.findViewById(R.id.mobBonus);
         this.autoMobBonus=autoMobBonus;
         ObjStor.autoMobBonus=autoMobBonus;

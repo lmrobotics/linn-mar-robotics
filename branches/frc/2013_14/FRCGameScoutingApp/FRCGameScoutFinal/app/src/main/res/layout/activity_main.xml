@@ -5,4 +5,5 @@
     android:layout_height="match_parent"
     android:background="@drawable/activitybckgrnd"
     android:paddingTop="?android:attr/actionBarSize"
-    tools:context="com.lmrobotics.frcgamescoutfinal.app.MainActivity" />
+    tools:context="com.lmrobotics.frcgamescoutfinal.app.MainActivity"
+    />

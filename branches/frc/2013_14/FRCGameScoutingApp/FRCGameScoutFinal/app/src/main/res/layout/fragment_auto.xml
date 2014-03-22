@@ -114,15 +114,6 @@
         android:layout_y="320dp"
         android:checked="false" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hot Goal Scored"
-        android:id="@+id/hotGoal"
-        android:layout_x="495dp"
-        android:layout_y="320dp"
-        android:checked="false" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
