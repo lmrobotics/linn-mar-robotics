@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bc"
+    android:id="345">
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="225dp"
+        android:background="@android:color/darker_gray"
+        android:layout_x="270dp"
+        android:layout_y="75dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="225dp"
+        android:background="@android:color/darker_gray"
+        android:layout_x="470dp"
+        android:layout_y="75dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="225dp"
+        android:background="@android:color/darker_gray"
+        android:layout_x="670dp"
+        android:layout_y="75dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="telenomous"
+        android:text="Teleoperated"
         android:id="@+id/textView"
         android:layout_x="20dp"
         android:layout_y="20dp" />
@@ -32,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/teleLGMissed"
-        android:layout_x="200dp"
+        android:layout_x="185dp"
         android:layout_y="125dp" />
 
     <NumberPicker
@@ -40,13 +64,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/teleHGMade"
         android:layout_y="125dp"
-        android:layout_x="495dp" />
+        android:layout_x="285dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/teleHGMissed"
-        android:layout_x="610dp"
+        android:layout_x="385dp"
         android:layout_y="125dp" />
 
     <TextView
@@ -55,7 +79,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="High Goals"
         android:id="@+id/textView3"
-        android:layout_x="490dp"
+        android:layout_x="280dp"
         android:layout_y="80dp" />
 
     <TextView
@@ -74,7 +98,7 @@
         android:text="Missed"
         android:id="@+id/textView5"
         android:layout_y="105dp"
-        android:layout_x="215dp" />
+        android:layout_x="200dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +107,7 @@
         android:id="@+id/textView6"
         android:layout_y="105dp"
         android:text="Made"
-        android:layout_x="515dp" />
+        android:layout_x="305dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,7 +116,7 @@
         android:text="Missed"
         android:id="@+id/textView7"
         android:layout_y="105dp"
-        android:layout_x="625dp" />
+        android:layout_x="400dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -111,4 +135,103 @@
         android:layout_x="495dp"
         android:layout_y="320dp"
         android:checked="false" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teleTrussMade"
+        android:layout_y="125dp"
+        android:layout_x="485dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teleTrussMissed"
+        android:layout_x="585dp"
+        android:layout_y="125dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Truss"
+        android:id="@+id/textView8"
+        android:layout_x="480dp"
+        android:layout_y="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView9"
+        android:layout_y="105dp"
+        android:text="Made"
+        android:layout_x="505dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Missed"
+        android:id="@+id/textView10"
+        android:layout_y="105dp"
+        android:layout_x="600dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Intended Drops"
+        android:id="@+id/textView11"
+        android:layout_x="885dp"
+        android:layout_y="105dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker"
+        android:layout_x="685dp"
+        android:layout_y="125dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker2"
+        android:layout_x="785dp"
+        android:layout_y="125dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker3"
+        android:layout_x="885dp"
+        android:layout_y="125dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Accidental Drops"
+        android:id="@+id/textView12"
+        android:layout_x="775dp"
+        android:layout_y="105dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Possessions"
+        android:id="@+id/textView13"
+        android:layout_x="686dp"
+        android:layout_y="105dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Possessions"
+        android:id="@+id/textView14"
+        android:layout_x="680dp"
+        android:layout_y="80dp" />
+
 </AbsoluteLayout><!-- From: file:/C:/Robotics/2013_14/FRCGameScoutingApp/FRCGameScoutFinal/app/src/main/res/layout/fragment_tele.xml -->

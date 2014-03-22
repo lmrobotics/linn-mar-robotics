@@ -102,6 +102,8 @@ public class MainActivity extends Activity {
                     return SetupFragment.newInstance();
                 case 1:
                     return AutoFragment.newInstance();
+                case 2:
+                    return TeleFragment.newInstance();
                 case 4:
                     return SaveFragment.newInstance();
                 default:

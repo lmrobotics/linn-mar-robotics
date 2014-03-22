@@ -24,5 +24,51 @@ public class ObjStor {
     public static NumberPicker teleLGMissed;
     public static NumberPicker teleHGMade;
     public static NumberPicker teleHGMissed;
+    public static NumberPicker teleTrussMade;
+    public static NumberPicker teleTrussMissed;
+    public static NumberPicker telePossesions;
+    public static NumberPicker teleDrops;
+    public static NumberPicker teleIntendedDrops;
+    public static StringBuffer txtpass;
+    public static CheckBox teleMobBonus;
 
+    public static String getTxtpass(){
+        //txtpass.ensureCapacity(1000);
+        //txtpass.delete(0,txtpass.length());
+        txtpass=new StringBuffer();
+        txtpass.append(getTeamNo()+","+getMatchId()+","+
+                getVal(autoMobBonus)+","+autoHGMade.getValue()+","+autoHGHot.getValue()+","+autoHGMissed.getValue()+","+autoLGMade.getValue()+","+autoLGMissed.getValue()+","+
+                teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+"10"+","+"5"+","+"5"+","+
+                "3"+","+"An Average Team"+","+"0"+"\n");
+        return txtpass.toString();
+    }
+    public static String getTeamNo(){
+        if(TeamNo!=null) {
+            return TeamNo.getText().toString();
+        }
+        else{
+            return "";
+        }
+    }
+    public static String getMatchId(){
+        if(MatchID!=null) {
+            if (!isMatchReplay.isChecked()) {
+                return MatchID.getText().toString();
+            }
+            else{
+                return MatchID.getText().toString().concat("R");
+            }
+        }
+        else{
+            return "";
+        }
+    }
+    public static int getVal(CheckBox x){
+        if(x.isChecked()){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }

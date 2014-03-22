@@ -2,13 +2,20 @@ package com.lmrobotics.frcgamescoutfinal.app;
 
         import android.app.Fragment;
         import android.app.FragmentManager;
+        import android.content.Intent;
+        import android.net.Uri;
         import android.os.Bundle;
+        import android.os.Environment;
         import android.util.AndroidRuntimeException;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
         import android.widget.Toast;
+
+        import java.io.File;
+        import java.io.FileOutputStream;
+        import java.io.OutputStreamWriter;
 
 /**
  * Created by TV Family on 3/16/14.
@@ -34,15 +41,53 @@ public class SaveFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //POC TODO REAL CODE
-                Toast.makeText(rootView.getContext(), ((ObjStor.MatchID.getText().toString() + ObjStor.TeamNo.getText().toString() + ObjStor.autoHGMade.getValue())),Toast.LENGTH_LONG).show();
+                Toast.makeText(rootView.getContext(),"Data Saving."+ObjStor.getTxtpass(),Toast.LENGTH_SHORT).show();
+                FileOutputStream outputStream;
+                OutputStreamWriter outputStreamWriter;
+                try {
+                    String externaldirectorypath = Environment.getExternalStorageDirectory().toString() + "/FRCGameData";
+                    String internaldirectorypath = Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Version2";
+                    File internaldirectoryfile = new File(externaldirectorypath, "Version2");
+                    if (!internaldirectoryfile.exists()) {
+                        internaldirectoryfile.mkdirs();
+                    }
+                    File realfilepass = new File(internaldirectorypath, "frc_data_" + ObjStor.getTeamNo() + "_" + ObjStor.getMatchId() + ".csv");
+                    if (!realfilepass.exists()) {
+                        outputStream = new FileOutputStream(realfilepass, false);
+                        outputStreamWriter = new OutputStreamWriter(outputStream);
+                    } else {
+                        outputStream = new FileOutputStream(realfilepass, true);
+                        outputStreamWriter = new OutputStreamWriter(outputStream);
+                    }
+                    outputStreamWriter.write(ObjStor.getTxtpass());
+                    outputStream.write(String.valueOf(ObjStor.getTxtpass()).getBytes());
+                }
+                catch(Exception e){
+                    //I should record the exception, but I won't
+                }
             }
         });
         Button send = (Button) rootView.findViewById(R.id.finSend);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Toast.makeText(rootView.getContext(),"DataSending",Toast.LENGTH_SHORT).show();
+                File file = new File(Environment.getExternalStorageDirectory().toString() + "/FRCGameData/Score", "frc_data_"+ObjStor.getTeamNo()+"_"+ObjStor.getMatchId()+".csv");
+
+                if (file.exists())
+                {
+                    Intent bti = new Intent();
+                    bti.setAction(Intent.ACTION_SEND);
+                    bti.setType("text/plain");
+                    bti.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file) );
+                    try
+                    {
+                        startActivity(bti);
+                    }
+                    catch (Exception e) {
+                       //No Exception handling
+                    }
+                }
             }
         });
         Button reset = (Button) rootView.findViewById(R.id.finReset);
