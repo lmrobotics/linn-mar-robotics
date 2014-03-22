@@ -14,6 +14,7 @@ public class ObjStor {
     public static NumberPicker autoLGMissed;
     public static NumberPicker autoHGMade;
     public static NumberPicker autoHGMissed;
+    public static NumberPicker autoHGHot;
     public static CheckBox autoMobBonus;
     public static CheckBox autoHotGoal;
     public static EditText MatchID;

@@ -24,6 +24,7 @@ public class AutoFragment extends Fragment{
     public NumberPicker autoLGMissed;
     public NumberPicker autoHGMade;
     public NumberPicker autoHGMissed;
+    public NumberPicker autoHGHot;
     public CheckBox autoMobBonus;
     public CheckBox autoHotGoal;
 
@@ -61,6 +62,12 @@ public class AutoFragment extends Fragment{
         autoHGMissed.setValue(0);
         this.autoHGMissed=autoHGMissed;
         ObjStor.autoHGMissed=autoHGMissed;
+        final NumberPicker autoHGHot = (NumberPicker) rootView.findViewById(R.id.autoHGhot);
+        autoHGHot.setMaxValue(3);
+        autoHGHot.setMinValue(0);
+        autoHGHot.setValue(0);
+        this.autoHGHot=autoHGHot;
+        ObjStor.autoHGHot=autoHGHot;
         final CheckBox autoHotGoal = (CheckBox) rootView.findViewById(R.id.hotGoal);
         this.autoHotGoal=autoHotGoal;
         ObjStor.autoHotGoal=autoHotGoal;
