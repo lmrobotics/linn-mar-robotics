@@ -129,8 +129,8 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hot Goal Scored"
-        android:id="@+id/hotGoal"
+        android:text="Incapacitated"
+        android:id="@+id/incapacitated"
         android:layout_x="495dp"
         android:layout_y="320dp"
         android:checked="false" />
@@ -180,29 +180,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Intended Drops"
+        android:text="Intent.Drops"
         android:id="@+id/textView11"
-        android:layout_x="885dp"
+        android:layout_x="880dp"
         android:layout_y="105dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker"
+        android:id="@+id/telePossessions"
         android:layout_x="685dp"
         android:layout_y="125dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker2"
+        android:id="@+id/teleADrops"
         android:layout_x="785dp"
         android:layout_y="125dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker3"
+        android:id="@+id/teleIDrops"
         android:layout_x="885dp"
         android:layout_y="125dp" />
 
@@ -210,7 +210,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Accidental Drops"
+        android:text="Accident.Drops"
         android:id="@+id/textView12"
         android:layout_x="776dp"
         android:layout_y="105dp" />
