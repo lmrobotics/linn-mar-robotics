@@ -11,11 +11,18 @@
  * Periodic methods for each packet based on the mode.
  */
 
+//Defined Potentiometer values
+#define HOLD_POS		250
+#define SHOOT_POS		550
+#define PICKUP_POS		760
+
 //Toggleable constants
+/*
 const float potTopVal1=700;		//Value of Potentiometer 1 when arm is at top
 const float potTopVal2=200;		//Value of Potentiometer 2 when arm is at top
 const float potBotVal1=200;		//Value of Potentiometer 1 when arm is at bot
 const float potBotVal2=700;		//Value of Potentiometer 2 when arm is at bot
+*/
 
 class IronLions : public IterativeRobot
 {
@@ -148,54 +155,111 @@ public:
 	static void *DoubleAutoSequence(IronLions *IL)
 	{
 		IL->autoThreadRunning = true;
-		// insert autonomous code here
-		while (((IL -> Pot -> GetAverageValue()) < 610)) {
-			IL -> Intake.goToPos(620.0,(IL -> Pot -> GetAverageValue()));
-			IL -> Intake.moveWheels(0);
-			Wait(.02);
-		}
-		for (int i=0; i<6; i++){
-			IL -> Intake.holdPos(620,(IL -> Pot -> GetAverageValue()));
-			Wait(.02);
-		}
-		IL -> winchRelease1.Set(true);
-		IL -> winchRelease2.Set(false);
-		while ((IL -> Pot -> GetAverageValue()) < 760){
-			IL -> Intake.goToPos(770,(IL -> Pot -> GetAverageValue()));
+
+		//Drive to shooting position
+		while (IL -> driveEncoder.GetDistance() < 35){
+			IL -> drive.Move(.5,-.5);
 			Wait(.01);
 		}
-		for (int i=0; i<50; i++){
-			IL -> Intake.holdPos(770,(IL -> Pot -> GetAverageValue()));
-			Wait(.02);
+		IL -> drive.stopdrive();
+		
+		//Lower arm to shooting position
+		while ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
+			IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
 		}
+		IL -> Intake.stop();
+		IL -> Intake.moveWheels(0);
+		Wait(.5);
+
+		//Shoot
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+		Wait(1.5);
+		
+		//Reset winch release
 		IL -> winchRelease1.Set(false);
 		IL -> winchRelease2.Set(true);
-		while (IL -> WinchLimit.Get() == 1) {
+		Wait(.5);
+		
+		//Move arm down while moving catapult down
+		IL -> winchEncoder.Reset();
+		IL -> winchStart = IL -> winchEncoder.Get();
+		while ((IL -> Pot -> GetAverageValue()) < (PICKUP_POS - 20)){
+			IL -> Intake.goToPos(PICKUP_POS,(IL -> Pot -> GetAverageValue()));
 			IL -> Intake.moveWheels(-1);
-			IL -> winchMotor1.Set(.8);
-			IL -> winchMotor2.Set(.8);
-			Wait(.02);
+			if (IL -> WinchLimit.Get() == 1){
+				if (((IL -> winchEncoder.Get())-(IL -> winchStart)) < 2000) {
+					IL -> winchMotor1.Set(.65);
+					IL -> winchMotor2.Set(.65);
+				}
+				else {
+					IL -> winchMotor1.Set(.6);
+					IL -> winchMotor2.Set(.6);
+				}
+			}
+			else{
+				IL -> winchMotor1.Set(0);
+				IL -> winchMotor2.Set(0);
+			}
+			Wait(.01);
+		}
+		IL -> Intake.stop();
+		
+		//Keep moving catapult down if it isn't done yet
+		while (IL -> WinchLimit.Get() == 1){
+			if (((IL -> winchEncoder.Get())-(IL -> winchStart)) < 2000) {
+				IL -> winchMotor1.Set(.65);
+				IL -> winchMotor2.Set(.65);
+			}
+			else {
+				IL -> winchMotor1.Set(.6);
+				IL -> winchMotor2.Set(.6);
+			}
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
 		}
 		IL -> winchMotor1.Set(0);
 		IL -> winchMotor2.Set(0);
-		for (int i=0; i<280; i++){
+		
+		//Move back while turning intake wheels
+		while (IL -> driveEncoder.GetDistance() > 0){
+			IL -> drive.Move(-.5,.5);
 			IL -> Intake.moveWheels(-1);
-			Wait(.05);
-		}
-		while (IL -> Pot -> GetAverageValue() > 600){
-			IL -> Intake.goToPos(580, IL -> Pot -> GetAverageValue());
-			Wait(.02);
-		}
-		for (int i=0; i<100; i++){
-			IL -> Intake.holdPos(580, IL -> Pot -> GetAverageValue());
-			Wait(.05);
-		}
-		IL -> Intake.moveWheels(0);
-		while (IL -> driveEncoder.GetDistance() < 35){
-			IL -> drive.Move(.5,-.5);
-			while (.02);
+			Wait(.01);
 		}
 		IL -> drive.stopdrive();
+		
+		//Keep running intake
+		for (int i=0; i<30; i++){
+			IL -> Intake.moveWheels(-1);
+			Wait(.02);
+		}
+		IL -> Intake.moveWheels(0);
+		
+		//Move arm up to shooting position
+		while ((IL -> Pot -> GetAverageValue()) > (SHOOT_POS + 20)){
+			IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
+		}
+		IL -> Intake.stop();
+		IL -> Intake.moveWheels(0);
+		Wait(.5);
+		
+		//Drive to shooting position
+		while (IL -> driveEncoder.GetDistance() < 30){
+			IL -> drive.Move(.5,-.5);
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		Wait(1);
+		
+		//Shoot again
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+
 		IL -> autoThreadRunning = false;
 		return 0;
 	}
@@ -204,28 +268,35 @@ public:
 	static void *SingleAutoSequence(IronLions *IL)
 	{
 		IL->autoThreadRunning = true;
-		// insert autonomous code here 
-		while ((IL -> Pot -> GetAverageValue()) <500){
-			IL -> Intake.goToPos(520.0,(IL -> Pot -> GetAverageValue()));
-			IL -> Intake.moveWheels(-1);
-			Wait(.01);
-		}
-		IL -> Intake.holdPos(520,(IL -> Pot -> GetAverageValue()));
-		IL -> Intake.moveWheels(0);
-		if ((IL -> LeftInt == 1) || (IL -> RightInt==1)){
-			Wait(1.00);
-		}
-		else {
-			Wait(6.00);
-		}
-		IL -> winchRelease1.Set(true);
-		IL -> winchRelease2.Set(false);
-		Wait(.02);
-		IL -> drive.Move(.5,-.5);
+		
+		//Drive and move arm to shooting position
 		while (IL -> driveEncoder.GetDistance() < 35){
+			IL -> drive.Move(.5,-.5);
+			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
+				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+				IL -> Intake.moveWheels(-1);
+			}
+			else {
+				IL -> Intake.stop();
+				IL -> Intake.moveWheels(0);
+			}
 			Wait(.01);
 		}
 		IL -> drive.stopdrive();
+		
+		//Finish moving arm
+		while ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
+			IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+		}
+		IL -> Intake.stop();
+		IL -> Intake.moveWheels(0);
+		Wait(1);
+		
+		//Shoot
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+
 		IL->autoThreadRunning = false;
 		return 0;
 	}
@@ -233,16 +304,149 @@ public:
 	/* Test function for autonomous */
 	static void *TestAuto(IronLions *IL)
 	{
-		int PotVal=0;
-		IL->autoThreadRunning = true;
-		for (int i=0; i<100; i++)
-		{
-			PotVal=IL-> Pot -> GetAverageValue();
-			printf("%d \n",PotVal);
-			Wait(.25);
+		IL -> autoThreadRunning = true;
+		
+		//Drive and move arm to shooting position
+		while (IL -> driveEncoder.GetDistance() < 35){
+			IL -> drive.Move(.5,-.5);
+			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
+				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+				IL -> Intake.moveWheels(-1);
+			}
+			else {
+				IL -> Intake.stop();
+				IL -> Intake.moveWheels(0);
+			}
+			Wait(.01);
 		}
-
-		IL->autoThreadRunning = false;
+		IL -> drive.stopdrive();
+		
+		//Finish moving arm
+		while ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
+			IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+		}
+		IL -> Intake.stop();
+		IL -> Intake.moveWheels(0);
+		Wait(1);
+		
+		//Shoot
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+		Wait(.5);
+		
+		//Reset winch release
+		IL -> winchRelease1.Set(false);
+		IL -> winchRelease2.Set(true);
+		Wait(.2);
+		
+		//Move arm down while moving catapult down
+		IL -> winchEncoder.Reset();
+		IL -> winchStart = IL -> winchEncoder.Get();
+		while ((IL -> Pot -> GetAverageValue()) < (PICKUP_POS - 20)){
+			IL -> Intake.goToPos(PICKUP_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+			if (IL -> WinchLimit.Get() == 1){
+				if (((IL -> winchEncoder.Get())-(IL -> winchStart)) < 2000) {
+					IL -> winchMotor1.Set(.65);
+					IL -> winchMotor2.Set(.65);
+				}
+				else {
+					IL -> winchMotor1.Set(.6);
+					IL -> winchMotor2.Set(.6);
+				}
+			}
+			else{
+				IL -> winchMotor1.Set(0);
+				IL -> winchMotor2.Set(0);
+			}
+			Wait(.01);
+		}
+		IL -> Intake.stop();
+		
+		//Move back while lowering catapult
+		while (IL -> driveEncoder.GetDistance() > 10){
+			IL -> drive.Move(-.5,.5);
+			IL -> Intake.moveWheels(-1);
+			if (IL -> WinchLimit.Get() == 1){
+				if (((IL -> winchEncoder.Get())-(IL -> winchStart)) < 2000) {
+					IL -> winchMotor1.Set(.65);
+					IL -> winchMotor2.Set(.65);
+				}
+				else {
+					IL -> winchMotor1.Set(.6);
+					IL -> winchMotor2.Set(.6);
+				}
+			}
+			else{
+				IL -> winchMotor1.Set(0);
+				IL -> winchMotor2.Set(0);
+			}
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		
+		//Keep lowering catapult if it isn't done yet
+		while (IL -> WinchLimit.Get() == 1){
+			if (((IL -> winchEncoder.Get())-(IL -> winchStart)) < 2000) {
+				IL -> winchMotor1.Set(.65);
+				IL -> winchMotor2.Set(.65);
+			}
+			else {
+				IL -> winchMotor1.Set(.6);
+				IL -> winchMotor2.Set(.6);
+			}
+			Wait(.01);
+		}
+		IL -> winchMotor1.Set(0);
+		IL -> winchMotor2.Set(0);
+		
+		//Move back while turning intake wheels
+		while (IL -> driveEncoder.GetDistance() > 0){
+			IL -> drive.Move(-.5,.5);
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		
+		//Keep running intake
+		for (int i=0; i<30; i++){
+			IL -> Intake.moveWheels(-1);
+			Wait(.02);
+		}
+		IL -> Intake.moveWheels(0);
+		
+		//Move arm up to shooting position
+		while ((IL -> Pot -> GetAverageValue()) > (SHOOT_POS + 20)){
+			IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
+			IL -> Intake.moveWheels(-1);
+			Wait(.01);
+		}
+		IL -> Intake.stop();
+		IL -> Intake.moveWheels(0);
+		Wait(.2);
+		
+		//Drive to shooting position
+		while (IL -> driveEncoder.GetDistance() < 35){
+			IL -> drive.Move(.5,-.5);
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		Wait(1.25);
+		
+		//Shoot again
+		IL -> winchRelease1.Set(true);
+		IL -> winchRelease2.Set(false);
+		Wait(.1);
+		
+		//Drive into goalie zone
+		while (IL -> driveEncoder.GetDistance() < 70){
+			IL -> drive.Move(.75,-.75);
+			Wait(.01);
+		}
+		IL -> drive.stopdrive();
+		
+		IL -> autoThreadRunning = false;
 		return 0;
 	}
 
@@ -332,11 +536,13 @@ public:
 			// comment out or remove this line when satisfied with auto thread test
 			if (DoubleAuto)
 			{
-				autoThreadID = taskSpawn("DoubleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)DoubleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);
+				//autoThreadID = taskSpawn("DoubleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)DoubleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);
+				autoThreadID = taskSpawn("TestAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)TestAuto, (int)this,0,0,0,0,0,0,0,0,0);
 			}
 			else
 			{
-				autoThreadID = taskSpawn("SingleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)SingleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);		    	
+				//autoThreadID = taskSpawn("SingleAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)SingleAutoSequence, (int)this,0,0,0,0,0,0,0,0,0);		    	
+				autoThreadID = taskSpawn("TestAuto", 150, VX_FP_TASK, 20000, (FUNCPTR)TestAuto, (int)this,0,0,0,0,0,0,0,0,0);
 			}
 			if (autoThreadID==ERROR)
 			{
@@ -346,6 +552,8 @@ public:
 		else {
 			printf("Thread Already Running");
 		}
+		shifter1.Set(false);
+		shifter2.Set(true);
 	}
 	
 	/**
@@ -357,6 +565,10 @@ public:
 	void IronLions::AutonomousPeriodic() {
 		// feed the user watchdog at every period when in autonomous
 		GetWatchdog().Feed();
+		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
+		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
+		shifter1.Set(false);
+		shifter2.Set(true);
 //		int TaskPrioVal=0;
 //		taskPriorityGet(taskIdSelf(),&TaskPrioVal);
 //		printf("Thread Priority: %d \n", TaskPrioVal);
@@ -473,13 +685,13 @@ public:
 			}
 		}
 		else if (A_button2) { //Move pickup to pickup position
-			Intake.goToPos(800.0, currentPos);
+			Intake.goToPos(PICKUP_POS, currentPos);
 		}
 		else if (B_button2) { //Move pickup to shoot position
-			Intake.goToPos(535.0, currentPos);
+			Intake.goToPos(SHOOT_POS, currentPos);
 		}
 		else if (X_button2) { //Move to carry postion
-			Intake.goToPos(190.0, currentPos);
+			Intake.goToPos(HOLD_POS, currentPos);
 		}
 		else {
 			Intake.stop();

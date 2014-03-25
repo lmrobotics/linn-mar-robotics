@@ -9,7 +9,7 @@
 
 void _GLOBAL__I__Z20FRC_userClassFactoryv();
 
-void _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhm();
+void _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm();
 
 void _GLOBAL__I__ZN5DriveC2Ehmhmhmhm();
 
@@ -69,7 +69,7 @@ extern void (*_ctors[])();
 void (*_ctors[])() =
     {
     _GLOBAL__I__Z20FRC_userClassFactoryv,
-    _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhm,
+    _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm,
     _GLOBAL__I__ZN5DriveC2Ehmhmhmhm,
     _GLOBAL__I__ZN12PrintCommandC2EPKc,
     _GLOBAL__I__ZN9Scheduler9_instanceE,
@@ -102,7 +102,7 @@ void (*_ctors[])() =
 
 void _GLOBAL__D__Z20FRC_userClassFactoryv();
 
-void _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhm();
+void _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhmhm();
 
 void _GLOBAL__D__ZN5DriveC2Ehmhmhmhm();
 
@@ -152,7 +152,7 @@ extern void (*_dtors[])();
 void (*_dtors[])() =
     {
     _GLOBAL__D__Z20FRC_userClassFactoryv,
-    _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhm,
+    _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhmhm,
     _GLOBAL__D__ZN5DriveC2Ehmhmhmhm,
     _GLOBAL__D__ZN9Scheduler9_instanceE,
     _GLOBAL__D_wpi_error_s_ModuleIndexOutOfRange,
