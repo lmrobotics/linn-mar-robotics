@@ -19,7 +19,7 @@ FloorPickUp::~FloorPickUp() {
 void FloorPickUp::holdPos(float pos, float currentPos) {
 	if ((abs((int)(currentPos-pos)) < 15) || (currentPos < 1)) {
 		armRight.Set(0);
-		armLeft.Set(0);		
+		armLeft.Set(0);	
 	}
 	else if (currentPos < pos) {
 		//Move Down

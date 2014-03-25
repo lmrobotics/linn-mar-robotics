@@ -386,7 +386,16 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/MyRobot.o:  \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/NetworkTables/NetworkTable.h \
   C:/WindRiver/workspace/IterativeTemplate/Drive.h \
   C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h \
-  C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h
+  C:/WindRiver/vxworks-6.3/target/h/pthread.h \
+  C:/WindRiver/vxworks-6.3/target/h/pthreadCommon.h \
+  C:/WindRiver/vxworks-6.3/target/h/signal.h \
+  C:/WindRiver/vxworks-6.3/target/h/sigevent.h \
+  C:/WindRiver/vxworks-6.3/target/h/sigeventCommon.h \
+  C:/WindRiver/vxworks-6.3/target/h/base/b_union_sigval.h \
+  C:/WindRiver/vxworks-6.3/target/h/timers.h \
+  C:/WindRiver/vxworks-6.3/target/h/time.h \
+  C:/WindRiver/vxworks-6.3/target/h/sched.h \
+  C:/WindRiver/vxworks-6.3/target/h/timers.h
 
 C:/WindRiver/vxworks-6.3/target/h/WPILib/WPILib.h:
 
@@ -1160,4 +1169,22 @@ C:/WindRiver/workspace/IterativeTemplate/Drive.h:
 
 C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h:
 
-C:/WindRiver/workspace/IterativeTemplate/persistentVariable.h:
+C:/WindRiver/vxworks-6.3/target/h/pthread.h:
+
+C:/WindRiver/vxworks-6.3/target/h/pthreadCommon.h:
+
+C:/WindRiver/vxworks-6.3/target/h/signal.h:
+
+C:/WindRiver/vxworks-6.3/target/h/sigevent.h:
+
+C:/WindRiver/vxworks-6.3/target/h/sigeventCommon.h:
+
+C:/WindRiver/vxworks-6.3/target/h/base/b_union_sigval.h:
+
+C:/WindRiver/vxworks-6.3/target/h/timers.h:
+
+C:/WindRiver/vxworks-6.3/target/h/time.h:
+
+C:/WindRiver/vxworks-6.3/target/h/sched.h:
+
+C:/WindRiver/vxworks-6.3/target/h/timers.h:
