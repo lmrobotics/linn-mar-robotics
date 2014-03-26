@@ -104,6 +104,8 @@ public class MainActivity extends Activity {
                     return AutoFragment.newInstance();
                 case 2:
                     return TeleFragment.newInstance();
+                case 3:
+                    return PostGameFragment.newInstance();
                 case 4:
                     return SaveFragment.newInstance();
                 default:
