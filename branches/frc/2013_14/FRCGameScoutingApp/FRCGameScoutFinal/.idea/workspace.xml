@@ -196,8 +196,8 @@
       <file leaf-file-name="PostGameFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/PostGameFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23924269" vertical-offset="31" max-vertical-offset="612">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.53184164" vertical-offset="31" max-vertical-offset="612">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -1553,7 +1553,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1368" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2037,8 +2037,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/lmrobotics/frcgamescoutfinal/app/PostGameFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23924269" vertical-offset="31" max-vertical-offset="612">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.53184164" vertical-offset="31" max-vertical-offset="612">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding />
         </state>
       </provider>
