@@ -42,11 +42,19 @@ public class ObjStor {
         txtpass.append(getTeamNo()+","+getMatchId()+","+
                 getVal(autoMobBonus)+","+autoHGHot.getValue()+","+autoHGMade.getValue()+","+autoHGMissed.getValue()+","+autoLGMade.getValue()+","+autoLGMissed.getValue()+","+
                 teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+telePossesions.getValue()+","+teleADrops.getValue()+","+teleIDrops.getValue()+","+
-                fouls.getValue()+","+supercomments.getText().toString()+","+getVal(incapacitated)+"\n");
+                fouls.getValue()+","+supercomments.getText()+","+getVal(incapacitated)+"\n");
         return txtpass.toString();
     }
+    public static String getComments(EditText x){
+        if(x!=null&&x.getText()!=null){
+            return x.getText().toString();
+        }
+        else{
+            return " ";
+        }
+    }
     public static String getTeamNo(){
-        if(TeamNo!=null) {
+        if(TeamNo!=null&&TeamNo.getText()!=null) {
             return TeamNo.getText().toString();
         }
         else{
@@ -54,7 +62,7 @@ public class ObjStor {
         }
     }
     public static String getMatchId(){
-        if(MatchID!=null) {
+        if(MatchID!=null&&MatchID.getText()!=null) {
             if (!isMatchReplay.isChecked()) {
                 return MatchID.getText().toString();
             }
@@ -67,8 +75,13 @@ public class ObjStor {
         }
     }
     public static int getVal(CheckBox x){
+        if(x!=null){
         if(x.isChecked()){
             return 1;
+        }
+        else{
+            return 0;
+        }
         }
         else{
             return 0;

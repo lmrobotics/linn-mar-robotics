@@ -85,7 +85,7 @@ public class TeleFragment extends Fragment{
         telePossessions.setMinValue(0);
         telePossessions.setValue(0);
         this.telePossessions=telePossessions;
-        ObjStor.telePossessions=telePossessions;
+        ObjStor.telePossesions=telePossessions;
         final NumberPicker teleADrops = (NumberPicker) rootView.findViewById(R.id.teleADrops);
         teleADrops.setMaxValue(50);
         teleADrops.setMinValue(0);
@@ -100,7 +100,7 @@ public class TeleFragment extends Fragment{
         ObjStor.teleIDrops=teleIDrops;
         final CheckBox incapacitated = (CheckBox) rootView.findViewById(R.id.incapacitated);
         this.incapacitated=incapacitated;
-        ObjStor.incapacitated=teleMobBonus;
+        ObjStor.incapacitated=incapacitated;
         return rootView;
     }
 
