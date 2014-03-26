@@ -98,9 +98,9 @@ public class TeleFragment extends Fragment{
         teleIDrops.setValue(0);
         this.teleIDrops=teleIDrops;
         ObjStor.teleIDrops=teleIDrops;
-        final CheckBox teleMobBonus = (CheckBox) rootView.findViewById(R.id.mobBonus);
-        this.teleMobBonus=teleMobBonus;
-        ObjStor.teleMobBonus=teleMobBonus;
+        final CheckBox incapacitated = (CheckBox) rootView.findViewById(R.id.incapacitated);
+        this.incapacitated=incapacitated;
+        ObjStor.incapacitated=teleMobBonus;
         return rootView;
     }
 

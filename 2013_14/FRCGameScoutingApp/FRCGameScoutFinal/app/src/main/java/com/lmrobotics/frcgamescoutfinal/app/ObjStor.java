@@ -28,19 +28,21 @@ public class ObjStor {
     public static NumberPicker teleTrussMissed;
     public static NumberPicker telePossesions;
     public static StringBuffer txtpass;
-    public static CheckBox teleMobBonus;
     public static NumberPicker telePossessions;
     public static NumberPicker teleADrops;
     public static NumberPicker teleIDrops;
+    public static EditText supercomments;
+    public static NumberPicker fouls;
+    public static CheckBox incapacitated;
 
     public static String getTxtpass(){
         //txtpass.ensureCapacity(1000);
         //txtpass.delete(0,txtpass.length());
         txtpass=new StringBuffer();
         txtpass.append(getTeamNo()+","+getMatchId()+","+
-                getVal(autoMobBonus)+","+autoHGMade.getValue()+","+autoHGHot.getValue()+","+autoHGMissed.getValue()+","+autoLGMade.getValue()+","+autoLGMissed.getValue()+","+
-                teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+telePossesions.getValue()+","+teleADrops.getValue()+","+teleIDrops.getValue()+","+
-                "3"+","+"An Average Team"+","+"0"+"\n");
+                getVal(autoMobBonus)+","+autoHGHot.getValue()+","+autoHGMade.getValue()+","+autoHGMissed.getValue()+","+autoLGMade.getValue()+","+autoLGMissed.getValue()+","+
+                teleHGMade.getValue()+","+teleHGMissed.getValue()+","+teleLGMade.getValue()+","+teleLGMissed.getValue()+","+teleTrussMade.getValue()+","+teleTrussMissed.getValue()+","+telePossesions.getValue()+","+teleADrops.getValue()+","+teleIDrops.getValue()+","+
+                fouls.getValue()+","+supercomments.getText().toString()+","+getVal(incapacitated)+"\n");
         return txtpass.toString();
     }
     public static String getTeamNo(){

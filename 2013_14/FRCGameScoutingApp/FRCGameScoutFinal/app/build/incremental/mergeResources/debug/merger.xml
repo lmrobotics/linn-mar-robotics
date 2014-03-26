@@ -93,6 +93,7 @@
                 </string>
                 <string name="app_name" >FRC Game Scout Final
                 </string>
+                <string name="preferences_MatchID" ></string>
             </file>
             <file
                 path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\values\styles.xml"
@@ -118,6 +119,11 @@ true
                 <color name="Black" >#333333
                 </color>
             </file>
+            <file
+                name="fragment_postgame"
+                path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\src\main\res\layout\fragment_postgame.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\build\res\rs\debug" />
         <source path="C:\Robotics\2013_14\FRCGameScoutingApp\FRCGameScoutFinal\app\build\res\generated\debug" />

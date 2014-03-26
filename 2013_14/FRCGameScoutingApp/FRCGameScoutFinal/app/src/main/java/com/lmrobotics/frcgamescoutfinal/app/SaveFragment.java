@@ -1,8 +1,12 @@
 package com.lmrobotics.frcgamescoutfinal.app;
 
+        import android.app.AlarmManager;
         import android.app.Fragment;
         import android.app.FragmentManager;
+        import android.app.PendingIntent;
+        import android.content.Context;
         import android.content.Intent;
+        import android.content.SharedPreferences;
         import android.net.Uri;
         import android.os.Bundle;
         import android.os.Environment;
@@ -33,7 +37,7 @@ public class SaveFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_save, container, false);
         this.mView=rootView;
         //AddActivityTextHere
@@ -94,9 +98,14 @@ public class SaveFragment extends Fragment {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO ProofOfConcept NEEDED
-                System.gc();
-                Toast.makeText(rootView.getContext(),"This button doesn't do anything but show this message as of now.",Toast.LENGTH_LONG).show();
+                //Save MatchID
+                //Restart of app
+                Intent mStartActivity = new Intent(rootView.getContext(), MainActivity.class);
+                int mPendingIntentId = 123456;
+                PendingIntent mPendingIntent = PendingIntent.getActivity(rootView.getContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager)rootView.getContext().getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                System.exit(0);
             }
         });
         return rootView;
