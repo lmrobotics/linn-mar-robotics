@@ -14,7 +14,7 @@
 //Defined Potentiometer values
 #define HOLD_POS		250
 #define SHOOT_POS		550
-#define PICKUP_POS		760
+#define PICKUP_POS		843
 
 //Toggleable constants
 /*
@@ -268,7 +268,6 @@ public:
 			IL -> Intake.moveWheels(-1);
 			Wait(.02);
 		}
-		IL -> Intake.moveWheels(0);
 		
 		//Move arm up to shooting position
 		while ((IL -> Pot -> GetAverageValue()) > (SHOOT_POS + 20)){
@@ -277,17 +276,18 @@ public:
 			Wait(.01);
 		}
 		IL -> Intake.stop();
-		IL -> Intake.moveWheels(0);
 		Wait(.1);
 		
 		//Drive to shooting position
-		while (IL -> driveEncoder.GetDistance() < 100){
+		while (IL -> driveEncoder.GetDistance() < 120){
 			float angle = IL -> gyro.GetAngle();
 			IL -> drive.Move(autoSpeed+(angle*(1.0/50.0)),-autoSpeed+(angle*(1.0/50.0)));
+			IL -> Intake.moveWheels(-1);
 			Wait(.01);
 		}
+		IL -> Intake.moveWheels(0);
 		IL -> drive.stopdrive();
-		Wait(.5);
+		Wait(.8);
 		
 		//Shoot again
 		IL -> winchRelease1.Set(true);
