@@ -73,15 +73,12 @@ void PhysicalInterfaceClass::disconnect()
 void PhysicalInterfaceClass::send(unsigned char byteArray[], int length)
 {
     serial.waitForReadyRead(1);
-    int stat = serial.write((char*)byteArray, length);
-    //qDebug() << "sent " << stat << " chars of data";
+    serial.write((char*)byteArray, length);
     serial.waitForBytesWritten(-1);
 }
    
 int PhysicalInterfaceClass::receive(unsigned char* buffer, int length)
 {
-    //qDebug() << serial.bytesAvailable() << " bytes available to read";
     int chars = serial.read((char*)buffer, length);
-   // qDebug() << "read " << chars << " bytes of data";
     return chars;
 }
