@@ -56,7 +56,7 @@ protected:
 	
 private:
 	void InitWorldLinearAccelHistory();
-	void UpdateWorldLinearAccelHistory( float x, float y, float z );
+    void UpdateWorldLinearAccelHistory( float x, float y);
 	float GetAverageFromWorldLinearAccelHistory();
 
 	float   world_linear_accel_x;

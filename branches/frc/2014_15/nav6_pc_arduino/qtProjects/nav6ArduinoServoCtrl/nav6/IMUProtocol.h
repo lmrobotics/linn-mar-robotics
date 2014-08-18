@@ -205,7 +205,7 @@ static int encodeStreamCommand( char *protocol_buffer, char stream_type, unsigne
   // Data
   protocol_buffer[STREAM_CMD_STREAM_TYPE_INDEX] = stream_type;
   // convert update_rate_hz to two ascii bytes
-  sprintf(&protocol_buffer[STREAM_CMD_UPDATE_RATE_HZ_INDEX], "%02X", update_rate_hz);
+  sprintf_s(&protocol_buffer[STREAM_CMD_UPDATE_RATE_HZ_INDEX], 16, "%02X", update_rate_hz);
   
   // Footer
   encodeTermination( protocol_buffer, STREAM_CMD_MESSAGE_LENGTH, STREAM_CMD_MESSAGE_LENGTH - 4 );
@@ -365,9 +365,9 @@ static void encodeTermination( char *buffer, int total_length, int content_lengt
       checksum += buffer[i];
     }
     // convert checksum to two ascii bytes
-    sprintf(&buffer[content_length], "%02X", checksum);
+    sprintf_s(&buffer[content_length], total_length-content_length, "%02X", checksum);
     // Message Terminator
-    sprintf(&buffer[content_length + CHECKSUM_LENGTH], "%s","\r\n");
+    sprintf_s(&buffer[content_length + CHECKSUM_LENGTH],1+total_length - (content_length + CHECKSUM_LENGTH), "%s","\r\n");
   }
 }
 
@@ -385,12 +385,12 @@ static void encodeProtocolFloat( float f, char* buff )
 {
   int temp1 = abs((int)((f - (int)f) * 100));
   if ( f < 0 ) buff[0] = '-'; else buff[0] = ' ';
-  sprintf(&buff[1],"%03d.%02d", abs((int)f), temp1);
+  sprintf_s(&buff[1], 6,"%03d.%02d", abs((int)f), temp1);
 }
 
 static void encodeProtocolUint16( uint16 value, char* buff )
 {
-  sprintf(&buff[0],"%04X", value );
+  sprintf_s(&buff[0], 4,"%04X", value );
 }
 
 static uint16 decodeProtocolUint16( char *uint16_string )

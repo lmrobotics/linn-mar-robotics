@@ -48,12 +48,8 @@ public:
 	void ZeroYaw();
 	
 	void SetYawPitchRoll(float yaw, float pitch, float roll, float compass_heading);
-	void SetStreamResponse( char stream_type, 
-                            uint16 gyro_fsr_dps, uint16 accel_fsr_g, uint16 update_rate_hz,
-							float yaw_offset_degrees, 
-                            uint16 q1_offset, uint16 q2_offset, uint16 q3_offset, uint16 q4_offset,
-                            uint16 flags );
-	double GetYawOffset() { return yaw_offset; }
+    void SetStreamResponse(uint16 gyro_fsr_dps, uint16 accel_fsr, uint16 update_rate_hz, float yaw_offset_degrees, uint16 flags );
+    double GetYawOffset() { return yaw_offset; }
 	double GetByteCount();
 	double GetUpdateCount();
 	void Restart();

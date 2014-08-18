@@ -45,7 +45,7 @@ void IMUAdvanced::InitWorldLinearAccelHistory()
 	world_linear_acceleration_recent_avg = 0.0;	
 }
 
-void IMUAdvanced::UpdateWorldLinearAccelHistory( float x, float y, float z )
+void IMUAdvanced::UpdateWorldLinearAccelHistory( float x, float y)
 {
 	if ( next_world_linear_accel_history_index >= WORLD_LINEAR_ACCEL_HISTORY_LENGTH )
 	{
@@ -245,6 +245,6 @@ void IMUAdvanced::SetQuaternion( int16 quat1, int16 quat2, int16 quat3, int16 qu
 		this->world_linear_accel_z = world_linear_acceleration_z;
 		this->temp_c = temp_c;
         UpdateYawHistory(this->yaw);
-        UpdateWorldLinearAccelHistory( world_linear_acceleration_x, world_linear_acceleration_y, world_linear_acceleration_z);
+        UpdateWorldLinearAccelHistory( world_linear_acceleration_x, world_linear_acceleration_y);
 	}	
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>234</width>
-    <height>434</height>
+    <width>316</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QDial" name="dial">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>0</y>
+      <x>30</x>
+      <y>10</y>
       <width>251</width>
       <height>211</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>100</y>
+      <x>150</x>
+      <y>110</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -43,15 +43,15 @@
    <widget class="QLabel" name="labelCalibrating">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>260</y>
-      <width>221</width>
+      <x>20</x>
+      <y>240</y>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -61,15 +61,15 @@
    <widget class="QLabel" name="labelPitch">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>290</y>
+      <x>20</x>
+      <y>260</y>
       <width>161</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -79,15 +79,15 @@
    <widget class="QLabel" name="labelRoll">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>320</y>
+      <x>20</x>
+      <y>280</y>
       <width>161</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -97,37 +97,127 @@
    <widget class="QLabel" name="labelYaw">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>350</y>
+      <x>20</x>
+      <y>300</y>
       <width>161</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Raw</string>
+     <string>Yaw</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelConnected">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>230</y>
-      <width>221</width>
+      <x>20</x>
+      <y>220</y>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Connected?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTemp">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>220</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Temp</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelAccelX">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>260</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>AccelX</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelAccelZ">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>300</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>AccelZ</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMoving">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>240</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Moving?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelAccelY">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>280</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>AccelY</string>
     </property>
    </widget>
   </widget>
@@ -136,7 +226,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>234</width>
+     <width>316</width>
      <height>21</height>
     </rect>
    </property>
