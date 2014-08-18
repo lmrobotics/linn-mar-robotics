@@ -117,13 +117,11 @@ void IMU::processRxData()
                           flags_r );
                 if ( packet_length > 0 )
                 {
-                    SetStreamResponse( stream_type_r,
-                              gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r,
+                    SetStreamResponse(gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r,
                               yaw_offset_degrees_r,
-                              q1_offset_r, q2_offset_r, q3_offset_r, q4_offset_r,
                               flags_r );
                     lastStreamResponseTime = qtime();
-                    qDebug() << "Got 2!" << protocol_buffer;
+                    //qDebug() << "Got stream Response: " << protocol_buffer;
                 }
             }
             bufferIndex = 0;
@@ -174,8 +172,6 @@ void IMU::InternalInit( uint8 update_rate_hz, char stream_type ) {
     InitIMU();
 
     lastStreamResponseTime = qtime();
-
-    qDebug() << "IMU::InternalInit done";
 }
 
 IMU::IMU(uint8 update_rate_hz, char stream_type ) {
@@ -316,11 +312,7 @@ double IMU::GetAverageFromYawHistory()
     return yaw_history_avg;
 }
 
-void IMU::SetStreamResponse( char stream_type, 
-                                uint16 gyro_fsr_dps, uint16 accel_fsr, uint16 update_rate_hz,
-								float yaw_offset_degrees, 
-                                uint16 q1_offset, uint16 q2_offset, uint16 q3_offset, uint16 q4_offset,
-                                uint16 flags )
+void IMU::SetStreamResponse(uint16 gyro_fsr_dps, uint16 accel_fsr, uint16 update_rate_hz, float yaw_offset_degrees, uint16 flags)
 {
 	{
         cIMUStateSemaphore->acquire();

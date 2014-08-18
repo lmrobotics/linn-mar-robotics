@@ -85,6 +85,7 @@ void MainWindow::processTimer()
 {
     bool calibrating = imu->IsCalibrating();
     bool connected = imu->IsConnected();
+    bool moving = imu->IsMoving();
     std::stringstream ss;
 
     ss << (connected ? "Connected" : "Not Connected");
@@ -112,6 +113,31 @@ void MainWindow::processTimer()
     ss.str("");
     ss.clear();
 
+
+    ss << "Temp " << (float)(imu->GetTempC())*9.0/5.0 + 32.0;
+    this->ui->labelTemp->setText(QString::fromStdString(ss.str()));
+    ss.str("");
+    ss.clear();
+
+    ss << (moving ? "Moving" : "Not Moving");
+    this->ui->labelMoving->setText(QString::fromStdString(ss.str()));
+    ss.str("");
+    ss.clear();
+
+    ss << "X Accel " << imu->GetWorldLinearAccelX();
+    this->ui->labelAccelX->setText(QString::fromStdString(ss.str()));
+    ss.str("");
+    ss.clear();
+
+    ss << "Y Accel " << imu->GetWorldLinearAccelY();
+    this->ui->labelAccelY->setText(QString::fromStdString(ss.str()));
+    ss.str("");
+    ss.clear();
+
+    ss << "Z Accel " << imu->GetWorldLinearAccelZ();
+    this->ui->labelAccelZ->setText(QString::fromStdString(ss.str()));
+    ss.str("");
+    ss.clear();
 
     int newServoPos = 142 - (imu->GetPitch() + 70);
     if (arduinoReady && (newServoPos > 0) && (lastServoPos != newServoPos))
