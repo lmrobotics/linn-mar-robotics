@@ -1,0 +1,19 @@
+<MessageCatalog name = "Messages">
+
+   <enumDefinition name="messageId">
+      <enum name="msgSetServoPositionId"     value="0x01"/>
+      <enum name="msgSetServoPositionRespId" value="0x81"/>
+   </enumDefinition>
+
+   <messageDefinition name="msgSetServoPosition" id="msgSetServoPositionId">
+      <idField     name="messageId"          offset="0"  length="1" type="char" />
+      <lengthField name="messageLength"      offset="1"  length="1" type="char" />
+      <msgField    name="servoPosition"      offset="2"  length="1" type="uint8" />   
+   </messageDefinition>
+   
+   <messageDefinition name="msgSetServoPositionResp" id="msgSetServoPositionRespId">
+      <idField     name="messageId"          offset="0"  length="1" type="char" />
+      <lengthField name="messageLength"      offset="1"  length="1" type="char" />
+   </messageDefinition>
+      
+</MessageCatalog>

@@ -1,0 +1,42 @@
+<element name = "MessageCatalog" xmlns="http://relaxng.org/ns/structure/1.0">
+   <attribute name = "name"><text/></attribute>
+   <zeroOrMore>
+      <element name="enumDefinition">
+         <attribute name = "name"><text/></attribute>
+         <text/>
+         <oneOrMore>
+            <element name = "enum">
+               <attribute name = "name"><text/></attribute>
+               <attribute name = "value"><text/></attribute>
+            </element>
+         </oneOrMore>
+      </element>
+   </zeroOrMore>
+   <zeroOrMore>
+      <element name = "messageDefinition">
+         <text/>
+         <attribute name = "name"><text/></attribute>
+         <attribute name = "id"><text/></attribute>
+         <element name="idField">
+            <attribute name = "name"><text/></attribute>
+            <attribute name = "offset"><text/></attribute>
+            <attribute name = "length"><text/></attribute>
+            <attribute name = "type"><text/></attribute>
+         </element>
+         <element name="lengthField">
+            <attribute name = "name"><text/></attribute>
+            <attribute name = "offset"><text/></attribute>
+            <attribute name = "length"><text/></attribute>
+            <attribute name = "type"><text/></attribute>
+         </element>
+         <zeroOrMore>
+            <element name = "msgField">
+               <attribute name = "name"><text/></attribute>
+               <attribute name = "offset"><text/></attribute>
+               <attribute name = "length"><text/></attribute>
+               <attribute name = "type"><text/></attribute>
+            </element>
+         </zeroOrMore>
+      </element>
+   </zeroOrMore> 
+</element>
