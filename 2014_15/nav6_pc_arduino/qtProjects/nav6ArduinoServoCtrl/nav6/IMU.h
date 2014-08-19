@@ -55,7 +55,6 @@ public:
     void SetStreamResponse(uint16_t gyro_fsr_dps, uint16_t accel_fsr, uint16_t update_rate_hz, float yaw_offset_degrees, uint16_t flags );
     double GetYawOffset() { return yaw_offset; }
 	double GetUpdateCount();
-	void Restart();
 	bool  IsCalibrating();
 
     uint8_t update_rate_hz;
@@ -68,24 +67,22 @@ public:
 private:
 	void InitializeYawHistory();
 	double GetAverageFromYawHistory();
-	void InitIMU();
     void initSerial();
     float qtime();
-    bool stream_response_received;
     bool stop;
     QTime *timer;
     QSemaphore *cIMUStateSemaphore;
 
-    char protocol_buffer[1024];
-    char temp_buffer[1024];
+    const int buffSize;
+    char *protocol_buffer;
+    char *temp_buffer;
     int serialBufferIndex;
-    float lastStreamResponseTime;
+    float lastSerialCommTime;
 
 protected:
 
 	void UpdateYawHistory(float curr_yaw );
 	
-//	Task *	m_task;
 	float 	yaw;
 	float 	pitch; 
 	float 	roll;

@@ -14,6 +14,56 @@
 #include "IMU.h"
 #include "IMUProtocol.h"
 
+IMU::IMU(uint8_t update_rate_hz, char stream_type ) : buffSize(1024)
+{
+   InternalInit(update_rate_hz,stream_type);
+}
+
+IMU::IMU(uint8_t update_rate_hz ) : buffSize(1024)
+{
+   InternalInit(update_rate_hz,STREAM_CMD_STREAM_TYPE_YPR);
+}
+
+/**
+ * Delete the IMU.
+ */
+IMU::~IMU()
+{
+
+}
+
+void IMU::InternalInit( uint8_t update_rate_hz, char stream_type ) {
+    current_stream_type = stream_type;
+    yaw_offset_degrees = 0;
+    accel_fsr_g = 2;
+    gyro_fsr_dps = 2000;
+    flags = 0;
+    this->update_rate_hz = update_rate_hz;
+    yaw = 0.0;
+    pitch = 0.0;
+    roll = 0.0;
+    InitializeYawHistory();
+    yaw_offset = 0;
+
+    stop = false;
+    cIMUStateSemaphore = new QSemaphore (1);
+    timer = new QTime();
+    timer->start();
+
+    serialBufferIndex = 0;
+    protocol_buffer = new char[buffSize];
+    temp_buffer = new char[buffSize];
+    initSerial();
+
+    // Initialize the IMU.
+
+    int packet_length = IMUProtocol::encodeStreamCommand( protocol_buffer, current_stream_type, update_rate_hz );
+    serialPort->write(protocol_buffer, packet_length );
+    serialPort->waitForBytesWritten(-1);
+
+    lastSerialCommTime = qtime();
+}
+
 void IMU::initSerial()
 {
     serialPort = new QSerialPort();
@@ -70,14 +120,15 @@ void IMU::processRxData()
     uint16_t bytes_processed = 0;
     uint16_t readIndex = 0;
 
-    bytes_read = serialPort->read(temp_buffer, 1024);
+    bytes_read = serialPort->read(temp_buffer, buffSize);
 
     while  (bytes_processed < bytes_read)
     {
-        if(temp_buffer[readIndex] == '!')
+        // check for start character or buffer overflow
+        if((temp_buffer[readIndex]) == '!' || (serialBufferIndex >=buffSize))
         {
             serialBufferIndex = 0;
-            memset(protocol_buffer, 0, 1024);
+            memset(protocol_buffer, 0, buffSize);
         }
         protocol_buffer[serialBufferIndex++] = temp_buffer[readIndex++];
         bytes_processed++;
@@ -86,7 +137,7 @@ void IMU::processRxData()
             int packet_length = DecodePacketHandler(protocol_buffer, serialBufferIndex);
             if ( packet_length > 0 )
             {
-                lastStreamResponseTime = qtime();
+                lastSerialCommTime = qtime();
             }
             else
             {
@@ -105,7 +156,7 @@ void IMU::processRxData()
                     SetStreamResponse(gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r,
                               yaw_offset_degrees_r,
                               flags_r );
-                    lastStreamResponseTime = qtime();
+                    lastSerialCommTime = qtime();
                 }
             }
             serialBufferIndex = 0;
@@ -113,9 +164,9 @@ void IMU::processRxData()
     }
 
     // reconnect if communication was lost
-    if (( qtime() - lastStreamResponseTime ) > 3.0) {
+    if (( qtime() - lastSerialCommTime ) > 3.0) {
         int cmd_packet_length = IMUProtocol::encodeStreamCommand( protocol_buffer, current_stream_type, update_rate_hz );
-        lastStreamResponseTime = qtime();
+        lastSerialCommTime = qtime();
         serialPort->write(protocol_buffer, cmd_packet_length);
         serialPort->waitForBytesWritten(-1);
     }
@@ -134,61 +185,6 @@ int IMU::DecodePacketHandler( char *received_data, int bytes_remaining ) {
 		SetYawPitchRoll(yaw,pitch,roll,compass_heading);
 	}
 	return packet_length;
-}
-
-void IMU::InternalInit( uint8_t update_rate_hz, char stream_type ) {
-	current_stream_type = stream_type;
-	yaw_offset_degrees = 0;
-	accel_fsr_g = 2;
-	gyro_fsr_dps = 2000;
-	flags = 0;
-	this->update_rate_hz = update_rate_hz;
-	yaw = 0.0;
-    pitch = 0.0;
-	roll = 0.0;
-    cIMUStateSemaphore = new QSemaphore (1);
-    timer = new QTime();
-    timer->start();
-
-    stream_response_received = false;
-    stop = false;
-    serialBufferIndex = 0;
-    initSerial();
-
-    InitIMU();
-
-    lastStreamResponseTime = qtime();
-}
-
-IMU::IMU(uint8_t update_rate_hz, char stream_type ) {
-   InternalInit(update_rate_hz,stream_type);
-}
-
-IMU::IMU(uint8_t update_rate_hz )
-{
-   InternalInit(update_rate_hz,STREAM_CMD_STREAM_TYPE_YPR);
-}
-
-/**
- * Initialize the IMU.
- */
-void IMU::InitIMU()
-{
- 
- InitializeYawHistory();
-    yaw_offset = 0;
-
-    int packet_length = IMUProtocol::encodeStreamCommand( protocol_buffer, current_stream_type, update_rate_hz );
-    serialPort->write(protocol_buffer, packet_length );
-    serialPort->waitForBytesWritten(-1);
-}
-
-/**
- * Delete the IMU.
- */
-IMU::~IMU()
-{
-
 }
 
 bool IMU::IsConnected()
