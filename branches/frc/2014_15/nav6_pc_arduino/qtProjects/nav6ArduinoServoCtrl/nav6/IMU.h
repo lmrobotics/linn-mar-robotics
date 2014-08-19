@@ -13,11 +13,15 @@
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include <QTime>
+#include <qsemaphore.h>
 
-// needed for base types
-// todo: get a more global base message types w/o having to use namespace Messages
-#include "../arduino/BaseMessageClass.h"
-using namespace Messages;
+typedef signed char int8_t;         /* 8 bit signed */
+typedef unsigned char uint8_t;      /* 8 bit unsigned */
+typedef short int16_t;              /* 16 bit signed */
+typedef unsigned short uint16_t;    /* 16 bit unsigned */
+typedef int int32_t;                /* 32 bit signed */
+typedef unsigned int uint32_t;      /* 32 bit unsigned */
 
 /**
  * Use the IMU to retrieve a Yaw/Pitch/Roll measurement.
@@ -33,11 +37,11 @@ class IMU
 {
 protected:
     QSerialPort serial;
-    IMU( uint8 update_rate_hz, char stream_type );
-    void InternalInit( uint8 update_rate_hz, char stream_type );
+    IMU( uint8_t update_rate_hz, char stream_type );
+    void InternalInit( uint8_t update_rate_hz, char stream_type );
 public:
 
-    IMU( uint8 update_rate_hz = 100 );
+    IMU( uint8_t update_rate_hz = 100 );
 	virtual ~IMU();
 	virtual float GetPitch();	// Pitch, in units of degrees (-180 to 180)
 	virtual float GetRoll();	// Roll, in units of degrees (-180 to 180)
@@ -48,14 +52,13 @@ public:
 	void ZeroYaw();
 	
 	void SetYawPitchRoll(float yaw, float pitch, float roll, float compass_heading);
-    void SetStreamResponse(uint16 gyro_fsr_dps, uint16 accel_fsr, uint16 update_rate_hz, float yaw_offset_degrees, uint16 flags );
+    void SetStreamResponse(uint16_t gyro_fsr_dps, uint16_t accel_fsr, uint16_t update_rate_hz, float yaw_offset_degrees, uint16_t flags );
     double GetYawOffset() { return yaw_offset; }
-	double GetByteCount();
 	double GetUpdateCount();
 	void Restart();
 	bool  IsCalibrating();
 
-    uint8 update_rate_hz;
+    uint8_t update_rate_hz;
 	char current_stream_type;
 	virtual int DecodePacketHandler( char *received_data, int bytes_remaining );
 
@@ -67,8 +70,16 @@ private:
 	double GetAverageFromYawHistory();
 	void InitIMU();
     void initSerial();
+    float qtime();
     bool stream_response_received;
     bool stop;
+    QTime *timer;
+    QSemaphore *cIMUStateSemaphore;
+
+    char protocol_buffer[1024];
+    char temp_buffer[1024];
+    int serialBufferIndex;
+    float lastStreamResponseTime;
 
 protected:
 
@@ -84,8 +95,8 @@ protected:
 	double 	last_update_time;
 	double 	yaw_offset;
 	float   yaw_offset_degrees;
-    uint16 accel_fsr_g;
-    uint16 gyro_fsr_dps;
-    uint16 flags;
+    uint16_t accel_fsr_g;
+    uint16_t gyro_fsr_dps;
+    uint16_t flags;
 };
 #endif

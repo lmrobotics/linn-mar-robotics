@@ -36,7 +36,7 @@ class IMUAdvanced : public IMU
 {
 public:
 
-    IMUAdvanced(uint8 update_rate_hz = 100 );
+    IMUAdvanced(uint8_t update_rate_hz = 100 );
 	virtual ~IMUAdvanced();
 	
 	virtual float GetWorldLinearAccelX();
@@ -45,9 +45,9 @@ public:
 	virtual bool  IsMoving();
 	virtual float GetTempC();
 		
-    void SetQuaternion( int16 q1, int16 q2, int16 q3, int16 q4,
-                        int16 accel_x, int16 accel_y, int16 accel_z,
-                        int16 mag_x, int16 mag_y, int16 mag_z,
+    void SetQuaternion( int16_t q1, int16_t q2, int16_t q3, int16_t q4,
+                        int16_t accel_x, int16_t accel_y, int16_t accel_z,
+                        int16_t mag_x, int16_t mag_y, int16_t mag_z,
 						float temp_c);
 
 protected:

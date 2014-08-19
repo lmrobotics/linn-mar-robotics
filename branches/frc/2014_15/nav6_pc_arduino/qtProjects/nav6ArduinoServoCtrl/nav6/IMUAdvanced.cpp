@@ -15,9 +15,9 @@
 
 int IMUAdvanced::DecodePacketHandler( char *received_data, int bytes_remaining ) {
 	
-    int16 q1, q2, q3, q4;
-    int16 accel_x, accel_y, accel_z;
-    int16 mag_x, mag_y, mag_z;
+    int16_t q1, q2, q3, q4;
+    int16_t accel_x, accel_y, accel_z;
+    int16_t mag_x, mag_y, mag_z;
 	float temp_c;
 
 	int packet_length = IMUProtocol::decodeQuaternionUpdate( received_data, bytes_remaining, 
@@ -28,7 +28,7 @@ int IMUAdvanced::DecodePacketHandler( char *received_data, int bytes_remaining )
 	return packet_length;
 }
 
-IMUAdvanced::IMUAdvanced( uint8 update_rate_hz ) :
+IMUAdvanced::IMUAdvanced( uint8_t update_rate_hz ) :
     IMU(update_rate_hz,STREAM_CMD_STREAM_TYPE_QUATERNION)
 {
 	InitWorldLinearAccelHistory();
@@ -91,9 +91,9 @@ float IMUAdvanced::GetTempC()
 	return this->temp_c;
 }
 
-void IMUAdvanced::SetQuaternion( int16 quat1, int16 quat2, int16 quat3, int16 quat4,
-                    int16 accel_x, int16 accel_y, int16 accel_z,
-                    int16 mag_x, int16 mag_y, int16 mag_z,
+void IMUAdvanced::SetQuaternion( int16_t quat1, int16_t quat2, int16_t quat3, int16_t quat4,
+                    int16_t accel_x, int16_t accel_y, int16_t accel_z,
+                    int16_t mag_x, int16_t mag_y, int16_t mag_z,
 					float temp_c)
 {
 	{
