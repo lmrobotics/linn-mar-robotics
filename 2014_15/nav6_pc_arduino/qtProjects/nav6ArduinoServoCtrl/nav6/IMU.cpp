@@ -10,18 +10,9 @@
 
 #include <time.h>
 #include <qdebug.h>
-#include <QTime>
 #include <qthread.h>
-#include <qsemaphore.h>
 #include "IMU.h"
 #include "IMUProtocol.h"
-
-static QSemaphore *cIMUStateSemaphore = new QSemaphore (1);
-static int update_count = 0;
-static int byte_count = 0;
-
-//static QSerialPort *serialPort;
-static QTime * timer;
 
 void IMU::initSerial()
 {
@@ -67,22 +58,17 @@ void IMU::initSerial()
 
 }
 
-static float qtime()
+float IMU::qtime()
 {
     QTime temp = timer->currentTime();
     return (float)temp.msec()/1000.0 + (float)(temp.second() + temp.minute()*60 + temp.hour()*60*60);
 }
 
-static char protocol_buffer[1024];
-static char temp_buffer[1024];
-static int bufferIndex = 0;
-static float lastStreamResponseTime;
-
 void IMU::processRxData()
 {    
-    uint32 bytes_read = 0;
-    uint16 bytes_processed = 0;
-    uint16 readIndex = 0;
+    uint32_t bytes_read = 0;
+    uint16_t bytes_processed = 0;
+    uint16_t readIndex = 0;
 
     bytes_read = serialPort->read(temp_buffer, 1024);
 
@@ -90,15 +76,14 @@ void IMU::processRxData()
     {
         if(temp_buffer[readIndex] == '!')
         {
-            bufferIndex = 0;
+            serialBufferIndex = 0;
             memset(protocol_buffer, 0, 1024);
         }
-        protocol_buffer[bufferIndex++] = temp_buffer[readIndex++];
+        protocol_buffer[serialBufferIndex++] = temp_buffer[readIndex++];
         bytes_processed++;
         if(temp_buffer[readIndex-1] == '\n')
         {
-            //qDebug() << protocol_buffer << ":" << bufferIndex;
-            int packet_length = DecodePacketHandler(protocol_buffer, bufferIndex);
+            int packet_length = DecodePacketHandler(protocol_buffer, serialBufferIndex);
             if ( packet_length > 0 )
             {
                 lastStreamResponseTime = qtime();
@@ -106,11 +91,11 @@ void IMU::processRxData()
             else
             {
                 char stream_type_r;
-                uint16 gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r;
-                uint16 q1_offset_r, q2_offset_r, q3_offset_r, q4_offset_r;
+                uint16_t gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r;
+                uint16_t q1_offset_r, q2_offset_r, q3_offset_r, q4_offset_r;
                 float yaw_offset_degrees_r;
-                uint16 flags_r;
-                packet_length = IMUProtocol::decodeStreamResponse( protocol_buffer, bufferIndex, stream_type_r,
+                uint16_t flags_r;
+                packet_length = IMUProtocol::decodeStreamResponse( protocol_buffer, serialBufferIndex, stream_type_r,
                           gyro_fsr_dps_r, accel_fsr_r, update_rate_hz_r,
                           yaw_offset_degrees_r,
                           q1_offset_r, q2_offset_r, q3_offset_r, q4_offset_r,
@@ -121,10 +106,9 @@ void IMU::processRxData()
                               yaw_offset_degrees_r,
                               flags_r );
                     lastStreamResponseTime = qtime();
-                    //qDebug() << "Got stream Response: " << protocol_buffer;
                 }
             }
-            bufferIndex = 0;
+            serialBufferIndex = 0;
         }
     }
 
@@ -152,7 +136,7 @@ int IMU::DecodePacketHandler( char *received_data, int bytes_remaining ) {
 	return packet_length;
 }
 
-void IMU::InternalInit( uint8 update_rate_hz, char stream_type ) {
+void IMU::InternalInit( uint8_t update_rate_hz, char stream_type ) {
 	current_stream_type = stream_type;
 	yaw_offset_degrees = 0;
 	accel_fsr_g = 2;
@@ -162,11 +146,13 @@ void IMU::InternalInit( uint8 update_rate_hz, char stream_type ) {
 	yaw = 0.0;
     pitch = 0.0;
 	roll = 0.0;
+    cIMUStateSemaphore = new QSemaphore (1);
     timer = new QTime();
     timer->start();
 
     stream_response_received = false;
     stop = false;
+    serialBufferIndex = 0;
     initSerial();
 
     InitIMU();
@@ -174,11 +160,11 @@ void IMU::InternalInit( uint8 update_rate_hz, char stream_type ) {
     lastStreamResponseTime = qtime();
 }
 
-IMU::IMU(uint8 update_rate_hz, char stream_type ) {
+IMU::IMU(uint8_t update_rate_hz, char stream_type ) {
    InternalInit(update_rate_hz,stream_type);
 }
 
-IMU::IMU(uint8 update_rate_hz )
+IMU::IMU(uint8_t update_rate_hz )
 {
    InternalInit(update_rate_hz,STREAM_CMD_STREAM_TYPE_YPR);
 }
@@ -211,19 +197,10 @@ bool IMU::IsConnected()
     return time_since_last_update <= 1.0;
 }
 
-double IMU::GetByteCount()
-{
-	return byte_count;
-}
-double IMU::GetUpdateCount()
-{
-	return update_count;
-}
-
 bool IMU::IsCalibrating()
 {
     cIMUStateSemaphore->acquire();
-    uint16 calibration_state = this->flags & NAV6_FLAG_MASK_CALIBRATION_STATE;
+    uint16_t calibration_state = this->flags & NAV6_FLAG_MASK_CALIBRATION_STATE;
     cIMUStateSemaphore->release();
     return (calibration_state != NAV6_CALIBRATION_STATE_COMPLETE);
 }
@@ -312,7 +289,7 @@ double IMU::GetAverageFromYawHistory()
     return yaw_history_avg;
 }
 
-void IMU::SetStreamResponse(uint16 gyro_fsr_dps, uint16 accel_fsr, uint16 update_rate_hz, float yaw_offset_degrees, uint16 flags)
+void IMU::SetStreamResponse(uint16_t gyro_fsr_dps, uint16_t accel_fsr, uint16_t update_rate_hz, float yaw_offset_degrees, uint16_t flags)
 {
 	{
         cIMUStateSemaphore->acquire();
