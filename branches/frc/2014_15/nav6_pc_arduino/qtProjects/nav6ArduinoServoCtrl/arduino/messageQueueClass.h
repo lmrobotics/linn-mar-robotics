@@ -9,17 +9,16 @@ using namespace Messages;
 class messageQueueClass{
 
 public:
-	messageQueueClass();
-	~messageQueueClass();
+    messageQueueClass();
+    ~messageQueueClass();
 
-	static bool messageAvailable();
-	static BaseMessageClass* getMessage();
-	static void putMessage(BaseMessageClass *msg);
+    bool messageAvailable();
+    BaseMessageClass* getMessage();
+    void putMessage(BaseMessageClass *msg);
 
 private:
-	static std::queue<BaseMessageClass*> msgQueue;
-	static bool available;
-	static BaseMessageClass *msg;
+    std::queue<BaseMessageClass*> msgQueue;
+    bool available;
 };
 
 #endif

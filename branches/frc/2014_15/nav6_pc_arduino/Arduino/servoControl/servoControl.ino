@@ -1,14 +1,12 @@
 #include <Servo.h> 
 #include <string.h>
-#include "MessageTypesClass.h"
 #include "BaseMessageClass.h"
-#include "PhysicalInterfaceClass.h"
+#include "MessageTypesClass.h"
 #include "msgSetServoPosition.h"
 #include "msgSetServoPositionResp.h"
 #include "MessageTypesClass.h"
 #include "messageTransport.h"
-
-using namespace Utility;
+#include "serialMessageTransport.h"
 
 /** ***************************************************************************
  * \brief Perform initialization.  
@@ -17,10 +15,11 @@ using namespace Utility;
 
 const int servoPin = 9;          
 Servo myServo;
+serialMessageTransport *interface;
 
 void setup()
 {
-  Utility::PhysicalInterfaceClass::connect();
+  interface = new serialMessageTransport(9600);
   myServo.attach(servoPin);
   myServo.write(90); 
   delay(100);
@@ -35,10 +34,9 @@ void setup()
 void rxMessageProcessing()
 {
 
-   while (messageTransport::messageAvailable())
+   while (interface->messageAvailable())
    {
-      //myServo.write(0); 
-      BaseMessageClass *tmp = messageTransport::getMessage();
+      BaseMessageClass *tmp = interface->getMessage();
       MessageTypesClass::messageId msgType = tmp->messageType();
       switch (msgType)
       {
@@ -47,10 +45,8 @@ void rxMessageProcessing()
             Messages::msgSetServoPosition msgServoCtrl (tmp->message);
             uint8 servoCtrl = msgServoCtrl.servoPosition;
             
-            Messages::msgSetServoPositionResp *servoResponse = 
-              new Messages::msgSetServoPositionResp();
-            servoResponse->sendData();
-            delete servoResponse;  
+            Messages::msgSetServoPositionResp servoResponse;
+            interface->send((Messages::BaseMessageClass&)servoResponse);
             myServo.write(servoCtrl); 
             
          }     

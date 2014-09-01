@@ -10,15 +10,16 @@ namespace Messages
    {
        msgId = msgId_;
        message = new unsigned char[size];
+       msgSize = size;
        message[0] = (unsigned char)msgId;
        message[1] = (unsigned char)size;
    }
    
    BaseMessageClass::BaseMessageClass(unsigned char rawMsg[])
    {
-      int arraySize = rawMsg[1];
-      message = new unsigned char[arraySize];
-      memcpy(message, rawMsg, arraySize);
+      msgSize = rawMsg[1];
+      message = new unsigned char[msgSize];
+      memcpy(message, rawMsg, msgSize);
       msgId = (MessageTypesClass::messageId)message[0];
    }
    
@@ -26,15 +27,15 @@ namespace Messages
    {
       delete message;
    }
-   
-   void BaseMessageClass::sendData()
-   {
-	   messageTransport::send(message, message[1]);
-   }
-   
+      
    MessageTypesClass::messageId BaseMessageClass::messageType()
    {
        return msgId;
+   }
+
+   int BaseMessageClass::messageSize()
+   {
+       return msgSize;
    }
 
 } // namespace Messages

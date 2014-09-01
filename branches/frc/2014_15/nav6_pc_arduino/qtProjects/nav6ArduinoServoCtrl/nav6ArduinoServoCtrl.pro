@@ -20,8 +20,8 @@ SOURCES += main.cpp\
     nav6/IMUAdvanced.cpp \
     arduino/BaseMessageClass.cpp \
     arduino/messageQueueClass.cpp \
-    arduino/messageTransport.cpp \
-    arduino/PhysicalInterfaceClass.cpp
+    arduino/serialMessageTransport.cpp \
+    arduino/messageTransport.cpp
 
 HEADERS  += mainwindow.h \
     nav6/IMU.h \
@@ -29,10 +29,11 @@ HEADERS  += mainwindow.h \
     nav6/IMUProtocol.h \
     arduino/BaseMessageClass.h \
     arduino/messageQueueClass.h \
-    arduino/messageTransport.h \
     arduino/MessageTypesClass.h \
     arduino/msgSetServoPosition.h \
     arduino/msgSetServoPositionResp.h \
-    arduino/PhysicalInterfaceClass.h
+    arduino/serialMessageTransport.h \
+    arduino/serialmessagetransport.h \
+    arduino/messageTransport.h
 
 FORMS    += mainwindow.ui

@@ -17,7 +17,6 @@ namespace Messages
          BaseMessageClass(MessageTypesClass::messageId msgId_, int size);
          BaseMessageClass(unsigned char* rawMsg);
          virtual ~BaseMessageClass();
-         void sendData();
          MessageTypesClass::messageId messageType();
          int messageSize();
          unsigned char* message;

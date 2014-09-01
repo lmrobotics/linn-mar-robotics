@@ -1,11 +1,8 @@
 #include "messageQueueClass.h"
 
-bool messageQueueClass::available = false;
-BaseMessageClass *messageQueueClass::msg;
-
-messageQueueClass::messageQueueClass()
+messageQueueClass::messageQueueClass() :
+   available(false)
 {
-
 }
 
 messageQueueClass::~messageQueueClass()
