@@ -1,12 +1,12 @@
 #include "messageQueueClass.h"
 #include <iostream>
 
-std::queue< BaseMessageClass*> messageQueueClass::msgQueue;
+//std::queue< BaseMessageClass*> messageQueueClass::msgQueue;
 
-bool messageQueueClass::available = false;
-BaseMessageClass *messageQueueClass::msg;
+messageQueueClass::messageQueueClass() :
+    msgQueue(),
+    available(false)
 
-messageQueueClass::messageQueueClass()
 {
 }
 

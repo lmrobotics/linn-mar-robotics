@@ -10,6 +10,7 @@ namespace Messages
    {
        msgId = msgId_;
        message = new unsigned char[size];
+       msgSize = size;
        message[0] = (unsigned char)msgId;
        message[1] = (unsigned char)size;
    }
@@ -26,12 +27,7 @@ namespace Messages
    {
       delete message;
    }
-   
-   void BaseMessageClass::sendData()
-   {
-	   messageTransport::send(message, message[1]);
-   }
-   
+      
    MessageTypesClass::messageId BaseMessageClass::messageType()
    {
        return msgId;

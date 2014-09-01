@@ -1,15 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <sstream>
-#include "arduino/PhysicalInterfaceClass.h"
 #include "arduino/msgSetServoPosition.h"
 #include "arduino/msgSetServoPositionResp.h"
-#include "arduino/messageTransport.h"
 #include "arduino/MessageTypesClass.h"
 #include "arduino/BaseMessageClass.h"
+#include "arduino/serialMessageTransport.h"
 
 #include <stdio.h>
-using namespace Utility;
 using namespace Messages;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,12 +18,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // initialize Arduino interface
+    // initialize robot interface
+    robot = new serialMessageTransport("Arduino", 9600);
+
     connect(ui->dial, SIGNAL(valueChanged(int)), this, SLOT(dialChanged()));
-    connect(&PhysicalInterfaceClass::serial, SIGNAL(readyRead()), this, SLOT(processRxData()));
-    PhysicalInterfaceClass::connect();
+    connect(&(robot->serialPort), SIGNAL(readyRead()), this, SLOT(processRxData()));
     msgSetServoPosition servoCtrl ((uint8)lastServoPos);
-    servoCtrl.sendData();
+    robot->send(servoCtrl);
 
 
     imu = new IMUAdvanced(100);
@@ -52,7 +51,7 @@ void MainWindow::dialChanged()
        this->ui->label->setText(QString::fromStdString(ss.str()));
        msgSetServoPosition servoCtrl (dialValue);
        arduinoReady = false;
-       servoCtrl.sendData();
+       robot->send(servoCtrl);
     }
 }
 
@@ -63,9 +62,9 @@ void MainWindow::processNav6RxData()
 
 void MainWindow::processRxData()
 {
-    if (messageTransport::messageAvailable())
+    if (robot->messageAvailable())
     {
-        BaseMessageClass *tmp = messageTransport::getMessage();
+        BaseMessageClass *tmp = robot->getMessage();
         MessageTypesClass::messageId msgType = tmp->messageType();
         switch (msgType)
         {
@@ -148,7 +147,7 @@ void MainWindow::processTimer()
         this->ui->dial->setValue(newServoPos);
         this->ui->label->setText(QString::fromStdString(ss.str()));
         msgSetServoPosition servoCtrl (newServoPos);
-        servoCtrl.sendData();
+        robot->send(servoCtrl);
     }
 
 }

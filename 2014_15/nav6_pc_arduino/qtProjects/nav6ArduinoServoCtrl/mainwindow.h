@@ -5,6 +5,7 @@
 #include <QTimer>
 #include "nav6/IMU.h"
 #include "nav6/IMUAdvanced.h"
+#include "arduino/serialMessageTransport.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,7 @@ private:
     IMUAdvanced *imu;
     QTimer pollingTimer;
     int lastServoPos;
+    serialMessageTransport *robot;
 
 private slots:
     void dialChanged();

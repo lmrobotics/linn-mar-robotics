@@ -4,11 +4,12 @@
 
 namespace Messages
 {
-   typedef int int16;
-   typedef long int32;
-   typedef unsigned char uint8;
-   typedef unsigned int uint16;
-   typedef unsigned long uint32;
+   typedef signed char int8;         /* 8 bit signed */
+   typedef unsigned char uint8;      /* 8 bit unsigned */
+   typedef short int16;              /* 16 bit signed */
+   typedef unsigned short uint16;    /* 16 bit unsigned */
+   typedef int int32;                /* 32 bit signed */
+   typedef unsigned int uint32;      /* 32 bit unsigned */
 
    class BaseMessageClass
    {
@@ -16,12 +17,13 @@ namespace Messages
          BaseMessageClass(MessageTypesClass::messageId msgId_, int size);
          BaseMessageClass(unsigned char* rawMsg);
          virtual ~BaseMessageClass();
-         void sendData();
          MessageTypesClass::messageId messageType();
+         int messageSize();
          unsigned char* message;
 		
        protected:
           MessageTypesClass::messageId msgId;
+          int msgSize;
           
        private: 
 

@@ -8,16 +8,16 @@ using namespace Messages;
 class messageQueueClass{
 
 public:
-	messageQueueClass();
-	~messageQueueClass();
+    messageQueueClass();
+    ~messageQueueClass();
 
-	static bool messageAvailable();
-	static BaseMessageClass* getMessage();
-	static void putMessage(BaseMessageClass *msg);
+   bool messageAvailable();
+	BaseMessageClass* getMessage();
+	void putMessage(BaseMessageClass *msg);
 
 private:
-	static bool available;
-	static BaseMessageClass *msg;
+   bool available;
+   BaseMessageClass *msg;
 };
 
 #endif
