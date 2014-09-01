@@ -10,9 +10,21 @@ public:
 
     messageTransport();
 	~messageTransport();
-    void send(BaseMessageClass& message);
-    bool messageAvailable();
-    BaseMessageClass *getMessage();
+
+    /** ***************************************************************************
+    * \brief Send a message.
+    */
+    virtual void send(BaseMessageClass& message) = 0;
+
+    /** ***************************************************************************
+    * \brief Provide an indication if whether a message is available or not.
+    */
+    virtual bool messageAvailable() = 0;
+
+    /** ***************************************************************************
+    * \brief Return a message from message queue.
+    */
+    virtual BaseMessageClass *getMessage() = 0;
 
 protected:
 

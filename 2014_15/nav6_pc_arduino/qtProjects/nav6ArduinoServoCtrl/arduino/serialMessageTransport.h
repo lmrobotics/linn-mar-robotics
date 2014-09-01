@@ -11,16 +11,49 @@ public:
 
     serialMessageTransport(QString portDeviceName, int baudRate);
     ~serialMessageTransport();
+
+    /** ***************************************************************************
+    * \brief Send a message.
+    */
     void send(BaseMessageClass& message);
+
+    /** ***************************************************************************
+    * \brief Provide an indication if whether a message is available or not.
+    */
     bool messageAvailable();
+
+    /** ***************************************************************************
+    * \brief Return a message from message queue.
+    */
     BaseMessageClass *getMessage();
+
     QSerialPort serialPort;
 
 private:
+
+    /** ***************************************************************************
+    * \brief Connect serial port
+    */
+
     void connect(QString portDeviceName, int baudRate);
+    /** ***************************************************************************
+    * \brief Disconnect serial port
+    */
     void disconnect();
+
+    /** ***************************************************************************
+    * \brief Send array of bytes
+    */
     void send(unsigned char byteArray[], int length);
+
+    /** ***************************************************************************
+    * \brief Read 1 byte from serial stream.
+    */
     int receive(unsigned char* buffer, int length);
+
+    /** ***************************************************************************
+    * \brief Read and parse serial stream data.
+    */
     void readSerial();
 
     enum serialReadStateE { searching_aa, searching_55, searching_c3, searching_3c, readingId, readingData };
