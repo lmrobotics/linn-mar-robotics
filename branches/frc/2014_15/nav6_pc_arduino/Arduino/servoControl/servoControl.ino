@@ -43,11 +43,10 @@ void rxMessageProcessing()
          case Messages::MessageTypesClass::msgSetServoPositionId:
          {
             Messages::msgSetServoPosition msgServoCtrl (tmp->message);
-            uint8 servoCtrl = msgServoCtrl.servoPosition;
+            myServo.write(msgServoCtrl.servoPosition); 
             
             Messages::msgSetServoPositionResp servoResponse;
             interface->send((Messages::BaseMessageClass&)servoResponse);
-            myServo.write(servoCtrl); 
             
          }     
          break;

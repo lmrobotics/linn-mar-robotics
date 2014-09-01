@@ -1,7 +1,11 @@
 #include "serialMessageTransport.h"
 #include "qdebug.h"
+
 unsigned char serialMessageTransport::preamble[] = { 0xAA, 0x55, 0xC3,  0x3C };
 
+/** ***************************************************************************
+* \brief Constructor
+*/
 serialMessageTransport::serialMessageTransport
                 (QString portDeviceName, int baudRate) :
     serialState(searching_aa),
@@ -12,7 +16,7 @@ serialMessageTransport::serialMessageTransport
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Destructor
 */
 serialMessageTransport::~serialMessageTransport()
 {
@@ -20,12 +24,16 @@ serialMessageTransport::~serialMessageTransport()
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Search for serial port by device name and open it.
+*
+* Baud rate is set to parameter passed in.  The other serial port parameters
+* are hard coded to the most used values: 8 data bits; no parity; one stop bit;
+* no flow control.
 */
 void serialMessageTransport::connect(QString portDeviceName, int baudRate)
 {
     serialPort.close();
-    // Example use QSerialPortInfo
+
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
     {
        if(info.description().contains(portDeviceName))
@@ -65,7 +73,7 @@ void serialMessageTransport::connect(QString portDeviceName, int baudRate)
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Disconnect serial port
 */
 void serialMessageTransport::disconnect()
 {
@@ -73,7 +81,7 @@ void serialMessageTransport::disconnect()
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Send whole message, including header
 */
 void serialMessageTransport::send(BaseMessageClass& message)
 {
@@ -82,7 +90,7 @@ void serialMessageTransport::send(BaseMessageClass& message)
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Send array of bytes
 */
 void serialMessageTransport::send(unsigned char byteArray[], int length)
 {
@@ -92,7 +100,7 @@ void serialMessageTransport::send(unsigned char byteArray[], int length)
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Provide an indication if whether a message is available or not.
 */
 bool serialMessageTransport::messageAvailable()
 {
@@ -101,8 +109,7 @@ bool serialMessageTransport::messageAvailable()
 }
 
 /** ***************************************************************************
-* \brief
-
+* \brief Return a message from message queue.
 */
 BaseMessageClass* serialMessageTransport::getMessage()
 {
@@ -111,7 +118,7 @@ BaseMessageClass* serialMessageTransport::getMessage()
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Read 1 byte from serial stream.
 */
 int serialMessageTransport::receive(unsigned char* buffer, int length)
 {
@@ -120,7 +127,9 @@ int serialMessageTransport::receive(unsigned char* buffer, int length)
 }
 
 /** ***************************************************************************
-* \brief
+* \brief Read and parse serial stream data.
+*
+* Pramble is discarded and whole messages are placed in the message queue.
 */
 void serialMessageTransport::readSerial()
 {
@@ -131,38 +140,39 @@ void serialMessageTransport::readSerial()
     {
         switch (serialState)
         {
-            case searching_aa:
+            case searching_aa: // first preamble byte
                 if (serialData == 0xaa)
                     serialState = searching_55;
                 break;
 
-            case searching_55:
+            case searching_55: // second preamble byte
                 if (serialData == 0x55)
                     serialState = searching_c3;
                 else
                     serialState = searching_aa;
                 break;
 
-            case searching_c3:
+            case searching_c3: // third preamble byte
                 if (serialData == 0xC3)
                     serialState = searching_3c;
                 else
                     serialState = searching_aa;
                 break;
 
-            case searching_3c:
+            case searching_3c: // fourth preamble byte
                 if (serialData == 0x3c)
                     serialState = readingId;
                 else
                     serialState = searching_aa;
                 break;
 
-            case readingId:
+            case readingId: // Getting message ID
                 serialState = readingData;
                 currentMsgId = (unsigned char)serialData;
                 break;
 
-            case readingData:
+           case readingData: // Getting message Data
+                // first byte is the message size.
                 if (msgByteCount == 0)
                 {
                     msgByteCount = (unsigned char)serialData;
@@ -175,6 +185,7 @@ void serialMessageTransport::readSerial()
                     currentMsg[currentByte++] = (unsigned char)serialData;
                 }
 
+                // check for end of message
                 if (currentByte == msgByteCount)
                 {
                     msgByteCount = 0;
