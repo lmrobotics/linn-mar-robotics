@@ -1,12 +1,15 @@
 #include <Servo.h> 
 #include <string.h>
+#include <SPI.h>
+#include <Ethernet.h>
+#include <EthernetUdp.h> 
 #include "BaseMessageClass.h"
 #include "MessageTypesClass.h"
 #include "msgSetServoPosition.h"
 #include "msgSetServoPositionResp.h"
 #include "MessageTypesClass.h"
 #include "messageTransport.h"
-#include "serialMessageTransport.h"
+#include "udpMessageTransport.h"
 
 /** ***************************************************************************
  * \brief Perform initialization.  
@@ -15,7 +18,8 @@
 
 const int servoPin = 9;          
 Servo myServo;
-serialMessageTransport *interface;
+udpMessageTransport *interface;
+//serialMessageTransport *interface;
 
 void setup()
 {
