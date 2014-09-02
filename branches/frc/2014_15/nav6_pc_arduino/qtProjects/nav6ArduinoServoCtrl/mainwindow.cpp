@@ -19,12 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // initialize robot interface
-    robot = new serialMessageTransport("Arduino", 9600);
-
+    //robot = new serialMessageTransport("Arduino", 9600);
+    robot = new udpMessageTransport("192.168.0.179", 8888);
     connect(ui->dial, SIGNAL(valueChanged(int)), this, SLOT(dialChanged()));
-    connect(&(robot->serialPort), SIGNAL(readyRead()), this, SLOT(processRxData()));
-    msgSetServoPosition servoCtrl ((uint8)lastServoPos);
-    robot->send(servoCtrl);
+    //connect(&(robot->serialPort), SIGNAL(readyRead()), this, SLOT(processRxData()));
 
 
     imu = new IMUAdvanced(100);
@@ -82,6 +80,7 @@ void MainWindow::processRxData()
 
 void MainWindow::processTimer()
 {
+    processRxData();
     bool calibrating = imu->IsCalibrating();
     bool connected = imu->IsConnected();
     bool moving = imu->IsMoving();
@@ -138,7 +137,7 @@ void MainWindow::processTimer()
     ss.str("");
     ss.clear();
 
-    int newServoPos = 142 - (imu->GetPitch() + 70);
+    int newServoPos = 130 - (imu->GetPitch() + 70);
     if (arduinoReady && (newServoPos > 0) && (lastServoPos != newServoPos))
     {
         arduinoReady = false;

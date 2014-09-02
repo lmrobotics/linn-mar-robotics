@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 
+QT       += network
 QT       += serialport
 QT       += core gui
 QT       += core
@@ -21,7 +22,8 @@ SOURCES += main.cpp\
     arduino/BaseMessageClass.cpp \
     arduino/messageQueueClass.cpp \
     arduino/serialMessageTransport.cpp \
-    arduino/messageTransport.cpp
+    arduino/messageTransport.cpp \
+    arduino/udpMessageTransport.cpp
 
 HEADERS  += mainwindow.h \
     nav6/IMU.h \
@@ -34,6 +36,7 @@ HEADERS  += mainwindow.h \
     arduino/msgSetServoPositionResp.h \
     arduino/serialMessageTransport.h \
     arduino/serialmessagetransport.h \
-    arduino/messageTransport.h
+    arduino/messageTransport.h \
+    arduino/udpMessageTransport.h
 
 FORMS    += mainwindow.ui
