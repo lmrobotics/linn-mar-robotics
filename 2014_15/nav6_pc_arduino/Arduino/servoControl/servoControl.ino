@@ -19,10 +19,12 @@ serialMessageTransport *interface;
 
 void setup()
 {
-  interface = new serialMessageTransport(9600);
-  myServo.attach(servoPin);
-  myServo.write(90); 
-  delay(100);
+   IPAddress ip(192, 168, 0, 179);
+   interface = new udpMessageTransport(ip, 8888);
+   //interface = new serialMessageTransport(9600);
+   myServo.attach(servoPin);
+   myServo.write(90); 
+   delay(100);
 
 } // setup
 
