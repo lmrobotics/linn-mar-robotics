@@ -21,7 +21,7 @@ tree = ET.parse(sys.argv[1])
 messageCat = tree.getroot()
 enumerations = OrderedDict()
 messages = OrderedDict()
-allowedBuiltInTypes = ["bool", "char", "int16", "int32", "uint8", "uint16", "uint32", "float"]
+allowedBuiltInTypes = ["bool", "char", "int8", "int16", "int32", "uint8", "uint16", "uint32", "float"]
          
 def printEnum(enumDef):
    print (enumDef.tag, enumDef.attrib)
@@ -171,6 +171,22 @@ def writeMessageFiles():
          if field.tag == "msgField":
             if field.type == "bool":
                f.write("            " + field.name + " = message[" + field.offset + "]==0 ? false : true;\n" )
+            elif field.type == "float":
+               f.write("               " + field.name + " = getFloat(" + field.offset + ");\n" )
+            elif field.type == "char":
+               f.write("               " + field.name + " = getChar(" + field.offset + ");\n" )
+            elif field.type == "int8":
+               f.write("               " + field.name + " = getInt8(" + field.offset + ");\n" )
+            elif field.type == "int16":
+               f.write("               " + field.name + " = getInt16(" + field.offset + ");\n" )
+            elif field.type == "int32":
+               f.write("               " + field.name + " = getInt32(" + field.offset + ");\n" )
+            elif field.type == "uint8":
+               f.write("               " + field.name + " = getUint8(" + field.offset + ");\n" )
+            elif field.type == "uint16":
+               f.write("               " + field.name + " = getUint16(" + field.offset + ");\n" )
+            elif field.type == "uint32":
+               f.write("               " + field.name + " = getUint32(" + field.offset + ");\n" )
             elif field.type in allowedBuiltInTypes:
                f.write("               memcpy((char*)&" + field.name + ", &message[" + field.offset + "], " + field.length + ");\n" )
             elif isMemberOfMessageTypesClass(field.type):
@@ -199,6 +215,22 @@ def writeMessageFiles():
          if field.tag == "msgField":
             if field.type == "bool":
                f.write("               message[" + field.offset + "] = " + field.name + " ? 1 : 0;\n" )
+            elif field.type == "float":
+               f.write("               putFloat(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "char":
+               f.write("               putChar(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "uint8":
+               f.write("               putUint8(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "uint16":
+               f.write("               putUint16(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "uint32":
+               f.write("               putUint32(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "int8":
+               f.write("               putInt8(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "int16":
+               f.write("               putInt16(" + field.name + ", " + field.offset + ");\n" )
+            elif field.type == "int32":
+               f.write("               putInt32(" + field.name + ", " + field.offset + ");\n" )
             # todo make arrays more generic
             elif field.length == "*":
                f.write("               memcpy(&message[" + field.offset + "], " + field.name + ", bufSize);\n" )
