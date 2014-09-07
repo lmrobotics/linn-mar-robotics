@@ -137,7 +137,7 @@ void MainWindow::processTimer()
     ss.str("");
     ss.clear();
 
-    int newServoPos = 130 - (imu->GetPitch() + 70);
+    int newServoPos = 130 - (imu->GetRoll() + 70);
     if (arduinoReady && (newServoPos > 0) && (lastServoPos != newServoPos))
     {
         arduinoReady = false;
