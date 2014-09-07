@@ -13,14 +13,14 @@ namespace Messages
          msgSetServoPosition(unsigned char rawMessage[])
             : BaseMessageClass(rawMessage)
          {
-               memcpy((char*)&servoPosition, &message[2], 1);
+               servoPosition = getUint8(2);
          }
 
          msgSetServoPosition(
             uint8 servoPosition
             ) : BaseMessageClass(MessageTypesClass::msgSetServoPositionId, 3)
          {
-               memcpy(&message[2], (char*)&servoPosition, 1);
+               putUint8(servoPosition, 2);
          }
    };
 
