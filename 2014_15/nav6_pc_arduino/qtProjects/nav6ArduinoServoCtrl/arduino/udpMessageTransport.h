@@ -2,7 +2,6 @@
 #define UDPMESSAGETRANSPORT_H
 
 #include "BaseMessageClass.h"
-#include "udpMessageTransport.h"
 #include "messageTransport.h"
 #include <QtNetwork/QUdpSocket>
 #include <QString>
