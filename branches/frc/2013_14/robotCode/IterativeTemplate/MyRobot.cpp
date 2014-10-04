@@ -1,6 +1,9 @@
 #include "WPILib.h"
 #include "NetworkTables/NetworkTable.h"
 #include "Drive.h"
+#include "IMU.h"
+#include "IMUProcess.h"
+#include "IMUProtocol.h"
 #include "floorPickUp.h"
 #include <pthread.h>
 #include <unistd.h>
@@ -12,9 +15,9 @@
  */
 
 //Defined Potentiometer values
-#define HOLD_POS		250
-#define SHOOT_POS		550
-#define PICKUP_POS		843
+#define HOLD_POS		255
+#define SHOOT_POS		565
+#define PICKUP_POS		875
 
 //Toggleable constants
 /*
@@ -34,7 +37,10 @@ private:
 	SmartDashboard *dash;
 	Joystick xbox1,xbox2;
 	Compressor compressor;
-	Gyro gyro;
+	//Gyro gyro;
+	IMUProcess *nav6;
+	bool nav6Created;
+	SerialPort *serial_port;
 	Victor winchMotor1, winchMotor2;
 	Solenoid shifter1, shifter2, winchRelease1, winchRelease2;
 	Encoder driveEncoder, winchEncoder;
@@ -54,6 +60,9 @@ private:
 	float auto_dist;
 	
 	int counter;
+	
+	//int nav6serial;
+	
 	int RightInt;			// To record network table values
 	int LeftInt;			// To record network table values
 	int TeleTimer;          // To use so winch is released for time
@@ -105,7 +114,7 @@ public:
 		xbox1(1),
 		xbox2(2),
 		compressor(1,1),
-		gyro(2),
+//		gyro(2),
 		winchMotor1(5),
 		winchMotor2(6),
 		shifter1(3),
@@ -149,6 +158,18 @@ public:
 		counter = 0;
 		RightInt=0;
 		LeftInt=0;
+		
+		serial_port = new SerialPort(57600);
+		
+		//nav6serial = serial_port->GetBytesReceived();
+		uint8_t update_rate_hz = 50;
+		nav6 = new IMUProcess(serial_port,update_rate_hz);
+		nav6Created = true;
+		
+		nav6->ResetYawRollPitch();
+		//for debuging only
+		//SerialPort *nav6Serial = nav6->GetSerialPort();
+		//printf ("working %f",navSerial->StatusIsFatal());
 	}
 	
 	/* Double autonomous */
@@ -159,7 +180,7 @@ public:
 				
 		//Drive and move arm to shooting position
 		while (IL -> driveEncoder.GetDistance() < 100){
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(autoSpeed+(angle*(1.0/50.0)),-autoSpeed+(angle*(1.0/50.0)));
 			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
 				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
@@ -218,7 +239,7 @@ public:
 		
 		//Move back while lowering catapult
 		while (IL -> driveEncoder.GetDistance() > 20){
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(-autoSpeed+(angle*(1.0/50.0)),autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			if (IL -> WinchLimit.Get() == 1){
@@ -256,7 +277,7 @@ public:
 		
 		//Move back while turning intake wheels
 		while (IL -> driveEncoder.GetDistance() > 15){
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(-autoSpeed+(angle*(1.0/50.0)),autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			Wait(.01);
@@ -280,7 +301,7 @@ public:
 		
 		//Drive to shooting position
 		while (IL -> driveEncoder.GetDistance() < 120){
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(autoSpeed+(angle*(1.0/50.0)),-autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			Wait(.01);
@@ -306,7 +327,7 @@ public:
 		//Drive and move arm to shooting position
 		while (IL -> driveEncoder.GetDistance() < 100){
 			//IL -> drive.Move(.54,-.5);
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(.5+(angle*(1.0/50.0)),-.5+(angle*(1.0/50.0)));
 			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
 				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
@@ -343,7 +364,7 @@ public:
 		IL -> autoThreadRunning = true;
 		
 		while(IL -> autoThreadRunning) {
-			float angle = IL -> gyro.GetAngle();
+			float angle = IL -> nav6->GetPitch();
 			IL -> drive.Move(.5+(angle*(1.0/50.0)),-.5+(angle*(1.0/50.0)));
 		}
 		
@@ -384,13 +405,16 @@ public:
 	/**
 	 * Initialization code for disabled mode should go here.
 	 * 
-	 * Use this method for initialization code which will be called each time
+	 * Use this method for initialization code which will be called each time'
 	 * the robot enters disabled mode. 
 	 */
 	void IronLions::DisabledInit() {
 		printf("Entering DisabledInit\n");
 		disabled_periodic_loops = 0;	// Reset the loop counter for disabled mode
 		StopAutoThread();
+		
+		//delete nav6;
+		//nav6Created = false;
 	}
 	
 	/**
@@ -418,7 +442,8 @@ public:
 		printf("Entering AutonomousInit\n");
 		driveEncoder.Start();
 		driveEncoder.Reset();
-		gyro.Reset();
+		//gyro.Reset();
+		nav6->ResetYawRollPitch();
 		auto_dist = driveEncoder.GetDistance();
 		auto_count = 0;
 		auto_periodic_loops = 0;
@@ -467,7 +492,7 @@ public:
 		GetWatchdog().Feed();
 		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
 		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
-		dash ->PutNumber("Gyro", gyro.GetAngle());
+		dash ->PutNumber("Gyro", nav6->GetPitch());
 		shifter1.Set(false);
 		shifter2.Set(true);
 //		int TaskPrioVal=0;
@@ -490,6 +515,13 @@ public:
 		driveEncoder.Reset();
 		winchEncoder.Start();
 		winchEncoder.Reset();
+		
+		if(!nav6Created){
+			uint8_t update_rate_hz = 50;
+			nav6 = new IMUProcess(serial_port,update_rate_hz);
+			nav6Created = true;
+		}
+		nav6->ResetYawRollPitch();
 	}
 	
 	/**
@@ -503,8 +535,8 @@ public:
 		//Joystick Button Definitions ---------------------------------------------
 		
 		//Joystick 1
-		l1_button = xbox1.GetRawButton(5); //Shifter
-		r1_button = xbox1.GetRawButton(6); //Release Of Winch
+		l1_button = xbox1.GetRawButton(5); //Winch release (shoot ball)
+		r1_button = xbox1.GetRawButton(6); //Shifter
 		A_button = xbox1.GetRawButton(1);  //Encoder Reset
 		
 		//Joystick 2
@@ -551,7 +583,7 @@ public:
 		}
 
 		//Release Of Winch
-		if (r1_button) { //Shoot ball
+		if (l1_button) { //Shoot ball
 			winchRelease1.Set(true);
 			winchRelease2.Set(false);
 			TeleTimer = 0;
@@ -576,6 +608,7 @@ public:
 			else {              //Run Intake Up
 				Intake.moveAngle(.5,1);
 			}
+		
 		}
 		else if ((Y_axis >= .8) || (Y_axis <= -.8)) {
 			if (Y_axis >= .8) {
@@ -612,7 +645,7 @@ public:
 		
 		
 		//Shifting
-		if(l1_button==true){
+		if(r1_button==true){
 			shifter1.Set(false);
 			shifter2.Set(true);
 		}
@@ -624,9 +657,11 @@ public:
 		//Turn On Compressor
 		if(!compressor.GetPressureSwitchValue()){
 			compressor.Start();
+			printf("Running Compressor \n");
 		}
 		else {
 			compressor.Stop();
+			printf("Compressor Stopped \n");
 		}
 		
 		//Print Statements		
@@ -638,10 +673,38 @@ public:
 		dash ->PutNumber("Winch Limit", WinchLimit.Get());
 		dash ->PutNumber("Tele Timer", TeleTimer);
 		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
-		dash ->PutNumber("Gyro", gyro.GetAngle());
+//		dash ->PutNumber("Gyro", nav6->GetPitch());
+		
+		if (tele_periodic_loops>2)
+		{
+			printf ("nav6 Yaw: %f | ", nav6->GetYaw());
+			printf ("nav6 Pitch: %f | ", nav6->GetPitch());
+			printf ("nav6 Roll: %f | ", nav6->GetRoll());
+			printf ("nav6 Compass Heading: %f | ", nav6->GetCompassHeading());
+			printf ("nav6 Update Count: %f | ", nav6->GetUpdateCount());
+			printf ("nav6 Byte Count: %f | ", nav6->GetByteCount());
+			printf ("nav6 X Acceleration: %f | ", nav6->GetWorldLinearAccelX());
+			printf ("nav6 Y Acceleration: %f | ", nav6->GetWorldLinearAccelY());
+			printf ("nav6 Z Acceleration: %f | ", nav6->GetWorldLinearAccelZ());
+			printf ("nav6 Temperature (C): %f | ", nav6->GetTempC());
+			printf ("nav6 Is Connected: %d | ", nav6->IsConnected());
+			printf ("nav6 Is Moving: %d | ", nav6->IsMoving());
+			printf ("nav6 Is Calibrating: %d | ", nav6->IsCalibrating());
+			printf ("nav6 Byte Count: %f | ", nav6->GetByteCount());
+			printf ("nav6 Fatal Status %d \n", serial_port -> StatusIsFatal());
+			tele_periodic_loops=0;
+		}
 		
 		//Drive Arcade
 		drive.TeleDrive(xbox1.GetRawAxis(4),xbox1.GetY(GenericHID::kLeftHand));
+		printf("X-Axis: %f, ", xbox1.GetRawAxis(4));
+		printf("Y-Axis: %f \n", xbox1.GetY(GenericHID::kLeftHand));
+		tele_periodic_loops++;
+	}
+	
+	void IronLions::TestInit()
+	{
+		
 	}
 };
 
