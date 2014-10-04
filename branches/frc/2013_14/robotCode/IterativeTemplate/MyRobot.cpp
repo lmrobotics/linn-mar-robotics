@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-/**
+/** 
  * This is a demo program showing the use of the RobotBase class.
  * The IterativeRobot class is the base of a robot application that will automatically call your
  * Periodic methods for each packet based on the mode.
