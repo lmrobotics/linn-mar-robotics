@@ -11,6 +11,8 @@ void _GLOBAL__I__Z20FRC_userClassFactoryv();
 
 void _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm();
 
+void _GLOBAL__I__ZN3IMU19DecodePacketHandlerEPci();
+
 void _GLOBAL__I__ZN5DriveC2Ehmhmhmhm();
 
 void _GLOBAL__I__ZN12PrintCommandC2EPKc();
@@ -70,6 +72,7 @@ void (*_ctors[])() =
     {
     _GLOBAL__I__Z20FRC_userClassFactoryv,
     _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm,
+    _GLOBAL__I__ZN3IMU19DecodePacketHandlerEPci,
     _GLOBAL__I__ZN5DriveC2Ehmhmhmhm,
     _GLOBAL__I__ZN12PrintCommandC2EPKc,
     _GLOBAL__I__ZN9Scheduler9_instanceE,

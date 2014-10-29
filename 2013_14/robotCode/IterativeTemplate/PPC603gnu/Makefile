@@ -166,6 +166,18 @@ IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/Drive.o : $
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
+IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMU.o : $(PRJ_ROOT_DIR)/IMU.cpp $(FORCE_FILE_BUILD)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
+IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUAdvanced.o : $(PRJ_ROOT_DIR)/IMUAdvanced.cpp $(FORCE_FILE_BUILD)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
+IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUProcess.o : $(PRJ_ROOT_DIR)/IMUProcess.cpp $(FORCE_FILE_BUILD)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/MyRobot.o : $(PRJ_ROOT_DIR)/MyRobot.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
@@ -175,6 +187,9 @@ IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/floorPickUp
 
 
 OBJECTS_IterativeTemplate_partialImage = IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/Drive.o \
+	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMU.o \
+	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUAdvanced.o \
+	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUProcess.o \
 	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/MyRobot.o \
 	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/floorPickUp.o
 
@@ -190,7 +205,8 @@ IterativeTemplate_partialImage/$(MODE_DIR)/IterativeTemplate_partialImage_clean 
 
 force : 
 
-DEP_FILES := IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/Drive.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/MyRobot.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/floorPickUp.d
+DEP_FILES := IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/Drive.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMU.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUAdvanced.d \
+	 IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/IMUProcess.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/MyRobot.d IterativeTemplate_partialImage/$(MODE_DIR)/Objects/IterativeTemplate/floorPickUp.d
 -include $(DEP_FILES)
 
 
