@@ -72,6 +72,6 @@ void FloorPickUp::moveAngle(float power, int direction) {
 }
 
 void FloorPickUp::moveWheels(float power) {
-	armWheel1.Set(power);
-	armWheel2.Set(-power);
+	armWheel1.Set(-power);
+	armWheel2.Set(power);
 }

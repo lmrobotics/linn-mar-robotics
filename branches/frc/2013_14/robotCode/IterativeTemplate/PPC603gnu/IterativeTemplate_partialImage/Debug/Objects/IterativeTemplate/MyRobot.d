@@ -385,6 +385,16 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/MyRobot.o:  \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/NetworkTables/NetworkTable.h \
   C:/WindRiver/workspace/IterativeTemplate/Drive.h \
+  C:/WindRiver/workspace/IterativeTemplate/IMU.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/SensorBase.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/PIDSource.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/LiveWindow/LiveWindowSendable.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/SerialPort.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/Task.h \
+  C:/WindRiver/workspace/IterativeTemplate/IMUProcess.h \
+  C:/WindRiver/workspace/IterativeTemplate/IMUAdvanced.h \
+  C:/WindRiver/vxworks-6.3/target/h/WPILib/Synchronized.h \
+  C:/WindRiver/workspace/IterativeTemplate/IMUProtocol.h \
   C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h \
   C:/WindRiver/vxworks-6.3/target/h/pthread.h \
   C:/WindRiver/vxworks-6.3/target/h/pthreadCommon.h \
@@ -1166,6 +1176,26 @@ C:/WindRiver/vxworks-6.3/target/h/WPILib/WPIErrors.h:
 C:/WindRiver/vxworks-6.3/target/h/WPILib/NetworkTables/NetworkTable.h:
 
 C:/WindRiver/workspace/IterativeTemplate/Drive.h:
+
+C:/WindRiver/workspace/IterativeTemplate/IMU.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/SensorBase.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/PIDSource.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/LiveWindow/LiveWindowSendable.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/SerialPort.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/Task.h:
+
+C:/WindRiver/workspace/IterativeTemplate/IMUProcess.h:
+
+C:/WindRiver/workspace/IterativeTemplate/IMUAdvanced.h:
+
+C:/WindRiver/vxworks-6.3/target/h/WPILib/Synchronized.h:
+
+C:/WindRiver/workspace/IterativeTemplate/IMUProtocol.h:
 
 C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h:
 

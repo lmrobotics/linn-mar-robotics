@@ -34,10 +34,10 @@ void Drive::test_motors(){
 }
 
 void Drive::Move(float LeftSpeed, float RightSpeed){
-	drive1.Set(LeftSpeed);
-	drive2.Set(LeftSpeed);
-	drive3.Set(RightSpeed);
-	drive4.Set(RightSpeed);
+	drive1.Set(-LeftSpeed);
+	drive2.Set(-LeftSpeed);
+	drive3.Set(-RightSpeed);
+	drive4.Set(-RightSpeed);
 }
 
 void Drive::stopdrive(){
@@ -49,7 +49,7 @@ void Drive::stopdrive(){
 
 void Drive::TeleDrive(float Xbox_x, float Xbox_y){
 	
-	float x=Xbox_x;
+	float x= -Xbox_x;
 	float y=Xbox_y;
 	float RightSpeed=0;
 	float LeftSpeed=0;

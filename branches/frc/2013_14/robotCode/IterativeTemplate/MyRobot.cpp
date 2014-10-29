@@ -13,7 +13,7 @@
  * The IterativeRobot class is the base of a robot application that will automatically call your
  * Periodic methods for each packet based on the mode.
  */
-
+ 
 //Defined Potentiometer values
 #define HOLD_POS		255
 #define SHOOT_POS		565
@@ -37,7 +37,7 @@ private:
 	SmartDashboard *dash;
 	Joystick xbox1,xbox2;
 	Compressor compressor;
-	//Gyro gyro;
+	Gyro gyro;
 	IMUProcess *nav6;
 	bool nav6Created;
 	SerialPort *serial_port;
@@ -111,10 +111,10 @@ public:
 	IronLions(void):
 		drive(1,1,1,2,1,3,1,4),
 		Intake(1,7,1,8,1,9,1,10),
-		xbox1(1),
-		xbox2(2),
+		xbox1(2),
+		xbox2(1),
 		compressor(1,1),
-//		gyro(2),
+		gyro(3),
 		winchMotor1(5),
 		winchMotor2(6),
 		shifter1(3),
@@ -172,6 +172,12 @@ public:
 		//printf ("working %f",navSerial->StatusIsFatal());
 	}
 	
+	static float getGyroAngle(IronLions *IL)
+	{
+		return -(IL -> nav6->GetYaw());
+	//	return IL -> gyro.GetAngle();
+	}
+	
 	/* Double autonomous */
 	static void *DoubleAutoSequence(IronLions *IL)
 	{
@@ -180,7 +186,8 @@ public:
 				
 		//Drive and move arm to shooting position
 		while (IL -> driveEncoder.GetDistance() < 100){
-			float angle = IL -> nav6->GetPitch();
+		//	float angle = -(IL -> nav6->GetYaw());
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(autoSpeed+(angle*(1.0/50.0)),-autoSpeed+(angle*(1.0/50.0)));
 			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
 				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
@@ -239,7 +246,7 @@ public:
 		
 		//Move back while lowering catapult
 		while (IL -> driveEncoder.GetDistance() > 20){
-			float angle = IL -> nav6->GetPitch();
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(-autoSpeed+(angle*(1.0/50.0)),autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			if (IL -> WinchLimit.Get() == 1){
@@ -277,7 +284,7 @@ public:
 		
 		//Move back while turning intake wheels
 		while (IL -> driveEncoder.GetDistance() > 15){
-			float angle = IL -> nav6->GetPitch();
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(-autoSpeed+(angle*(1.0/50.0)),autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			Wait(.01);
@@ -301,7 +308,7 @@ public:
 		
 		//Drive to shooting position
 		while (IL -> driveEncoder.GetDistance() < 120){
-			float angle = IL -> nav6->GetPitch();
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(autoSpeed+(angle*(1.0/50.0)),-autoSpeed+(angle*(1.0/50.0)));
 			IL -> Intake.moveWheels(-1);
 			Wait(.01);
@@ -327,7 +334,7 @@ public:
 		//Drive and move arm to shooting position
 		while (IL -> driveEncoder.GetDistance() < 100){
 			//IL -> drive.Move(.54,-.5);
-			float angle = IL -> nav6->GetPitch();
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(.5+(angle*(1.0/50.0)),-.5+(angle*(1.0/50.0)));
 			if ((IL -> Pot -> GetAverageValue()) < (SHOOT_POS - 20)){
 				IL -> Intake.goToPos(SHOOT_POS,(IL -> Pot -> GetAverageValue()));
@@ -364,7 +371,7 @@ public:
 		IL -> autoThreadRunning = true;
 		
 		while(IL -> autoThreadRunning) {
-			float angle = IL -> nav6->GetPitch();
+			float angle = getGyroAngle(IL);
 			IL -> drive.Move(.5+(angle*(1.0/50.0)),-.5+(angle*(1.0/50.0)));
 		}
 		
@@ -442,7 +449,7 @@ public:
 		printf("Entering AutonomousInit\n");
 		driveEncoder.Start();
 		driveEncoder.Reset();
-		//gyro.Reset();
+	//	gyro.Reset();
 		nav6->ResetYawRollPitch();
 		auto_dist = driveEncoder.GetDistance();
 		auto_count = 0;
@@ -492,7 +499,10 @@ public:
 		GetWatchdog().Feed();
 		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
 		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
-		dash ->PutNumber("Gyro", nav6->GetPitch());
+		dash ->PutNumber("Gyro", nav6->GetYaw());
+		printf("DriveEncoder : %d /n", driveEncoder.Get());
+		printf("Intake Angle : %f /n", Pot->GetAverageValue());
+		printf("Gyrob : %f /n", nav6->GetYaw());
 		shifter1.Set(false);
 		shifter2.Set(true);
 //		int TaskPrioVal=0;
@@ -673,10 +683,14 @@ public:
 		dash ->PutNumber("Winch Limit", WinchLimit.Get());
 		dash ->PutNumber("Tele Timer", TeleTimer);
 		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
+//		printf("DriveEncoder : %d \n", driveEncoder.Get());
+//		printf("Intake Angle : %f \n", Pot->GetAverageValue());
+//		printf("Gyrob : %f \n", nav6->GetPitch());
 //		dash ->PutNumber("Gyro", nav6->GetPitch());
 		
 		if (tele_periodic_loops>2)
 		{
+			/*
 			printf ("nav6 Yaw: %f | ", nav6->GetYaw());
 			printf ("nav6 Pitch: %f | ", nav6->GetPitch());
 			printf ("nav6 Roll: %f | ", nav6->GetRoll());
@@ -692,6 +706,22 @@ public:
 			printf ("nav6 Is Calibrating: %d | ", nav6->IsCalibrating());
 			printf ("nav6 Byte Count: %f | ", nav6->GetByteCount());
 			printf ("nav6 Fatal Status %d \n", serial_port -> StatusIsFatal());
+			*/
+			dash ->PutNumber ("nav6 Yaw", nav6->GetYaw());
+		//	dash ->PutNumber ("nav6 Pitch", nav6->GetPitch());
+		//	dash ->PutNumber ("nav6 Roll", nav6->GetRoll());
+		//	dash ->PutNumber ("nav6 X Acceleration", getGyroAngle(this));
+		//	dash ->PutNumber ("nav6 Update Count", nav6->GetUpdateCount());
+		/*	dash ->PutNumber ("nav6 Byte Count", nav6->GetByteCount());
+			dash ->PutNumber ("nav6 X Acceleration", nav6->GetWorldLinearAccelX());
+			dash ->PutNumber ("nav6 Y Acceleration", nav6->GetWorldLinearAccelY());
+			dash ->PutNumber ("nav6 Z Acceleration", nav6->GetWorldLinearAccelZ());  */
+			//dash ->PutNumber ("nav6 Temperature (C)", nav6->GetTempC());
+			dash ->PutNumber ("nav6 Is Connected", nav6->IsConnected());
+		//	dash ->PutNumber ("nav6 Is Moving", nav6->IsMoving());
+			dash ->PutNumber ("nav6 Is Calibrating", nav6->IsCalibrating());
+		//	dash ->PutNumber ("nav6 Byte Count", nav6->GetByteCount());
+			dash ->PutNumber ("nav6 Fatal Status", serial_port -> StatusIsFatal());
 			tele_periodic_loops=0;
 		}
 		
