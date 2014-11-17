@@ -1,0 +1,4 @@
+#ifndef MESSAGE_INTERFACE_H
+#define MESSAGE_INTERFACE_H
+
+#endif
