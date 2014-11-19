@@ -148,6 +148,7 @@ def writeMessageFiles():
       f.write("#ifndef " + convertCamel(msgK) + "_H\n")
       f.write("#define " + convertCamel(msgK) + "_H\n")
       f.write("#include \"MessageTypesClass.h\"\n")
+      f.write("#include \"BaseMessageClass.h\"\n")
       f.write("\n")
       f.write("namespace Messages\n")
       f.write("{\n")
