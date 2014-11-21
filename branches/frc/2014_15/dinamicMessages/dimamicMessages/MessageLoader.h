@@ -1,10 +1,14 @@
 #ifndef MESSAGE_LOADER_H
 #define MESSAGE_LOADER_H
 
-#define CALL_DECODE_FUNCTION(messageLoader, function) ((messageLoader)->*(function))
-#define CALL_ENCODE_FUNCTION(messageLoader, function) ((messageLoader)->*(function))
+#include <math.h>
+#include <string>
 
-namespace Message{
+#define MESSAGE_HEADING_LENGTH 6
+
+namespace message{
+
+   using namespace std;
 
    typedef char int8;
    typedef int int16;
@@ -13,20 +17,35 @@ namespace Message{
    typedef unsigned int uint16;
    typedef unsigned long uint32;
 
-    class MessageLoader{
+   struct MessageHeader{
+     string messageHeading;
+     int16 size;
+     float* floatData;
+     int16 floatSize;
+     int32* longData;
+     int16 longSize;
+     int16* intData;
+     int16 intSize;
+     int8* shortData;
+     int16 shortSize;
+   };
+
+   class MessageLoader{
      public:
-        typedef void& (MessageLoader::*DecodeFunction)(int8* rawData);
-        typedef int8* (MessageLoader::*EncodeFunction)(void* inData);
         MessageLoader();
         ~MessageLoader(void);
         void Run(void);
      private:
-        void& DecodeFloat(int8* rawData);
-        int8* EncodeFloat(void* Float);
-        void& DecodeInt32(int8* rawData);
-        int8* EncodeInt32(void* Int32);
-        void& DecodeInt16(int8* rawData);
-        int8* EncodeInt16(void* Int16);
+        void EncodeMsgHeader(int8* rawData, MessageHeader msgHead, int offset);
+        MessageHeader DecodeMsgHeader(int8* rawData, int offset);
+        string DecodeString(int8* rawData, int size, int offset);
+        void EncodeString(string String, int8* rawData, int offset);
+        float DecodeFloat(int8* rawData, int offset);
+        void EncodeFloat(float Float, int8* rawData, int offset);
+        int32 DecodeInt32(int8* rawData, int offset);
+        void EncodeInt32(int32 Int32, int8* rawData, int offset);
+        int16 DecodeInt16(int8* rawData, int offset);
+        void EncodeInt16(int16 Int16, int8* rawData, int offset);
     };
 }
 #endif
