@@ -11,6 +11,8 @@ void _GLOBAL__I__Z20FRC_userClassFactoryv();
 
 void _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm();
 
+void _GLOBAL__I__ZN25udpServerMessageTransportC2Et();
+
 void _GLOBAL__I__ZN3IMU19DecodePacketHandlerEPci();
 
 void _GLOBAL__I__ZN5DriveC2Ehmhmhmhm();
@@ -72,6 +74,7 @@ void (*_ctors[])() =
     {
     _GLOBAL__I__Z20FRC_userClassFactoryv,
     _GLOBAL__I__ZN11FloorPickUpC2Ehmhmhmhm,
+    _GLOBAL__I__ZN25udpServerMessageTransportC2Et,
     _GLOBAL__I__ZN3IMU19DecodePacketHandlerEPci,
     _GLOBAL__I__ZN5DriveC2Ehmhmhmhm,
     _GLOBAL__I__ZN12PrintCommandC2EPKc,
@@ -106,6 +109,8 @@ void (*_ctors[])() =
 void _GLOBAL__D__Z20FRC_userClassFactoryv();
 
 void _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhmhm();
+
+void _GLOBAL__D__ZN25udpServerMessageTransportC2Et();
 
 void _GLOBAL__D__ZN5DriveC2Ehmhmhmhm();
 
@@ -156,6 +161,7 @@ void (*_dtors[])() =
     {
     _GLOBAL__D__Z20FRC_userClassFactoryv,
     _GLOBAL__D__ZN11FloorPickUpC2Ehmhmhmhm,
+    _GLOBAL__D__ZN25udpServerMessageTransportC2Et,
     _GLOBAL__D__ZN5DriveC2Ehmhmhmhm,
     _GLOBAL__D__ZN9Scheduler9_instanceE,
     _GLOBAL__D_wpi_error_s_ModuleIndexOutOfRange,

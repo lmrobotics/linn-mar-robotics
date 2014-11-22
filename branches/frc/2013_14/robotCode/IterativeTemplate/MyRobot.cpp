@@ -5,6 +5,7 @@
 #include "IMUProcess.h"
 #include "IMUProtocol.h"
 #include "floorPickUp.h"
+#include "message/messageWrapper.h"
 #include <pthread.h>
 #include <unistd.h>
 
@@ -34,18 +35,20 @@ private:
 	FloorPickUp Intake;
 	
 	DriverStation *ds;
-	SmartDashboard *dash;
+	//SmartDashboard *dash;
 	Joystick xbox1,xbox2;
 	Compressor compressor;
-	Gyro gyro;
+	///Gyro gyro;
 	IMUProcess *nav6;
 	bool nav6Created;
 	SerialPort *serial_port;
+	bool clientWorking;
 	Victor winchMotor1, winchMotor2;
 	Solenoid shifter1, shifter2, winchRelease1, winchRelease2;
 	Encoder driveEncoder, winchEncoder;
 	//NetworkTable *Camtable;
 	AnalogChannel *Pot;
+	messageWrapper msgWrapper;
 	DigitalInput WinchLimit,AutoSwitch;
 	Relay *LED;
 	int autoThreadID;
@@ -114,7 +117,7 @@ public:
 		xbox1(2),
 		xbox2(1),
 		compressor(1,1),
-		gyro(3),
+//		gyro(3),
 		winchMotor1(5),
 		winchMotor2(6),
 		shifter1(3),
@@ -126,7 +129,8 @@ public:
 		WinchLimit(6),
 		AutoSwitch(10),
 		autoThreadID(0),
-        autoThreadRunning(false)
+        autoThreadRunning(false),
+		msgWrapper(8888)
 	{
 		ds = DriverStation::GetInstance();
 		SmartDashboard::init();
@@ -167,6 +171,8 @@ public:
 		nav6Created = true;
 		
 		nav6->ResetYawRollPitch();
+		
+		clientWorking = false;
 		//for debuging only
 		//SerialPort *nav6Serial = nav6->GetSerialPort();
 		//printf ("working %f",navSerial->StatusIsFatal());
@@ -208,12 +214,12 @@ public:
 		}
 		IL -> Intake.stop();
 		IL -> Intake.moveWheels(0);
-		Wait(1);
+		Wait(.8);
 		
 		//Shoot
 		IL -> winchRelease1.Set(true);
 		IL -> winchRelease2.Set(false);
-		Wait(.4);
+		Wait(.3);
 		
 		//Reset winch release
 		IL -> winchRelease1.Set(false);
@@ -304,7 +310,7 @@ public:
 			Wait(.01);
 		}
 		IL -> Intake.stop();
-		Wait(.1);
+		//Wait(.1);
 		
 		//Drive to shooting position
 		while (IL -> driveEncoder.GetDistance() < 120){
@@ -497,9 +503,9 @@ public:
 	void IronLions::AutonomousPeriodic() {
 		// feed the user watchdog at every period when in autonomous
 		GetWatchdog().Feed();
-		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
-		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
-		dash ->PutNumber("Gyro", nav6->GetYaw());
+		//dash ->PutNumber("DriveEncoder", driveEncoder.Get());
+		//dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
+		//dash ->PutNumber("Gyro", nav6->GetYaw());
 		printf("DriveEncoder : %d /n", driveEncoder.Get());
 		printf("Intake Angle : %f /n", Pot->GetAverageValue());
 		printf("Gyrob : %f /n", nav6->GetYaw());
@@ -678,11 +684,11 @@ public:
 		//printf("driveEncoderCount: %f \n", (float)(driveEncoder.Get()));
 		
 		//Smart Dashboard Values
-		dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
-		dash ->PutNumber("Winch Encoder", winchEncoder.Get());
-		dash ->PutNumber("Winch Limit", WinchLimit.Get());
-		dash ->PutNumber("Tele Timer", TeleTimer);
-		dash ->PutNumber("DriveEncoder", driveEncoder.Get());
+		//dash ->PutNumber("Intake Angle",Pot -> GetAverageValue());
+		//dash ->PutNumber("Winch Encoder", winchEncoder.Get());
+		//dash ->PutNumber("Winch Limit", WinchLimit.Get());
+		//dash ->PutNumber("Tele Timer", TeleTimer);
+		//dash ->PutNumber("DriveEncoder", driveEncoder.Get());
 //		printf("DriveEncoder : %d \n", driveEncoder.Get());
 //		printf("Intake Angle : %f \n", Pot->GetAverageValue());
 //		printf("Gyrob : %f \n", nav6->GetPitch());
@@ -707,7 +713,10 @@ public:
 			printf ("nav6 Byte Count: %f | ", nav6->GetByteCount());
 			printf ("nav6 Fatal Status %d \n", serial_port -> StatusIsFatal());
 			*/
-			dash ->PutNumber ("nav6 Yaw", nav6->GetYaw());
+			
+			//printf("client Rollv is : %d", msgWrapper.getRoll());
+			//printf("server is : %d", clientWorking);
+			//dash ->PutNumber ("nav6 Yaw", nav6->GetYaw());
 		//	dash ->PutNumber ("nav6 Pitch", nav6->GetPitch());
 		//	dash ->PutNumber ("nav6 Roll", nav6->GetRoll());
 		//	dash ->PutNumber ("nav6 X Acceleration", getGyroAngle(this));
@@ -717,18 +726,19 @@ public:
 			dash ->PutNumber ("nav6 Y Acceleration", nav6->GetWorldLinearAccelY());
 			dash ->PutNumber ("nav6 Z Acceleration", nav6->GetWorldLinearAccelZ());  */
 			//dash ->PutNumber ("nav6 Temperature (C)", nav6->GetTempC());
-			dash ->PutNumber ("nav6 Is Connected", nav6->IsConnected());
+			//dash ->PutNumber ("nav6 Is Connected", nav6->IsConnected());
 		//	dash ->PutNumber ("nav6 Is Moving", nav6->IsMoving());
-			dash ->PutNumber ("nav6 Is Calibrating", nav6->IsCalibrating());
+			//dash ->PutNumber ("nav6 Is Calibrating", nav6->IsCalibrating());
 		//	dash ->PutNumber ("nav6 Byte Count", nav6->GetByteCount());
-			dash ->PutNumber ("nav6 Fatal Status", serial_port -> StatusIsFatal());
+			//dash ->PutNumber ("nav6 Fatal Status", serial_port -> StatusIsFatal());
 			tele_periodic_loops=0;
 		}
 		
 		//Drive Arcade
-		drive.TeleDrive(xbox1.GetRawAxis(4),xbox1.GetY(GenericHID::kLeftHand));
-		printf("X-Axis: %f, ", xbox1.GetRawAxis(4));
-		printf("Y-Axis: %f \n", xbox1.GetY(GenericHID::kLeftHand));
+		drive.TeleDrive(msgWrapper.getRoll()/90.0f, msgWrapper.getYaw()/90.0f);
+		//drive.TeleDrive(xbox1.GetRawAxis(4),xbox1.GetY(GenericHID::kLeftHand));
+		printf("X-Axis: %f, Y-Axis %f",msgWrapper.getYaw()/90.0f, msgWrapper.getRoll()/90.0f);
+		//printf("Y-Axis: %f \n", xbox1.GetY(GenericHID::kLeftHand));
 		tele_periodic_loops++;
 	}
 	
