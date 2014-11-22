@@ -396,6 +396,7 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/MyRobot.o:  \
   C:/WindRiver/vxworks-6.3/target/h/WPILib/Synchronized.h \
   C:/WindRiver/workspace/IterativeTemplate/IMUProtocol.h \
   C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/messageWrapper.h \
   C:/WindRiver/vxworks-6.3/target/h/pthread.h \
   C:/WindRiver/vxworks-6.3/target/h/pthreadCommon.h \
   C:/WindRiver/vxworks-6.3/target/h/signal.h \
@@ -405,7 +406,15 @@ IterativeTemplate_partialImage/Debug/Objects/IterativeTemplate/MyRobot.o:  \
   C:/WindRiver/vxworks-6.3/target/h/timers.h \
   C:/WindRiver/vxworks-6.3/target/h/time.h \
   C:/WindRiver/vxworks-6.3/target/h/sched.h \
-  C:/WindRiver/vxworks-6.3/target/h/timers.h
+  C:/WindRiver/vxworks-6.3/target/h/timers.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/BaseMessageClass.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/MessageTypesClass.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/udpServerMessageTransport.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/messageTransport.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/baseMessageClass.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/messageQueueClass.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/nav6.h \
+  C:/WindRiver/workspace/IterativeTemplate/message/nav6Resp.h
 
 C:/WindRiver/vxworks-6.3/target/h/WPILib/WPILib.h:
 
@@ -1199,6 +1208,8 @@ C:/WindRiver/workspace/IterativeTemplate/IMUProtocol.h:
 
 C:/WindRiver/workspace/IterativeTemplate/floorPickUp.h:
 
+C:/WindRiver/workspace/IterativeTemplate/message/messageWrapper.h:
+
 C:/WindRiver/vxworks-6.3/target/h/pthread.h:
 
 C:/WindRiver/vxworks-6.3/target/h/pthreadCommon.h:
@@ -1218,3 +1229,19 @@ C:/WindRiver/vxworks-6.3/target/h/time.h:
 C:/WindRiver/vxworks-6.3/target/h/sched.h:
 
 C:/WindRiver/vxworks-6.3/target/h/timers.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/BaseMessageClass.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/MessageTypesClass.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/udpServerMessageTransport.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/messageTransport.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/baseMessageClass.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/messageQueueClass.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/nav6.h:
+
+C:/WindRiver/workspace/IterativeTemplate/message/nav6Resp.h:
