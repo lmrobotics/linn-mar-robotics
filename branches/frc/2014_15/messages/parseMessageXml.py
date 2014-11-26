@@ -21,7 +21,7 @@ tree = ET.parse(sys.argv[1])
 messageCat = tree.getroot()
 enumerations = OrderedDict()
 messages = OrderedDict()
-allowedBuiltInTypes = ["bool", "char", "int8", "int16", "int32", "uint8", "uint16", "uint32", "float"]
+allowedBuiltInTypes = ["bool", "char", "int8", "int16", "int32", "uint8", "uint16", "uint32", "float", "fixed"]
          
 def printEnum(enumDef):
    print (enumDef.tag, enumDef.attrib)
@@ -174,6 +174,8 @@ def writeMessageFiles():
                f.write("            " + field.name + " = message[" + field.offset + "]==0 ? false : true;\n" )
             elif field.type == "float":
                f.write("               " + field.name + " = getFloat(" + field.offset + ");\n" )
+			elif field.type == "fixed":
+			   f.write("               " + field.name + " = getFloat(" + field.offset + ");\n")
             elif field.type == "char":
                f.write("               " + field.name + " = getChar(" + field.offset + ");\n" )
             elif field.type == "int8":
@@ -218,6 +220,8 @@ def writeMessageFiles():
                f.write("               message[" + field.offset + "] = " + field.name + " ? 1 : 0;\n" )
             elif field.type == "float":
                f.write("               putFloat(" + field.name + ", " + field.offset + ");\n" )
+			elif field.type == "fixed":
+			   f.write("               putFixed(" + field.name + ", " + field.offset + ");\n" )
             elif field.type == "char":
                f.write("               putChar(" + field.name + ", " + field.offset + ");\n" )
             elif field.type == "uint8":
