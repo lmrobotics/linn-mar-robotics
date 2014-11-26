@@ -56,7 +56,6 @@ def parseMessage(messageDef):
    msg = message(msgName, msgId, fields)
    messages.update({msgName : msg})
    return;
-
 def printMessages():
    # print all message records
    print()      
@@ -68,7 +67,6 @@ def printMessages():
       for f in msgV.fields:
          print ("", f.tag, f.name, f.offset, f.length, f.type )
       print()      
-   
 def lastElementUnbounded(msg):
    #todo use reverse loop to get last element first
    lastElementUnbounded = False
@@ -116,7 +114,10 @@ def isMemberOfMessageTypesClass(thisType):
 def convertCamel(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).upper()
-
+def writeLua():
+    f = open( luaName + ".lua")
+	
+    return;
 def writeMessageFiles():
    f = open("MessageTypesClass.h", "w")
    f.write("#ifndef MESSAGE_TYPES_H\n")
@@ -253,12 +254,15 @@ def writeMessageFiles():
 
 # ----------------------------------------
 catalogName = messageCat.attrib['name']
+luaName = "messages"
 for element in messageCat:
    if element.tag ==  "enumDefinition":
       parseEnum(element);
    if element.tag ==  "messageDefinition":
       parseMessage(element);
-
+   if element.tag == "luaDefinition":
+      global luaName
+      luaName = element.attrib['name']
 print()      
 print()      
 print("Message Catalog:", catalogName)
