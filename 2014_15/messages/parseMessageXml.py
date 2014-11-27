@@ -134,7 +134,7 @@ def writeLuaFile():
                f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":float())\n")
             elif field.type == "fixed":
                endP = int(field.offset) + 6
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":long())\n")
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int32())\n")
             elif field.type == "char":
                endP = int(field.offset) + 1
                f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":char())\n")
@@ -146,7 +146,7 @@ def writeLuaFile():
                f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int())\n")
             elif field.type == "int32":
                endP = int(field.offset) + 4
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":long())\n")
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int32())\n")
             elif field.type == "uint8":
                endP = int(field.offset) + 1
                f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint8())\n")
