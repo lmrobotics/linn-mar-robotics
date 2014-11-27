@@ -21,6 +21,8 @@ tree = ET.parse(sys.argv[1])
 messageCat = tree.getroot()
 enumerations = OrderedDict()
 messages = OrderedDict()
+luaName = "messages"
+port = 0
 allowedBuiltInTypes = ["bool", "char", "int8", "int16", "int32", "uint8", "uint16", "uint32", "float", "fixed"]
          
 def printEnum(enumDef):
@@ -110,13 +112,55 @@ def isMemberOfMessageTypesClass(thisType):
       return True
    else:
       return False
-
 def convertCamel(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).upper()
-def writeLua():
-    f = open( luaName + ".lua")
-	
+def writeLuaFile():
+    f = open( luaName + ".lua", "w")
+    f.write("--wireshark plug in\n")
+    for msgK, msgV in messages.items():
+      f.write( msgK + "_proto = Proto(" + "\"" + msgK + "\"" + ", " + "\"" + msgK + " Protocol\"" + ")" + "\n")
+    for msgK, msgV in messages.items():
+      f.write("function " + msgK + "_proto" + ".dissector(buffer,pinfo,tree)" + "\n")
+      f.write("    pinfo.cols.protocol = " + "\"" + convertCamel(msgK) + "\"\n")
+      f.write("    local subtree = tree:add(" + msgK + "_proto" + "," + "buffer()" + "," + "\"" + msgK + " Protocol Data" + "\"" + ")\n")
+      for field in msgV.fields:
+         if field.tag == "msgField":
+            if field.type == "bool":
+               endP = int(field.offset) + 1
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":bool())\n")
+            elif field.type == "float":
+               endP = int(field.offset) + 6
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":float())\n")
+            elif field.type == "fixed":
+               endP = int(field.offset) + 6
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":long())\n")
+            elif field.type == "char":
+               endP = int(field.offset) + 1
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":char())\n")
+            elif field.type == "int8":
+               endP = int(field.offset) + 1
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":char())\n")
+            elif field.type == "int16":
+               endP = int(field.offset) + 2
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int())\n")
+            elif field.type == "int32":
+               endP = int(field.offset) + 4
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":long())\n")
+            elif field.type == "uint8":
+               endP = int(field.offset) + 1
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint8())\n")
+            elif field.type == "uint16":
+               endP = int(field.offset) + 2
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint())\n")
+            elif field.type == "uint32":
+               endP = int(field.offset) + 4
+               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint32())\n")
+      f.write("end\n")
+    f.write("udp_table = DissectorTable.get(\"udp.port\")\n")
+    for msgK, msgV in messages.items():
+      f.write("udp_table:add(" + port + "," + msgK + "_proto" + ")\n")
+    f.close()
     return;
 def writeMessageFiles():
    f = open("MessageTypesClass.h", "w")
@@ -254,7 +298,6 @@ def writeMessageFiles():
 
 # ----------------------------------------
 catalogName = messageCat.attrib['name']
-luaName = "messages"
 for element in messageCat:
    if element.tag ==  "enumDefinition":
       parseEnum(element);
@@ -263,11 +306,14 @@ for element in messageCat:
    if element.tag == "luaDefinition":
       global luaName
       luaName = element.attrib['name']
+      global port
+      port = element.attrib['port']
 print()      
 print()      
 print("Message Catalog:", catalogName)
 printEnums()
 printMessages()
 writeMessageFiles()
+writeLuaFile()
 
       
