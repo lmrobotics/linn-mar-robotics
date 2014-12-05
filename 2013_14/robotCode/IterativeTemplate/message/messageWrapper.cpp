@@ -2,6 +2,7 @@
  
 messageWrapper::messageWrapper(unsigned short port) : threadRunning(true){
 	server = new udpServerMessageTransport(port);
+	serverThread = new pthread_t();
 	pthread_create( serverThread, NULL, &messageWrapper::updateMessage, (void*)this);
 }
 
