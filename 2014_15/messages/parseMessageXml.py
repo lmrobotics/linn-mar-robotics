@@ -118,48 +118,43 @@ def convertCamel(name):
 def writeLuaFile():
     f = open( luaName + ".lua", "w")
     f.write("--wireshark plug in\n")
+    f.write( "local " + luaName + "_type = {\n");
+    for eK, eV in enumerations.items():
+      for e1K, e1V in eV.items():
+        f.write( "    [" + e1V + "] = \"" + e1K + "\",\n");
+    f.write( "}\n");
     for msgK, msgV in messages.items():
-      f.write( msgK + "_proto = Proto(" + "\"" + msgK + "\"" + ", " + "\"" + msgK + " Protocol\"" + ")" + "\n")
-    for msgK, msgV in messages.items():
-      f.write("function " + msgK + "_proto" + ".dissector(buffer,pinfo,tree)" + "\n")
-      f.write("    pinfo.cols.protocol = " + "\"" + convertCamel(msgK) + "\"\n")
-      f.write("    local subtree = tree:add(" + msgK + "_proto" + "," + "buffer()" + "," + "\"" + msgK + " Protocol Data" + "\"" + ")\n")
+      f.write("local " + msgK + "_fields = " + msgK + "_proto.fields\n")
       for field in msgV.fields:
-         if field.tag == "msgField":
-            if field.type == "bool":
-               endP = int(field.offset) + 1
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":bool())\n")
-            elif field.type == "float":
-               endP = int(field.offset) + 6
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":float())\n")
-            elif field.type == "fixed":
-               endP = int(field.offset) + 6
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int32())\n")
-            elif field.type == "char":
-               endP = int(field.offset) + 1
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":char())\n")
-            elif field.type == "int8":
-               endP = int(field.offset) + 1
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":char())\n")
-            elif field.type == "int16":
-               endP = int(field.offset) + 2
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int())\n")
-            elif field.type == "int32":
-               endP = int(field.offset) + 4
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":int32())\n")
-            elif field.type == "uint8":
-               endP = int(field.offset) + 1
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint8())\n")
-            elif field.type == "uint16":
-               endP = int(field.offset) + 2
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint())\n")
-            elif field.type == "uint32":
-               endP = int(field.offset) + 4
-               f.write("    subtree:add(buffer(" + field.offset + "," + str(endP) + ")" + "," + "\"" + field.name  + ": " + "\"" + " .. buffer(" + field.offset + "," + str(endP) + ")" + ":uint32())\n")
-      f.write("end\n")
+        if field.tag == "msgField":
+		  if field.type == "bool":
+            f.write( msgK + "_fields." + field.name + " = ProtoField." + "bool(")
+            f.write( "\"" + msgK + "." + field.name + "\"" + "," + "\"" + field.name + "\",base.HEX)\n" )
+          elif field.type == "float":
+            f.write( msgK + "_fields." + field.name + "_exp" + " = ProtoField." + "int64(")
+            f.write( "\"" + msgK + "." + field.name + "_exp" + "\"" + "," + "\"" + field.name + "\",base.HEX)\n" )
+            f.write( msgK + "_fields." + field.name + "_mantissa" + " = ProtoField." + "int64(")
+            f.write( "\"" + msgK + "." + field.name + "_mantissa" + "\"" + "," + "\"" + field.name + "\",base.HEX)\n" )
+          elif field.type == "fixed":
+            f.write( msgK + "_fields." + field.name + " = ProtoField." + "uint64(")
+            f.write( "\"" + msgK + "." + field.name + "\"" + "," + "\"" + field.name + "\",base.HEX)\n" )
+          elif field.type == "char":
+          
+          elif field.type == "int8":
+          
+          elif field.type == "int16":
+          
+          elif field.type == "int32":
+          
+          elif field.type == "uint8":
+          
+          elif field.type == "uint16":
+          
+          elif field.type == "uint32":
+          
+    f.write(luaName + "_proto = Proto(\"" + luaName + "\", \"" + luaName + "_1\")\n")
     f.write("udp_table = DissectorTable.get(\"udp.port\")\n")
-    for msgK, msgV in messages.items():
-      f.write("udp_table:add(" + port + "," + msgK + "_proto" + ")\n")
+    f.write("udp_table:add(" + port + "," + luaName + "_proto" + ")\n")
     f.close()
     return;
 def writeMessageFiles():
