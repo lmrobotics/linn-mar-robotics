@@ -1,1 +1,8 @@
-Info: Nothing to build for BasicBot
+17:03:25 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\zhge/wpilib/cpp/current/include" "-IC:\\Users\\zhge\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\zhge/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\zhge/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+
+17:03:28 Build Finished (took 3s.89ms)
+

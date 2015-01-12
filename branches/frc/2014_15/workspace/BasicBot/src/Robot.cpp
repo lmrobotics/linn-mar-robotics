@@ -104,7 +104,7 @@ public:
 				xbox4Pressed=false;
 			}
 			dash->PutNumber("Ultrasonic Readings", ultSonic.getDistance());
-			dash->PutString("Example", "Example");
+			dash->PutString("Example", "Change");
 			drive.TeleDrive(xbox.GetRawAxis(1),xbox.GetRawAxis(4));
 			Wait(0.005);				// wait for a motor update time
 		}
