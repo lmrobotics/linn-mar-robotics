@@ -1,0 +1,242 @@
+20:21:19 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUAdvanced.o" "..\\src\\IMUAdvanced.cpp" 
+..\src\IMUAdvanced.cpp:18:26: fatal error: Synchronized.h: No such file or directory
+ #include "Synchronized.h"
+                          ^
+compilation terminated.
+Info: Nothing to build for 2015_v1
+20:51:17 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUProcess.o" "..\\src\\IMUProcess.cpp" 
+In file included from ..\src\IMUProcess.cpp:1:0:
+..\src\IMUProcess.h:8:26: fatal error: Synchronized.h: No such file or directory
+ #include "Synchronized.h"
+                          ^
+compilation terminated.
+Info: Nothing to build for 2015_v1
+20:53:17 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Ultrasonic.o" "..\\src\\Ultrasonic.cpp" 
+In file included from ..\src\Ultrasonic.cpp:1:0:
+..\src\Ultrasonic.h:5:7: error: redefinition of 'class Ultrasonic'
+ class Ultrasonic : public AnalogInput{
+       ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: previous definition of 'class Ultrasonic'
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+..\src\Ultrasonic.cpp:6:1: error: prototype for 'Ultrasonic::Ultrasonic(uint32_t)' does not match any in class 'Ultrasonic'
+ Ultrasonic::Ultrasonic(uint32_t channel)
+ ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: candidates are: Ultrasonic::Ultrasonic(const Ultrasonic&)
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:38:2: error:                 Ultrasonic::Ultrasonic(uint32_t, uint32_t, Ultrasonic::DistanceUnit)
+  Ultrasonic(uint32_t pingChannel, uint32_t echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:37:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput&, DigitalInput&, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput &pingChannel, DigitalInput &echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:36:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput*, DigitalInput*, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput *pingChannel, DigitalInput *echoChannel, DistanceUnit units = kInches);
+  ^
+..\src\Ultrasonic.cpp:18:32: error: no 'double Ultrasonic::getDistance()' member function declared in class 'Ultrasonic'
+ double Ultrasonic::getDistance(){
+                                ^
+20:53:22 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Ultrasonic.o" "..\\src\\Ultrasonic.cpp" 
+In file included from ..\src\Ultrasonic.cpp:1:0:
+..\src\Ultrasonic.h:5:7: error: redefinition of 'class Ultrasonic'
+ class Ultrasonic : public AnalogInput{
+       ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: previous definition of 'class Ultrasonic'
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+..\src\Ultrasonic.cpp:6:1: error: prototype for 'Ultrasonic::Ultrasonic(uint32_t)' does not match any in class 'Ultrasonic'
+ Ultrasonic::Ultrasonic(uint32_t channel)
+ ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: candidates are: Ultrasonic::Ultrasonic(const Ultrasonic&)
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:38:2: error:                 Ultrasonic::Ultrasonic(uint32_t, uint32_t, Ultrasonic::DistanceUnit)
+  Ultrasonic(uint32_t pingChannel, uint32_t echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:37:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput&, DigitalInput&, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput &pingChannel, DigitalInput &echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:36:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput*, DigitalInput*, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput *pingChannel, DigitalInput *echoChannel, DistanceUnit units = kInches);
+  ^
+..\src\Ultrasonic.cpp:18:32: error: no 'double Ultrasonic::getDistance()' member function declared in class 'Ultrasonic'
+ double Ultrasonic::getDistance(){
+                                ^
+Info: Nothing to build for 2015_v1
+20:53:31 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Ultrasonic.o" "..\\src\\Ultrasonic.cpp" 
+In file included from ..\src\Ultrasonic.cpp:1:0:
+..\src\Ultrasonic.h:5:7: error: redefinition of 'class Ultrasonic'
+ class Ultrasonic : public AnalogInput{
+       ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: previous definition of 'class Ultrasonic'
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+..\src\Ultrasonic.cpp:6:1: error: prototype for 'Ultrasonic::Ultrasonic(uint32_t)' does not match any in class 'Ultrasonic'
+ Ultrasonic::Ultrasonic(uint32_t channel)
+ ^
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:84:0,
+                 from ..\src\Ultrasonic.h:3,
+                 from ..\src\Ultrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:27:7: error: candidates are: Ultrasonic::Ultrasonic(const Ultrasonic&)
+ class Ultrasonic : public SensorBase, public PIDSource, public LiveWindowSendable
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:38:2: error:                 Ultrasonic::Ultrasonic(uint32_t, uint32_t, Ultrasonic::DistanceUnit)
+  Ultrasonic(uint32_t pingChannel, uint32_t echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:37:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput&, DigitalInput&, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput &pingChannel, DigitalInput &echoChannel, DistanceUnit units = kInches);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Ultrasonic.h:36:2: error:                 Ultrasonic::Ultrasonic(DigitalOutput*, DigitalInput*, Ultrasonic::DistanceUnit)
+  Ultrasonic(DigitalOutput *pingChannel, DigitalInput *echoChannel, DistanceUnit units = kInches);
+  ^
+..\src\Ultrasonic.cpp:18:32: error: no 'double Ultrasonic::getDistance()' member function declared in class 'Ultrasonic'
+ double Ultrasonic::getDistance(){
+                                ^
+Info: Nothing to build for 2015_v1
+20:55:55 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+..\src\myUltrasonic.cpp: In constructor 'myUltrasonic::myUltrasonic(uint32_t)':
+..\src\myUltrasonic.cpp:6:44: error: no matching function for call to 'AnalogInput::AnalogInput()'
+ myUltrasonic::myUltrasonic(uint32_t channel)
+                                            ^
+..\src\myUltrasonic.cpp:6:44: note: candidate is:
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogAccelerometer.h:8:0,
+                 from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:15,
+                 from ..\src\myUltrasonic.h:3,
+                 from ..\src\myUltrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogInput.h:30:11: note: AnalogInput::AnalogInput(uint32_t)
+  explicit AnalogInput(uint32_t channel);
+           ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogInput.h:30:11: note:   candidate expects 1 argument, 0 provided
+..\src\myUltrasonic.cpp:8:34: error: cannot call constructor 'myUltrasonic::AnalogInput' directly [-fpermissive]
+  AnalogInput::AnalogInput(channel);
+                                  ^
+..\src\myUltrasonic.cpp:8:34: note: for a function-style cast, remove the redundant '::AnalogInput'
+..\src\myUltrasonic.cpp: At global scope:
+..\src\myUltrasonic.cpp:18:8: error: prototype for 'double myUltrasonic::getDistance()' does not match any in class 'myUltrasonic'
+ double myUltrasonic::getDistance(){
+        ^
+In file included from ..\src\myUltrasonic.cpp:1:0:
+..\src\myUltrasonic.h:9:6: error: candidate is: int myUltrasonic::getDistance()
+  int getDistance();
+      ^
+Info: Nothing to build for 2015_v1
+20:56:20 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+..\src\myUltrasonic.cpp: In constructor 'myUltrasonic::myUltrasonic(uint32_t)':
+..\src\myUltrasonic.cpp:6:44: error: no matching function for call to 'AnalogInput::AnalogInput()'
+ myUltrasonic::myUltrasonic(uint32_t channel)
+                                            ^
+..\src\myUltrasonic.cpp:6:44: note: candidate is:
+In file included from C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogAccelerometer.h:8:0,
+                 from C:\Users\FRC_2013/wpilib/cpp/current/include/WPILib.h:15,
+                 from ..\src\myUltrasonic.h:3,
+                 from ..\src\myUltrasonic.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogInput.h:30:11: note: AnalogInput::AnalogInput(uint32_t)
+  explicit AnalogInput(uint32_t channel);
+           ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/AnalogInput.h:30:11: note:   candidate expects 1 argument, 0 provided
+..\src\myUltrasonic.cpp:8:34: error: cannot call constructor 'myUltrasonic::AnalogInput' directly [-fpermissive]
+  AnalogInput::AnalogInput(channel);
+                                  ^
+..\src\myUltrasonic.cpp:8:34: note: for a function-style cast, remove the redundant '::AnalogInput'
+Info: Nothing to build for 2015_v1
+16:26:34 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+..\src\Robot.cpp:3:24: fatal error: IMUProcess.h: No such file or directory
+ #include "IMUProcess.h"
+                        ^
+compilation terminated.
+Info: Nothing to build for 2015_v1
+16:27:00 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+..\src\Robot.cpp:24:2: error: 'myUltrasonic' does not name a type
+  myUltrasonic ultSonic;
+  ^
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:34:4: error: class 'Robot' does not have any field named 'ultSonic'
+    ultSonic(0),
+    ^
+..\src\Robot.cpp: In member function 'virtual void Robot::OperatorControl()':
+..\src\Robot.cpp:71:44: error: 'ultSonic' was not declared in this scope
+     dash->PutNumber("Ultrasonic Readings", ultSonic.getDistance());
+                                            ^
+..\src\Robot.cpp:77:44: error: 'ultSonic' was not declared in this scope
+     dash->PutNumber("Ultrasonic Readings", ultSonic.getDistance());
+                                            ^
+..\src\Robot.cpp:93:20: error: 'arm' is not a class, namespace, or enumeration
+     if (arm.Get()==arm::Value::kForward){
+                    ^
+..\src\Robot.cpp:94:14: error: 'arm' is not a class, namespace, or enumeration
+      arm.Set(arm::Value::kReverse);
+              ^
+..\src\Robot.cpp:98:14: error: 'arm' is not a class, namespace, or enumeration
+      arm.Set(arm::Value::kForward);
+              ^
+..\src\Robot.cpp:105:43: error: 'ultSonic' was not declared in this scope
+    dash->PutNumber("Ultrasonic Readings", ultSonic.getDistance());
+                                           ^
+Info: Nothing to build for 2015_v1
+16:27:35 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+..\src\Robot.cpp: In member function 'virtual void Robot::OperatorControl()':
+..\src\Robot.cpp:94:20: error: 'arm' is not a class, namespace, or enumeration
+     if (arm.Get()==arm::Value::kForward){
+                    ^
+..\src\Robot.cpp:95:14: error: 'arm' is not a class, namespace, or enumeration
+      arm.Set(arm::Value::kReverse);
+              ^
+..\src\Robot.cpp:99:14: error: 'arm' is not a class, namespace, or enumeration
+      arm.Set(arm::Value::kForward);
+              ^
+Info: Nothing to build for 2015_v1
+16:29:08 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+16:38:25 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
