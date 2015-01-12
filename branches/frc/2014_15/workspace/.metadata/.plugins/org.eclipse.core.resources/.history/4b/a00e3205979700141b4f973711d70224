@@ -1,0 +1,15 @@
+#ifndef ULTRASONIC_H
+#define ULTRASONIC_H
+#include "WPILib.h"
+
+class Ultrasonic : public AnalogInput{
+public:
+    explicit Ultrasonic(uint32_t channel);
+	virtual ~Ultrasonic();
+	int getDistance();
+private:
+    float calibFactor;
+	float calibConstant;
+};
+
+#endif
