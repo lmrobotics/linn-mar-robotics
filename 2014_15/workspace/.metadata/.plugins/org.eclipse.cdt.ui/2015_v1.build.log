@@ -1,1 +1,8 @@
-Info: Nothing to build for 2015_v1
+21:00:10 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+
+21:00:16 Build Finished (took 5s.713ms)
+

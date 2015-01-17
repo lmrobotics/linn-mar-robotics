@@ -3,4 +3,6 @@
 	<section name="ConfigureProjectWizard">
 		<item value="org.eclipse.team.svn.ui.wizard.ShareProjectWizard" key="selectedWizardId"/>
 	</section>
+	<section name="ImportPSFDialog">
+	</section>
 </section>
