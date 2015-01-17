@@ -39,3 +39,131 @@ c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnue
 Info: Nothing to build for BasicBot
 Info: Nothing to build for 2015_v1
 Info: Nothing to build for BasicBot
+10:14:25 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUAdvanced.o" "..\\src\\IMUAdvanced.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMU.o" "..\\src\\IMU.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUProcess.o" "..\\src\\IMUProcess.cpp" 
+In file included from ..\src\IMUProcess.cpp:1:0:
+..\src\IMUProcess.h:8:26: fatal error: Synchronized.h: No such file or directory
+ #include "Synchronized.h"
+                          ^
+compilation terminated.
+10:14:31 **** Incremental Build of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+10:15:07 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUProcess.o" "..\\src\\IMUProcess.cpp" 
+In file included from ..\src\IMUProcess.cpp:1:0:
+..\src\IMUProcess.h:8:26: fatal error: Synchronized.h: No such file or directory
+ #include "Synchronized.h"
+                          ^
+compilation terminated.
+Info: Nothing to build for BasicBot
+10:15:11 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUProcess.o" "..\\src\\IMUProcess.cpp" 
+..\src\IMUProcess.cpp: In constructor 'IMUProcess::IMUProcess(SerialPort*, uint8_t)':
+..\src\IMUProcess.cpp:7:44: error: 'memset' was not declared in this scope
+  memset(roll_history,0,sizeof(roll_history));
+                                            ^
+Info: Nothing to build for BasicBot
+10:16:51 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\IMUProcess.o" "..\\src\\IMUProcess.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\IMUProcess.o" "src\\IMUAdvanced.o" "src\\IMU.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+10:21:39 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+In file included from ..\src\CommandBase.cpp:1:0:
+..\src\CommandBase.h:33:9: error: 'IMUProcess' does not name a type
+  static IMUProcess *nav6;
+         ^
+..\src\CommandBase.cpp:12:1: error: 'IMUProcess' does not name a type
+ IMUProcess* CommandBase::nav6 = NULL;
+ ^
+..\src\CommandBase.cpp: In static member function 'static void CommandBase::init()':
+..\src\CommandBase.cpp:38:2: error: 'nav6' was not declared in this scope
+  nav6 = new IMU(nav6Port,update_rate_hz);
+  ^
+..\src\CommandBase.cpp:38:13: error: expected type-specifier before 'IMU'
+  nav6 = new IMU(nav6Port,update_rate_hz);
+             ^
+..\src\CommandBase.cpp:37:10: warning: unused variable 'update_rate_hz' [-Wunused-variable]
+  uint8_t update_rate_hz = 50;
+          ^
+Info: Nothing to build for BasicBot
+10:22:11 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+In file included from ..\src\Commands\telDrive.h:4:0,
+                 from ..\src\Commands\telDrive.cpp:1:
+..\src\Commands\../CommandBase.h:34:9: error: 'IMUProcess' does not name a type
+  static IMUProcess *nav6;
+         ^
+Info: Nothing to build for BasicBot
+10:22:26 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telCompress.o" "..\\src\\Commands\\telCompress.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+..\src\CommandBase.cpp: In static member function 'static void CommandBase::init()':
+..\src\CommandBase.cpp:38:7: error: invalid conversion from 'IMU*' to 'IMUProcess*' [-fpermissive]
+  nav6 = new IMU(nav6Port,update_rate_hz);
+       ^
+Info: Nothing to build for BasicBot
+10:23:18 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telArm.o" "..\\src\\Commands\\telArm.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\teleopCommand.o" "..\\src\\Commands\\teleopCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\IMUProcess.o" "src\\IMUAdvanced.o" "src\\IMU.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\CommandBase.o: In function `CommandBase::init()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:36: undefined reference to `CommandBase::nav6Port'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:36: undefined reference to `CommandBase::nav6Port'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:38: undefined reference to `CommandBase::nav6Port'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:38: undefined reference to `CommandBase::nav6Port'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+10:24:30 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\IMUProcess.o" "src\\IMUAdvanced.o" "src\\IMU.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+10:28:37 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\IMUProcess.o" "src\\IMUAdvanced.o" "src\\IMU.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+10:29:20 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\IMUProcess.o" "src\\IMUAdvanced.o" "src\\IMU.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot

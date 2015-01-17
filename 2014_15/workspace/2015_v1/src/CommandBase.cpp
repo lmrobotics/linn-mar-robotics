@@ -9,6 +9,8 @@ Drive* CommandBase::drive = NULL;
 myUltrasonic* CommandBase::sonic = NULL;
 wheelArms* CommandBase::wArms = NULL;
 myCompressor* CommandBase::compress = NULL;
+IMUProcess* CommandBase::nav6 = NULL;
+SerialPort* CommandBase::nav6Port = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -32,5 +34,8 @@ void CommandBase::init()
 	sonic = new myUltrasonic(0);
 	wArms = new wheelArms(2,3,0,2,3);
 	compress = new myCompressor(0);
+	nav6Port = new SerialPort(57600,SerialPort::kOnboard);
+	uint8_t update_rate_hz = 50;
+	nav6 = new IMUProcess(nav6Port,update_rate_hz);
 	SmartDashboard::init();
 }
