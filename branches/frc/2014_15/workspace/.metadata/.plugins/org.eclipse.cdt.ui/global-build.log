@@ -269,3 +269,705 @@ Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\zhge/wpilib/cpp/current/include" "-IC:\\Users\\zhge\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
 arm-frc-linux-gnueabi-g++ "-LC:\\Users\\zhge/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\zhge/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+17:18:25 **** Rebuild of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Drive.o" "..\\src\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+17:20:55 **** Rebuild of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\ExampleSubsystem.o" "..\\src\\Subsystems\\ExampleSubsystem.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\ExampleSubsystem.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+18:46:38 **** Rebuild of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\ExampleSubsystem.o" "..\\src\\Subsystems\\ExampleSubsystem.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\Runbot.o" "..\\src\\Commands\\Runbot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\ExampleSubsystem.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\Runbot.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+18:47:02 **** Rebuild of configuration Debug for project BasicBot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\BasicBot\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Drive.o" "..\\src\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Robot.o" "src\\Drive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+20:44:14 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+..\src\Subsystems\Drive.cpp: In constructor 'Drive::Drive(uint32_t, uint32_t)':
+..\src\Subsystems\Drive.cpp:6:17: error: no matching function for call to 'Subsystem::Subsystem()'
+  drive2(channel2)
+                 ^
+..\src\Subsystems\Drive.cpp:6:17: note: candidate is:
+In file included from ..\src\Subsystems\Drive.h:4:0,
+                 from ..\src\Subsystems\Drive.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Subsystem.h:21:2: note: Subsystem::Subsystem(const char*)
+  Subsystem(const char *name);
+  ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Subsystem.h:21:2: note:   candidate expects 1 argument, 0 provided
+Info: Nothing to build for BasicBot
+15:55:40 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+In file included from ..\src\Subsystems\Drive.cpp:1:0:
+..\src\Subsystems\Drive.h: In constructor 'Drive::Drive(uint32_t, uint32_t)':
+..\src\Subsystems\Drive.h:10:15: warning: 'Drive::drive2' will be initialized after [-Wreorder]
+  Talon drive1,drive2;
+               ^
+..\src\Subsystems\Drive.cpp:7:19: warning:   base 'Subsystem' [-Wreorder]
+  Subsystem("Drive")
+                   ^
+..\src\Subsystems\Drive.cpp:4:1: warning:   when initialized here [-Wreorder]
+ Drive::Drive (uint32_t channel1, uint32_t channel2):
+ ^
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myUltrasonic.o" "..\\src\\Subsystems\\myUltrasonic.cpp" 
+..\src\Subsystems\myUltrasonic.cpp:12:1: error: prototype for 'myUltrasonic::myUltrasonic(uint32_t)' does not match any in class 'myUltrasonic'
+ myUltrasonic::myUltrasonic(uint32_t channel) : AnalogInput(channel), Subsystem("myUltrasonic")
+ ^
+In file included from ..\src\Subsystems\myUltrasonic.cpp:1:0:
+..\src\Subsystems\myUltrasonic.h:7:7: error: candidates are: myUltrasonic::myUltrasonic(myUltrasonic&&)
+ class myUltrasonic: public Subsystem
+       ^
+..\src\Subsystems\myUltrasonic.h:7:7: error:                 myUltrasonic::myUltrasonic(const myUltrasonic&)
+..\src\Subsystems\myUltrasonic.h:13:2: error:                 myUltrasonic::myUltrasonic()
+  myUltrasonic();
+  ^
+..\src\Subsystems\myUltrasonic.cpp:18:29: error: definition of implicitly-declared 'virtual myUltrasonic::~myUltrasonic()'
+ myUltrasonic::~myUltrasonic()
+                             ^
+..\src\Subsystems\myUltrasonic.cpp:23:34: error: no 'double myUltrasonic::getDistance()' member function declared in class 'myUltrasonic'
+ double myUltrasonic::getDistance(){
+                                  ^
+Info: Nothing to build for BasicBot
+15:56:42 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myUltrasonic.o" "..\\src\\Subsystems\\myUltrasonic.cpp" 
+..\src\Subsystems\myUltrasonic.cpp: In constructor 'myUltrasonic::myUltrasonic(uint32_t)':
+..\src\Subsystems\myUltrasonic.cpp:12:94: warning: base 'AnalogInput' will be initialized after [-Wreorder]
+ myUltrasonic::myUltrasonic(uint32_t channel) : AnalogInput(channel), Subsystem("myUltrasonic")
+                                                                                              ^
+..\src\Subsystems\myUltrasonic.cpp:12:94: warning:   base 'Subsystem' [-Wreorder]
+..\src\Subsystems\myUltrasonic.cpp:12:1: warning:   when initialized here [-Wreorder]
+ myUltrasonic::myUltrasonic(uint32_t channel) : AnalogInput(channel), Subsystem("myUltrasonic")
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+15:57:23 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myUltrasonic.o" "..\\src\\Subsystems\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:03:47 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:08:57 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:19:06 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+..\src\Subsystems\wheelArms.cpp:4:1: error: prototype for 'wheelArms::wheelArms()' does not match any in class 'wheelArms'
+ wheelArms::wheelArms() :
+ ^
+In file included from ..\src\Subsystems\wheelArms.cpp:1:0:
+..\src\Subsystems\wheelArms.h:7:7: error: candidates are: wheelArms::wheelArms(wheelArms&&)
+ class wheelArms: public Subsystem
+       ^
+..\src\Subsystems\wheelArms.h:7:7: error:                 wheelArms::wheelArms(const wheelArms&)
+..\src\Subsystems\wheelArms.h:13:2: error:                 wheelArms::wheelArms(uint32_t, uint32_t, uint8_t, uint32_t, uint32_t)
+  wheelArms(uint32_t channelw1, uint32_t channelw2,
+  ^
+Info: Nothing to build for BasicBot
+16:22:36 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+..\src\Subsystems\wheelArms.cpp:4:1: error: prototype for 'wheelArms::wheelArms()' does not match any in class 'wheelArms'
+ wheelArms::wheelArms() :
+ ^
+In file included from ..\src\Subsystems\wheelArms.cpp:1:0:
+..\src\Subsystems\wheelArms.h:7:7: error: candidates are: wheelArms::wheelArms(wheelArms&&)
+ class wheelArms: public Subsystem
+       ^
+..\src\Subsystems\wheelArms.h:7:7: error:                 wheelArms::wheelArms(const wheelArms&)
+..\src\Subsystems\wheelArms.h:13:2: error:                 wheelArms::wheelArms(uint32_t, uint32_t, uint8_t, uint32_t, uint32_t)
+  wheelArms(uint32_t channelw1, uint32_t channelw2,
+  ^
+Info: Nothing to build for BasicBot
+16:23:51 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:27:08 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Subsystems\wheelArms.o: In function `wheelArms::~wheelArms()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Subsystems/wheelArms.cpp:25: undefined reference to `wheelArms::stopWheels()'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+16:29:31 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+..\src\Subsystems\wheelArms.cpp: In function 'void release()':
+..\src\Subsystems\wheelArms.cpp:35:2: error: 'armSol' was not declared in this scope
+  armSol.Set(DoubleSolenoid::Value::kReverse);
+  ^
+Info: Nothing to build for BasicBot
+16:39:17 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+..\src\Subsystems\wheelArms.cpp:41:28: error: declaration of 'void wheelArms::shifterOff()' outside of class is not definition [-fpermissive]
+ void wheelArms::shifterOff();
+                            ^
+..\src\Subsystems\wheelArms.cpp:42:22: error: declaration of 'void wheelArms::pull()' outside of class is not definition [-fpermissive]
+ void wheelArms::pull();
+                      ^
+..\src\Subsystems\wheelArms.cpp:43:22: error: declaration of 'void wheelArms::push()' outside of class is not definition [-fpermissive]
+ void wheelArms::push();
+                      ^
+..\src\Subsystems\wheelArms.cpp:44:28: error: declaration of 'void wheelArms::stopWheels()' outside of class is not definition [-fpermissive]
+ void wheelArms::stopWheels();
+                            ^
+Command canceled
+16:39:28 **** Rebuild of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\ExampleSubsystem.o" "..\\src\\Subsystems\\ExampleSubsystem.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myUltrasonic.o" "..\\src\\Subsystems\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:47:37 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+16:59:48 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+17:16:38 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+..\src\OI.cpp: In member function 'float OI::xbox1_y1()':
+..\src\OI.cpp:9:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_x1()':
+..\src\OI.cpp:13:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_x2()':
+..\src\OI.cpp:16:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_y2()':
+..\src\OI.cpp:19:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+17:18:53 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+..\src\OI.cpp: In member function 'float OI::xbox1_x1()':
+..\src\OI.cpp:9:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_y1()':
+..\src\OI.cpp:12:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_lTrigger()':
+..\src\OI.cpp:15:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_rTrigger()':
+..\src\OI.cpp:18:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_x2()':
+..\src\OI.cpp:21:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_y2()':
+..\src\OI.cpp:24:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+17:19:50 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+..\src\OI.cpp: In member function 'float OI::xbox1_x1()':
+..\src\OI.cpp:9:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_y1()':
+..\src\OI.cpp:12:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_lTriggerVal()':
+..\src\OI.cpp:15:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_rTriggerVal()':
+..\src\OI.cpp:18:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_x2()':
+..\src\OI.cpp:21:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+..\src\OI.cpp: In member function 'float OI::xbox1_y2()':
+..\src\OI.cpp:24:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+17:45:07 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+In file included from ..\src\Commands\telDrive.h:4:0,
+                 from ..\src\Commands\telDrive.cpp:1:
+..\src\Commands\../CommandBase.h:6:23: fatal error: ..\src\Commands\../Subsystems*: Invalid argument
+ #include "Subsystems*"
+                       ^
+compilation terminated.
+Info: Nothing to build for BasicBot
+17:45:12 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+In file included from ..\src\Commands\ExampleCommand.h:4:0,
+                 from ..\src\Commands\ExampleCommand.cpp:1:
+..\src\Commands\../CommandBase.h:6:24: fatal error: ..\src\Commands\../Subsystems/*: Invalid argument
+ #include "Subsystems/*"
+                        ^
+compilation terminated.
+Info: Nothing to build for BasicBot
+17:47:58 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+18:02:12 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:05:43 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:05:55 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:09:16 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+..\src\Commands\telDrive.cpp: In constructor 'telDrive::telDrive()':
+..\src\Commands\telDrive.cpp:5:17: error: no matching function for call to 'telDrive::Requires(Drive**)'
+  Requires(&drive);
+                 ^
+..\src\Commands\telDrive.cpp:5:17: note: candidate is:
+In file included from ..\src\Commands\../CommandBase.h:5:0,
+                 from ..\src\Commands\telDrive.h:4,
+                 from ..\src\Commands\telDrive.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note: void Command::Requires(Subsystem*)
+  void Requires(Subsystem *s);
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note:   no known conversion for argument 1 from 'Drive**' to 'Subsystem*'
+Info: Nothing to build for BasicBot
+18:09:36 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:09:44 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+..\src\Commands\telDrive.cpp: In constructor 'telDrive::telDrive()':
+..\src\Commands\telDrive.cpp:5:24: error: expected unqualified-id before '*' token
+  Requires(CommandBase::*drive);
+                        ^
+Info: Nothing to build for BasicBot
+18:09:55 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+..\src\Commands\telDrive.cpp: In constructor 'telDrive::telDrive()':
+..\src\Commands\telDrive.cpp:5:17: error: no matching function for call to 'telDrive::Requires(Drive&)'
+  Requires(*drive);
+                 ^
+..\src\Commands\telDrive.cpp:5:17: note: candidate is:
+In file included from ..\src\Commands\../CommandBase.h:5:0,
+                 from ..\src\Commands\telDrive.h:4,
+                 from ..\src\Commands\telDrive.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note: void Command::Requires(Subsystem*)
+  void Requires(Subsystem *s);
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note:   no known conversion for argument 1 from 'Drive' to 'Subsystem*'
+Info: Nothing to build for BasicBot
+18:10:04 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:10:45 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:10:59 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:12:32 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+..\src\Commands\telDrive.cpp: In constructor 'telDrive::telDrive()':
+..\src\Commands\telDrive.cpp:5:16: error: no matching function for call to 'telDrive::Requires(Drive&)'
+  Requires(drive);
+                ^
+..\src\Commands\telDrive.cpp:5:16: note: candidate is:
+In file included from ..\src\Commands\../CommandBase.h:5:0,
+                 from ..\src\Commands\telDrive.h:4,
+                 from ..\src\Commands\telDrive.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note: void Command::Requires(Subsystem*)
+  void Requires(Subsystem *s);
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note:   no known conversion for argument 1 from 'Drive' to 'Subsystem*'
+Info: Nothing to build for BasicBot
+18:13:50 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+..\src\CommandBase.cpp: In static member function 'static void CommandBase::init()':
+..\src\CommandBase.cpp:28:8: error: no match for 'operator=' (operand types are 'Drive' and 'Drive*')
+  drive = new Drive(0,1,0,0,1,0,1);
+        ^
+..\src\CommandBase.cpp:28:8: note: candidate is:
+In file included from ..\src\CommandBase.h:7:0,
+                 from ..\src\CommandBase.cpp:1:
+..\src\Subsystems/Drive.h:7:7: note: Drive& Drive::operator=(const Drive&) <deleted>
+ class Drive: public Subsystem
+       ^
+..\src\Subsystems/Drive.h:7:7: note:   no known conversion for argument 1 from 'Drive*' to 'const Drive&'
+Info: Nothing to build for BasicBot
+18:14:02 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+..\src\Commands\telDrive.cpp: In constructor 'telDrive::telDrive()':
+..\src\Commands\telDrive.cpp:5:16: error: no matching function for call to 'telDrive::Requires(Drive&)'
+  Requires(drive);
+                ^
+..\src\Commands\telDrive.cpp:5:16: note: candidate is:
+In file included from ..\src\Commands\../CommandBase.h:5:0,
+                 from ..\src\Commands\telDrive.h:4,
+                 from ..\src\Commands\telDrive.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note: void Command::Requires(Subsystem*)
+  void Requires(Subsystem *s);
+       ^
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Command.h:54:7: note:   no known conversion for argument 1 from 'Drive' to 'Subsystem*'
+Info: Nothing to build for BasicBot
+18:14:10 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+src\Commands\telDrive.o: In function `telDrive::telDrive()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src\Commands/telDrive.cpp:5: undefined reference to `CommandBase::drive'
+src\CommandBase.o: In function `CommandBase::init()':
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:28: undefined reference to `CommandBase::drive'
+C:\Users\FRC_2013\workspace\2015_v1\Debug/..\src/CommandBase.cpp:28: undefined reference to `CommandBase::drive'
+collect2.exe: error: ld returned 1 exit status
+Info: Nothing to build for BasicBot
+18:15:40 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+..\src\CommandBase.cpp:8:8: error: 'CommmandBase' has not been declared
+ Drive* CommmandBase::drive = NULL;
+        ^
+Info: Nothing to build for BasicBot
+18:15:44 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+18:22:00 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:37:11 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:45:21 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:45:40 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:46:20 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:47:45 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+19:56:39 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myCompressor.o" "..\\src\\Subsystems\\myCompressor.cpp" 
+In file included from ..\src\Subsystems\myCompressor.cpp:1:0:
+..\src\Subsystems\myCompressor.h:15:7: error: conflicting return type specified for 'virtual bool myCompressor::InitDefaultCommand()'
+  bool InitDefaultCommand();
+       ^
+In file included from ..\src\Subsystems\myCompressor.h:4:0,
+                 from ..\src\Subsystems\myCompressor.cpp:1:
+C:\Users\FRC_2013/wpilib/cpp/current/include/Commands/Subsystem.h:28:15: error:   overriding 'virtual void Subsystem::InitDefaultCommand()'
+  virtual void InitDefaultCommand();
+               ^
+..\src\Subsystems\myCompressor.cpp:11:6: error: prototype for 'void myCompressor::InitDefaultCommand()' does not match any in class 'myCompressor'
+ void myCompressor::InitDefaultCommand()
+      ^
+In file included from ..\src\Subsystems\myCompressor.cpp:1:0:
+..\src\Subsystems\myCompressor.h:15:7: error: candidate is: virtual bool myCompressor::InitDefaultCommand()
+  bool InitDefaultCommand();
+       ^
+..\src\Subsystems\myCompressor.cpp:17:6: error: prototype for 'bool myCompressor::autoCompress()' does not match any in class 'myCompressor'
+ bool myCompressor::autoCompress(){
+      ^
+In file included from ..\src\Subsystems\myCompressor.cpp:1:0:
+..\src\Subsystems\myCompressor.h:14:7: error: candidate is: void myCompressor::autoCompress()
+  void autoCompress();
+       ^
+Info: Nothing to build for BasicBot
+19:57:11 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myCompressor.o" "..\\src\\Subsystems\\myCompressor.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myUltrasonic.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telDrive.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+20:34:16 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+In file included from ..\src\Commands\ExampleCommand.h:4:0,
+                 from ..\src\Commands\ExampleCommand.cpp:1:
+..\src\Commands\../CommandBase.h:8:37: fatal error: Subsystems/myUltrasonic.h: No such file or directory
+ #include "Subsystems/myUltrasonic.h"
+                                     ^
+compilation terminated.
+Info: Nothing to build for BasicBot
+20:34:35 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telArm.o" "..\\src\\Commands\\telArm.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myCompressor.o" "..\\src\\Subsystems\\myCompressor.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telCompress.o" "..\\src\\Commands\\telCompress.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+20:39:34 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\teleopCommand.o" "..\\src\\Commands\\teleopCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telArm.o" "..\\src\\Commands\\telArm.cpp" 
+Command canceled
+20:39:50 **** Rebuild of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\ExampleCommand.o" "..\\src\\Commands\\ExampleCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\teleopCommand.o" "..\\src\\Commands\\teleopCommand.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telDrive.o" "..\\src\\Commands\\telDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telCompress.o" "..\\src\\Commands\\telCompress.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\ExampleSubsystem.o" "..\\src\\Subsystems\\ExampleSubsystem.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\Drive.o" "..\\src\\Subsystems\\Drive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\wheelArms.o" "..\\src\\Subsystems\\wheelArms.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\myCompressor.o" "..\\src\\Subsystems\\myCompressor.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CommandBase.o" "..\\src\\CommandBase.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\myUltrasonic.o" "..\\src\\myUltrasonic.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telArm.o" "..\\src\\Commands\\telArm.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+20:46:21 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\teleopCommand.o" "..\\src\\Commands\\teleopCommand.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+Info: Nothing to build for 2015_v1
+Info: Nothing to build for BasicBot
+20:55:56 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot
+21:00:10 **** Incremental Build of configuration Debug for project 2015_v1 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\FRC_2013/wpilib/cpp/current/include" "-IC:\\Users\\FRC_2013\\workspace\\2015_v1\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Commands\\telMessages.o" "..\\src\\Commands\\telMessages.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\FRC_2013/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\myUltrasonic.o" "src\\Subsystems\\wheelArms.o" "src\\Subsystems\\myCompressor.o" "src\\Subsystems\\ExampleSubsystem.o" "src\\Subsystems\\Drive.o" "src\\Robot.o" "src\\OI.o" "src\\Commands\\teleopCommand.o" "src\\Commands\\telMessages.o" "src\\Commands\\telDrive.o" "src\\Commands\\telCompress.o" "src\\Commands\\telArm.o" "src\\Commands\\ExampleCommand.o" "src\\CommandBase.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\FRC_2013/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for BasicBot

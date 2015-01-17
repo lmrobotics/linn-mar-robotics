@@ -5,6 +5,10 @@
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::examplesubsystem = NULL;
 OI* CommandBase::oi = NULL;
+Drive* CommandBase::drive = NULL;
+myUltrasonic* CommandBase::sonic = NULL;
+wheelArms* CommandBase::wArms = NULL;
+myCompressor* CommandBase::compress = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -24,4 +28,9 @@ void CommandBase::init()
 	examplesubsystem = new ExampleSubsystem();
 
 	oi = new OI();
+	drive = new Drive(0,1,0,0,1,0,1);
+	sonic = new myUltrasonic(0);
+	wArms = new wheelArms(2,3,0,2,3);
+	compress = new myCompressor(0);
+	SmartDashboard::init();
 }
