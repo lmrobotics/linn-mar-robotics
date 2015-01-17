@@ -23,34 +23,34 @@ float OI::xbox1_y2(){
 	return xbox1.GetRawAxis(5);
 }
 bool OI::xbox1_a(){
-	return xbox1.GetRawButton(0);
-}
-bool OI::xbox1_b(){
 	return xbox1.GetRawButton(1);
 }
-bool OI::xbox1_x(){
+bool OI::xbox1_b(){
 	return xbox1.GetRawButton(2);
 }
-bool OI::xbox1_y(){
+bool OI::xbox1_x(){
 	return xbox1.GetRawButton(3);
 }
-bool OI::xbox1_lB(){
+bool OI::xbox1_y(){
 	return xbox1.GetRawButton(4);
 }
-bool OI::xbox1_rB(){
+bool OI::xbox1_lB(){
 	return xbox1.GetRawButton(5);
 }
-bool OI::xbox1_select(){
+bool OI::xbox1_rB(){
 	return xbox1.GetRawButton(6);
 }
-bool OI::xbox1_start(){
+bool OI::xbox1_select(){
 	return xbox1.GetRawButton(7);
 }
-bool OI::xbox1_lClick(){
+bool OI::xbox1_start(){
 	return xbox1.GetRawButton(8);
 }
-bool OI::xbox1_rClick(){
+bool OI::xbox1_lClick(){
 	return xbox1.GetRawButton(9);
+}
+bool OI::xbox1_rClick(){
+	return xbox1.GetRawButton(10);
 }
 bool OI::xbox1_lT(){
 	return (xbox1.GetRawAxis(2)>.10);
@@ -79,34 +79,34 @@ float OI::xbox2_y2(){
 	return xbox2.GetRawAxis(5);
 }
 bool OI::xbox2_a(){
-	return xbox2.GetRawButton(0);
-}
-bool OI::xbox2_b(){
 	return xbox2.GetRawButton(1);
 }
-bool OI::xbox2_x(){
+bool OI::xbox2_b(){
 	return xbox2.GetRawButton(2);
 }
-bool OI::xbox2_y(){
+bool OI::xbox2_x(){
 	return xbox2.GetRawButton(3);
 }
-bool OI::xbox2_lB(){
+bool OI::xbox2_y(){
 	return xbox2.GetRawButton(4);
 }
-bool OI::xbox2_rB(){
+bool OI::xbox2_lB(){
 	return xbox2.GetRawButton(5);
 }
-bool OI::xbox2_select(){
+bool OI::xbox2_rB(){
 	return xbox2.GetRawButton(6);
 }
-bool OI::xbox2_start(){
+bool OI::xbox2_select(){
 	return xbox2.GetRawButton(7);
 }
-bool OI::xbox2_lClick(){
+bool OI::xbox2_start(){
 	return xbox2.GetRawButton(8);
 }
-bool OI::xbox2_rClick(){
+bool OI::xbox2_lClick(){
 	return xbox2.GetRawButton(9);
+}
+bool OI::xbox2_rClick(){
+	return xbox2.GetRawButton(10);
 }
 bool OI::xbox2_lT(){
 	return (xbox2.GetRawAxis(2)>.15);
