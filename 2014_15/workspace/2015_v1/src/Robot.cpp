@@ -2,18 +2,20 @@
 #include "Commands/Command.h"
 #include "Commands/teleopCommand.h"
 #include "CommandBase.h"
+#include "Commands/autoSingle.h"
+//#include "Commands/ExampleCommand.h"
 
 class Robot: public IterativeRobot
 {
 private:
-//	Command *autonomousCommand;
+	Command *autonomousCommand;
 	Command *telCommand;
 	LiveWindow *lw;
 
 	void RobotInit()
 	{
 		CommandBase::init();
-//		autonomousCommand = new ExampleCommand();
+		autonomousCommand = new autoSingle();
 		telCommand = new teleopCommand();
 		lw = LiveWindow::GetInstance();
 	}
@@ -27,8 +29,9 @@ private:
 
 	void AutonomousInit()
 	{
-//		if (autonomousCommand != NULL)
-//			autonomousCommand->Start();
+
+		if (autonomousCommand != NULL)
+			autonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic()
@@ -60,4 +63,3 @@ private:
 };
 
 START_ROBOT_CLASS(Robot);
-
