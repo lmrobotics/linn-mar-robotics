@@ -12,6 +12,7 @@
 #include "OI.h"
 #include "WPILib.h"
 
+
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
@@ -33,6 +34,7 @@ public:
 	static myCompressor *compress;
 	static IMUProcess *nav6;
 	static SerialPort *nav6Port;
+
 };
 
 #endif

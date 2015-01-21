@@ -12,6 +12,7 @@ myCompressor* CommandBase::compress = NULL;
 IMUProcess* CommandBase::nav6 = NULL;
 SerialPort* CommandBase::nav6Port = NULL;
 
+
 CommandBase::CommandBase(char const *name) :
 		Command(name)
 {
@@ -37,5 +38,6 @@ void CommandBase::init()
 	nav6Port = new SerialPort(57600,SerialPort::kOnboard);
 	uint8_t update_rate_hz = 50;
 	nav6 = new IMUProcess(nav6Port,update_rate_hz);
+
 	SmartDashboard::init();
 }

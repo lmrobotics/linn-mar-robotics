@@ -9,10 +9,11 @@ class Drive: public Subsystem
 private:
 	Talon drive1, drive2;
 	DoubleSolenoid shifter;
-	Encoder encoder;
+
 	float deadband;
 	float maxout;
 public:
+	Encoder encoder;
 	Drive (uint32_t channeld1, uint32_t channeld2,
 			uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel,
 			uint32_t encoderAChannel, uint32_t encoderBChannel);
