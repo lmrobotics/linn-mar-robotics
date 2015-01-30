@@ -1,6 +1,7 @@
 #include "WPILib.h"
 #include "Drive.h"
 #include "myUltrasonic.h"
+#include "LIDAR.h"
 
 /**
  * This is a demo program showing the use of the RobotDrive class.
@@ -24,6 +25,8 @@ private:
 //	Encoder encoder;
 	myUltrasonic ultSonic;
 	Talon wheel1, wheel2;
+	LIDAR lidar;
+	int counter;
 
 public:
 	Robot() :
@@ -34,11 +37,14 @@ public:
 			compressor(0),
 			ultSonic(0),
 			wheel1(2),
-			wheel2(3)
+			wheel2(3),
+			lidar(),
+			counter(0)
 //			encoder()
 	{
 		ds = DriverStation::GetInstance();
 		SmartDashboard::init();
+		lidar.setup();
 	}
 
 	/**
@@ -106,7 +112,19 @@ public:
 			dash->PutNumber("Ultrasonic Readings", ultSonic.getDistance());
 			dash->PutString("Example", "Change");
 			drive.TeleDrive(xbox.GetRawAxis(1),xbox.GetRawAxis(4));
-			Wait(0.005);				// wait for a motor update time
+
+			unsigned char *readTest01= new unsigned char;
+			unsigned char *readTest04= new unsigned char;
+			dash ->PutNumber ("LIDAR Reading (Plz Work)", lidar.read());
+//			dash ->PutBoolean("LIDAR Reading 01 Failed?", lidar.Read(0x01, 1, readTest01));
+//			dash ->PutNumber ("LIDAR Reading 01", (int)*readTest01);
+//			dash ->PutBoolean("LIDAR Reading 04 Failed?", lidar.Read(0x04, 1, readTest04));
+//			dash ->PutNumber ("LIDAR Reading 04", (int)*readTest04);
+			dash ->PutNumber("LIDAR High", (double)lidar.getHigh());
+			dash ->PutNumber("LIDAR Low", (double)lidar.getLow());
+			counter++;
+			dash ->PutNumber("Counter", counter);
+			Wait(0.020);				// wait for a motor update time
 		}
 	}
 

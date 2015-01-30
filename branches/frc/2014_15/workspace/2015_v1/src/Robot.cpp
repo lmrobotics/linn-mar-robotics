@@ -3,6 +3,7 @@
 #include "Commands/teleopCommand.h"
 #include "CommandBase.h"
 #include "Commands/autoSingle.h"
+#include "Commands/pollLIDAR.h"
 //#include "Commands/ExampleCommand.h"
 
 class Robot: public IterativeRobot
@@ -10,6 +11,7 @@ class Robot: public IterativeRobot
 private:
 	Command *autonomousCommand;
 	Command *telCommand;
+	Command *lidarPoll;
 	LiveWindow *lw;
 
 	void RobotInit()
@@ -17,6 +19,7 @@ private:
 		CommandBase::init();
 		autonomousCommand = new autoSingle();
 		telCommand = new teleopCommand();
+		lidarPoll = new pollLIDAR();
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -49,6 +52,8 @@ private:
 //			autonomousCommand->Cancel();
 		if (telCommand != NULL)
 			telCommand->Start();
+		if (lidarPoll != NULL)
+			lidarPoll->Start();
 	}
 
 	void TeleopPeriodic()

@@ -2,13 +2,11 @@
 #include "../RobotMap.h"
 
 Drive::Drive (uint32_t channeld1, uint32_t channeld2,
-		uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel,
-		uint32_t encoderAChannel, uint32_t encoderBChannel):
+		uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel):
 	Subsystem("Drive"),
 	drive1(channeld1),
 	drive2(channeld2),
-	shifter(shiftModuleNumber, shiftForwardChannel, shiftReverseChannel),
-	encoder(encoderAChannel, encoderBChannel)
+	shifter(shiftModuleNumber, shiftForwardChannel, shiftReverseChannel)
 {
 	deadband = .2;
 	maxout = 1;
