@@ -13,10 +13,8 @@ private:
 	float deadband;
 	float maxout;
 public:
-	Encoder encoder;
 	Drive (uint32_t channeld1, uint32_t channeld2,
-			uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel,
-			uint32_t encoderAChannel, uint32_t encoderBChannel);
+			uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel);
 	~Drive();
 	void test_motors();
 	void Move(float LeftSpeed, float RightSpeed);
@@ -27,6 +25,7 @@ public:
 	void shift();
 	void highGear();
 	void lowGear();
+
 };
 
 #endif

@@ -8,6 +8,7 @@
 #include "myUltrasonic.h"
 #include "Subsystems/wheelArms.h"
 #include "Subsystems/myCompressor.h"
+#include "LIDAR.h"
 #include "IMUProcess.h"
 #include "OI.h"
 #include "WPILib.h"
@@ -34,7 +35,8 @@ public:
 	static myCompressor *compress;
 	static IMUProcess *nav6;
 	static SerialPort *nav6Port;
-
+	static Encoder *encoder;
+	static LIDAR *lidar;
 };
 
 #endif
