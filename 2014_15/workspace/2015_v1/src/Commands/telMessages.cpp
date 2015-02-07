@@ -19,8 +19,8 @@ void telMessages::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void telMessages::Execute()
 {
-	unsigned char *readTest01= new unsigned char;
-	unsigned char *readTest04= new unsigned char;
+	//unsigned char *readTest01= new unsigned char;
+	//unsigned char *readTest04= new unsigned char;
 //	dash ->PutBoolean("LIDAR set", lidar->setup());
 	//dash ->PutNumber ("Ultrasonic Readings", sonic->getDistance());
 	dash ->PutNumber ("nav6 Yaw", nav6->GetYaw());
@@ -47,9 +47,11 @@ void telMessages::Execute()
 	dash ->PutNumber ("LIDAR High", (double)lidar->getHigh());
 	dash ->PutNumber ("LIDAR Low", (double)lidar->getLow());
 	dash ->PutNumber ("LIDAR Status", (double)lidar->getLidarStatus());
+	dash ->PutNumber ("Joystick X2", oi->xbox1_x2());
+	dash ->PutNumber ("Joystick Y1", oi->xbox1_y1());
 
 
-	dash ->PutString ("Test", "6");
+	dash ->PutString ("Test", "8");
 }
 
 // Make this return true when this Command no longer needs to run execute()

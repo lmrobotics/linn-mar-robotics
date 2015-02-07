@@ -2,6 +2,8 @@
 
 autoSingle::autoSingle()
 {
+	AddSequential(new goToPlace(25,10));
+	AddSequential(new goToPlace(-10,10));
 //	AddSequential(new moveToLocation(1,2));
 //	AddSequential(new moveToLocation(2,4));
 //	AddSequential(new moveToLocation(1,5));

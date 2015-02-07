@@ -17,6 +17,10 @@ public:
 	virtual float GetPitch();       // Pitch, in units of degrees (-180 to 180)
 	virtual float GetRoll();        // Roll, in units of degrees (-180 to 180)
 	
+	virtual double GetFilteredYaw();
+	virtual double GetFilteredPitch();
+	virtual double GetFilteredRoll();
+
 	void ResetYawRollPitch(void);
 	virtual int DecodePacketHandler( char *received_data, int bytes_remaining );
 protected:

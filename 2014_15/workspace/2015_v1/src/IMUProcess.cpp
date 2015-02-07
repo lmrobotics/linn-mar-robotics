@@ -31,6 +31,21 @@ float IMUProcess::GetRoll(){
 	return roll;
 }
 
+double IMUProcess::GetFilteredYaw(){
+	//TODO: Actually write this. GetYaw is being used as a placeholder
+	return GetYaw();
+}
+
+double IMUProcess::GetFilteredPitch(){
+	//TODO: Actually write this. GetPitch is being used as a placeholder
+	return GetPitch();
+}
+
+double IMUProcess::GetFilteredRoll(){
+	//TODO: Actually write this. GetRoll is being used as a placeholder
+	return GetRoll();
+}
+
 void IMUProcess::ResetYawRollPitch(){
 
 	ZeroYaw();

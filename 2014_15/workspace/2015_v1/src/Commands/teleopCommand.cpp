@@ -2,9 +2,8 @@
 
 teleopCommand::teleopCommand()
 {
-	AddParallel(new telArm());
 	AddParallel(new telCompress());
-	AddParallel(new telDrive());
+	AddParallel(new telControl());
 	AddParallel(new telMessages());
 
 	// Add Commands here:
