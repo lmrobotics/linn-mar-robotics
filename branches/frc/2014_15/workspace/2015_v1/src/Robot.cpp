@@ -4,6 +4,7 @@
 #include "CommandBase.h"
 #include "Commands/autoSingle.h"
 #include "Commands/pollLIDAR.h"
+#include "Commands/testCommand.h"
 //#include "Commands/ExampleCommand.h"
 
 class Robot: public IterativeRobot
@@ -11,15 +12,19 @@ class Robot: public IterativeRobot
 private:
 	Command *autonomousCommand;
 	Command *telCommand;
-	Command *lidarPoll;
+	Command *tCommand;
+//	Command *lidarPoll;
 	LiveWindow *lw;
+	int test1;
+	int *test2;
 
 	void RobotInit()
 	{
 		CommandBase::init();
 		autonomousCommand = new autoSingle();
 		telCommand = new teleopCommand();
-		lidarPoll = new pollLIDAR();
+		tCommand = new testCommand();
+//		lidarPoll = new pollLIDAR();
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -28,6 +33,10 @@ private:
 		Scheduler::GetInstance()->Run();
 		if (telCommand != NULL)
 			telCommand->Cancel();
+		if (autonomousCommand != NULL)
+			autonomousCommand->Cancel();
+		if (tCommand != NULL)
+			tCommand->Cancel();
 	}
 
 	void AutonomousInit()
@@ -52,13 +61,22 @@ private:
 //			autonomousCommand->Cancel();
 		if (telCommand != NULL)
 			telCommand->Start();
-		if (lidarPoll != NULL)
-			lidarPoll->Start();
+//		if (lidarPoll != NULL)
+//			lidarPoll->Start();
 	}
 
 	void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+	}
+
+	void TestInit()
+	{
+		if (tCommand != NULL)
+				tCommand->Start();
+		test1=0;
+		test2=&test1;
+		*test2=1;
 	}
 
 	void TestPeriodic()

@@ -1,0 +1,95 @@
+#include <Commands/telControl.h>
+
+
+telControl::telControl()
+{
+	Requires(drive);
+	Requires(elevator);
+	currentState=NORMAL;
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(chassis);
+}
+
+// Called just before this Command runs the first time
+void telControl::Initialize() {
+	dash->PutString("Does It Work?", "YES");
+}
+
+// Called repeatedly when this Command is scheduled to run
+void telControl::Execute() {
+	drive->TeleDrive(oi->xbox1_y1(), oi->xbox1_x2());
+	if (oi->xbox1_rBTapped()) {
+		drive->shift();
+	}
+
+	runCurrentLoop();
+
+	//||   or
+	//&&   and
+	//!    not
+	//==   equals
+	//!=   Not Equals
+
+	// :)  Happy
+
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool telControl::IsFinished() {
+	return false;
+}
+
+// Called once after isFinished returns true
+void telControl::End() {
+
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void telControl::Interrupted() {
+
+}
+
+void telControl::normalOperation(){
+
+}
+
+void telControl::normalOperationLoop(){
+	if (oi->xbox1_lT()) {
+		elevator->setRollers(-1);
+		elevator->setConveyor(-1);
+	}
+	if (oi->xbox1_rT()) {
+		elevator->setRollers(1);
+		elevator->setConveyor(1);
+	}
+	if (oi->xbox2_lT()) {
+		elevator->setRollers(-1);
+		elevator->setConveyor(-1);
+	}
+	if (oi->xbox2_rT()) {
+		elevator->setRollers(1);
+		elevator->setConveyor(1);
+	}
+	if (oi->xbox2_lB()) {
+		elevator->setElevator(1);
+	}
+	if (oi->xbox2_rB()) {
+		elevator->setElevator(-1);
+	}
+	if (oi->xbox2_aTapped()) {
+		elevator->shiftElevatorGear();
+	}
+	if (oi->xbox2_bTapped()) {
+		elevator->shiftArms();
+	}
+	if (oi->xbox2_xTapped()) {
+		elevator->shiftMagazine();
+	}
+	if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
+		elevator->setRRollers(oi->xbox2_y2());
+	}
+	if (oi->xbox2_y1() > deadband || oi->xbox2_y1() < -deadband) {
+		elevator->setLRollers(oi->xbox2_y1());
+	}
+}

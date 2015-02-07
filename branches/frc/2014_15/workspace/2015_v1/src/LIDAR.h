@@ -15,7 +15,7 @@ public:
 	LIDAR();
 	virtual ~LIDAR();
 	int getCM();
-	void poll();
+	int poll();
 	void setup();
 	unsigned char getHigh();
 	unsigned char getLow();
@@ -23,8 +23,9 @@ public:
 
 private:
 
-	unsigned char *distanceHigh;
-	unsigned char *distanceLow;
+	unsigned char distanceArray[2];
+//	unsigned char *distanceHigh;
+//	unsigned char *distanceLow;
 	unsigned char *lidarStatus;
 	int cmReading;
 	int counter;

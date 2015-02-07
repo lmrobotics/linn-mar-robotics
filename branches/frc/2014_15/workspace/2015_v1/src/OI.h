@@ -10,6 +10,8 @@ private:
 public:
 	OI();
 
+	//If a button is pressed down, a "tapped" function will return true only the first time it is called
+	//After that, it will return false until the button is no longer pressed down, in which case it will reset
 	float xbox1_y1();
 	float xbox1_y2();
 	float xbox1_x1();
@@ -28,6 +30,19 @@ public:
 	bool xbox1_start();
 	bool xbox1_lClick();
 	bool xbox1_rClick();
+	bool xbox1_aTapped();
+	bool xbox1_bTapped();
+	bool xbox1_xTapped();
+	bool xbox1_yTapped();
+	bool xbox1_rBTapped();
+	bool xbox1_lBTapped();
+	bool xbox1_rTTapped();
+	bool xbox1_lTTapped();
+	bool xbox1_selectTapped();
+	bool xbox1_startTapped();
+	bool xbox1_lClickTapped();
+	bool xbox1_rClickTapped();
+
 
 	float xbox2_y1();
 	float xbox2_y2();
@@ -47,6 +62,22 @@ public:
 	bool xbox2_start();
 	bool xbox2_lClick();
 	bool xbox2_rClick();
+	bool xbox2_aTapped();
+	bool xbox2_bTapped();
+	bool xbox2_xTapped();
+	bool xbox2_yTapped();
+	bool xbox2_rBTapped();
+	bool xbox2_lBTapped();
+	bool xbox2_rTTapped();
+	bool xbox2_lTTapped();
+	bool xbox2_selectTapped();
+	bool xbox2_startTapped();
+	bool xbox2_lClickTapped();
+	bool xbox2_rClickTapped();
+
+private:
+	bool tappedArray1[];
+	bool tappedArray2[];
 };
 
 #endif

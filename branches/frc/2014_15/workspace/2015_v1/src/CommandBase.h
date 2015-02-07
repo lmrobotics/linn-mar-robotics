@@ -6,13 +6,12 @@
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Drive.h"
 #include "myUltrasonic.h"
-#include "Subsystems/wheelArms.h"
 #include "Subsystems/myCompressor.h"
+#include "Subsystems/Elevator.h"
 #include "LIDAR.h"
 #include "IMUProcess.h"
 #include "OI.h"
 #include "WPILib.h"
-
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -30,13 +29,14 @@ public:
 	static OI *oi;
 	static Drive *drive;
 	static myUltrasonic *sonic;
-	static wheelArms *wArms;
 	static SmartDashboard *dash;
 	static myCompressor *compress;
 	static IMUProcess *nav6;
 	static SerialPort *nav6Port;
-	static Encoder *encoder;
+	static Encoder *driveEncoder;
+	static Encoder *elevatorEncoder;
 	static LIDAR *lidar;
+	static Elevator *elevator;
 };
 
 #endif
