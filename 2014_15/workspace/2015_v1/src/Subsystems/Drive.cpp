@@ -10,6 +10,8 @@ Drive::Drive (uint32_t channeld1, uint32_t channeld2,
 {
 	targetSpeedL = 0;
 	targetSpeedR = 0;
+	currentSpeedL = 0;
+	currentSpeedR = 0;
 }
 
 void Drive::InitDefaultCommand()
@@ -38,34 +40,41 @@ void Drive::test_motors(){
 
 void Drive::Move(float LeftSpeed, float RightSpeed){
 
-	targetSpeedR = RightSpeed;
+	targetSpeedR = -RightSpeed;
 	targetSpeedL = LeftSpeed;
 
-	if(drive1.Get()<(targetSpeedL-accel)){
-		drive1.Set(drive1.Get() + accel);
+	if(currentSpeedL<(targetSpeedL-accel)){
+		currentSpeedL+=accel;
+		drive1.Set(currentSpeedL);
 	}
-	else if (drive1.Get()>(targetSpeedL+accel)){
-		drive1.Set(drive1.Get() - accel);
+	else if (currentSpeedL>(targetSpeedL+accel)){
+		currentSpeedL-=accel;
+		drive1.Set(currentSpeedL);
 	}
 	else {
+		currentSpeedL=targetSpeedL;
 		drive1.Set(targetSpeedL);
 	}
 
-	if(drive2.Get()<(targetSpeedR-accel)){
-		drive2.Set(drive2.Get() + accel);
+	if(currentSpeedR<(targetSpeedR-accel)){
+		currentSpeedR+=accel;
+		drive2.Set(currentSpeedR);
 	}
-	else if (drive2.Get()>(targetSpeedR+accel)){
-		drive2.Set(drive2.Get() - accel);
+	else if (currentSpeedR>(targetSpeedR+accel)){
+		currentSpeedR-=accel;
+		drive2.Set(currentSpeedR);
 	}
 	else {
+		currentSpeedR=targetSpeedR;
 		drive2.Set(targetSpeedR);
 	}
-
-	drive1.Set(LeftSpeed);
-	drive2.Set(-RightSpeed);
 }
 
 void Drive::stopdrive(){
+	targetSpeedL = 0;
+	targetSpeedR = 0;
+	currentSpeedL = 0;
+	currentSpeedR = 0;
 	drive1.Set(0);
 	drive2.Set(0);
 }

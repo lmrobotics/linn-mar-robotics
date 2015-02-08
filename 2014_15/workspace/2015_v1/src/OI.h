@@ -76,8 +76,8 @@ public:
 	bool xbox2_rClickTapped();
 
 private:
-	bool tappedArray1[];
-	bool tappedArray2[];
+	bool tappedArray1[12]{false,false,false,false,false,false,false,false,false,false,false,false};
+	bool tappedArray2[12]{false,false,false,false,false,false,false,false,false,false,false,false};
 };
 
 #endif

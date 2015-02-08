@@ -12,9 +12,11 @@ private:
 
 	const float deadband = .1;
 	const float maxout = 1;
-	const float accel=.1;
+	const float accel=.02;
 	float targetSpeedL;
 	float targetSpeedR;
+	float currentSpeedL;
+	float currentSpeedR;
 
 
 public:
