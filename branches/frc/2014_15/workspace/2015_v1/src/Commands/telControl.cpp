@@ -55,27 +55,45 @@ void telControl::normalOperation(){
 }
 
 void telControl::normalOperationLoop(){
-	if (oi->xbox1_lT()) {
-		elevator->setRollers(-1);
-		elevator->setConveyor(-1);
-	}
-	if (oi->xbox1_rT()) {
-		elevator->setRollers(1);
-		elevator->setConveyor(1);
-	}
 	if (oi->xbox2_lT()) {
 		elevator->setRollers(-1);
-		elevator->setConveyor(-1);
+		elevator->setConveyor(-conveyorSpeed);
 	}
-	if (oi->xbox2_rT()) {
+	else if (oi->xbox2_rT()) {
 		elevator->setRollers(1);
-		elevator->setConveyor(1);
+		elevator->setConveyor(conveyorSpeed);
+	}
+	else if (oi->xbox1_lT()) {
+		elevator->setRollers(-1);
+		elevator->setConveyor(-conveyorSpeed);
+	}
+	else if (oi->xbox1_rT()) {
+		elevator->setRollers(1);
+		elevator->setConveyor(conveyorSpeed);
+	}
+	else {
+		if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
+			elevator->setRRollers(oi->xbox2_y2());
+		}
+		else {
+			elevator->setRRollers(0);
+		}
+		if (oi->xbox2_y1() > deadband || oi->xbox2_y1() < -deadband) {
+			elevator->setLRollers(oi->xbox2_y1());
+		}
+		else {
+			elevator->setLRollers(0);
+		}
+		elevator->setConveyor(0);
 	}
 	if (oi->xbox2_lB()) {
 		elevator->setElevator(1);
 	}
-	if (oi->xbox2_rB()) {
+	else if (oi->xbox2_rB()) {
 		elevator->setElevator(-1);
+	}
+	else {
+		elevator->setElevator(0);
 	}
 	if (oi->xbox2_aTapped()) {
 		elevator->shiftElevatorGear();
@@ -85,11 +103,5 @@ void telControl::normalOperationLoop(){
 	}
 	if (oi->xbox2_xTapped()) {
 		elevator->shiftMagazine();
-	}
-	if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
-		elevator->setRRollers(oi->xbox2_y2());
-	}
-	if (oi->xbox2_y1() > deadband || oi->xbox2_y1() < -deadband) {
-		elevator->setLRollers(oi->xbox2_y1());
 	}
 }

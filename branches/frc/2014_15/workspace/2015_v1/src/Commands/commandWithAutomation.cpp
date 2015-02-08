@@ -42,7 +42,12 @@ void commandWithAutomation::runCurrentLoop(){
 
 //Move elevator to specified height in inches from the ground
 void commandWithAutomation::moveElevatorToHeight(float heightIN){
-
+	if(elevatorEncoder->Get()> heightIN){
+		elevator-> winchMotor.Set(-.5);
+	}
+	else{
+		elevator-> winchMotor.Set(.5);
+	}
 }
 
 //Set Elevator to the lowest position, open magazine once it gets to the bottom
@@ -66,7 +71,20 @@ void commandWithAutomation::autoGetCrate(){
 }
 
 bool commandWithAutomation::moveElevatorToHeightLoop(){
-	return false;
+	//return false;
+	/*if(elevatorEncoder->Get() > heightIN -1 ){
+			elevator-> winchMotor.Set(-.5);
+			return false;
+		}
+		else if(elevatorEncoder->Get() < heightIN +1 ){
+			elevator-> winchMotor.Set(.5);
+			return false;
+		}
+		else{
+			elevator-> winchMotor.Set(0);
+			return true;
+		}*/
+
 }
 bool commandWithAutomation::resetElevatorAndMagazineLoop(){
 	return false;

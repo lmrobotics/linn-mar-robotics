@@ -311,85 +311,85 @@ float OI::xbox2_y2() {
 
 bool OI::xbox2_a() {
 	if (!xbox2.GetRawButton(1)) {
-		tappedArray1[0] = false;
+		tappedArray2[0] = false;
 	}
 	return xbox2.GetRawButton(1);
 }
 bool OI::xbox2_b() {
 	if (!xbox2.GetRawButton(2)) {
-		tappedArray1[1] = false;
+		tappedArray2[1] = false;
 	}
 	return xbox2.GetRawButton(2);
 }
 bool OI::xbox2_x() {
 	if (!xbox2.GetRawButton(3)) {
-		tappedArray1[2] = false;
+		tappedArray2[2] = false;
 	}
 	return xbox2.GetRawButton(3);
 }
 bool OI::xbox2_y() {
 	if (!xbox2.GetRawButton(4)) {
-		tappedArray1[3] = false;
+		tappedArray2[3] = false;
 	}
 	return xbox2.GetRawButton(4);
 }
 bool OI::xbox2_lB() {
 	if (!xbox2.GetRawButton(5)) {
-		tappedArray1[4] = false;
+		tappedArray2[4] = false;
 	}
 	return xbox2.GetRawButton(5);
 }
 bool OI::xbox2_rB() {
 	if (!xbox2.GetRawButton(6)) {
-		tappedArray1[5] = false;
+		tappedArray2[5] = false;
 	}
 	return xbox2.GetRawButton(6);
 }
 bool OI::xbox2_select() {
 	if (!xbox2.GetRawButton(7)) {
-		tappedArray1[6] = false;
+		tappedArray2[6] = false;
 	}
 	return xbox2.GetRawButton(7);
 }
 bool OI::xbox2_start() {
 	if (!xbox2.GetRawButton(8)) {
-		tappedArray1[7] = false;
+		tappedArray2[7] = false;
 	}
 	return xbox2.GetRawButton(8);
 }
 bool OI::xbox2_lClick() {
 	if (!xbox2.GetRawButton(9)) {
-		tappedArray1[8] = false;
+		tappedArray2[8] = false;
 	}
 	return xbox2.GetRawButton(9);
 }
 bool OI::xbox2_rClick() {
 	if (!xbox2.GetRawButton(10)) {
-		tappedArray1[9] = false;
+		tappedArray2[9] = false;
 	}
 	return xbox2.GetRawButton(10);
 }
 bool OI::xbox2_lT() {
 	if ((xbox2.GetRawAxis(2) <= .50)) {
-		tappedArray1[10] = false;
+		tappedArray2[10] = false;
 	}
 	return (xbox2.GetRawAxis(2) > .50);
 }
 bool OI::xbox2_rT() {
 	if ((xbox2.GetRawAxis(3) <= .50)) {
-		tappedArray1[11] = false;
+		tappedArray2[11] = false;
 	}
 	return (xbox2.GetRawAxis(3) > .50);
 }
 
 bool OI::xbox2_aTapped() {
 	if (!xbox2.GetRawButton(1)) {
-		tappedArray1[0] = false;
+		tappedArray2[0] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[0]) {
-			tappedArray1[0] = true;
+		if (!tappedArray2[0]) {
+			tappedArray2[0] = true;
 			return true;
 		}
 		else {
@@ -400,12 +400,12 @@ bool OI::xbox2_aTapped() {
 }
 bool OI::xbox2_bTapped() {
 	if (!xbox2.GetRawButton(2)) {
-		tappedArray1[1] = false;
+		tappedArray2[1] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[1]) {
-			tappedArray1[1] = true;
+		if (!tappedArray2[1]) {
+			tappedArray2[1] = true;
 			return true;
 		}
 		else {
@@ -416,12 +416,12 @@ bool OI::xbox2_bTapped() {
 }
 bool OI::xbox2_xTapped() {
 	if (!xbox2.GetRawButton(3)) {
-		tappedArray1[2] = false;
+		tappedArray2[2] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[2]) {
-			tappedArray1[2] = true;
+		if (!tappedArray2[2]) {
+			tappedArray2[2] = true;
 			return true;
 		}
 		else {
@@ -432,12 +432,12 @@ bool OI::xbox2_xTapped() {
 }
 bool OI::xbox2_yTapped() {
 	if (!xbox2.GetRawButton(4)) {
-		tappedArray1[3] = false;
+		tappedArray2[3] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[3]) {
-			tappedArray1[3] = true;
+		if (!tappedArray2[3]) {
+			tappedArray2[3] = true;
 			return true;
 		}
 		else {
@@ -448,12 +448,12 @@ bool OI::xbox2_yTapped() {
 }
 bool OI::xbox2_lBTapped() {
 	if (!xbox2.GetRawButton(5)) {
-		tappedArray1[4] = false;
+		tappedArray2[4] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[4]) {
-			tappedArray1[4] = true;
+		if (!tappedArray2[4]) {
+			tappedArray2[4] = true;
 			return true;
 		}
 		else {
@@ -464,12 +464,12 @@ bool OI::xbox2_lBTapped() {
 }
 bool OI::xbox2_rBTapped() {
 	if (!xbox2.GetRawButton(6)) {
-		tappedArray1[5] = false;
+		tappedArray2[5] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[5]) {
-			tappedArray1[5] = true;
+		if (!tappedArray2[5]) {
+			tappedArray2[5] = true;
 			return true;
 		}
 		else {
@@ -480,12 +480,12 @@ bool OI::xbox2_rBTapped() {
 }
 bool OI::xbox2_selectTapped() {
 	if (!xbox2.GetRawButton(7)) {
-		tappedArray1[6] = false;
+		tappedArray2[6] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[6]) {
-			tappedArray1[6] = true;
+		if (!tappedArray2[6]) {
+			tappedArray2[6] = true;
 			return true;
 		}
 		else {
@@ -496,12 +496,12 @@ bool OI::xbox2_selectTapped() {
 }
 bool OI::xbox2_startTapped() {
 	if (!xbox2.GetRawButton(8)) {
-		tappedArray1[7] = false;
+		tappedArray2[7] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[7]) {
-			tappedArray1[7] = true;
+		if (!tappedArray2[7]) {
+			tappedArray2[7] = true;
 			return true;
 		}
 		else {
@@ -512,12 +512,12 @@ bool OI::xbox2_startTapped() {
 }
 bool OI::xbox2_lClickTapped() {
 	if (!xbox2.GetRawButton(9)) {
-		tappedArray1[8] = false;
+		tappedArray2[8] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[8]) {
-			tappedArray1[8] = true;
+		if (!tappedArray2[8]) {
+			tappedArray2[8] = true;
 			return true;
 		}
 		else {
@@ -528,12 +528,12 @@ bool OI::xbox2_lClickTapped() {
 }
 bool OI::xbox2_rClickTapped() {
 	if (!xbox2.GetRawButton(10)) {
-		tappedArray1[9] = false;
+		tappedArray2[9] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[9]) {
-			tappedArray1[9] = true;
+		if (!tappedArray2[9]) {
+			tappedArray2[9] = true;
 			return true;
 		}
 		else {
@@ -544,12 +544,12 @@ bool OI::xbox2_rClickTapped() {
 }
 bool OI::xbox2_lTTapped() {
 	if ((xbox2.GetRawAxis(2) <= .50)) {
-		tappedArray1[10] = false;
+		tappedArray2[10] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[10]) {
-			tappedArray1[10] = true;
+		if (!tappedArray2[10]) {
+			tappedArray2[10] = true;
 			return true;
 		}
 		else {
@@ -560,12 +560,12 @@ bool OI::xbox2_lTTapped() {
 }
 bool OI::xbox2_rTTapped() {
 	if ((xbox2.GetRawAxis(3) <= .50)) {
-		tappedArray1[11] = false;
+		tappedArray2[11] = false;
 		return false;
 	}
 	else {
-		if (!tappedArray1[11]) {
-			tappedArray1[11] = true;
+		if (!tappedArray2[11]) {
+			tappedArray2[11] = true;
 			return true;
 		}
 		else {

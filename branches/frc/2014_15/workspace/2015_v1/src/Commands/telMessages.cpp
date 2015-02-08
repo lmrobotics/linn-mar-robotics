@@ -47,8 +47,7 @@ void telMessages::Execute()
 	dash ->PutNumber ("LIDAR High", (double)lidar->getHigh());
 	dash ->PutNumber ("LIDAR Low", (double)lidar->getLow());
 	dash ->PutNumber ("LIDAR Status", (double)lidar->getLidarStatus());
-	dash ->PutNumber ("Joystick X2", oi->xbox1_x2());
-	dash ->PutNumber ("Joystick Y1", oi->xbox1_y1());
+	dash ->PutBoolean ("Joystick A Tapped", oi->xbox1_aTapped());
 
 
 	dash ->PutString ("Test", "8");

@@ -19,8 +19,10 @@ public:
 
 	void normalOperation();
 protected:
-
 	void normalOperationLoop();
+
+private:
+	const float conveyorSpeed=.5;
 };
 
 #endif

@@ -33,7 +33,7 @@ void CommandBase::init()
 	examplesubsystem = new ExampleSubsystem();
 
 	oi = new OI();
-	drive = new Drive(0,1,0,0,1);
+	drive = new Drive(0,1,0,0,7);
 	sonic = new myUltrasonic(0);
 	compress = new myCompressor(0);
 	nav6Port = new SerialPort(57600,SerialPort::kOnboard);
@@ -42,6 +42,6 @@ void CommandBase::init()
 	driveEncoder = new Encoder(0,1);
 	elevatorEncoder = new Encoder(2,3);
 	lidar = new LIDAR();
-	elevator = new Elevator(2, 3, 4, 5, 0, 2, 3, 4, 5, 6, 7, 1, 0, 1);
+	elevator = new Elevator(5, 3, 4, 2, 0, 1, 6, 2, 5, 3, 4, 1, 0, 1);
 	SmartDashboard::init();
 }
