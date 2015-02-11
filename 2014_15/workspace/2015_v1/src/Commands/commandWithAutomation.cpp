@@ -333,11 +333,24 @@ bool commandWithAutomation::autoGetToteLoop(){
 			}
 		break;
 	case 5:
-
+		elevator -> setRollers(-.5);
+		elevator -> setConveyor(-.5);
+		timer=std::clock();
+		step=6;
+		break;
+	case 6:
+		elevator -> setRollers(-.5);
+		elevator -> setConveyor(-.5);
+		if((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC)>1){
+			elevator -> setRollers(0);
+			elevator -> setConveyor(0);
+			return true;
+		}
+		break;
 	}
 	return false;
 }
 /*
 bool commandWithAutomation::goToLocationLoop(){
 
-}
+}*/
