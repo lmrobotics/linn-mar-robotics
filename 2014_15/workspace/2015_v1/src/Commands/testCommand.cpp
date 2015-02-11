@@ -2,7 +2,6 @@
 
 testCommand::testCommand()
 {
-	AddSequential(new goToPlace(25,10));
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

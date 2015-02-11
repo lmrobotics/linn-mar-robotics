@@ -8,6 +8,7 @@ Drive::Drive (uint32_t channeld1, uint32_t channeld2,
 	drive2(channeld2),
 	shifter(shiftModuleNumber, shiftForwardChannel, shiftReverseChannel)
 {
+	accel=.02;
 	targetSpeedL = 0;
 	targetSpeedR = 0;
 	currentSpeedL = 0;
@@ -70,6 +71,11 @@ void Drive::Move(float LeftSpeed, float RightSpeed){
 	}
 }
 
+void Drive::MoveNoAccel(float LeftSpeed, float RightSpeed){
+		drive1.Set(LeftSpeed);
+		drive2.Set(-RightSpeed);
+}
+
 void Drive::stopdrive(){
 	targetSpeedL = 0;
 	targetSpeedR = 0;
@@ -80,56 +86,6 @@ void Drive::stopdrive(){
 }
 
 void Drive::TeleDrive(float Xbox_y, float Xbox_x){
-//Ben and Ryley's mess********************************************************
-
-
-
-	/*
-	enum DRIVE_STATES{
-		DRIVE_STOPPED,
-		DRIVE_MOVE,
-		//DRIVE_SLOW = 2
-	};
-	//int startSpeed =.1;
-	float targetSpeed = Xbox_y;
-	float speed = 0;
-	//float targetSpeed = y;
-
-	if(Xbox_y > deadband || Xbox_y < -deadband){
-		driveState = DRIVE_MOVE;
-	}
-	else{
-		driveState = DRIVE_STOPPED;
-	}
-
-	if(driveState == DRIVE_STOPPED){
-		drive1.Set(0);
-		drive2.Set(0);
-	}
-
-	if(driveState == DRIVE_MOVE && speed > targetSpeed){
-		speed = speed - .001;
-	}
-	else if(driveState == DRIVE_MOVE && speed < targetSpeed){
-		speed = speed + .001;
-	}
-	else if(driveState == DRIVE_MOVE && speed == targetSpeed){
-		drive1.Set(targetSpeed);
-		drive2.Set(targetSpeed);
-	}
-	else{
-		drive1.Set(0);
-		drive2.Set(0);
-	}
-
-	if(driveState == DRIVE_MOVE){
-		drive1.Set(speed);
-		drive2.Set(speed);
-	}
-	*/
-
-//Ben and Ryley's mess********************************************************
-
 
 	float x=Xbox_x;
 	float y=Xbox_y;
@@ -193,4 +149,10 @@ void Drive::highGear(){
 void Drive::lowGear(){
 	shifter.Set(DoubleSolenoid::Value::kForward);
 }
+void Drive::setAccel(float newAccel){
+	accel=newAccel;
+}
 
+float Drive::getAccel(){
+	return accel;
+}
