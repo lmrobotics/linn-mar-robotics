@@ -4,6 +4,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
+
 class Drive: public Subsystem
 {
 private:
@@ -12,7 +13,7 @@ private:
 
 	const float deadband = .1;
 	const float maxout = 1;
-	const float accel=.02;
+	float accel;
 	float targetSpeedL;
 	float targetSpeedR;
 	float currentSpeedL;
@@ -25,10 +26,12 @@ public:
 	~Drive();
 	void test_motors();
 	void Move(float LeftSpeed, float RightSpeed);
+	void MoveNoAccel(float LeftSpeed, float RightSpeed);
 	void stopdrive();
 	void TeleDrive(float Xbox_x, float Xbox_y);
 	void InitDefaultCommand();
-
+	void setAccel(float newAccel);
+	float getAccel();
 	void shift();
 	void highGear();
 	void lowGear();

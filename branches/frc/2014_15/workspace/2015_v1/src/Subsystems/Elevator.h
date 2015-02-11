@@ -46,7 +46,6 @@ public:
 	void shiftElevatorGear();
 	bool isElevatorHighGear();
 	void brakeElevator();
-	void shiftBrakeElevator();
 	void unbrakeElevator();
 
 	void openArms();
@@ -58,12 +57,6 @@ public:
 	void setRRollers(double power);
 
 	void setConveyor(double power);
-
-	void moveElevatorToHeight(float height);
-	void resetElevatorAndMagazine();
-	void autoLoadCrate();
-	void autoEjectCrate();
-	void autoGetCrate();
 };
 
 #endif

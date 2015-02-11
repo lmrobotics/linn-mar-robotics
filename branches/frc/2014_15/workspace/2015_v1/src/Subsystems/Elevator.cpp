@@ -57,6 +57,12 @@ void Elevator::shiftMagazine(){
 
 void Elevator::setElevator(double power){
 	winchMotor.Set(power);
+	if(power != 0){
+		brakeElevator();
+	}
+	else{
+		unbrakeElevator();
+	}
 }
 void Elevator::highGearElevator(){
 	winchShifter.Set(DoubleSolenoid::Value::kForward);
@@ -86,15 +92,6 @@ void Elevator::brakeElevator(){
 void Elevator::unbrakeElevator(){
 	winchBrake.Set(DoubleSolenoid::Value::kReverse);
 }
-void Elevator::shiftBrakeElevator(){
-	if(winchBrake.Get()==DoubleSolenoid::Value::kForward){
-		winchBrake.Set(DoubleSolenoid::Value::kReverse);
-	}
-	else{
-		winchBrake.Set(DoubleSolenoid::Value::kForward);
-	}
-}
-
 void Elevator::openArms(){
 	armShifter.Set(DoubleSolenoid::Value::kForward);
 }
@@ -133,24 +130,6 @@ void Elevator::setRRollers(double power){
 void Elevator::setConveyor(double power){
 	conveyorMotor.Set(power);
 }
-
-void Elevator::moveElevatorToHeight(float height){
-
-}
-void Elevator::resetElevatorAndMagazine(){
-
-}
-void Elevator::autoLoadCrate(){
-
-}
-void Elevator::autoEjectCrate(){
-
-}
-void Elevator::autoGetCrate(){
-
-}
-
-
 /*void Elevator::moveElevator(double power){
 	eMotor.Set(power);
 }

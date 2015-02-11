@@ -2,7 +2,6 @@
 #define telDrive_H
 
 #include "../CommandBase.h"
-#include "goToPlace.h"
 #include "WPILib.h"
 #include "Commands/CommandGroup.h"
 #include "Commands/commandWithAutomation.h"

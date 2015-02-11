@@ -3,7 +3,7 @@
 
 #include "Commands/CommandGroup.h"
 #include "WPILib.h"
-#include "goToPlace.h"
+//#include "goToPlace.h"
 
 class testCommand: public CommandGroup
 {

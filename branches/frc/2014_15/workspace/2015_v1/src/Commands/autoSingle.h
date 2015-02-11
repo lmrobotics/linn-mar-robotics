@@ -3,7 +3,6 @@
 
 #include "Commands/CommandGroup.h"
 #include "WPILib.h"
-#include "goToPlace.h"
 
 class autoSingle: public CommandGroup
 {

@@ -104,4 +104,19 @@ void telControl::normalOperationLoop(){
 	if (oi->xbox2_xTapped()) {
 		elevator->shiftMagazine();
 	}
+	if (oi->xbox1_lB()){
+		drive->stopdrive();
+	}
+
+	//a button flips between normal drive and controlled acceleration---request from Grayson
+	//MoveNormal = normal drive and MoveCurve = limited acceleration
+	if (oi->xbox1_aTapped()){
+		if (drive->getAccel()==.02){
+			drive->setAccel(10);
+		}
+		else {
+			drive->setAccel(.02);
+		}
+	}
+	//
 }
