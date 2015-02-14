@@ -16,7 +16,9 @@ public:
 		RESET_ELEVATOR_AND_MAGAZINE,
 		AUTO_LOAD_TOTE,
 		AUTO_EJECT_TOTE,
-		AUTO_GET_TOTE
+		AUTO_GET_TOTE,
+		AUTO_GRAB_TOTE,
+		GO_TO_LOCATION
 	};
 
 	commandWithAutomation();
@@ -32,14 +34,24 @@ public:
 	void autoLoadTote();
 	void autoEjectTote();
 	void autoGetTote();
+	void autoGrabTote();
 	void goToLocation(double angle, double distance);
 
 	void runCurrentLoop();
 
 protected:
 
+	PIDController drivePID;
 	const float deadband =.1;
 	runState currentState;
+
+	//Target Angle/Distance in "goToLocation"
+	double targetAngle;
+	double targetDistance;
+	//Initial conditions when running "goToLocation"
+	double initialAngle;
+	double initialDistance;
+
 	double targetElevatorHeight;
 	const double lowestElevatorHeight=0;
 	const double toteLoadHeight=0;
@@ -58,6 +70,7 @@ protected:
 	bool autoLoadToteLoop();
 	bool autoEjectToteLoop();
 	bool autoGetToteLoop();
+	bool autoGrabToteLoop();
 	bool goToLocationLoop();
 };
 

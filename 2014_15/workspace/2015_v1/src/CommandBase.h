@@ -11,6 +11,7 @@
 #include "LIDAR.h"
 #include "IMUProcess.h"
 #include "OI.h"
+#include "BlankPIDOutput.h"
 #include "WPILib.h"
 
 /**
@@ -37,6 +38,7 @@ public:
 	static Encoder *elevatorEncoder;
 	static LIDAR *lidar;
 	static Elevator *elevator;
+	static BlankPIDOutput *PIDPlacebo;
 };
 
 #endif

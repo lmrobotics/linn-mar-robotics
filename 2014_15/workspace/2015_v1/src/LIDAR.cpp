@@ -43,11 +43,23 @@ int LIDAR::poll(){
 	if (I2C::Write(0x04, 0x00)){
 		status+=1;
 	}
-	Wait(.030);
-	if (I2C::Write(controlAddress, measureValue)){
-		status+=2;
+	Wait(.002);
+
+
+//	if (I2C::Write(controlAddress, measureValue)){
+//		status+=2;
+//	}
+//	Wait(.020);
+	for (int i=0; i<100; i++){
+		if (!I2C::Write(controlAddress, measureValue)){
+			break;
+		}
+		else if (i==99){
+			status+=2;
+		}
+		Wait(.001);
 	}
-	Wait(.030);
+
 	/*
 	if (I2C::Read(registerHigh, 1, distanceHigh)){
 		status+=2;
@@ -60,15 +72,15 @@ int LIDAR::poll(){
 	if (I2C::Read(registerHL, 2, distanceArray)){
 		status+=4;
 	}
-	Wait(.030);
+	Wait(.002);
 	if (I2C::Read(statusAddress, 1, lidarStatus)){
 		status+=8;
 	}
-	Wait(.030);
+	Wait(.002);
 	if (I2C::Write(0x04, 0x00)){
 		status+=16;
 	}
-	Wait(.030);
+	Wait(.002);
 	cmReading=(int)((distanceArray[0] <<8) + distanceArray[1]);
 //	cmReading=(int)((*distanceHigh <<8)+*distanceLow);
 	return status;

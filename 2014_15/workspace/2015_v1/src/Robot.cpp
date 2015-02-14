@@ -1,16 +1,17 @@
+#include "Commands/autonDriveIntoZone.h"
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/teleopCommand.h"
 #include "CommandBase.h"
-#include "Commands/autoSingle.h"
 #include "Commands/pollLIDAR.h"
 #include "Commands/testCommand.h"
+#include "Commands/autonomousCommand.h"
 //#include "Commands/ExampleCommand.h"
 
 class Robot: public IterativeRobot
 {
 private:
-	Command *autonomousCommand;
+	Command *autoCommand;
 	Command *telCommand;
 	Command *tCommand;
 //	Command *lidarPoll;
@@ -21,7 +22,7 @@ private:
 	void RobotInit()
 	{
 		CommandBase::init();
-		autonomousCommand = new autoSingle();
+		autoCommand = new autonomousCommand();
 		telCommand = new teleopCommand();
 		tCommand = new testCommand();
 //		lidarPoll = new pollLIDAR();
@@ -33,8 +34,8 @@ private:
 		Scheduler::GetInstance()->Run();
 		if (telCommand != NULL)
 			telCommand->Cancel();
-		if (autonomousCommand != NULL)
-			autonomousCommand->Cancel();
+		if (autoCommand != NULL)
+			autoCommand->Cancel();
 		if (tCommand != NULL)
 			tCommand->Cancel();
 	}
@@ -42,8 +43,8 @@ private:
 	void AutonomousInit()
 	{
 
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
+		if (autoCommand != NULL)
+			autoCommand->Start();
 	}
 
 	void AutonomousPeriodic()
@@ -57,8 +58,8 @@ private:
 		// teleop starts running. If you want the autonomous to 
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-//		if (autonomousCommand != NULL)
-//			autonomousCommand->Cancel();
+//		if (autoCommand != NULL)
+//			autoCommand->Cancel();
 		if (telCommand != NULL)
 			telCommand->Start();
 //		if (lidarPoll != NULL)

@@ -12,19 +12,21 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="true" key="wholeword"/>
-		<item value="controlAddress" key="selection"/>
+		<item value="false" key="wholeword"/>
+		<item value="initialAngle" key="selection"/>
 		<list key="findhistory">
+			<item value="initialYaw"/>
+			<item value="setElevator"/>
+			<item value="xbox1_a"/>
+			<item value="winchMotor.Set"/>
+			<item value="stopDrive"/>
 			<item value="registerAddress"/>
 			<item value="encoderAChannel"/>
 			<item value="encoder"/>
-			<item value="YPR_UPDATE_YAW_VALUE_INDEX"/>
-			<item value="buffer"/>
-			<item value="decodeProtocolFloat"/>
-			<item value="decodeypr"/>
-			<item value="decodepackethandler"/>
 		</list>
 		<list key="replacehistory">
+			<item value="initialAngle"/>
+			<item value="setElevator"/>
 			<item value="controlAddress"/>
 			<item value="xbox2"/>
 		</list>

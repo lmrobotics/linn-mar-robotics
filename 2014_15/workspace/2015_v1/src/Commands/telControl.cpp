@@ -56,30 +56,30 @@ void telControl::normalOperation(){
 
 void telControl::normalOperationLoop(){
 	if (oi->xbox2_lT()) {
-		elevator->setRollers(-1);
+		elevator->setRollers(-.5);
 		elevator->setConveyor(-conveyorSpeed);
 	}
 	else if (oi->xbox2_rT()) {
-		elevator->setRollers(1);
+		elevator->setRollers(.5);
 		elevator->setConveyor(conveyorSpeed);
 	}
 	else if (oi->xbox1_lT()) {
-		elevator->setRollers(-1);
+		elevator->setRollers(-.5);
 		elevator->setConveyor(-conveyorSpeed);
 	}
 	else if (oi->xbox1_rT()) {
-		elevator->setRollers(1);
+		elevator->setRollers(.5);
 		elevator->setConveyor(conveyorSpeed);
 	}
 	else {
 		if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
-			elevator->setRRollers(oi->xbox2_y2());
+			elevator->setRRollers(-oi->xbox2_y2());
 		}
 		else {
 			elevator->setRRollers(0);
 		}
 		if (oi->xbox2_y1() > deadband || oi->xbox2_y1() < -deadband) {
-			elevator->setLRollers(oi->xbox2_y1());
+			elevator->setLRollers(-oi->xbox2_y1());
 		}
 		else {
 			elevator->setLRollers(0);
@@ -87,7 +87,7 @@ void telControl::normalOperationLoop(){
 		elevator->setConveyor(0);
 	}
 	if (oi->xbox2_lB()) {
-		elevator->setElevator(1);
+		elevator->setElevator(.6);
 	}
 	else if (oi->xbox2_rB()) {
 		elevator->setElevator(-1);
@@ -111,11 +111,11 @@ void telControl::normalOperationLoop(){
 	//a button flips between normal drive and controlled acceleration---request from Grayson
 	//MoveNormal = normal drive and MoveCurve = limited acceleration
 	if (oi->xbox1_aTapped()){
-		if (drive->getAccel()==.02){
-			drive->setAccel(10);
+		if (drive->getAccel()>=.5){
+			drive->setAccel(.02);
 		}
 		else {
-			drive->setAccel(.02);
+			drive->setAccel(2);
 		}
 	}
 	//

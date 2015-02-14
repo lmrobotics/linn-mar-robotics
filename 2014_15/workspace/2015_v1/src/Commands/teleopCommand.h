@@ -3,6 +3,7 @@
 
 #include <Commands/telControl.h>
 #include "Commands/CommandGroup.h"
+#include "Commands/pollLIDAR.h"
 #include "WPILib.h"
 #include "telCompress.h"
 #include "telMessages.h"

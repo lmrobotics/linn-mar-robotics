@@ -17,7 +17,9 @@ void pollLIDAR::Initialize()
 void pollLIDAR::Execute()
 {
 	pollTimer = 3.0*(double)(std::clock() - lastPoll) / (double) CLOCKS_PER_SEC;
-	if (pollTimer>.250){
+	dash ->PutString ("Test", "10");
+	if (pollTimer>.030){
+		dash ->PutString ("Test", "9");
 		dash->PutNumber("Poll Status:", lidar->poll());
 		resetPollTimer();
 	}

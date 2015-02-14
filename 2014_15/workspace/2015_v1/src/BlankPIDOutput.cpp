@@ -1,12 +1,10 @@
+
 #include "BlankPIDOutput.h"
 
-BlankPIDOutput::BlankPIDOutput(){
-	lol=0;
+BlankPIDOutput::BlankPIDOutput(): lol(0.0){
+
 }
 
-BlankPIDOutput::~BlankPIDOutput(){
-}
-
-BlankPIDOutput::PIDWrite(float output){
+void BlankPIDOutput::PIDWrite(float output){
 	lol=output;
 }
