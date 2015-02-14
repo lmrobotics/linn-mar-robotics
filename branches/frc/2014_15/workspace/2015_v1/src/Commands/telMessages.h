@@ -3,6 +3,9 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
+#include <iostream>
+#include <cstdio>
+#include <ctime>
 
 class telMessages: public CommandBase
 {
@@ -13,6 +16,9 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
+private:
+	int counter;
 };
 
 #endif

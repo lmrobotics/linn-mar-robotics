@@ -1,15 +1,15 @@
-#ifndef SRC_LIDAR_H_
-#define SRC_LIDAR_H_
+
+#ifndef SRC_BLANKPIDOUTPUT_H_
+#define SRC_BLANKPIDOUTPUT_H_
 
 #include "WPILib.h"
 
 class BlankPIDOutput: public PIDOutput {
 public:
 	BlankPIDOutput();
-	~BlankPIDOutput();
-	void PIDWrite(float output);
-	
-	private float lol;
+	virtual void PIDWrite(float output);
+	float lol;
 };
 
-#endif /* SRC_LIDAR_H_ */
+#endif /* SRC_BLANKPIDOUTPUT_H_ */
+

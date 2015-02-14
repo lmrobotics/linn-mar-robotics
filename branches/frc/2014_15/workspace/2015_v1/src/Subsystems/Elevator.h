@@ -11,6 +11,7 @@ private:
 	Victor armMotorR;
 	Victor armMotorL;
 	Victor conveyorMotor;
+	Victor winchMotor;
 
 	DoubleSolenoid winchShifter;
 	DoubleSolenoid magShifter;
@@ -23,7 +24,6 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	Victor winchMotor;
 
 	Elevator(uint32_t winchChannel, uint32_t armLChannel, uint32_t armRChannel, uint32_t conveyorChannel,
 			uint8_t pneumaticsModuleNumber, uint32_t winchShiftForwardChannel, uint32_t winchShiftReverseChannel,
