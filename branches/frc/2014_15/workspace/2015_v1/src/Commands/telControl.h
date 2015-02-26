@@ -16,9 +16,11 @@ public:
 	void End();
 	void Interrupted();
 
-	void normalOperation();
+	void normalElevatorOperation();
+	void normalDriveOperation();
 protected:
-	void normalOperationLoop();
+	void normalElevatorOperationLoop();
+	void normalDriveOperationLoop();
 
 private:
 	const float conveyorSpeed=.75;

@@ -15,8 +15,10 @@ public:
 	void End();
 	void Interrupted();
 
-	void normalOperation();
-	void normalOperationLoop();
+	void normalDriveOperation();
+	void normalDriveOperationLoop();
+	void normalElevatorOperation();
+	void normalElevatorOperationLoop();
 private:
 	int phase;
 };

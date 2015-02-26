@@ -5,7 +5,7 @@ teleopCommand::teleopCommand()
 	AddParallel(new telCompress());
 	AddParallel(new telControl());
 	AddParallel(new telMessages());
-//	AddParallel(new pollLIDAR());
+	AddParallel(new pollLIDAR());
 
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
