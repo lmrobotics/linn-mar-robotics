@@ -11,7 +11,7 @@
 class Robot: public IterativeRobot
 {
 private:
-	Command *autoCommand;
+//	Command *autoCommand;
 	Command *telCommand;
 	Command *tCommand;
 //	Command *lidarPoll;
@@ -22,7 +22,7 @@ private:
 	void RobotInit()
 	{
 		CommandBase::init();
-		autoCommand = new autonomousCommand();
+//		autoCommand = new autonomousCommand();
 		telCommand = new teleopCommand();
 		tCommand = new testCommand();
 //		lidarPoll = new pollLIDAR();
@@ -34,8 +34,8 @@ private:
 		Scheduler::GetInstance()->Run();
 		if (telCommand != NULL)
 			telCommand->Cancel();
-		if (autoCommand != NULL)
-			autoCommand->Cancel();
+//		if (autoCommand != NULL)
+//			autoCommand->Cancel();
 		if (tCommand != NULL)
 			tCommand->Cancel();
 	}
@@ -43,8 +43,8 @@ private:
 	void AutonomousInit()
 	{
 
-		if (autoCommand != NULL)
-			autoCommand->Start();
+//		if (autoCommand != NULL)
+//			autoCommand->Start();
 	}
 
 	void AutonomousPeriodic()

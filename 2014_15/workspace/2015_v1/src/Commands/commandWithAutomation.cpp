@@ -4,10 +4,13 @@ commandWithAutomation::commandWithAutomation() : drivePID(1, .05, .05, driveEnco
 {
 	Requires(drive);
 	Requires(elevator);
-	currentState=NORMAL;
+	currentElevatorState=ELEVATOR_NORMAL;
+	currentDriveState=DRIVE_NORMAL;
 	targetElevatorHeight=0;
-	step=0;
-	timer=std::clock();
+	elevatorStep=1;
+	driveStep=1;
+	elevatorTimer=std::clock();
+	driveTimer=std::clock();
 	targetAngle=0.0;
 	targetDistance=0.0;
 	initialAngle=0.0;
@@ -17,140 +20,144 @@ commandWithAutomation::commandWithAutomation() : drivePID(1, .05, .05, driveEnco
 }
 
 void commandWithAutomation::runCurrentLoop(){
-	if (currentState == NORMAL) {
-		normalOperationLoop();
+	if (currentElevatorState == ELEVATOR_NORMAL) {
+		normalElevatorOperationLoop();
 	}
-	else if (currentState == MOVE_ELEVATOR_TO_HEIGHT) {
+	else if (currentElevatorState == MOVE_ELEVATOR_TO_HEIGHT) {
 		if (moveElevatorToHeightLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == RESET_ELEVATOR_AND_MAGAZINE) {
-		if (resetElevatorAndMagazineLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+	else if (currentElevatorState == RESET_ELEVATOR) {
+		if (resetElevatorLoop()) {
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == AUTO_LOAD_TOTE) {
+	else if (currentElevatorState == AUTO_LOAD_TOTE) {
 		if (autoLoadToteLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == AUTO_EJECT_TOTE) {
+	else if (currentElevatorState == AUTO_EJECT_TOTE) {
 		if (autoEjectToteLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == AUTO_GET_TOTE) {
+	else if (currentElevatorState == AUTO_GET_TOTE) {
 		if (autoGetToteLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == AUTO_GRAB_TOTE) {
+	else if (currentElevatorState == AUTO_GRAB_TOTE) {
 		if (autoGrabToteLoop()) {
-			normalOperation();
-			currentState = NORMAL;
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
-	else if (currentState == GO_TO_LOCATION){
+
+	if (currentDriveState == DRIVE_NORMAL){
+		normalDriveOperationLoop();
+	}
+	else if (currentDriveState == GO_TO_LOCATION){
 		if (goToLocationLoop()){
-			normalOperation();
-			currentState=NORMAL;
+			normalDriveOperation();
+			currentDriveState=DRIVE_NORMAL;
 		}
 	}
 }
 
 //Move elevator to specified height in inches from the ground
 void commandWithAutomation::moveElevatorToHeight(float heightIN){
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > heightIN+.5){
+	if(elevatorEncoder->GetDistance() > heightIN+.5){
 		elevator-> setElevator(-.5);
 	}
-	else if(elevatorEncoder->Get()*elevatorEncoderCountToInches < heightIN - .5){
+	else if(elevatorEncoder->GetDistance() < heightIN - .5){
 		elevator-> setElevator(.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
 	targetElevatorHeight=heightIN;
-	currentState=MOVE_ELEVATOR_TO_HEIGHT;
+	currentElevatorState=MOVE_ELEVATOR_TO_HEIGHT;
 }
 
 //Set Elevator to the lowest position, open magazine once it gets to the bottom
-void commandWithAutomation::resetElevatorAndMagazine(){
+void commandWithAutomation::resetElevator(){
 	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > targetElevatorHeight+.5){
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
 		elevator-> setElevator(-.5);
 	}
-	else if(elevatorEncoder->Get()*elevatorEncoderCountToInches < targetElevatorHeight - .5){
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
 		elevator-> setElevator(.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
-	currentState=RESET_ELEVATOR_AND_MAGAZINE;
-	step=1;
+	currentElevatorState=RESET_ELEVATOR;
+	elevatorStep=1;
 }
 //Load a Tote once it is in the arms/rollers
 void commandWithAutomation::autoLoadTote(){
 	targetElevatorHeight=toteLoadHeight;
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > targetElevatorHeight+.5){
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
 		elevator-> setElevator(-.5);
 	}
-	else if(elevatorEncoder->Get()*elevatorEncoderCountToInches < targetElevatorHeight - .5){
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
 		elevator-> setElevator(.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
 
-	currentState=AUTO_LOAD_TOTE;
-	step=1;
+	currentElevatorState=AUTO_LOAD_TOTE;
+	elevatorStep=1;
 
 }
 //Eject the stack
 void commandWithAutomation::autoEjectTote(){
 	targetElevatorHeight = toteLoadHeight;
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > targetElevatorHeight+.5){
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
 		elevator-> setElevator(-.5);
 	}
-	else if(elevatorEncoder->Get()*elevatorEncoderCountToInches < targetElevatorHeight - .5){
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
 		elevator-> setElevator(.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
-	currentState=AUTO_EJECT_TOTE;
-	step=1;
+	currentElevatorState=AUTO_EJECT_TOTE;
+	elevatorStep=1;
 }
 
 //Grab a Tote and load it
 void commandWithAutomation::autoGetTote(){
 	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > targetElevatorHeight+.5){
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
 		elevator-> setElevator(-.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
 
-	currentState=AUTO_GET_TOTE;
-	step=1;
+	currentElevatorState=AUTO_GET_TOTE;
+	elevatorStep=1;
 }
 
 void commandWithAutomation::autoGrabTote(){
 	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->Get()*elevatorEncoderCountToInches > targetElevatorHeight+.5){
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
 		elevator-> setElevator(-.5);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
-	currentState=AUTO_GRAB_TOTE;
-	step=1;
+	currentElevatorState=AUTO_GRAB_TOTE;
+	elevatorStep=1;
 }
 
 //Go to a location specified by the angle and distance. Positive angle means right.
@@ -178,8 +185,8 @@ void commandWithAutomation::goToLocation(double angle, double distance){
 	else {
 		drive->Move(0,0);
 	}
-	currentState=GO_TO_LOCATION;
-	step=1;
+	currentDriveState=GO_TO_LOCATION;
+	driveStep=1;
 }
 
 bool commandWithAutomation::moveElevatorToHeightLoop(){
@@ -199,47 +206,31 @@ bool commandWithAutomation::moveElevatorToHeightLoop(){
 	return false;
 }
 
-bool commandWithAutomation::resetElevatorAndMagazineLoop(){
-	switch (step){
-	case 1:
-		targetElevatorHeight=lowestElevatorHeight;
-		if (moveElevatorToHeightLoop()){
-			step=2;
-		}
-		break;
-	case 2:
-		if(elevator -> isMagazineOpen()==false){
-			elevator -> openMagazine();
-		}
-		if(elevator -> isArmsOpen()==false){
-			elevator -> openArms();
-		}
-		return true;
-		break;
+bool commandWithAutomation::resetElevatorLoop(){
+	targetElevatorHeight=lowestElevatorHeight;
+	if(elevator -> isArmsOpen()==false){
+		elevator -> openArms();
 	}
-	return false;
+	return moveElevatorToHeightLoop();
 }
 
 bool commandWithAutomation::autoLoadToteLoop(){
-	switch (step){
+	switch (elevatorStep){
 	case 1:
 		targetElevatorHeight=toteLoadHeight;
 		if(moveElevatorToHeightLoop()){
-			step=2;
+			elevatorStep=2;
 		}
 		break;
 	case 2:
-		elevator -> setRollers(-.5);
-		elevator -> setConveyor(-.5);
-		timer=std::clock();
-		step=3;
+		if (elevator->isArmsOpen()){
+			elevator->openArms();
+		}
+		elevatorStep=3;
 		break;
 	case 3:
-		elevator -> setRollers(-.5);
-		elevator -> setConveyor(-.5);
-		if((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC)>1){
-			elevator -> setRollers(0);
-			elevator -> setConveyor(0);
+		targetElevatorHeight=toteHoldHeight;
+		if(moveElevatorToHeightLoop()){
 			return true;
 		}
 		break;
@@ -248,60 +239,32 @@ bool commandWithAutomation::autoLoadToteLoop(){
 
 }
 bool commandWithAutomation::autoEjectToteLoop(){
-	switch (step){
+	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=toteLoadHeight;
-		if(moveElevatorToHeightLoop()){
-			step=2;
+		if(!elevator -> isArmsOpen()){
+			elevator -> openArms();
 		}
+		elevatorStep=2;
 		break;
 	case 2:
-		if(elevator -> isMagazineOpen()==false){
-			elevator -> openMagazine();
+		targetElevatorHeight=lowestElevatorHeight;
+		if(moveElevatorToHeightLoop()){
+			elevatorStep=3;
 		}
-		step=3;
 		break;
 	case 3:
-		if(elevator -> isArmsOpen()==false){
-			elevator -> openArms();
-		}
-		timer=std::clock();
-		step=4;
-		break;
-	case 4:
-		elevator -> setConveyor(.5);
-		elevator -> setRollers(.5);
-		if ((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC) > .3){
-			step = 5;
-		}
-		break;
-	case 5:
-		if(elevator -> isArmsOpen()==true){
+		if(elevator -> isArmsOpen()){
 			elevator -> closeArms();
 		}
-		elevator -> setConveyor(.5);
+		elevatorTimer=std::clock();
+		elevatorStep=4;
+		break;
+	case 4:
 		elevator -> setRollers(.5);
-		if ((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC) > 1){
-			step = 6;
-			elevator -> setConveyor(0);
-			elevator -> setRollers(0);
+		if ((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC) > .3){
+			elevator->setRollers(0);
+			return true;
 		}
-		break;
-	case 6:
-		targetElevatorHeight=lowestElevatorHeight;
-		if(elevatorEncoder->Get()>targetElevatorHeight){
-			elevator -> setElevator(-.5);
-		}
-		else{
-			elevator -> setElevator(.5);
-		}
-		step=7;
-		break;
-	case 7:
-		if(elevator->isArmsOpen()==false){
-			elevator -> openArms();
-		}
-		return true;
 		break;
 	}
 	return false;
@@ -309,77 +272,61 @@ bool commandWithAutomation::autoEjectToteLoop(){
 }
 
 bool commandWithAutomation::autoGetToteLoop(){
-	switch (step){
+	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=lowestElevatorHeight;
+		targetElevatorHeight=toteHoldHeight;
 		if (moveElevatorToHeightLoop()){
-			step=2;
+			elevatorStep=2;
 		}
 		break;
 	case 2:
-		if(elevator -> isMagazineOpen()==false){
-			elevator -> openMagazine();
-		}
 		if(elevator -> isArmsOpen()==true){
 			elevator -> closeArms();
 		}
 		std::clock();
-		step = 3;
+		driveStep = 3;
 		break;
 
 	case 3:
 		elevator -> setRollers(-.5);
-		if((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC)>.3){
+		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
 			elevator -> setRollers(0);
-			step = 4;
+			elevatorStep = 4;
 		}
 		break;
 	case 4:
 		targetElevatorHeight=toteLoadHeight;
-			if (moveElevatorToHeightLoop()){
-				step=5;
-			}
+		if(moveElevatorToHeightLoop()){
+			elevatorStep=5;
+		}
 		break;
 	case 5:
-		elevator -> setRollers(-.5);
-		elevator -> setConveyor(-.5);
-		timer=std::clock();
-		step=6;
+		if (elevator->isArmsOpen()){
+			elevator->openArms();
+		}
+		elevatorStep=6;
 		break;
 	case 6:
-		elevator -> setRollers(-.5);
-		elevator -> setConveyor(-.5);
-		if((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC)>1){
-			elevator -> setRollers(0);
-			elevator -> setConveyor(0);
+		targetElevatorHeight=toteHoldHeight;
+		if(moveElevatorToHeightLoop()){
 			return true;
 		}
 		break;
 	}
 	return false;
 }
-
 bool commandWithAutomation::autoGrabToteLoop(){
-	switch (step){
+	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=lowestElevatorHeight;
-		if (moveElevatorToHeightLoop()){
-			step=2;
-		}
-		break;
-	case 2:
-		if(elevator -> isMagazineOpen()==false){
-			elevator -> openMagazine();
-		}
 		if(elevator -> isArmsOpen()==true){
 			elevator -> closeArms();
 		}
 		std::clock();
-		step = 3;
+		elevatorStep = 2;
 		break;
-	case 3:
+	case 2:
 		elevator -> setRollers(-.5);
-		if((3.0*(double)(std::clock() - timer) / (double) CLOCKS_PER_SEC)>.3){
+		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
 			elevator -> setRollers(0);
 			return true;
 		}
@@ -389,7 +336,7 @@ bool commandWithAutomation::autoGrabToteLoop(){
 }
 
 bool commandWithAutomation::goToLocationLoop(){
-	switch (step){
+	switch (driveStep){
 	case 1:
 		if (targetAngle>0){
 			if (targetAngle-nav6->GetYaw()<45){
@@ -409,7 +356,7 @@ bool commandWithAutomation::goToLocationLoop(){
 		}
 		if (abs(targetAngle-nav6->GetYaw())<8){
 			drive->Move(0,0);
-			step=2;
+			driveStep=2;
 		}
 		break;
 	case 2:
@@ -418,7 +365,7 @@ bool commandWithAutomation::goToLocationLoop(){
 		drivePID.Enable();
 		drivePID.Reset();
 		drivePID.SetSetpoint(initialAngle+targetAngle);
-		step=3;
+		driveStep=3;
 		break;
 	case 3:
 		drive->MoveNoAccel(.75-drivePID.Get(),.75+drivePID.Get());

@@ -5,7 +5,17 @@ telControl::telControl()
 {
 	Requires(drive);
 	Requires(elevator);
-	currentState=NORMAL;
+	currentElevatorState=ELEVATOR_NORMAL;
+	currentDriveState=DRIVE_NORMAL;
+	targetElevatorHeight=0;
+	elevatorStep=1;
+	driveStep=1;
+	elevatorTimer=std::clock();
+	driveTimer=std::clock();
+	targetAngle=0.0;
+	targetDistance=0.0;
+	initialAngle=0.0;
+	initialDistance=0.0;
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
@@ -17,11 +27,6 @@ void telControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void telControl::Execute() {
-	drive->TeleDrive(oi->xbox1_y1(), oi->xbox1_x2());
-	if (oi->xbox1_rBTapped()) {
-		drive->shift();
-	}
-
 	runCurrentLoop();
 
 	//||   or
@@ -50,26 +55,27 @@ void telControl::Interrupted() {
 
 }
 
-void telControl::normalOperation(){
+void telControl::normalElevatorOperation(){
 
 }
 
-void telControl::normalOperationLoop(){
-	if (oi->xbox2_lT()) {
+void telControl::normalDriveOperation(){
+
+}
+
+void telControl::normalDriveOperationLoop(){
+	drive->TeleDrive(oi->xbox1_y1(), oi->xbox1_x2());
+	if (oi->xbox1_rBTapped()) {
+		drive->shift();
+	}
+}
+
+void telControl::normalElevatorOperationLoop(){
+	if (oi->xbox1_lT()){
 		elevator->setRollers(-.5);
-		elevator->setConveyor(-conveyorSpeed);
 	}
-	else if (oi->xbox2_rT()) {
+	else if (oi->xbox1_rT()){
 		elevator->setRollers(.5);
-		elevator->setConveyor(conveyorSpeed);
-	}
-	else if (oi->xbox1_lT()) {
-		elevator->setRollers(-.5);
-		elevator->setConveyor(-conveyorSpeed);
-	}
-	else if (oi->xbox1_rT()) {
-		elevator->setRollers(.5);
-		elevator->setConveyor(conveyorSpeed);
 	}
 	else {
 		if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
@@ -84,8 +90,8 @@ void telControl::normalOperationLoop(){
 		else {
 			elevator->setLRollers(0);
 		}
-		elevator->setConveyor(0);
 	}
+
 	if (oi->xbox2_lB()) {
 		elevator->setElevator(.6);
 	}
@@ -100,9 +106,6 @@ void telControl::normalOperationLoop(){
 	}
 	if (oi->xbox2_bTapped()) {
 		elevator->shiftArms();
-	}
-	if (oi->xbox2_xTapped()) {
-		elevator->shiftMagazine();
 	}
 	if (oi->xbox1_lB()){
 		drive->stopdrive();

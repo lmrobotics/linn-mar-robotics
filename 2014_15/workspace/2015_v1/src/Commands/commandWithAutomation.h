@@ -10,14 +10,18 @@
 class commandWithAutomation: public CommandBase
 {
 public:
-	enum runState{
-		NORMAL,
+	enum elevatorState{
+		ELEVATOR_NORMAL,
 		MOVE_ELEVATOR_TO_HEIGHT,
-		RESET_ELEVATOR_AND_MAGAZINE,
+		RESET_ELEVATOR,
 		AUTO_LOAD_TOTE,
 		AUTO_EJECT_TOTE,
 		AUTO_GET_TOTE,
 		AUTO_GRAB_TOTE,
+	};
+
+	enum driveState{
+		DRIVE_NORMAL,
 		GO_TO_LOCATION
 	};
 
@@ -28,9 +32,10 @@ public:
 	virtual void End()=0;
 	virtual void Interrupted()=0;
 
-	virtual void normalOperation()=0;
+	virtual void normalElevatorOperation()=0;
+	virtual void normalDriveOperation()=0;
 	void moveElevatorToHeight(float heightIN);
-	void resetElevatorAndMagazine();
+	void resetElevator();
 	void autoLoadTote();
 	void autoEjectTote();
 	void autoGetTote();
@@ -43,7 +48,8 @@ protected:
 
 	PIDController drivePID;
 	const float deadband =.1;
-	runState currentState;
+	elevatorState currentElevatorState;
+	driveState currentDriveState;
 
 	//Target Angle/Distance in "goToLocation"
 	double targetAngle;
@@ -55,18 +61,21 @@ protected:
 	double targetElevatorHeight;
 	const double lowestElevatorHeight=0;
 	const double toteLoadHeight=0;
+	const double toteHoldHeight=0;
 	const double averageRollerSpeed=.5;
 	const double averageConveyorSpeed=.5;
-	const double elevatorEncoderCountToInches=1000;
-	int step;
+	int elevatorStep;
+	int driveStep;
 
-	std::clock_t timer;
+	std::clock_t elevatorTimer;
+	std::clock_t driveTimer;
 
 	//These should be run continuously in the execute loop
 	//Returns false until the task is finished
-	virtual void normalOperationLoop()=0;
+	virtual void normalElevatorOperationLoop()=0;
+	virtual void normalDriveOperationLoop()=0;
 	bool moveElevatorToHeightLoop();
-	bool resetElevatorAndMagazineLoop();
+	bool resetElevatorLoop();
 	bool autoLoadToteLoop();
 	bool autoEjectToteLoop();
 	bool autoGetToteLoop();

@@ -1,5 +1,5 @@
 #include "auton1T.h"
-auton1T::auton1T(): phase(1)
+auton1T::auton1T(): phase(1), turnRight(false)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
@@ -9,7 +9,8 @@ auton1T::auton1T(): phase(1)
 void auton1T::Initialize()
 {
 	phase=1;
-	currentState=NORMAL;
+	currentElevatorState=ELEVATOR_NORMAL;
+	currentDriveState=DRIVE_NORMAL;
 	turnRight=true;
 }
 
@@ -22,7 +23,7 @@ void auton1T::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool auton1T::IsFinished()
 {
-	return phase==2;
+	return phase==5;
 }
 
 // Called once after isFinished returns true
@@ -45,29 +46,45 @@ void auton1T::setTurnRight(bool turnRight){
 
 // Normal operation schedules the actions to be carried out. The integer "phase" is used to track what the program is doing now and
 // what it will do next
-void auton1T::normalOperation(){
-	step=1;
+void auton1T::normalElevatorOperation(){
+	elevatorStep=1;
 	phase++;
-	currentState=NORMAL;
+	currentElevatorState=ELEVATOR_NORMAL;
 }
-void auton1T::normalOperationLoop(){
+void auton1T::normalElevatorOperationLoop(){
 	switch (phase){
-	case 1:
-		goToLocation(0,24);
-		break;
 	case 2:
 		autoGrabTote();
 		break;
+	case 4:
+		autoEjectTote();
+		break;
+	}
+}
+
+void auton1T::normalDriveOperation(){
+	driveStep=1;
+	phase++;
+	currentDriveState=DRIVE_NORMAL;
+}
+void auton1T::normalDriveOperationLoop(){
+	switch (phase){
+	case 1:
+		goToLocation(0,27);
+		break;
+	case 2:
+		drive->stopdrive();
+		break;
 	case 3:
 		if (turnRight){
-			goToLocation(-90,120);
+			goToLocation(-90,108);
 		}
 		else {
-			goToLocation(90,120);
+			goToLocation(90,108);
 		}
 		break;
 	case 4:
-		autoEjectTote();
+		drive->stopdrive();
 		break;
 	}
 }

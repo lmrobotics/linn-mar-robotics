@@ -15,8 +15,10 @@ public:
 	void End();
 	void Interrupted();
 
-	void normalOperation();
-	void normalOperationLoop();
+	void normalElevatorOperation();
+	void normalElevatorOperationLoop();
+	void normalDriveOperation();
+	void normalDriveOperationLoop();
 	void setTurnRight(bool turnRight);
 private:
 	int phase;

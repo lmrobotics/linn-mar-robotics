@@ -40,14 +40,17 @@ void CommandBase::init()
 	nav6Port = new SerialPort(57600,SerialPort::kOnboard);
 	uint8_t update_rate_hz = 50;
 	nav6 = new IMUProcess(nav6Port,update_rate_hz);
-	driveEncoder = new Encoder(0,1);
+	driveEncoder = new Encoder(0,1,false,Encoder::EncodingType::k4X);
+	elevatorEncoder = new Encoder(2,3,false,Encoder::EncodingType::k4X);
 
-	//TODO: Test this and find what the value should actually be
-	driveEncoder->SetDistancePerPulse(.01);
+	//TODO: Test these and find what the values should actually be
+	driveEncoder->SetDistancePerPulse(.02371);
+	elevatorEncoder->SetDistancePerPulse(.01);
 
-	elevatorEncoder = new Encoder(2,3);
+	driveEncoder->Reset();
+	elevatorEncoder->Reset();
 	lidar = new LIDAR();
-	elevator = new Elevator(5, 3, 4, 2, 0, 1, 6, 2, 5, 3, 4, 1, 0, 1);
+	elevator = new Elevator(5, 3, 4, 0, 1, 6, 2, 5, 3, 4);
 	SmartDashboard::init();
 	PIDPlacebo = new BlankPIDOutput();
 }

@@ -8,7 +8,7 @@ Drive::Drive (uint32_t channeld1, uint32_t channeld2,
 	drive2(channeld2),
 	shifter(shiftModuleNumber, shiftForwardChannel, shiftReverseChannel)
 {
-	accel=.02;
+	accel=2;
 	targetSpeedL = 0;
 	targetSpeedR = 0;
 	currentSpeedL = 0;

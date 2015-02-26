@@ -20,10 +20,12 @@ public:
 	unsigned char getHigh();
 	unsigned char getLow();
 	unsigned char getLidarStatus();
+	int test();
 
 private:
 
 	unsigned char distanceArray[2];
+	unsigned char testArray[3];
 //	unsigned char *distanceHigh;
 //	unsigned char *distanceLow;
 	unsigned char *lidarStatus;

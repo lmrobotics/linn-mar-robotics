@@ -10,7 +10,8 @@ autonDriveIntoZone::autonDriveIntoZone(): phase(1)
 void autonDriveIntoZone::Initialize()
 {
 	phase=1;
-	currentState=NORMAL;
+	currentDriveState=DRIVE_NORMAL;
+	currentElevatorState=ELEVATOR_NORMAL;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -40,15 +41,28 @@ void autonDriveIntoZone::Interrupted()
 
 // Normal operation schedules the actions to be carried out. The integer "phase" is used to track what the program is doing now and
 // what it will do next
-void autonDriveIntoZone::normalOperation(){
-	step=1;
+void autonDriveIntoZone::normalDriveOperation(){
+	driveStep=1;
 	phase++;
-	currentState=NORMAL;
+	currentDriveState=DRIVE_NORMAL;
 }
-void autonDriveIntoZone::normalOperationLoop(){
+void autonDriveIntoZone::normalDriveOperationLoop(){
 	switch (phase){
 	case 1:
-		goToLocation(0,120);
+		goToLocation(0,108);
+		break;
+	case 2:
+	//	drive->stopdrive;
 		break;
 	}
 }
+
+void autonDriveIntoZone::normalElevatorOperation(){
+	elevatorStep=1;
+	phase++;
+	currentElevatorState=ELEVATOR_NORMAL;
+}
+void autonDriveIntoZone::normalElevatorOperationLoop(){
+
+}
+
