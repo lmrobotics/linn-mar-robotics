@@ -73,27 +73,27 @@ void commandWithAutomation::runCurrentLoop(){
 
 //Move elevator to specified height in inches from the ground
 void commandWithAutomation::moveElevatorToHeight(float heightIN){
-	if(elevatorEncoder->GetDistance() > heightIN+.5){
-		elevator-> setElevator(-.5);
+	targetElevatorHeight=heightIN;
+	if(elevatorEncoder->GetDistance() > heightIN+.25){
+		elevator-> setElevator(-1);
 	}
-	else if(elevatorEncoder->GetDistance() < heightIN - .5){
-		elevator-> setElevator(.5);
+	else if(elevatorEncoder->GetDistance() < heightIN-.25){
+		elevator-> setElevator(1);
 	}
 	else{
 		elevator-> setElevator(0);
 	}
-	targetElevatorHeight=heightIN;
 	currentElevatorState=MOVE_ELEVATOR_TO_HEIGHT;
 }
 
 //Set Elevator to the lowest position, open magazine once it gets to the bottom
 void commandWithAutomation::resetElevator(){
-	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
-		elevator-> setElevator(-.5);
+	targetElevatorHeight=toteLowestHeight;
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
+		elevator-> setElevator(-1);
 	}
-	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
-		elevator-> setElevator(.5);
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
+		elevator-> setElevator(1);
 	}
 	else{
 		elevator-> setElevator(0);
@@ -103,12 +103,12 @@ void commandWithAutomation::resetElevator(){
 }
 //Load a Tote once it is in the arms/rollers
 void commandWithAutomation::autoLoadTote(){
-	targetElevatorHeight=toteLoadHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
-		elevator-> setElevator(-.5);
+	targetElevatorHeight=toteLowestHeight;
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
+		elevator-> setElevator(-1);
 	}
-	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
-		elevator-> setElevator(.5);
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
+		elevator-> setElevator(1);
 	}
 	else{
 		elevator-> setElevator(0);
@@ -120,12 +120,12 @@ void commandWithAutomation::autoLoadTote(){
 }
 //Eject the stack
 void commandWithAutomation::autoEjectTote(){
-	targetElevatorHeight = toteLoadHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
-		elevator-> setElevator(-.5);
+	targetElevatorHeight = toteLowestHeight;
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
+		elevator-> setElevator(-1);
 	}
-	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .5){
-		elevator-> setElevator(.5);
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
+		elevator-> setElevator(1);
 	}
 	else{
 		elevator-> setElevator(0);
@@ -136,9 +136,12 @@ void commandWithAutomation::autoEjectTote(){
 
 //Grab a Tote and load it
 void commandWithAutomation::autoGetTote(){
-	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
-		elevator-> setElevator(-.5);
+	targetElevatorHeight=toteLowestHeight;
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
+		elevator-> setElevator(-1);
+	}
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
+		elevator-> setElevator(1);
 	}
 	else{
 		elevator-> setElevator(0);
@@ -149,13 +152,7 @@ void commandWithAutomation::autoGetTote(){
 }
 
 void commandWithAutomation::autoGrabTote(){
-	targetElevatorHeight=lowestElevatorHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.5){
-		elevator-> setElevator(-.5);
-	}
-	else{
-		elevator-> setElevator(0);
-	}
+	targetElevatorHeight=toteLowestHeight;
 	currentElevatorState=AUTO_GRAB_TOTE;
 	elevatorStep=1;
 }
@@ -191,12 +188,22 @@ void commandWithAutomation::goToLocation(double angle, double distance){
 
 bool commandWithAutomation::moveElevatorToHeightLoop(){
 
-	if(elevatorEncoder->Get() > targetElevatorHeight +.5 ){
-		elevator->setElevator(-.5);
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.15 ){
+		if (abs(elevatorEncoder->GetDistance() - targetElevatorHeight)>1){
+			elevator->setElevator(-1);
+		}
+		else{
+			elevator->setElevator(-.6);
+		}
 		return false;
 	}
-	else if(elevatorEncoder->Get() < targetElevatorHeight -.5 ){
-		elevator->setElevator(.5);
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight-.15 ){
+		if (abs(elevatorEncoder->GetDistance() - targetElevatorHeight)>1){
+			elevator->setElevator(1);
+		}
+		else{
+			elevator->setElevator(.6);
+		}
 		return false;
 	}
 	else{
@@ -207,17 +214,26 @@ bool commandWithAutomation::moveElevatorToHeightLoop(){
 }
 
 bool commandWithAutomation::resetElevatorLoop(){
-	targetElevatorHeight=lowestElevatorHeight;
-	if(elevator -> isArmsOpen()==false){
+	targetElevatorHeight=toteLowestHeight;
+	if(!elevator -> isArmsOpen()){
 		elevator -> openArms();
 	}
-	return moveElevatorToHeightLoop();
+	if (moveElevatorToHeightLoop()){
+		if (!elevator -> isMagOpen()){
+			elevator -> openMag();
+		}
+		return true;
+	}
+	return false;
 }
 
 bool commandWithAutomation::autoLoadToteLoop(){
 	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=toteLoadHeight;
+		targetElevatorHeight=toteLowestHeight;
+		if(!elevator -> isArmsOpen()){
+			elevator -> openArms();
+		}
 		if(moveElevatorToHeightLoop()){
 			elevatorStep=2;
 		}
@@ -247,24 +263,16 @@ bool commandWithAutomation::autoEjectToteLoop(){
 		elevatorStep=2;
 		break;
 	case 2:
-		targetElevatorHeight=lowestElevatorHeight;
+		targetElevatorHeight=toteLowestHeight;
 		if(moveElevatorToHeightLoop()){
 			elevatorStep=3;
 		}
 		break;
 	case 3:
-		if(elevator -> isArmsOpen()){
-			elevator -> closeArms();
+		if(!elevator -> isMagOpen()){
+			elevator -> openMag();
 		}
-		elevatorTimer=std::clock();
-		elevatorStep=4;
-		break;
-	case 4:
-		elevator -> setRollers(.5);
-		if ((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC) > .3){
-			elevator->setRollers(0);
-			return true;
-		}
+		return true;
 		break;
 	}
 	return false;
@@ -283,10 +291,9 @@ bool commandWithAutomation::autoGetToteLoop(){
 		if(elevator -> isArmsOpen()==true){
 			elevator -> closeArms();
 		}
-		std::clock();
-		driveStep = 3;
+		elevatorTimer=std::clock();
+		elevatorStep = 3;
 		break;
-
 	case 3:
 		elevator -> setRollers(-.5);
 		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
@@ -295,7 +302,10 @@ bool commandWithAutomation::autoGetToteLoop(){
 		}
 		break;
 	case 4:
-		targetElevatorHeight=toteLoadHeight;
+		if (elevator->isMagOpen()){
+			elevator->closeMag();
+		}
+		targetElevatorHeight=toteLowestHeight;
 		if(moveElevatorToHeightLoop()){
 			elevatorStep=5;
 		}
@@ -321,12 +331,12 @@ bool commandWithAutomation::autoGrabToteLoop(){
 		if(elevator -> isArmsOpen()==true){
 			elevator -> closeArms();
 		}
-		std::clock();
+		elevatorTimer=std::clock();
 		elevatorStep = 2;
 		break;
 	case 2:
 		elevator -> setRollers(-.5);
-		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
+		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>1){
 			elevator -> setRollers(0);
 			return true;
 		}

@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="226" key="DIALOG_Y_ORIGIN"/>
-		<item value="1142" key="DIALOG_X_ORIGIN"/>
+		<item value="247" key="DIALOG_Y_ORIGIN"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="1087" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Dash" key="selection"/>
+		<item value="toteLowestHeight" key="selection"/>
 		<list key="findhistory">
-			<item value="dash"/>
-			<item value="R4eset"/>
-			<item value="Reset"/>
-			<item value="reset"/>
-			<item value="go"/>
-			<item value="auton1T"/>
-			<item value="NORMAL"/>
-			<item value="elevatorEncoder-&gt;Get()*elevatorEncoderCountToInches"/>
+			<item value="toteEjectHeight"/>
+			<item value="toteLoadHeight"/>
+			<item value="elevatorTimer"/>
+			<item value="elevatorStep"/>
+			<item value="driveStep"/>
+			<item value="setElevator(-.5"/>
+			<item value="setElevator(.5"/>
+			<item value="setElevator("/>
 		</list>
 		<list key="replacehistory">
+			<item value="toteLowestHeight"/>
+			<item value="setElevator(-1"/>
+			<item value="setElevator(1"/>
+			<item value="3T"/>
+			<item value="toteEjectHeight"/>
 			<item value="auton2T"/>
 			<item value="elevatorEncoder-&gt;GetDistance()"/>
 			<item value="auton1T"/>
-			<item value="autoCommand"/>
-			<item value="initialAngle"/>
-			<item value="setElevator"/>
-			<item value="controlAddress"/>
-			<item value="xbox2"/>
 		</list>
 	</section>
 </section>

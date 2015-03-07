@@ -15,6 +15,7 @@ Encoder* CommandBase::elevatorEncoder = NULL;
 LIDAR* CommandBase::lidar = NULL;
 Elevator* CommandBase::elevator = NULL;
 BlankPIDOutput* CommandBase::PIDPlacebo = NULL;
+Preferences* CommandBase::prefs = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -45,12 +46,13 @@ void CommandBase::init()
 
 	//TODO: Test these and find what the values should actually be
 	driveEncoder->SetDistancePerPulse(.02371);
-	elevatorEncoder->SetDistancePerPulse(.01);
+	elevatorEncoder->SetDistancePerPulse(.01537);
 
 	driveEncoder->Reset();
 	elevatorEncoder->Reset();
 	lidar = new LIDAR();
-	elevator = new Elevator(5, 3, 4, 0, 1, 6, 2, 5, 3, 4);
+	elevator = new Elevator(5, 3, 4, 0, 1, 6, 3, 4, 0, 2, 5);
 	SmartDashboard::init();
 	PIDPlacebo = new BlankPIDOutput();
+	prefs = Preferences::GetInstance();
 }

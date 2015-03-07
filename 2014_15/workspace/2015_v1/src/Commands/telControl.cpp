@@ -5,8 +5,10 @@ telControl::telControl()
 {
 	Requires(drive);
 	Requires(elevator);
+
 	currentElevatorState=ELEVATOR_NORMAL;
 	currentDriveState=DRIVE_NORMAL;
+
 	targetElevatorHeight=0;
 	elevatorStep=1;
 	driveStep=1;
@@ -16,6 +18,7 @@ telControl::telControl()
 	targetDistance=0.0;
 	initialAngle=0.0;
 	initialDistance=0.0;
+	elevatorOverride=false;
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
@@ -28,6 +31,39 @@ void telControl::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void telControl::Execute() {
 	runCurrentLoop();
+	if (oi->xbox1_startTapped()){
+		elevatorOverride=!elevatorOverride;
+		normalDriveOperation();
+		normalElevatorOperation();
+	}
+	if (currentElevatorState==AUTO_LOAD_TOTE){
+		if (oi->xbox2_bTapped()){
+			elevator->shiftArms();
+		}
+		if (oi->xbox2_xTapped()){
+			elevator->shiftMag();
+		}
+		if (oi->xbox1_lT()){
+			elevator->setRollers(-.5);
+		}
+		else if (oi->xbox1_rT()){
+			elevator->setRollers(.5);
+		}
+		else {
+			if (oi->xbox2_y2() > deadband || oi->xbox2_y2() < -deadband) {
+				elevator->setRRollers(-oi->xbox2_y2());
+			}
+			else {
+				elevator->setRRollers(0);
+			}
+			if (oi->xbox2_y1() > deadband || oi->xbox2_y1() < -deadband) {
+				elevator->setLRollers(-oi->xbox2_y1());
+			}
+			else {
+				elevator->setLRollers(0);
+			}
+		}
+	}
 
 	//||   or
 	//&&   and
@@ -56,11 +92,11 @@ void telControl::Interrupted() {
 }
 
 void telControl::normalElevatorOperation(){
-
+	currentElevatorState=ELEVATOR_NORMAL;
 }
 
 void telControl::normalDriveOperation(){
-
+	currentDriveState=DRIVE_NORMAL;
 }
 
 void telControl::normalDriveOperationLoop(){
@@ -68,9 +104,22 @@ void telControl::normalDriveOperationLoop(){
 	if (oi->xbox1_rBTapped()) {
 		drive->shift();
 	}
+	//a button flips between normal drive and controlled acceleration
+	//MoveNormal = normal drive and MoveCurve = limited acceleration
+	if (oi->xbox1_aTapped()){
+		if (drive->getAccel()>=.5){
+			drive->setAccel(.02);
+		}
+		else {
+			drive->setAccel(2);
+		}
+	}
 }
 
 void telControl::normalElevatorOperationLoop(){
+	if (oi->xbox2_bTapped()) {
+		elevator->shiftArms();
+	}
 	if (oi->xbox1_lT()){
 		elevator->setRollers(-.5);
 	}
@@ -91,12 +140,15 @@ void telControl::normalElevatorOperationLoop(){
 			elevator->setLRollers(0);
 		}
 	}
-
-	if (oi->xbox2_lB()) {
-		elevator->setElevator(.6);
+	if (oi->xbox2_bTapped()) {
+		elevator->shiftArms();
 	}
-	else if (oi->xbox2_rB()) {
-		elevator->setElevator(-1);
+
+	if (oi->xbox2_lB() && (elevatorEncoder->GetDistance()<46.5 || elevatorOverride)) {
+		elevator->setElevator(1);
+	}
+	else if (oi->xbox2_rB() && (elevatorEncoder->GetDistance()>0 || elevatorOverride)) {
+		elevator->setElevator(-.8);
 	}
 	else {
 		elevator->setElevator(0);
@@ -104,22 +156,26 @@ void telControl::normalElevatorOperationLoop(){
 	if (oi->xbox2_aTapped()) {
 		elevator->shiftElevatorGear();
 	}
-	if (oi->xbox2_bTapped()) {
-		elevator->shiftArms();
-	}
+
 	if (oi->xbox1_lB()){
 		drive->stopdrive();
 	}
-
-	//a button flips between normal drive and controlled acceleration---request from Grayson
-	//MoveNormal = normal drive and MoveCurve = limited acceleration
-	if (oi->xbox1_aTapped()){
-		if (drive->getAccel()>=.5){
-			drive->setAccel(.02);
-		}
-		else {
-			drive->setAccel(2);
-		}
+	if (oi->xbox2_xTapped()){
+		elevator->shiftMag();
 	}
-	//
+	if (oi->xbox2_selectTapped()){
+		autoGrabTote();
+	}
+	else if (oi->xbox2_startTapped()){
+		autoLoadTote();
+	}
+	if (oi->xbox1_selectTapped()){
+		elevatorEncoder->Reset();
+	}
+	if (oi->xbox1_yTapped()){
+		autoGetTote();
+	}
+	if (oi->xbox2_yTapped()){
+		resetElevator();
+	}
 }

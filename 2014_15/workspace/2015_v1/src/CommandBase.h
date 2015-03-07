@@ -39,6 +39,7 @@ public:
 	static LIDAR *lidar;
 	static Elevator *elevator;
 	static BlankPIDOutput *PIDPlacebo;
+	static Preferences *prefs;
 };
 
 #endif

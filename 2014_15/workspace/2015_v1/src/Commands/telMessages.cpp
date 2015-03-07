@@ -33,6 +33,7 @@ void telMessages::Execute()
 	dash ->PutNumber ("elevator encoder", elevatorEncoder->Get());
 	dash ->PutNumber ("drive encoder distance", driveEncoder->GetDistance());
 	dash ->PutNumber ("elevator encoder distance", elevatorEncoder->GetDistance());
+	dash ->PutNumber ("Autonomous Value",prefs->GetInt("Autonomous",1));
 
 	//LIDAR Crap
 	dash ->PutNumber ("LIDAR Reading (Plz Work)", lidar->getCM());

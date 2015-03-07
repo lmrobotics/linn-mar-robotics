@@ -52,7 +52,7 @@ void autonDriveIntoZone::normalDriveOperationLoop(){
 		goToLocation(0,108);
 		break;
 	case 2:
-	//	drive->stopdrive;
+		drive->stopdrive();
 		break;
 	}
 }
