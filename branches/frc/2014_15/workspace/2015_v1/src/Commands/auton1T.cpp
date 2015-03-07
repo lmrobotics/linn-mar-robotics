@@ -23,7 +23,7 @@ void auton1T::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool auton1T::IsFinished()
 {
-	return phase==5;
+	return phase==4;
 }
 
 // Called once after isFinished returns true
@@ -53,10 +53,10 @@ void auton1T::normalElevatorOperation(){
 }
 void auton1T::normalElevatorOperationLoop(){
 	switch (phase){
-	case 2:
+	case 1:
 		autoGrabTote();
 		break;
-	case 4:
+	case 3:
 		autoEjectTote();
 		break;
 	}
@@ -70,12 +70,9 @@ void auton1T::normalDriveOperation(){
 void auton1T::normalDriveOperationLoop(){
 	switch (phase){
 	case 1:
-		goToLocation(0,27);
-		break;
-	case 2:
 		drive->stopdrive();
 		break;
-	case 3:
+	case 2:
 		if (turnRight){
 			goToLocation(-90,108);
 		}
@@ -83,7 +80,7 @@ void auton1T::normalDriveOperationLoop(){
 			goToLocation(90,108);
 		}
 		break;
-	case 4:
+	case 3:
 		drive->stopdrive();
 		break;
 	}

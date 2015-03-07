@@ -18,12 +18,14 @@ public:
 
 	void normalElevatorOperation();
 	void normalDriveOperation();
+
 protected:
 	void normalElevatorOperationLoop();
 	void normalDriveOperationLoop();
 
 private:
 	const float conveyorSpeed=.75;
+	bool elevatorOverride;
 };
 
 #endif

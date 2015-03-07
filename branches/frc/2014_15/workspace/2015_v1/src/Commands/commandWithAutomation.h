@@ -44,6 +44,11 @@ public:
 
 	void runCurrentLoop();
 
+	const double toteLowestHeight=.15;
+	const double toteHoldHeight=18;
+	const double averageRollerSpeed=.5;
+	const double averageConveyorSpeed=.5;
+
 protected:
 
 	PIDController drivePID;
@@ -59,11 +64,6 @@ protected:
 	double initialDistance;
 
 	double targetElevatorHeight;
-	const double lowestElevatorHeight=0;
-	const double toteLoadHeight=0;
-	const double toteHoldHeight=0;
-	const double averageRollerSpeed=.5;
-	const double averageConveyorSpeed=.5;
 	int elevatorStep;
 	int driveStep;
 

@@ -23,7 +23,7 @@ void auton2T::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool auton2T::IsFinished()
 {
-	return phase==5;
+	return phase==8;
 }
 
 // Called once after isFinished returns true
@@ -53,11 +53,17 @@ void auton2T::normalElevatorOperation(){
 }
 void auton2T::normalElevatorOperationLoop(){
 	switch (phase){
-	case 2:
-		autoGrabTote();
+	case 1:
+		autoGetTote();
 		break;
-	case 4:
-		autoEjectTote();
+	case 2:
+		moveElevatorToHeight(toteLowestHeight);
+		break;
+	case 3:
+		moveElevatorToHeight(toteHoldHeight);
+		break;
+	case 6:
+		autoGrabTote();
 		break;
 	}
 }
@@ -70,21 +76,31 @@ void auton2T::normalDriveOperation(){
 void auton2T::normalDriveOperationLoop(){
 	switch (phase){
 	case 1:
-		goToLocation(0,27);
-		break;
-	case 2:
 		drive->stopdrive();
 		break;
 	case 3:
 		if (turnRight){
-			goToLocation(-90,108);
+			goToLocation(-35,36);
 		}
 		else {
-			goToLocation(90,108);
+			goToLocation(35,36);
 		}
 		break;
-	case 4:
-		drive->stopdrive();
+	case 5:
+		if (turnRight){
+			goToLocation(70,36);
+		}
+		else {
+			goToLocation(-70,36);
+		}
+		break;
+	case 7:
+		if (turnRight){
+			goToLocation(-110,108);
+		}
+		else {
+			goToLocation(110,108);
+		}
 		break;
 	}
 }
