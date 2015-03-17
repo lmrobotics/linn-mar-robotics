@@ -8,7 +8,7 @@
 class Drive: public Subsystem
 {
 private:
-	Talon drive1, drive2;
+	Talon driveL, driveR;
 	DoubleSolenoid shifter;
 
 	const float deadband = .1;

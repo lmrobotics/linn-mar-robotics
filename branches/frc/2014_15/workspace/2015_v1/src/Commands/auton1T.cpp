@@ -1,5 +1,5 @@
 #include "auton1T.h"
-auton1T::auton1T(): phase(1), turnRight(false)
+auton1T::auton1T(): phase(1), turnRight(true)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
@@ -8,6 +8,7 @@ auton1T::auton1T(): phase(1), turnRight(false)
 // Called just before this Command runs the first time
 void auton1T::Initialize()
 {
+	drive->highGear();
 	phase=1;
 	currentElevatorState=ELEVATOR_NORMAL;
 	currentDriveState=DRIVE_NORMAL;
@@ -23,7 +24,7 @@ void auton1T::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool auton1T::IsFinished()
 {
-	return phase==4;
+	return phase==6;
 }
 
 // Called once after isFinished returns true
@@ -54,9 +55,9 @@ void auton1T::normalElevatorOperation(){
 void auton1T::normalElevatorOperationLoop(){
 	switch (phase){
 	case 1:
-		autoGrabTote();
+		autoLoadTote();
 		break;
-	case 3:
+	case 4:
 		autoEjectTote();
 		break;
 	}
@@ -74,14 +75,20 @@ void auton1T::normalDriveOperationLoop(){
 		break;
 	case 2:
 		if (turnRight){
-			goToLocation(-90,108);
+			goToLocation(90,100);
 		}
 		else {
-			goToLocation(90,108);
+			goToLocation(-90,100);
 		}
 		break;
 	case 3:
+		goToLocation(70,0);
+		break;
+	case 4:
 		drive->stopdrive();
+		break;
+	case 5:
+		goToLocation(0,-12);
 		break;
 	}
 }

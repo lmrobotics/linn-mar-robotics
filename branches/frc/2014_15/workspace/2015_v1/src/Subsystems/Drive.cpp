@@ -4,8 +4,8 @@
 Drive::Drive (uint32_t channeld1, uint32_t channeld2,
 		uint8_t shiftModuleNumber, uint32_t shiftForwardChannel, uint32_t shiftReverseChannel):
 	Subsystem("Drive"),
-	drive1(channeld1),
-	drive2(channeld2),
+	driveL(channeld1),
+	driveR(channeld2),
 	shifter(shiftModuleNumber, shiftForwardChannel, shiftReverseChannel)
 {
 	accel=2;
@@ -29,13 +29,13 @@ Drive::~Drive (){
 }
 
 void Drive::test_motors(){
-	drive1.Set(.3);
+	driveL.Set(.3);
 	Wait(3);
-	drive1.Set(0);
+	driveL.Set(0);
 	Wait(3);
-	drive2.Set(.3);
+	driveR.Set(.3);
 	Wait(3);
-	drive2.Set(0);
+	driveR.Set(0);
 	Wait(3);
 }
 
@@ -46,34 +46,34 @@ void Drive::Move(float LeftSpeed, float RightSpeed){
 
 	if(currentSpeedL<(targetSpeedL-accel)){
 		currentSpeedL+=accel;
-		drive1.Set(currentSpeedL);
+		driveL.Set(currentSpeedL);
 	}
 	else if (currentSpeedL>(targetSpeedL+accel)){
 		currentSpeedL-=accel;
-		drive1.Set(currentSpeedL);
+		driveL.Set(currentSpeedL);
 	}
 	else {
 		currentSpeedL=targetSpeedL;
-		drive1.Set(targetSpeedL);
+		driveL.Set(targetSpeedL);
 	}
 
 	if(currentSpeedR<(targetSpeedR-accel)){
 		currentSpeedR+=accel;
-		drive2.Set(currentSpeedR);
+		driveR.Set(currentSpeedR);
 	}
 	else if (currentSpeedR>(targetSpeedR+accel)){
 		currentSpeedR-=accel;
-		drive2.Set(currentSpeedR);
+		driveR.Set(currentSpeedR);
 	}
 	else {
 		currentSpeedR=targetSpeedR;
-		drive2.Set(targetSpeedR);
+		driveR.Set(targetSpeedR);
 	}
 }
 
 void Drive::MoveNoAccel(float LeftSpeed, float RightSpeed){
-		drive1.Set(LeftSpeed);
-		drive2.Set(-RightSpeed);
+		driveL.Set(LeftSpeed);
+		driveR.Set(-RightSpeed);
 }
 
 void Drive::stopdrive(){
@@ -81,8 +81,8 @@ void Drive::stopdrive(){
 	targetSpeedR = 0;
 	currentSpeedL = 0;
 	currentSpeedR = 0;
-	drive1.Set(0);
-	drive2.Set(0);
+	driveL.Set(0);
+	driveR.Set(0);
 }
 
 void Drive::TeleDrive(float Xbox_y, float Xbox_x){
@@ -126,8 +126,8 @@ void Drive::TeleDrive(float Xbox_y, float Xbox_x){
 		x=-1;
 	}
 
-	LeftSpeed=x+y;
-	RightSpeed=-x+y;
+	LeftSpeed=x-y;
+	RightSpeed=-x-y;
 
 	Move(LeftSpeed,RightSpeed);
 }

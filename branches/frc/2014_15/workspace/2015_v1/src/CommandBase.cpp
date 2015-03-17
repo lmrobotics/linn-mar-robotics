@@ -14,8 +14,8 @@ Encoder* CommandBase::driveEncoder = NULL;
 Encoder* CommandBase::elevatorEncoder = NULL;
 LIDAR* CommandBase::lidar = NULL;
 Elevator* CommandBase::elevator = NULL;
-BlankPIDOutput* CommandBase::PIDPlacebo = NULL;
 Preferences* CommandBase::prefs = NULL;
+DigitalInput* CommandBase::elevatorLimit = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -43,9 +43,10 @@ void CommandBase::init()
 	nav6 = new IMUProcess(nav6Port,update_rate_hz);
 	driveEncoder = new Encoder(0,1,false,Encoder::EncodingType::k4X);
 	elevatorEncoder = new Encoder(2,3,false,Encoder::EncodingType::k4X);
+	elevatorLimit = new DigitalInput(5);
 
 	//TODO: Test these and find what the values should actually be
-	driveEncoder->SetDistancePerPulse(.02371);
+	driveEncoder->SetDistancePerPulse(.02400);
 	elevatorEncoder->SetDistancePerPulse(.01537);
 
 	driveEncoder->Reset();
@@ -53,6 +54,5 @@ void CommandBase::init()
 	lidar = new LIDAR();
 	elevator = new Elevator(5, 3, 4, 0, 1, 6, 3, 4, 0, 2, 5);
 	SmartDashboard::init();
-	PIDPlacebo = new BlankPIDOutput();
 	prefs = Preferences::GetInstance();
 }

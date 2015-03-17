@@ -2,6 +2,24 @@
 
 autonomousCommand::autonomousCommand()
 {
+	switch (CommandBase::prefs->GetInt("Autonomous",1)){
+	case 1:
+		CommandBase::dash->PutNumber ("Autonomous Value", 1);
+		AddSequential(new auton1T());
+		break;
+	case 2:
+		CommandBase::dash->PutNumber ("Autonomous Value", 2);
+		AddSequential(new auton2T());
+		break;
+	case 3:
+		CommandBase::dash->PutNumber ("Autonomous Value", 3);
+		AddSequential(new auton3T());
+		break;
+	default:
+		CommandBase::dash->PutNumber ("Autonomous Value", 4);
+		AddSequential(new autonDriveIntoZone());
+		break;
+	}
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

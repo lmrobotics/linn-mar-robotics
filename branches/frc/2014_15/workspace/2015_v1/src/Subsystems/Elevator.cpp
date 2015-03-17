@@ -35,10 +35,10 @@ void Elevator::setElevator(double power) {
 	}
 }
 void Elevator::highGearElevator() {
-	winchShifter.Set(DoubleSolenoid::Value::kForward);
+	winchShifter.Set(DoubleSolenoid::Value::kReverse);
 }
 void Elevator::lowGearElevator() {
-	winchShifter.Set(DoubleSolenoid::Value::kReverse);
+	winchShifter.Set(DoubleSolenoid::Value::kForward);
 }
 void Elevator::shiftElevatorGear() {
 	if (winchShifter.Get() == DoubleSolenoid::Value::kForward) {
