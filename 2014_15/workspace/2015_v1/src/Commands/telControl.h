@@ -5,6 +5,7 @@
 #include "WPILib.h"
 #include "Commands/CommandGroup.h"
 #include "Commands/commandWithAutomation.h"
+#include "../BlankPIDOutput.h"
 
 class telControl: public commandWithAutomation
 {
@@ -26,6 +27,8 @@ protected:
 private:
 	const float conveyorSpeed=.75;
 	bool elevatorOverride;
+//	PIDController testPID;
+//	BlankPIDOutput *PIDPlacebo;
 };
 
 #endif

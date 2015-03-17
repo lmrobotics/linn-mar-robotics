@@ -6,7 +6,7 @@
 class OI
 {
 private:
-	Joystick xbox1, xbox2;
+	Joystick xbox1, xbox2, board;
 public:
 	OI();
 
@@ -75,9 +75,38 @@ public:
 	bool xbox2_lClickTapped();
 	bool xbox2_rClickTapped();
 
+	bool board_1();
+	bool board_2();
+	bool board_3();
+	bool board_4();
+	bool board_5();
+	bool board_bigRed();
+	bool board_lilGreen();
+	bool board_hiLoSwitch();
+	bool board_up();
+	bool board_down();
+	bool board_in();
+	bool board_out();
+	bool board_1Tapped();
+	bool board_2Tapped();
+	bool board_3Tapped();
+	bool board_4Tapped();
+	bool board_5Tapped();
+	bool board_bigRedTapped();
+	bool board_lilGreenTapped();
+	bool board_hiLoSwitchTapped();
+	bool board_upTapped();
+	bool board_downTapped();
+	bool board_inTapped();
+	bool board_outTapped();
+
+	bool board_hiLoSwitchUnTapped();
+
 private:
-	bool tappedArray1[12]{false,false,false,false,false,false,false,false,false,false,false,false};
-	bool tappedArray2[12]{false,false,false,false,false,false,false,false,false,false,false,false};
+	bool tappedArrayXbox1[12]{false,false,false,false,false,false,false,false,false,false,false,false};
+	bool tappedArrayXbox2[12]{false,false,false,false,false,false,false,false,false,false,false,false};
+	bool tappedArrayBoard[12]{false,false,false,false,false,false,false,false,false,false,false,false};
+	bool hiLoSwitchUnTapped;
 };
 
 #endif

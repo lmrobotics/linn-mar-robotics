@@ -13,26 +13,26 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="toteLowestHeight" key="selection"/>
+		<item value="drivePID" key="selection"/>
 		<list key="findhistory">
-			<item value="toteEjectHeight"/>
-			<item value="toteLoadHeight"/>
-			<item value="elevatorTimer"/>
-			<item value="elevatorStep"/>
-			<item value="driveStep"/>
-			<item value="setElevator(-.5"/>
-			<item value="setElevator(.5"/>
-			<item value="setElevator("/>
+			<item value="testPID"/>
+			<item value="PIDPlacebo"/>
+			<item value="dash"/>
+			<item value="das"/>
+			<item value="Autonomous Value"/>
+			<item value="-&gt;PutNumber (&quot;Autonomous Value&quot;,prefs-&gt;GetInt(&quot;Autonomous&quot;,1));"/>
+			<item value="tappedArrayboard"/>
+			<item value="xbox2"/>
 		</list>
 		<list key="replacehistory">
+			<item value="drivePID"/>
+			<item value="tappedArrayBoard"/>
+			<item value="board"/>
+			<item value="tappedArrayXbox"/>
 			<item value="toteLowestHeight"/>
 			<item value="setElevator(-1"/>
 			<item value="setElevator(1"/>
 			<item value="3T"/>
-			<item value="toteEjectHeight"/>
-			<item value="auton2T"/>
-			<item value="elevatorEncoder-&gt;GetDistance()"/>
-			<item value="auton1T"/>
 		</list>
 	</section>
 </section>

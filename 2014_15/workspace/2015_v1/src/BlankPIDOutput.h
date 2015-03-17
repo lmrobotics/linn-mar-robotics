@@ -8,6 +8,7 @@ class BlankPIDOutput: public PIDOutput {
 public:
 	BlankPIDOutput();
 	virtual void PIDWrite(float output);
+	float getVal();
 	float lol;
 };
 

@@ -6,6 +6,8 @@
 #include <iostream>
 #include <cstdio>
 #include <ctime>
+#include "../BlankPIDOutput.h"
+#include "../MyPID.h"
 
 class commandWithAutomation: public CommandBase
 {
@@ -18,11 +20,15 @@ public:
 		AUTO_EJECT_TOTE,
 		AUTO_GET_TOTE,
 		AUTO_GRAB_TOTE,
+		AUTO_LV2_LOAD_TOTE
 	};
 
 	enum driveState{
 		DRIVE_NORMAL,
-		GO_TO_LOCATION
+		GO_TO_LOCATION,
+		FAST_GO_TO_LOCATION,
+		ADVANCED_MOVE,
+		ADVANCED_TURN
 	};
 
 	commandWithAutomation();
@@ -37,21 +43,29 @@ public:
 	void moveElevatorToHeight(float heightIN);
 	void resetElevator();
 	void autoLoadTote();
+	void autoLv2LoadTote();
 	void autoEjectTote();
 	void autoGetTote();
 	void autoGrabTote();
 	void goToLocation(double angle, double distance);
+	void fastGoToLocation(double angle, double distance);
+	void advancedTurn(double L, double R, double yaw);
+	void advancedMove(double L, double R, double distance);
 
 	void runCurrentLoop();
 
-	const double toteLowestHeight=.15;
+	const double toteLowestHeight=.25;
 	const double toteHoldHeight=18;
+	const double toteLv2Height=11;
+	const double toteLv2HoldHeight=35;
+	const double toteLv3Height=23;
+	const double toteMaxHeight=46;
 	const double averageRollerSpeed=.5;
 	const double averageConveyorSpeed=.5;
 
 protected:
 
-	PIDController drivePID;
+	MyPID drivePID;
 	const float deadband =.1;
 	elevatorState currentElevatorState;
 	driveState currentDriveState;
@@ -67,6 +81,10 @@ protected:
 	int elevatorStep;
 	int driveStep;
 
+	int i;
+
+	bool limitClicked;
+
 	std::clock_t elevatorTimer;
 	std::clock_t driveTimer;
 
@@ -80,7 +98,11 @@ protected:
 	bool autoEjectToteLoop();
 	bool autoGetToteLoop();
 	bool autoGrabToteLoop();
+	bool autoLv2LoadToteLoop();
 	bool goToLocationLoop();
+	bool fastGoToLocationLoop();
+	bool advancedTurnLoop();
+	bool advancedMoveLoop();
 };
 
 #endif

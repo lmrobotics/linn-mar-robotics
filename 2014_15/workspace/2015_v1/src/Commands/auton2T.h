@@ -23,6 +23,7 @@ public:
 private:
 	int phase;
 	bool turnRight;
+	int i;
 };
 
 #endif

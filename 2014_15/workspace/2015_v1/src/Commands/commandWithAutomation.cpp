@@ -1,7 +1,10 @@
 #include "Commands/commandWithAutomation.h"
 
-commandWithAutomation::commandWithAutomation() : drivePID(1, .05, .05, driveEncoder, PIDPlacebo)
+commandWithAutomation::commandWithAutomation() :
+drivePID(.02, .005, .001, nav6),
+i(0)
 {
+	limitClicked=false;
 	Requires(drive);
 	Requires(elevator);
 	currentElevatorState=ELEVATOR_NORMAL;
@@ -59,6 +62,14 @@ void commandWithAutomation::runCurrentLoop(){
 			currentElevatorState = ELEVATOR_NORMAL;
 		}
 	}
+	else if (currentElevatorState == AUTO_LV2_LOAD_TOTE) {
+		if (autoLv2LoadToteLoop()) {
+			normalElevatorOperation();
+			currentElevatorState = ELEVATOR_NORMAL;
+		}
+	}
+
+
 
 	if (currentDriveState == DRIVE_NORMAL){
 		normalDriveOperationLoop();
@@ -68,6 +79,34 @@ void commandWithAutomation::runCurrentLoop(){
 			normalDriveOperation();
 			currentDriveState=DRIVE_NORMAL;
 		}
+	}
+	else if (currentDriveState == FAST_GO_TO_LOCATION){
+		if (fastGoToLocationLoop()){
+			normalDriveOperation();
+			currentDriveState=DRIVE_NORMAL;
+		}
+	}
+	else if (currentDriveState == ADVANCED_TURN){
+		if (advancedTurnLoop()){
+			normalDriveOperation();
+			currentDriveState=DRIVE_NORMAL;
+		}
+	}
+	else if (currentDriveState == ADVANCED_MOVE){
+		if (advancedMoveLoop()){
+			normalDriveOperation();
+			currentDriveState=DRIVE_NORMAL;
+		}
+	}
+
+	if (elevatorLimit->Get()==0){
+		if (!limitClicked){
+			elevatorEncoder->Reset();
+			limitClicked=true;
+		}
+	}
+	else {
+		limitClicked=false;
 	}
 }
 
@@ -104,6 +143,7 @@ void commandWithAutomation::resetElevator(){
 //Load a Tote once it is in the arms/rollers
 void commandWithAutomation::autoLoadTote(){
 	targetElevatorHeight=toteLowestHeight;
+	i=0;
 	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
 		elevator-> setElevator(-1);
 	}
@@ -118,6 +158,25 @@ void commandWithAutomation::autoLoadTote(){
 	elevatorStep=1;
 
 }
+//Load a Tote from the second level (chute level)
+void commandWithAutomation::autoLv2LoadTote(){
+	targetElevatorHeight=toteLowestHeight;
+	i=0;
+	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
+		elevator-> setElevator(-1);
+	}
+	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
+		elevator-> setElevator(1);
+	}
+	else{
+		elevator-> setElevator(0);
+	}
+
+	currentElevatorState=AUTO_LV2_LOAD_TOTE;
+	elevatorStep=1;
+
+}
+
 //Eject the stack
 void commandWithAutomation::autoEjectTote(){
 	targetElevatorHeight = toteLowestHeight;
@@ -136,17 +195,6 @@ void commandWithAutomation::autoEjectTote(){
 
 //Grab a Tote and load it
 void commandWithAutomation::autoGetTote(){
-	targetElevatorHeight=toteLowestHeight;
-	if(elevatorEncoder->GetDistance() > targetElevatorHeight+.25){
-		elevator-> setElevator(-1);
-	}
-	else if(elevatorEncoder->GetDistance() < targetElevatorHeight - .25){
-		elevator-> setElevator(1);
-	}
-	else{
-		elevator-> setElevator(0);
-	}
-
 	currentElevatorState=AUTO_GET_TOTE;
 	elevatorStep=1;
 }
@@ -159,30 +207,78 @@ void commandWithAutomation::autoGrabTote(){
 
 //Go to a location specified by the angle and distance. Positive angle means right.
 void commandWithAutomation::goToLocation(double angle, double distance){
+	nav6->ZeroYaw();
 	targetAngle=angle;
 	targetDistance=distance;
 	initialAngle=nav6->GetYaw();
-	drivePID.Reset();
+	drivePID.reset();
 	if (angle>0){
 		if (angle>45){
-			drive->Move(-1,1);
-		}
-		else {
-			drive->Move(-.3,.3);
-		}
-	}
-	else if (angle<0){
-		if (angle<-45){
 			drive->Move(1,-1);
 		}
 		else {
 			drive->Move(.3,-.3);
 		}
 	}
+	else if (angle<0){
+		if (angle<-45){
+			drive->Move(-1,1);
+		}
+		else {
+			drive->Move(-.3,.3);
+		}
+	}
 	else {
 		drive->Move(0,0);
 	}
 	currentDriveState=GO_TO_LOCATION;
+	driveStep=1;
+	drive->setAccel(.1);
+}
+void commandWithAutomation::fastGoToLocation(double angle, double distance){
+	nav6->ZeroYaw();
+	targetAngle=angle;
+	targetDistance=distance;
+	initialAngle=nav6->GetYaw();
+	drivePID.reset();
+	if (angle>0){
+		if (angle>30){
+			drive->Move(1,-1);
+		}
+		else {
+			drive->Move(.6,-.6);
+		}
+	}
+	else if (angle<0){
+		if (angle<-30){
+			drive->Move(-1,1);
+		}
+		else {
+			drive->Move(-.6,.6);
+		}
+	}
+	else {
+		drive->Move(0,0);
+	}
+	currentDriveState=GO_TO_LOCATION;
+	driveStep=1;
+	drive->setAccel(2);
+}
+
+void commandWithAutomation::advancedTurn(double L, double R, double yaw){
+	nav6->ZeroYaw();
+	targetAngle=yaw;
+	initialAngle=nav6->GetYaw();
+	drive->Move(L,R);
+	currentDriveState=ADVANCED_TURN;
+	driveStep=1;
+}
+
+void commandWithAutomation::advancedMove(double L, double R, double distance){
+	targetDistance=distance;
+	initialDistance=driveEncoder->GetDistance();
+	drive->Move(L,R);
+	currentDriveState=ADVANCED_MOVE;
 	driveStep=1;
 }
 
@@ -230,19 +326,24 @@ bool commandWithAutomation::resetElevatorLoop(){
 bool commandWithAutomation::autoLoadToteLoop(){
 	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=toteLowestHeight;
-		if(!elevator -> isArmsOpen()){
-			elevator -> openArms();
+		if (!elevator -> isMagOpen()){
+			elevator -> closeMag();
+			i++;
 		}
-		if(moveElevatorToHeightLoop()){
+		if (!elevator->isArmsOpen()){
+			elevator->openArms();
+			i++;
+		}
+		i++;
+		if (i<=1 || i>20){
 			elevatorStep=2;
 		}
 		break;
 	case 2:
-		if (elevator->isArmsOpen()){
-			elevator->openArms();
+		targetElevatorHeight=toteLowestHeight;
+		if(moveElevatorToHeightLoop()){
+			elevatorStep=3;
 		}
-		elevatorStep=3;
 		break;
 	case 3:
 		targetElevatorHeight=toteHoldHeight;
@@ -254,6 +355,41 @@ bool commandWithAutomation::autoLoadToteLoop(){
 	return false;
 
 }
+bool commandWithAutomation::autoLv2LoadToteLoop(){
+	switch (elevatorStep){
+	case 1:
+		if (elevator -> isMagOpen()){
+			elevator -> closeMag();
+			i++;
+		}
+		i++;
+		if (i<=1 || i>20){
+			elevatorStep=2;
+		}
+		break;
+	case 2:
+		if (elevator->isArmsOpen()){
+			elevator->closeArms();
+		}
+		targetElevatorHeight=toteLowestHeight;
+		if(moveElevatorToHeightLoop()){
+			elevatorStep=3;
+		}
+		break;
+	case 3:
+		if (!elevator->isArmsOpen()){
+			elevator->openArms();
+		}
+		targetElevatorHeight=toteLv2HoldHeight;
+		if(moveElevatorToHeightLoop()){
+			return true;
+		}
+		break;
+	}
+	return false;
+
+}
+
 bool commandWithAutomation::autoEjectToteLoop(){
 	switch (elevatorStep){
 	case 1:
@@ -282,41 +418,37 @@ bool commandWithAutomation::autoEjectToteLoop(){
 bool commandWithAutomation::autoGetToteLoop(){
 	switch (elevatorStep){
 	case 1:
-		targetElevatorHeight=toteHoldHeight;
-		if (moveElevatorToHeightLoop()){
-			elevatorStep=2;
-		}
+		elevator -> closeArms();
+		elevator->closeMag();
+		elevatorTimer=std::clock();
+		elevatorStep = 2;
 		break;
 	case 2:
-		if(elevator -> isArmsOpen()==true){
-			elevator -> closeArms();
-		}
-		elevatorTimer=std::clock();
-		elevatorStep = 3;
-		break;
-	case 3:
-		elevator -> setRollers(-.5);
+		elevator -> setRollers(-1);
 		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
 			elevator -> setRollers(0);
-			elevatorStep = 4;
+			elevatorStep = 3;
 		}
 		break;
-	case 4:
+	case 3:
 		if (elevator->isMagOpen()){
 			elevator->closeMag();
 		}
+		if(!elevator->isArmsOpen()){
+			elevator->openArms();
+		}
 		targetElevatorHeight=toteLowestHeight;
 		if(moveElevatorToHeightLoop()){
-			elevatorStep=5;
+			elevatorStep=4;
 		}
 		break;
-	case 5:
+	case 4:
 		if (elevator->isArmsOpen()){
 			elevator->openArms();
 		}
-		elevatorStep=6;
+		elevatorStep=5;
 		break;
-	case 6:
+	case 5:
 		targetElevatorHeight=toteHoldHeight;
 		if(moveElevatorToHeightLoop()){
 			return true;
@@ -328,15 +460,13 @@ bool commandWithAutomation::autoGetToteLoop(){
 bool commandWithAutomation::autoGrabToteLoop(){
 	switch (elevatorStep){
 	case 1:
-		if(elevator -> isArmsOpen()==true){
-			elevator -> closeArms();
-		}
+		elevator -> closeArms();
 		elevatorTimer=std::clock();
 		elevatorStep = 2;
 		break;
 	case 2:
-		elevator -> setRollers(-.5);
-		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>1){
+		elevator -> setRollers(-1);
+		if((3.0*(double)(std::clock() - elevatorTimer) / (double) CLOCKS_PER_SEC)>.3){
 			elevator -> setRollers(0);
 			return true;
 		}
@@ -349,43 +479,128 @@ bool commandWithAutomation::goToLocationLoop(){
 	switch (driveStep){
 	case 1:
 		if (targetAngle>0){
-			if (targetAngle-nav6->GetYaw()<45){
-				drive->Move(-1,1);
+			if (targetAngle-(nav6->GetYaw()-initialAngle)>30){
+				drive->Move(.5,-.5);
 			}
 			else {
-				drive->Move(-.3,.3);
+				drive->Move(.25,-.25);
 			}
 		}
 		else if (targetAngle<0){
-			if (targetAngle-nav6->GetYaw()>-45){
-				drive->Move(1,-1);
+			if (targetAngle-(nav6->GetYaw()-initialAngle)<-30){
+				drive->Move(-.5,.5);
 			}
 			else {
-				drive->Move(.3,-.3);
+				drive->Move(-.25,.25);
 			}
 		}
-		if (abs(targetAngle-nav6->GetYaw())<8){
-			drive->Move(0,0);
+		if (abs(targetAngle-(nav6->GetYaw()-initialAngle))<5){
+			drive->stopdrive();
 			driveStep=2;
 		}
 		break;
 	case 2:
+		drive->setAccel(2);
 		initialDistance=driveEncoder->GetDistance();
-		drive->Move(0,0);
-		drivePID.Enable();
-		drivePID.Reset();
-		drivePID.SetSetpoint(initialAngle+targetAngle);
+		drive->stopdrive();
+		drivePID.enable();
+		drivePID.reset();
+		drivePID.setTarget(initialAngle+targetAngle);
 		driveStep=3;
 		break;
 	case 3:
-		drive->MoveNoAccel(.75-drivePID.Get(),.75+drivePID.Get());
-		if (targetDistance-driveEncoder->GetDistance()<30){
-			drive->Move(0,0);
+		if (targetDistance>0){
+			drive->MoveNoAccel(.5+drivePID.get(),.5-drivePID.get());
+			dash->PutNumber("drivePID", drivePID.get());
+			if (targetDistance-(driveEncoder->GetDistance()-initialDistance)<5){
+				drive->stopdrive();
+				drivePID.disable();
+				return true;
+			}
 		}
-		if (targetDistance-driveEncoder->GetDistance()<5){
-			drive->stopdrive();
-			return true;
+		else{
+			drive->MoveNoAccel(-.5-drivePID.get(),-.5+drivePID.get());
+			dash->PutNumber("drivePID", drivePID.get());
+			if (targetDistance-(driveEncoder->GetDistance()-initialDistance)>-5){
+				drive->stopdrive();
+				drivePID.disable();
+				return true;
+			}
 		}
 	}
 	return false;
+}
+
+bool commandWithAutomation::fastGoToLocationLoop(){
+	switch (driveStep){
+	case 1:
+		if (targetAngle>0){
+			if (targetAngle-(nav6->GetYaw()-initialAngle)>30){
+				drive->Move(1,-1);
+			}
+			else {
+				drive->Move(.6,-.6);
+			}
+		}
+		else if (targetAngle<0){
+			if (targetAngle-(nav6->GetYaw()-initialAngle)<-30){
+				drive->Move(-1,1);
+			}
+			else {
+				drive->Move(-.6,.6);
+			}
+		}
+		if (abs(targetAngle-(nav6->GetYaw()-initialAngle))<5){
+			drive->stopdrive();
+			driveStep=2;
+		}
+		break;
+	case 2:
+		drive->setAccel(2);
+		initialDistance=driveEncoder->GetDistance();
+		drive->stopdrive();
+		drivePID.enable();
+		drivePID.reset();
+		drivePID.setTarget(initialAngle+targetAngle);
+		driveStep=3;
+		break;
+	case 3:
+		if (targetDistance>0){
+			drive->MoveNoAccel(.8+drivePID.get(),.8-drivePID.get());
+			dash->PutNumber("drivePID", drivePID.get());
+			if (targetDistance-(driveEncoder->GetDistance()-initialDistance)<5){
+				drive->stopdrive();
+				drivePID.disable();
+				return true;
+			}
+		}
+		else{
+			drive->MoveNoAccel(-.8-drivePID.get(),-.8+drivePID.get());
+			dash->PutNumber("drivePID", drivePID.get());
+			if (targetDistance-(driveEncoder->GetDistance()-initialDistance)>-5){
+				drive->stopdrive();
+				drivePID.disable();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool commandWithAutomation::advancedMoveLoop(){
+	if (targetDistance>0){
+		return ((targetDistance-(driveEncoder->GetDistance()-initialDistance))<5);
+	}
+	else {
+		return ((targetDistance-(driveEncoder->GetDistance()-initialDistance))>-5);
+	}
+}
+
+bool commandWithAutomation::advancedTurnLoop(){
+	if (targetAngle>0){
+		return ((targetAngle-(nav6->GetYaw()-initialAngle))<7);
+	}
+	else {
+		return ((targetAngle-(nav6->GetYaw()-initialAngle))>-7);
+	}
 }

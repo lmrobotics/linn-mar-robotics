@@ -1,6 +1,6 @@
 #include "pollLIDAR.h"
 
-pollLIDAR::pollLIDAR(): pollTimer(0)
+pollLIDAR::pollLIDAR(): pollTimer(0), lastPoll(0)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
@@ -17,7 +17,6 @@ void pollLIDAR::Initialize()
 void pollLIDAR::Execute()
 {
 	pollTimer = 3.0*(double)(std::clock() - lastPoll) / (double) CLOCKS_PER_SEC;
-	dash ->PutString ("Test", "10");
 	if (pollTimer>.20){
 		dash->PutNumber("Poll Status:", lidar->poll());
 		resetPollTimer();
