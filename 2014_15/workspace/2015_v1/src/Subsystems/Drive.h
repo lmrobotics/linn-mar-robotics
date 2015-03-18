@@ -35,6 +35,7 @@ public:
 	void shift();
 	void highGear();
 	void lowGear();
+	bool isHighGear();
 };
 
 #endif

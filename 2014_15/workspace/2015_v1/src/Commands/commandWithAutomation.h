@@ -52,6 +52,7 @@ public:
 	void advancedTurn(double L, double R, double yaw);
 	void advancedMove(double L, double R, double distance);
 
+	//Tasks that need to be performed every time the loop is run, such as managing the states
 	void runCurrentLoop();
 
 	const double toteLowestHeight=.25;

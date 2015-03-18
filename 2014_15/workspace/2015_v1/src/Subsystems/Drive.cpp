@@ -156,3 +156,7 @@ void Drive::setAccel(float newAccel){
 float Drive::getAccel(){
 	return accel;
 }
+
+bool Drive::isHighGear(){
+	return (shifter.Get()==DoubleSolenoid::Value::kReverse);
+}

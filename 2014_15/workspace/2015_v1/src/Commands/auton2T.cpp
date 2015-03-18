@@ -96,27 +96,27 @@ void auton2T::normalDriveOperationLoop(){
 		drive->stopdrive();
 		break;
 	case 3:
-		fastGoToLocation(15,43);
+		fastGoToLocation(-15,43);
 		break;
 	case 4:
-		fastGoToLocation(-25,15);
+		fastGoToLocation(25,15);
 		break;
 	case 5:
-		fastGoToLocation(15,25);
+		fastGoToLocation(-15,25);
 		break;
 	case 6:
 		drive->stopdrive();
 		break;
 	case 7:
 		if (turnRight){
-			fastGoToLocation(90,100); 	//Supposed to be (90,108)
+			goToLocation(90,100); 	//Supposed to be (90,108)
 		}
 		else {
-			fastGoToLocation(-90,100);	//Supposed to be (-90,108)
+			goToLocation(-90,100);	//Supposed to be (-90,108)
 		}
 		break;
 	case 8:
-		fastGoToLocation(70,0);
+		goToLocation(70,0);
 		break;
 	case 9:
 		drive->stopdrive();
