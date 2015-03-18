@@ -42,6 +42,7 @@ void telMessages::Execute()
 	//Tests to make sure it works
 	dash ->PutNumber ("counter", counter);
 	dash ->PutString ("Test", "1");
+	dash ->PutNumber ("Drive High Gear", drive->isHighGear());
 }
 
 // Make this return true when this Command no longer needs to run execute()
